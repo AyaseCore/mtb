@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="MSAToolBox.Controls.Legacy.SmartScriptPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1200">
+    <Grid>
+        <DataGrid Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"/>
+                <DataGridTextColumn Header="Link"/>
+                <DataGridComboBoxColumn Header="Event" SelectedValuePath="Event"/>
+                <DataGridTextColumn Header="E1"/>
+                <DataGridTextColumn Header="E2"/>
+                <DataGridTextColumn Header="E3"/>
+                <DataGridTextColumn Header="E4"/>
+                <DataGridTextColumn Header="Phase"/>
+                <DataGridTextColumn Header="Flags"/>
+                <DataGridTextColumn Header="Chance"/>
+                <DataGridComboBoxColumn Header="Action"/>
+                <DataGridTextColumn Header="A1"/>
+                <DataGridTextColumn Header="A2"/>
+                <DataGridTextColumn Header="A3"/>
+                <DataGridTextColumn Header="A4"/>
+                <DataGridTextColumn Header="A5"/>
+                <DataGridTextColumn Header="A6"/>
+                <DataGridCheckBoxColumn Header="Target"/>
+                <DataGridTextColumn Header="T1"/>
+                <DataGridTextColumn Header="T2"/>
+                <DataGridTextColumn Header="T3"/>
+                <DataGridTextColumn Header="T4"/>
+                <DataGridTextColumn Header="P1"/>
+                <DataGridTextColumn Header="P2"/>
+                <DataGridTextColumn Header="P3"/>
+                <DataGridTextColumn Header="Comment"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</UserControl>

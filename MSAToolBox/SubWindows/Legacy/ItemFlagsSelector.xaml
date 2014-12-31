@@ -1,0 +1,48 @@
+﻿<Controls:MetroWindow x:Class="MSAToolBox.SubWindows.Legacy.ItemFlagsSelector"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        Title="ItemFlags" Height="228" Width="755" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <CheckBox x:Name="itemFlag" Content="SOULBOUND" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="itemFlag1" Content="CONJURED" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="itemFlag2" Content="OPENABLE" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="itemFlag3" Content="LEGACY" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="itemFlag4" Content="DEPRECATED" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="itemFlag5" Content="INDESTRUCTIBLE" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="itemFlag6" Content="RIGHTCLICK ACTIVATABLE" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="itemFlag7" Content="NO EQUIP COOLDOWN" HorizontalAlignment="Left" Margin="10,171,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="itemFlag8" Content="TRADEABLE SOULBOUND" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="itemFlag9" Content="WRAPPER" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="itemFlag10" Content="GIFTS" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="itemFlag11" Content="PARTY LOOT" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="itemFlag12" Content="REFUNDABLE" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="itemFlag13" Content="CHARTER" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="itemFlag14" Content="UNK5" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="itemFlag15" Content="UNK6" HorizontalAlignment="Left" Margin="10,171,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="itemFlag16" Content="UNK7" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+        <CheckBox x:Name="itemFlag17" Content="UNK8" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+        <CheckBox x:Name="itemFlag18" Content="PROSPECTABLE" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+        <CheckBox x:Name="itemFlag19" Content="UNIQUE EQUIPPED" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+        <CheckBox x:Name="itemFlag20" Content="UNK9" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+        <CheckBox x:Name="itemFlag21" Content="USEABLE IN ARENA" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+        <CheckBox x:Name="itemFlag22" Content="THROWABLE" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+        <CheckBox x:Name="itemFlag23" Content="SHAPESHIFTED USABLE" HorizontalAlignment="Left" Margin="10,171,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+        <CheckBox x:Name="itemFlag24" Content="UNK10" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="3"/>
+        <CheckBox x:Name="itemFlag25" Content="SMART LOOT" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" Grid.Column="3"/>
+        <CheckBox x:Name="itemFlag26" Content="NOT USEABLE IN ARENA" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" Grid.Column="3"/>
+        <CheckBox x:Name="itemFlag27" Content="BIND TO ACCOUNT" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Grid.Column="3"/>
+        <CheckBox x:Name="itemFlag28" Content="TRIGGERED CAST" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" Grid.Column="3"/>
+        <CheckBox x:Name="itemFlag29" Content="MILLABLE" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" Grid.Column="3"/>
+        <CheckBox x:Name="itemFlag30" Content="UNK11" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" Grid.Column="3"/>
+        <CheckBox x:Name="itemFlag31" Content="BOP TRADEABLE" HorizontalAlignment="Left" Margin="10,171,0,0" VerticalAlignment="Top" Grid.Column="3"/>
+
+    </Grid>
+</Controls:MetroWindow>

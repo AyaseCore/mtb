@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="MSAToolBox.Controls.Legacy.CreatureSpawnPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="1200" d:DesignWidth="1200">
+    <Grid>
+        <DataGrid Margin="0,41,10,10" x:Name="spawnData" AutoGenerateColumns="False" GridLinesVisibility="Vertical">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="GUID" Binding="{Binding Path=Guid}"/>
+                <DataGridTextColumn Header="MAP" Binding="{Binding Path=Map}"/>
+                <DataGridTextColumn Header="ZONE" Binding="{Binding Path=Zone}"/>
+                <DataGridTextColumn Header="Area" Binding="{Binding Path=Area}"/>
+                <DataGridTextColumn Header="X" Binding="{Binding Path=PositionX}"/>
+                <DataGridTextColumn Header="Y" Binding="{Binding Path=PositionY}"/>
+                <DataGridTextColumn Header="Z" Binding="{Binding Path=PositionZ}"/>
+                <DataGridTextColumn Header="O" Binding="{Binding Path=Orientation}"/>
+                <DataGridTextColumn Header="SPAWNMASK" Binding="{Binding Path=SpawnMask}"/>
+                <DataGridTextColumn Header="PHASE" Binding="{Binding Path=PhaseMask}"/>
+                <DataGridTextColumn Header="MODEL" Binding="{Binding Path=Model}"/>
+                <DataGridTextColumn Header="EQUIPID" Binding="{Binding Path=EquipmentID}"/>
+                <DataGridTextColumn Header="SPAWNTIME" Binding="{Binding Path=SpawnTime}"/>
+                <DataGridTextColumn Header="SPAWNDIST" Binding="{Binding Path=SpawnDistance}"/>
+                <DataGridTextColumn Header="WAYPOINT" Binding="{Binding Path=CurrentWaypoint}"/>
+                <DataGridTextColumn Header="HEALTH" Binding="{Binding Path=CurrentHealth}"/>
+                <DataGridTextColumn Header="POWER" Binding="{Binding Path=CurrentMana}"/>
+                <DataGridTextColumn Header="MOVEMENTTYPE" Binding="{Binding Path=MovementType}"/>
+                <DataGridTextColumn Header="NPCFLAGS" Binding="{Binding Path=NpcFlags}"/>
+                <DataGridTextColumn Header="UNITFLAGS" Binding="{Binding Path=UnitFlags}"/>
+                <DataGridTextColumn Header="DYNAMICFLAGS" Binding="{Binding Path=DynamicFlags}"/>
+                <DataGridTextColumn Header="VERIFIEDBUILD" Binding="{Binding Path=VerifiedBuild}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding Entry[0]}" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox Height="23" Margin="125,10,90,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" IsEnabled="False"/>
+        <Button Content="SAVE" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="75"/>
+    </Grid>
+</UserControl>

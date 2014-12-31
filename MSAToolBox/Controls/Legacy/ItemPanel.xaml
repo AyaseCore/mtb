@@ -1,0 +1,622 @@
+﻿<UserControl x:Class="MSAToolBox.Controls.Legacy.ItemPanel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+      xmlns:Converters="clr-namespace:MSAToolBox.Utility"
+      mc:Ignorable="d" 
+      d:DesignHeight="2000" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <Converters:QualityColorConverter x:Key="QualityColorConverter"/>
+        <Storyboard x:Key="ShowProgressBar">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="itemTabProgress">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="itemTabProgressLabel">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="itemTabProgressLabel">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="itemTabProgress">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="itemList">
+                <EasingThicknessKeyFrame KeyTime="0:0:1" Value="5,133,0,75">
+                    <EasingThicknessKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </EasingThicknessKeyFrame.EasingFunction>
+                </EasingThicknessKeyFrame>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="HideProgressBar">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="itemTabProgress">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.005"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="itemTabProgressLabel">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.01"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="itemTabProgressLabel">
+                <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="{x:Static Visibility.Hidden}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="itemTabProgress">
+                <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="{x:Static Visibility.Hidden}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="itemList">
+                <EasingThicknessKeyFrame KeyTime="0:0:1" Value="5,133,0,40">
+                    <EasingThicknessKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </EasingThicknessKeyFrame.EasingFunction>
+                </EasingThicknessKeyFrame>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource ShowProgressBar}"/>
+            <BeginStoryboard Storyboard="{StaticResource HideProgressBar}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="itemCreate" Content="CREATE NEW" Margin="5,10,0,0" VerticalAlignment="Top" Click="itemCreate_Click" />
+        <TextBox x:Name="itemSearch" Height="23" Margin="5,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="itemSearch_TextChanged" />
+        <ListBox x:Name="itemList" Margin="5,133,0,40" SelectedValuePath="Entry" SelectionChanged="itemList_SelectionChanged" RenderTransformOrigin="0.5,0.5">
+            <ListBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ListBox.RenderTransform>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} - {1}">
+                                <Binding Path="Entry"/>
+                                <Binding Path="Name"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                        <TextBlock.Foreground>
+                            <Binding Path="Quality" Converter="{StaticResource QualityColorConverter}"/>
+                        </TextBlock.Foreground>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Name="itemInUse" Header="IN USE"/>
+                    <MenuItem Name="itemCopy" Header="COPY" Click="itemCopy_Click" />
+                    <MenuItem Name="itemDelete" Header="DELETE" Click="itemDelete_Click" />
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
+        <TabControl Grid.Column="1" Margin="0" FontFamily="Microsoft YaHei UI Light" Name="itemTab">
+            <TabItem Header="BASE">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="73*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="ENTRY" HorizontalAlignment="Right" Margin="0,10,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="itemEntry" Grid.Column="1" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" IsEnabled="False" Text="{Binding Entry, Mode=TwoWay}"/>
+                        <Label Content="CLASS" HorizontalAlignment="Right" Margin="0,134,0,0" VerticalAlignment="Top"/>
+                        <Label Content="SUBCLASS" HorizontalAlignment="Right" Margin="0,165,0,0" VerticalAlignment="Top"/>
+                        <Label Content="SOUND_OVERRIDE" HorizontalAlignment="Right" Margin="0,879,0,0" VerticalAlignment="Top"/>
+                        <Label Content="NAME" HorizontalAlignment="Right" Margin="0,40,0,0" VerticalAlignment="Top"/>
+                        <Label Content="DISPLAYID" HorizontalAlignment="Right" Margin="0,102,0,0" VerticalAlignment="Top"/>
+                        <Label Content="QUALITY" HorizontalAlignment="Left" Margin="134,11,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <Label Content="FLAGS" HorizontalAlignment="Right" Margin="0,786,0,0" VerticalAlignment="Top"/>
+                        <Label Content="FLAGS_EXTRA" HorizontalAlignment="Right" Margin="0,816,0,0" VerticalAlignment="Top"/>
+                        <Label Content="BUY_COUNT" HorizontalAlignment="Right" Margin="65,445,0,0" VerticalAlignment="Top"/>
+                        <Label Content="BUY_PRICE" HorizontalAlignment="Right" Margin="0,381,0,0" VerticalAlignment="Top"/>
+                        <Label Content="SELL_PRICE" HorizontalAlignment="Right" Margin="73,414,0,0" VerticalAlignment="Top"/>
+                        <Label Content="INVENTORY_TYPE" HorizontalAlignment="Right" Margin="0,196,0,0" VerticalAlignment="Top"/>
+                        <Label Content="ITEM_LEVEL" HorizontalAlignment="Left" Margin="319,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <Label Content="CONTAINER_SLOT" HorizontalAlignment="Right" Margin="31,475,0,0" VerticalAlignment="Top"/>
+                        <Label Content="AMMO_TYPE" HorizontalAlignment="Right" Margin="65,724,0,0" VerticalAlignment="Top"/>
+                        <Label Content="RANGED_MOD_RANGE" HorizontalAlignment="Right" Margin="0,941,0,0" VerticalAlignment="Top"/>
+                        <Label Content="BONDING" HorizontalAlignment="Right" Margin="76,290,0,0" VerticalAlignment="Top"/>
+                        <Label Content="DESCRIPTION" HorizontalAlignment="Right" Margin="0,72,0,0" VerticalAlignment="Top"/>
+                        <Label Content="START_QUEST" HorizontalAlignment="Right" Margin="0,693,0,0" VerticalAlignment="Top"/>
+                        <Label Content="MATERIAL" HorizontalAlignment="Right" Margin="0,257,0,0" VerticalAlignment="Top"/>
+                        <Label Content="SHEATH" HorizontalAlignment="Right" Margin="0,227,0,0" VerticalAlignment="Top"/>
+                        <Label Content="ITEMSET" HorizontalAlignment="Right" Margin="0,661,0,0" VerticalAlignment="Top"/>
+                        <Label Content="BAG_FAMILY" HorizontalAlignment="Right" Margin="65,321,0,0" VerticalAlignment="Top"/>
+                        <Label Content="TOTEM_CATEGORY" HorizontalAlignment="Right" Margin="28,351,0,0" VerticalAlignment="Top"/>
+                        <Label Content="GEM_PROPERTY" HorizontalAlignment="Right" Margin="42,630,0,0" VerticalAlignment="Top"/>
+                        <Label Content="ARMOR_DMG_MODIFIER" HorizontalAlignment="Right" Margin="-2,910,0,0" VerticalAlignment="Top"/>
+                        <Label Content="SCRIPT_NAME" HorizontalAlignment="Right" Margin="53,971,0,0" VerticalAlignment="Top"/>
+                        <Label Content="DISENCHANT_ID" HorizontalAlignment="Right" Margin="42,537,0,0" VerticalAlignment="Top"/>
+                        <Label Content="FOOD_TYPE" HorizontalAlignment="Right" Margin="68,754,0,0" VerticalAlignment="Top"/>
+                        <Label Content="MIN_MONEY_LOOT" HorizontalAlignment="Right" Margin="23,569,0,0" VerticalAlignment="Top"/>
+                        <Label Content="MAX_MONEY_LOOT" HorizontalAlignment="Right" Margin="20,600,0,0" VerticalAlignment="Top"/>
+                        <Label Content="FLAGS_CUSTOM" HorizontalAlignment="Right" Margin="0,846,0,0" VerticalAlignment="Top"/>
+                        <Label Content="VERIFIED_BUILD" HorizontalAlignment="Right" Margin="44,1003,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="itemName" Grid.Column="1" Height="23" Margin="10,41,101,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Name, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemDescription" Grid.Column="1" Height="23" Margin="10,72,101,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Description, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemDisplayID" Grid.Column="1" Height="23" Margin="10,103,101,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding DisplayID, Mode=TwoWay}"/>
+                        <ComboBox x:Name="itemClass" Grid.Column="1" Margin="10,134,10,0" VerticalAlignment="Top" SelectedValue="{Binding Class, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value" SelectionChanged="itemClass_SelectionChanged"/>
+                        <ComboBox x:Name="itemSubClass" Grid.Column="1" Margin="10,165,10,0" VerticalAlignment="Top" SelectedValue="{Binding Subclass, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                        <ComboBox x:Name="itemMaterial" Grid.Column="1" Margin="10,258,10,0" VerticalAlignment="Top" SelectedValue="{Binding Material, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                        <ComboBox x:Name="itemInventoryType" Grid.Column="1" Margin="10,196,10,0" VerticalAlignment="Top" SelectedValue="{Binding InventoryType, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                        <ComboBox x:Name="itemSheath" Grid.Column="1" Margin="10,227,10,0" VerticalAlignment="Top" SelectedValue="{Binding Sheath, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                        <ComboBox x:Name="itemQuality" Grid.Column="1" HorizontalAlignment="Left" Margin="194,10,0,0" VerticalAlignment="Top" Width="120" SelectedValue="{Binding Quality, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                        <ComboBox x:Name="itemBonding" Grid.Column="1" Margin="10,289,10,0" VerticalAlignment="Top" SelectedValue="{Binding Bonding, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                        <TextBox x:Name="itemBagFamily" Grid.Column="1" Margin="10,320,10,0" VerticalAlignment="Top" TextWrapping="Wrap" Text="{Binding BagFamily, Mode=TwoWay}"/>
+                        <ComboBox x:Name="itemTotemCategory" Grid.Column="1" Margin="10,351,10,0" VerticalAlignment="Top" SelectedValue="{Binding TotemCategory, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                        <TextBox x:Name="itemBuyPrice" Grid.Column="1" Height="23" Margin="10,382,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding BuyPrice, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemSellPrice" Grid.Column="1" Height="23" Margin="10,413,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SellPrice, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemBuyCount" Grid.Column="1" Height="23" Margin="10,444,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding BuyCount, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemLevel" Grid.Column="1" Height="23" Margin="389,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Text="{Binding ItemLevel, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemFlags" Grid.Column="1" Height="23" Margin="10,785,0,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" HorizontalAlignment="Left" Width="120" Text="{Binding Flags, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemFlagsExtra" Grid.Column="1" Height="23" Margin="10,816,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Text="{Binding FlagsExtra, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemFlagsCustom" Grid.Column="1" Height="23" Margin="10,847,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Text="{Binding CustomFlags, Mode=TwoWay}"/>
+                        <Label Content="DISENCHANT_LEVEL" HorizontalAlignment="Right" Margin="23,505,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="itemSet" Grid.Column="1" Height="23" Margin="10,661,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ItemSet, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemContainerSlots" Grid.Column="1" Height="23" Margin="10,475,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ContainerSlot, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemStartQuest" Grid.Column="1" Height="23" Margin="10,692,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding StartQuest, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemDisenchantLevel" Grid.Column="1" Height="23" Margin="10,506,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding RequiredDisenchantSkill, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemDisenchantID" Grid.Column="1" Height="23" Margin="10,537,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding DisenchantID, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemMinMoneyLoot" Grid.Column="1" Height="23" Margin="10,568,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding MinMoneyLoot, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemMaxMoneyLoot" Grid.Column="1" Height="23" Margin="10,599,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding MaxMoneyLoot, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemSoundOverrideSubclass" Grid.Column="1" Height="23" Margin="10,878,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SoundOverrideSubclass, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemArmorDamageModifier" Grid.Column="1" Height="23" Margin="10,909,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ArmorDamageModifier, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemRangedModRange" Grid.Column="1" Height="23" Margin="10,940,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding RangedModRange, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemVerifiedBuild" Grid.Column="1" Height="23" Margin="10,1002,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding VerifiedBuild, Mode=TwoWay}"/>
+                        <ComboBox x:Name="itemAmmoType" Grid.Column="1" Margin="10,723,10,0" VerticalAlignment="Top" SelectedValue="{Binding AmmoType, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                        <Image x:Name="itemDisplayIcon" Grid.Column="1" HorizontalAlignment="Right" Height="86" Margin="0,41,10,0" VerticalAlignment="Top" Width="86"/>
+                        <ComboBox x:Name="itemFoodType" Grid.Column="1" Margin="10,754,10,0" VerticalAlignment="Top" SelectedValue="{Binding FoodType, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                        <TextBox x:Name="itemScriptName" Grid.Column="1" Height="23" Margin="10,971,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ScriptName, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemGemProperty" Grid.Column="1" Height="23" Margin="10,630,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding GemProperty, Mode=TwoWay}"/>
+                        <Button x:Name="itemFlagBtn" Content="CHANGE" Grid.Column="1" HorizontalAlignment="Left" Margin="135,785,0,0" VerticalAlignment="Top" Width="75" Click="itemFlagBtn_Click"/>
+                        <Button x:Name="itemSave" Content="Save" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="75" Click="itemSave_Click"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="STATS">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid Margin="0,528,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="SPELL1" HorizontalAlignment="Right" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="Red"/>
+                            <Label Content="TRIGGER" HorizontalAlignment="Right" Margin="52,41,0,0" VerticalAlignment="Top"/>
+                            <Label Content="CHARGE" HorizontalAlignment="Right" Margin="53,72,0,0" VerticalAlignment="Top"/>
+                            <Label Content="PPM" HorizontalAlignment="Right" Margin="75,103,0,0" VerticalAlignment="Top"/>
+                            <Label Content="COOLDOWN" HorizontalAlignment="Right" Margin="27,134,0,0" VerticalAlignment="Top"/>
+                            <Label Content="CATEGORY" HorizontalAlignment="Right" Margin="38,165,0,0" VerticalAlignment="Top"/>
+                            <Label Content="CATEGORY_CD" HorizontalAlignment="Right" Margin="21,196,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="itemSpell1" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" Text="{Binding Spell[0], Mode=TwoWay}"/>
+                            <ComboBox x:Name="itemSpellTrigger1" Grid.Column="1" Margin="10,41,10,0" VerticalAlignment="Top" SelectedValue="{Binding SpellTrigger[0], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                            <TextBox x:Name="itemSpellCharges1" Grid.Column="1" Height="23" Margin="10,72,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCharges[0], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellPPM1" Grid.Column="1" Height="23" Margin="10,103,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellPPM[0], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellCooldown1" Grid.Column="1" Height="23" Margin="10,134,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCooldown[0], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellCategory1" Grid.Column="1" Height="23" Margin="10,165,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategory[0], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellCategoryCD1" Grid.Column="1" Height="23" Margin="10,196,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategoryCooldown[0], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellName1" Height="23" Margin="135,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                            <TextBox x:Name="itemSpell2" HorizontalAlignment="Left" Height="23" Margin="10,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" Text="{Binding Spell[1], Mode=TwoWay}"/>
+                            <ComboBox x:Name="itemSpellTrigger2" Grid.Column="1" Margin="10,258,10,0" VerticalAlignment="Top" SelectedValue="{Binding SpellTrigger[1], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                            <TextBox x:Name="itemSpellCharges2" Grid.Column="1" Height="23" Margin="10,289,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCharges[1], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellPPM2" Grid.Column="1" Height="23" Margin="10,320,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellPPM[1], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellCooldown2" Grid.Column="1" Height="23" Margin="10,351,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCooldown[1], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellCategory2" Grid.Column="1" Height="23" Margin="10,382,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategory[1], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellCategoryCD2" Grid.Column="1" Height="23" Margin="10,413,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategoryCooldown[1], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellName2" Height="23" Margin="135,227,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                            <TextBox x:Name="itemSpell3" HorizontalAlignment="Left" Height="23" Margin="10,444,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" Text="{Binding Spell[2], Mode=TwoWay}"/>
+                            <ComboBox x:Name="itemSpellTrigger3" Grid.Column="1" Margin="10,475,10,0" VerticalAlignment="Top" SelectedValue="{Binding SpellTrigger[2], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                            <TextBox x:Name="itemSpellCharges3" Grid.Column="1" Height="23" Margin="10,506,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCharges[2], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellPPM3" Grid.Column="1" Height="23" Margin="10,537,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellPPM[2], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellCooldown3" Grid.Column="1" Height="23" Margin="10,568,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCooldown[2], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellCategory3" Grid.Column="1" Height="23" Margin="10,599,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategory[2], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellCategoryCD3" Grid.Column="1" Height="23" Margin="10,630,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategoryCooldown[2], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellName3" Height="23" Margin="135,444,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                            <TextBox x:Name="itemSpell4" HorizontalAlignment="Left" Height="23" Margin="10,661,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" Text="{Binding Spell[3], Mode=TwoWay}"/>
+                            <ComboBox x:Name="itemSpellTrigger4" Grid.Column="1" Margin="10,692,10,0" VerticalAlignment="Top" SelectedValue="{Binding SpellTrigger[3], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                            <TextBox x:Name="itemSpellCharges4" Grid.Column="1" Height="23" Margin="10,723,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCharges[3], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellPPM4" Grid.Column="1" Height="23" Margin="10,754,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellPPM[3], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellCooldown4" Grid.Column="1" Height="23" Margin="10,785,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCooldown[3], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellCategory4" Grid.Column="1" Height="23" Margin="10,816,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategory[3], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellCategoryCD4" Grid.Column="1" Height="23" Margin="10,847,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategoryCooldown[3], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellName4" Height="23" Margin="135,661,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                            <TextBox x:Name="itemSpell5" HorizontalAlignment="Left" Height="23" Margin="10,878,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" Text="{Binding Spell[4], Mode=TwoWay}"/>
+                            <ComboBox x:Name="itemSpellTrigger5" Grid.Column="1" Margin="10,909,10,0" VerticalAlignment="Top" SelectedValue="{Binding SpellTrigger[4], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                            <TextBox x:Name="itemSpellCharges5" Grid.Column="1" Height="23" Margin="10,940,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCharges[4], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellPPM5" Grid.Column="1" Height="23" Margin="10,972,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellPPM[4], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellCooldown5" Grid.Column="1" Height="23" Margin="10,1003,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCooldown[4], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellCategory5" Grid.Column="1" Height="23" Margin="10,1034,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategory[4], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellCategoryCD5" Grid.Column="1" Height="23" Margin="10,1065,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategoryCooldown[4], Mode=TwoWay}"/>
+                            <TextBox x:Name="itemSpellName5" Height="23" Margin="135,878,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                            <Label Content="SPELL2" HorizontalAlignment="Right" Margin="0,228,0,0" VerticalAlignment="Top" Foreground="Red"/>
+                            <Label Content="TRIGGER" HorizontalAlignment="Right" Margin="0,259,0,0" VerticalAlignment="Top"/>
+                            <Label Content="CHARGE" HorizontalAlignment="Right" Margin="0,290,0,0" VerticalAlignment="Top"/>
+                            <Label Content="PPM" HorizontalAlignment="Right" Margin="0,321,0,0" VerticalAlignment="Top"/>
+                            <Label Content="COOLDOWN" HorizontalAlignment="Right" Margin="0,352,0,0" VerticalAlignment="Top"/>
+                            <Label Content="CATEGORY" HorizontalAlignment="Right" Margin="0,383,0,0" VerticalAlignment="Top"/>
+                            <Label Content="CATEGORY_CD" HorizontalAlignment="Right" Margin="0,414,0,0" VerticalAlignment="Top"/>
+                            <Label Content="SPELL3" HorizontalAlignment="Right" Margin="0,445,0,0" VerticalAlignment="Top" Foreground="Red"/>
+                            <Label Content="TRIGGER" HorizontalAlignment="Right" Margin="0,476,0,0" VerticalAlignment="Top"/>
+                            <Label Content="CHARGE" HorizontalAlignment="Right" Margin="0,507,0,0" VerticalAlignment="Top"/>
+                            <Label Content="PPM" HorizontalAlignment="Right" Margin="0,538,0,0" VerticalAlignment="Top"/>
+                            <Label Content="COOLDOWN" HorizontalAlignment="Right" Margin="0,569,0,0" VerticalAlignment="Top"/>
+                            <Label Content="CATEGORY" HorizontalAlignment="Right" Margin="0,600,0,0" VerticalAlignment="Top"/>
+                            <Label Content="CATEGORY_CD" HorizontalAlignment="Right" Margin="0,631,0,0" VerticalAlignment="Top"/>
+                            <Label Content="SPELL4" HorizontalAlignment="Right" Margin="0,661,0,0" VerticalAlignment="Top" Foreground="Red"/>
+                            <Label Content="TRIGGER" HorizontalAlignment="Right" Margin="0,692,0,0" VerticalAlignment="Top"/>
+                            <Label Content="CHARGE" HorizontalAlignment="Right" Margin="0,723,0,0" VerticalAlignment="Top"/>
+                            <Label Content="PPM" HorizontalAlignment="Right" Margin="0,754,0,0" VerticalAlignment="Top"/>
+                            <Label Content="COOLDOWN" HorizontalAlignment="Right" Margin="0,785,0,0" VerticalAlignment="Top"/>
+                            <Label Content="CATEGORY" HorizontalAlignment="Right" Margin="0,816,0,0" VerticalAlignment="Top"/>
+                            <Label Content="CATEGORY_CD" HorizontalAlignment="Right" Margin="0,847,0,0" VerticalAlignment="Top"/>
+                            <Label Content="SPELL5" HorizontalAlignment="Right" Margin="0,880,0,0" VerticalAlignment="Top" Foreground="Red"/>
+                            <Label Content="TRIGGER" HorizontalAlignment="Right" Margin="0,911,0,0" VerticalAlignment="Top"/>
+                            <Label Content="CHARGE" HorizontalAlignment="Right" Margin="0,942,0,0" VerticalAlignment="Top"/>
+                            <Label Content="PPM" HorizontalAlignment="Right" Margin="0,973,0,0" VerticalAlignment="Top"/>
+                            <Label Content="COOLDOWN" HorizontalAlignment="Right" Margin="0,1004,0,0" VerticalAlignment="Top"/>
+                            <Label Content="CATEGORY" HorizontalAlignment="Right" Margin="0,1035,0,0" VerticalAlignment="Top"/>
+                            <Label Content="CATEGORY_CD" HorizontalAlignment="Right" Margin="0,1066,0,0" VerticalAlignment="Top"/>
+                        </Grid>
+                        <Grid VerticalAlignment="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1" VerticalAlignment="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="140"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="ARMOR" HorizontalAlignment="Right" Margin="57,10,0,0" VerticalAlignment="Top"/>
+                                <Label Content="RES_HOLY" HorizontalAlignment="Right" Margin="47,41,0,0" VerticalAlignment="Top"/>
+                                <Label Content="RES_FIRE" HorizontalAlignment="Right" Margin="56,71,0,0" VerticalAlignment="Top"/>
+                                <Label Content="RES_NATURE" HorizontalAlignment="Right" Margin="33,102,0,0" VerticalAlignment="Top"/>
+                                <Label Content="RES_FROST" HorizontalAlignment="Right" Margin="44,134,0,0" VerticalAlignment="Top"/>
+                                <Label Content="RES_SHADOW" HorizontalAlignment="Right" Margin="26,164,0,0" VerticalAlignment="Top"/>
+                                <Label Content="RES_ARCANE" HorizontalAlignment="Right" Margin="33,195,0,0" VerticalAlignment="Top"/>
+                                <Label Content="BLOCK" HorizontalAlignment="Right" Margin="61,228,0,0" VerticalAlignment="Top"/>
+                                <Label Content="SOCKET1" HorizontalAlignment="Right" Margin="50,257,0,0" VerticalAlignment="Top"/>
+                                <Label Content="SOCKET2" HorizontalAlignment="Right" Margin="49,287,0,0" VerticalAlignment="Top"/>
+                                <Label Content="SOCKET3" HorizontalAlignment="Right" Margin="48,318,0,0" VerticalAlignment="Top"/>
+                                <Label Content="SOCKET_BONUS" HorizontalAlignment="Right" Margin="15,349,0,0" VerticalAlignment="Top"/>
+                                <Label Content="SOCKET_CONTENT1" HorizontalAlignment="Right" Margin="-8,381,0,0" VerticalAlignment="Top"/>
+                                <Label Content="SOCKET_CONTENT2" HorizontalAlignment="Right" Margin="-8,413,0,0" VerticalAlignment="Top"/>
+                                <Label Content="SOCKET_CONTENT3" HorizontalAlignment="Right" Margin="-8,443,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="itemArmor" Grid.Column="1" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Armor, Mode=TwoWay}"/>
+                                <TextBox x:Name="itemResHoly" Grid.Column="1" Height="23" Margin="10,41,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding HolyResistance, Mode=TwoWay}"/>
+                                <TextBox x:Name="itemResFire" Grid.Column="1" Height="23" Margin="10,71,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding FireResistance, Mode=TwoWay}"/>
+                                <TextBox x:Name="itemResNature" Grid.Column="1" Height="23" Margin="10,102,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding NatureResistance, Mode=TwoWay}"/>
+                                <TextBox x:Name="itemResFrost" Grid.Column="1" Height="23" Margin="10,133,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding FrostResistance, Mode=TwoWay}"/>
+                                <TextBox x:Name="itemResShadow" Grid.Column="1" Height="23" Margin="10,164,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ShadowResistance, Mode=TwoWay}"/>
+                                <TextBox x:Name="itemResArcane" Grid.Column="1" Height="23" Margin="10,195,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ArcaneResistance, Mode=TwoWay}"/>
+                                <TextBox x:Name="itemBlock" Grid.Column="1" Height="23" Margin="10,226,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Block, Mode=TwoWay}"/>
+                                <ComboBox x:Name="itemSocket1" Grid.Column="1" Margin="10,257,10,0" VerticalAlignment="Top" SelectedValue="{Binding SocketColor[0], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                                <ComboBox x:Name="itemSocket2" Grid.Column="1" Margin="10,287,10,0" VerticalAlignment="Top" SelectedValue="{Binding SocketColor[1], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                                <ComboBox x:Name="itemSocket3" Grid.Column="1" Margin="10,318,10,0" VerticalAlignment="Top" SelectedValue="{Binding SocketColor[2], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                                <TextBox x:Name="itemSocketBonus" Grid.Column="1" Margin="10,349,10,0" VerticalAlignment="Top" TextWrapping="Wrap" Text="{Binding SocketBonus, Mode=TwoWay}"/>
+                                <TextBox x:Name="itemSocketContent1" Grid.Column="1" Height="23" Margin="10,380,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SocketContent[0], Mode=TwoWay}"/>
+                                <TextBox x:Name="itemSocketContent2" Grid.Column="1" Height="23" Margin="10,411,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SocketContent[1], Mode=TwoWay}"/>
+                                <TextBox x:Name="itemSocketContent3" Grid.Column="1" Height="23" Margin="10,442,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SocketContent[2], Mode=TwoWay}"/>
+                                <TextBox x:Name="itemScalingStatDistribution" Height="23" Margin="10,473,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding ScalingStatDistribution, Mode=TwoWay}"/>
+                                <TextBox x:Name="itemScalingStatsValue" Height="23" Margin="10,504,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding ScalingStatValue, Mode=TwoWay}"/>
+                                <Label Content="SCALING_STAT_DIST" HorizontalAlignment="Right" Margin="-62,474,0,0" VerticalAlignment="Top"/>
+                                <Label Content="SCALING_STATS_VALUE" HorizontalAlignment="Right" Margin="-26,505,0,0" VerticalAlignment="Top"/>
+                            </Grid>
+                            <Grid VerticalAlignment="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="140"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="STATS_COUNT" HorizontalAlignment="Right" Margin="0,10,0,0" VerticalAlignment="Top"/>
+                                <Label Content="STAT1" HorizontalAlignment="Right" Margin="0,42,0,0" VerticalAlignment="Top"/>
+                                <Label Content="STAT2" HorizontalAlignment="Right" Margin="0,72,0,0" VerticalAlignment="Top"/>
+                                <Label Content="STAT3" HorizontalAlignment="Right" Margin="0,103,0,0" VerticalAlignment="Top"/>
+                                <Label Content="STAT4" HorizontalAlignment="Right" Margin="0,134,0,0" VerticalAlignment="Top"/>
+                                <Label Content="STAT5" HorizontalAlignment="Right" Margin="0,166,0,0" VerticalAlignment="Top"/>
+                                <Label Content="STAT6" HorizontalAlignment="Right" Margin="0,196,0,0" VerticalAlignment="Top"/>
+                                <Label Content="STAT7" HorizontalAlignment="Right" Margin="0,227,0,0" VerticalAlignment="Top"/>
+                                <Label Content="STAT8" HorizontalAlignment="Right" Margin="0,258,0,0" VerticalAlignment="Top"/>
+                                <Label Content="STAT9" HorizontalAlignment="Right" Margin="0,290,0,0" VerticalAlignment="Top"/>
+                                <Label Content="STAT10" HorizontalAlignment="Right" Margin="0,321,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="itemStatsCount" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding StatsCount, Mode=TwoWay}"/>
+                                <TextBox x:Name="itemStatValue1" HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1" Text="{Binding StatValue[0], Mode=TwoWay}"/>
+                                <ComboBox x:Name="itemStatType1" Margin="75,41,10,0" VerticalAlignment="Top" Grid.Column="1" SelectedValue="{Binding StatType[0], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                                <TextBox x:Name="itemStatValue2" HorizontalAlignment="Left" Height="23" Margin="10,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1" Text="{Binding StatValue[1], Mode=TwoWay}"/>
+                                <ComboBox x:Name="itemStatType2" Margin="75,72,10,0" VerticalAlignment="Top" Grid.Column="1" SelectedValue="{Binding StatType[1], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                                <TextBox x:Name="itemStatValue3" HorizontalAlignment="Left" Height="23" Margin="10,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1" Text="{Binding StatValue[2], Mode=TwoWay}"/>
+                                <ComboBox x:Name="itemStatType3" Margin="75,103,10,0" VerticalAlignment="Top" Grid.Column="1" SelectedValue="{Binding StatType[2], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                                <TextBox x:Name="itemStatValue4" HorizontalAlignment="Left" Height="23" Margin="10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1" Text="{Binding StatValue[3], Mode=TwoWay}"/>
+                                <ComboBox x:Name="itemStatType4" Margin="75,134,10,0" VerticalAlignment="Top" Grid.Column="1" SelectedValue="{Binding StatType[3], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                                <TextBox x:Name="itemStatValue5" HorizontalAlignment="Left" Height="23" Margin="10,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1" Text="{Binding StatValue[4], Mode=TwoWay}"/>
+                                <ComboBox x:Name="itemStatType5" Margin="75,165,10,0" VerticalAlignment="Top" Grid.Column="1" SelectedValue="{Binding StatType[4], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                                <TextBox x:Name="itemStatValue6" HorizontalAlignment="Left" Height="23" Margin="10,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1" Text="{Binding StatValue[5], Mode=TwoWay}"/>
+                                <ComboBox x:Name="itemStatType6" Margin="75,196,10,0" VerticalAlignment="Top" Grid.Column="1" SelectedValue="{Binding StatType[5], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                                <TextBox x:Name="itemStatValue7" HorizontalAlignment="Left" Height="23" Margin="10,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1" Text="{Binding StatValue[6], Mode=TwoWay}"/>
+                                <ComboBox x:Name="itemStatType7" Margin="75,227,10,0" VerticalAlignment="Top" Grid.Column="1" SelectedValue="{Binding StatType[6], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                                <TextBox x:Name="itemStatValue8" HorizontalAlignment="Left" Height="23" Margin="10,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1" Text="{Binding StatValue[7], Mode=TwoWay}"/>
+                                <ComboBox x:Name="itemStatType8" Margin="75,258,10,0" VerticalAlignment="Top" Grid.Column="1" SelectedValue="{Binding StatType[7], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                                <TextBox x:Name="itemStatValue9" HorizontalAlignment="Left" Height="23" Margin="10,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1" Text="{Binding StatValue[8], Mode=TwoWay}"/>
+                                <ComboBox x:Name="itemStatType9" Margin="75,289,10,0" VerticalAlignment="Top" Grid.Column="1" SelectedValue="{Binding StatType[8], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                                <TextBox x:Name="itemStatValue10" HorizontalAlignment="Left" Height="23" Margin="10,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1" Text="{Binding StatValue[9], Mode=TwoWay}"/>
+                                <ComboBox x:Name="itemStatType10" Margin="75,320,10,0" VerticalAlignment="Top" Grid.Column="1" SelectedValue="{Binding StatType[9], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                                <Label Content="DMG_1" HorizontalAlignment="Right" Margin="0,349,0,0" VerticalAlignment="Top"/>
+                                <Label Content="DMG_2" HorizontalAlignment="Right" Margin="0,382,0,0" VerticalAlignment="Top"/>
+                                <Label Content="SPEED" HorizontalAlignment="Right" Margin="0,413,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="itemDmgMin1" HorizontalAlignment="Left" Height="23" Margin="10,351,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Grid.Column="1" Text="{Binding DamageMin[0],Mode=TwoWay}"/>
+                                <TextBox x:Name="itemDmgMax1" HorizontalAlignment="Left" Height="23" Margin="99,351,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Grid.Column="1" Text="{Binding DamageMax[0], Mode=TwoWay}"/>
+                                <Label Content="~" HorizontalAlignment="Left" Margin="83,352,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                <TextBox x:Name="itemDmgMin2" HorizontalAlignment="Left" Height="23" Margin="10,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Grid.Column="1" Text="{Binding DamageMin[1], Mode=TwoWay}"/>
+                                <TextBox x:Name="itemDmgMax2" HorizontalAlignment="Left" Height="23" Margin="99,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Grid.Column="1" Text="{Binding DamageMax[1], Mode=TwoWay}"/>
+                                <Label Content="~" HorizontalAlignment="Left" Margin="83,382,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                <TextBox x:Name="itemSpeed" Height="23" Margin="10,412,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding Speed, Mode=TwoWay}"/>
+                                <ComboBox x:Name="itemDmgType1" Margin="179,351,10,0" VerticalAlignment="Top" Grid.Column="1" SelectedValue="{Binding DamageSchool[0], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                                <ComboBox x:Name="itemDmgType2" Margin="179,382,10,0" VerticalAlignment="Top" Grid.Column="1" SelectedValue="{Binding DamageSchool[1], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                                <TextBox x:Name="itemMaxDurability" Height="23" Margin="10,442,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding MaxDurability, Mode=TwoWay}"/>
+                                <Label Content="MAX_DURABILITY" HorizontalAlignment="Right" Margin="0,443,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="itemRandomSuffix" Height="23" Margin="10,473,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding RandomSuffix, Mode=TwoWay}"/>
+                                <TextBox x:Name="itemRandomProperty" Height="23" Margin="10,504,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding RandomProperty, Mode=TwoWay}"/>
+                                <Label Content="RANDOM_SUFFIX" HorizontalAlignment="Right" Margin="9,474,0,0" VerticalAlignment="Top"/>
+                                <Label Content="RANDOM_PROPERTY" HorizontalAlignment="Right" Margin="0,504,0,0" VerticalAlignment="Top"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="LIMITATION">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="13*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="REQUIRED_LEVEL" HorizontalAlignment="Right" Margin="0,10,0,0" VerticalAlignment="Top"/>
+                        <Label Content="REQUIRED_SKILL" HorizontalAlignment="Right" Margin="0,42,0,0" VerticalAlignment="Top"/>
+                        <Label Content="SKILLRANK" HorizontalAlignment="Right" Margin="41,73,0,0" VerticalAlignment="Top"/>
+                        <Label Content="REQUIRED_SPELL" HorizontalAlignment="Right" Margin="0,105,0,0" VerticalAlignment="Top"/>
+                        <Label Content="HONOR_RANK" HorizontalAlignment="Right" Margin="0,136,0,0" VerticalAlignment="Top"/>
+                        <Label Content="CITY_RANK" HorizontalAlignment="Right" Margin="0,166,0,0" VerticalAlignment="Top"/>
+                        <Label Content="FACTION" HorizontalAlignment="Right" Margin="0,198,0,0" VerticalAlignment="Top"/>
+                        <Label Content="FACTION_RANK" HorizontalAlignment="Right" Margin="18,229,0,0" VerticalAlignment="Top"/>
+                        <Label Content="MAXCOUNT" HorizontalAlignment="Right" Margin="0,11,130,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <Label Content="STACKABLE" HorizontalAlignment="Right" Margin="0,42,130,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <Label Content="AREA" HorizontalAlignment="Right" Margin="70,354,0,0" VerticalAlignment="Top"/>
+                        <Label Content="MAP" HorizontalAlignment="Right" Margin="0,321,0,0" VerticalAlignment="Top"/>
+                        <Label Content="DURATION" HorizontalAlignment="Right" Margin="0,416,0,0" VerticalAlignment="Top"/>
+                        <Label Content="ITEM_LIMIT_CATEGORY" HorizontalAlignment="Right" Margin="-24,479,0,0" VerticalAlignment="Top"/>
+                        <Label Content="HOLIDAY" HorizontalAlignment="Right" Margin="0,382,0,0" VerticalAlignment="Top"/>
+                        <Label Content="CLASS" HorizontalAlignment="Right" Margin="0,260,0,0" VerticalAlignment="Top"/>
+                        <Label Content="RACE" HorizontalAlignment="Right" Margin="0,291,0,0" VerticalAlignment="Top"/>
+                        <Label Content="LOCKID" HorizontalAlignment="Right" Margin="0,448,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="itemReqLevel" Grid.Column="1" Height="23" Margin="10,10,213,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding RequiredLevel, Mode=TwoWay}"/>
+                        <ComboBox x:Name="itemReqSkill" Grid.Column="1" Margin="10,41,213,0" VerticalAlignment="Top" SelectedValue="{Binding RequiredSkill, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                        <TextBox x:Name="itemReqSkillRank" Grid.Column="1" Height="23" Margin="10,73,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding RequiredSkillRank, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemReqSpell" Grid.Column="1" Height="23" Margin="10,105,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding RequiredSpell, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemReqHonorRank" Grid.Column="1" Height="23" Margin="10,136,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding RequiredHonorRank, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemReqCityRank" Grid.Column="1" Height="23" Margin="10,167,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding RequiredCityRank, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemReqFaction" Grid.Column="1" Height="23" Margin="10,198,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding RequiredReputationFaction, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemReqClass" Grid.Column="1" Height="23" Margin="10,260,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding AllowableClass, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemReqRace" Grid.Column="1" Height="23" Margin="10,291,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding AllowableRace, Mode=TwoWay}"/>
+                        <ComboBox x:Name="itemReqFactionRank" Grid.Column="1" Margin="10,229,10,0" VerticalAlignment="Top" SelectedValue="{Binding RequiredReputationRank, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                        <TextBox x:Name="itemMaxCount" Grid.Column="1" HorizontalAlignment="Right" Height="23" Margin="0,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding MaxCount, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemStackable" Grid.Column="1" HorizontalAlignment="Right" Height="23" Margin="0,41,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Stackable, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemReqMap" Grid.Column="1" Height="23" Margin="10,322,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Map, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemReqArea" Grid.Column="1" Height="23" Margin="10,353,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Area, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemLockID" Grid.Column="1" Height="23" Margin="10,447,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding LockID, Mode=TwoWay}"/>
+                        <ComboBox x:Name="itemReqHoliday" Grid.Column="1" Margin="10,384,10,0" VerticalAlignment="Top" SelectedValue="{Binding HolidayID, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                        <TextBox x:Name="itemDuration" Grid.Column="1" Height="23" Margin="10,416,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Duration, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemLimitCategory" Grid.Column="1" Height="23" Margin="10,478,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ItemLimitCategory, Mode=TwoWay}"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="SET">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="41*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="ITEMSET" HorizontalAlignment="Right" Margin="54,10,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM1" HorizontalAlignment="Right" Margin="54,40,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,41,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <ComboBox x:Name="itemSetCombo" Grid.Column="1" Margin="10,10,10,0" VerticalAlignment="Top" SelectedValue="{Binding ItemSet, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,351,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,413,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,444,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,475,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,506,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,537,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,568,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,599,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1"/>
+                    <Label Content="SET1" HorizontalAlignment="Right" Margin="0,599,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,630,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,661,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,692,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,723,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,754,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,785,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,816,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="75,599,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="75,630,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="75,661,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="75,692,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="75,723,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="75,754,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="75,785,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="75,816,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,72,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,103,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,134,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,165,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,196,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,227,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,258,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,289,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,320,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,351,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,382,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,413,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,444,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,475,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,506,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,537,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="135,568,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="200,599,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="200,630,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="200,661,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="200,692,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="200,723,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="200,754,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="200,785,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <TextBox Height="23" Margin="200,816,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                    <Label Content="ITEM2" HorizontalAlignment="Right" Margin="0,72,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM3" HorizontalAlignment="Right" Margin="0,103,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM3" HorizontalAlignment="Right" Margin="0,134,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM4" HorizontalAlignment="Right" Margin="0,165,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM5" HorizontalAlignment="Right" Margin="0,196,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM6" HorizontalAlignment="Right" Margin="0,227,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM7" HorizontalAlignment="Right" Margin="0,258,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM8" HorizontalAlignment="Right" Margin="0,289,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM9" HorizontalAlignment="Right" Margin="0,320,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM10" HorizontalAlignment="Right" Margin="0,351,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM11" HorizontalAlignment="Right" Margin="0,382,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM12" HorizontalAlignment="Right" Margin="0,413,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM13" HorizontalAlignment="Right" Margin="0,444,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM14" HorizontalAlignment="Right" Margin="0,475,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM15" HorizontalAlignment="Right" Margin="0,506,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM16" HorizontalAlignment="Right" Margin="0,537,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ITEM17" HorizontalAlignment="Right" Margin="0,568,0,0" VerticalAlignment="Top"/>
+                    <Label Content="SET2" HorizontalAlignment="Right" Margin="0,630,0,0" VerticalAlignment="Top"/>
+                    <Label Content="SET3" HorizontalAlignment="Right" Margin="0,661,0,0" VerticalAlignment="Top"/>
+                    <Label Content="SET4" HorizontalAlignment="Right" Margin="0,692,0,0" VerticalAlignment="Top"/>
+                    <Label Content="SET5" HorizontalAlignment="Right" Margin="0,723,0,0" VerticalAlignment="Top"/>
+                    <Label Content="SET6" HorizontalAlignment="Right" Margin="0,754,0,0" VerticalAlignment="Top"/>
+                    <Label Content="SET7" HorizontalAlignment="Right" Margin="0,785,0,0" VerticalAlignment="Top"/>
+                    <Label Content="SET8" HorizontalAlignment="Right" Margin="0,816,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="PAGE">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="107*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="PAGE_TEXT" HorizontalAlignment="Right" Margin="0,70,10,0" VerticalAlignment="Top"/>
+                    <Label Content="LANGUAGE" HorizontalAlignment="Right" Margin="0,40,10,0" VerticalAlignment="Top"/>
+                    <Label Content="PAGE_MATERIAL" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="itemPageMaterial" Grid.Column="1" Margin="10,10,10,0" VerticalAlignment="Top" SelectedValue="{Binding PageMaterial, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                    <ComboBox x:Name="itemPageTextLanguage" Grid.Column="1" Margin="10,41,10,0" VerticalAlignment="Top" SelectedValue="{Binding LanguageID, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                    <TextBox x:Name="itemPageText" Grid.Column="1" Height="23" Margin="10,72,140,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding PageText, Mode=TwoWay}"/>
+                    <TextBox x:Name="itemPageTextContent" Grid.Column="1" Margin="10,103,10,10" TextWrapping="Wrap" AcceptsReturn="True" IsEnabled="False"/>
+                    <Button Content="NEXT" Grid.Column="1" HorizontalAlignment="Right" Margin="0,72,10,0" VerticalAlignment="Top" Width="60" IsEnabled="False"/>
+                    <Button Content="PREV" Grid.Column="1" HorizontalAlignment="Right" Margin="0,72,75,0" VerticalAlignment="Top" Width="60" IsEnabled="False"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="RELATIONS">
+                <Grid>
+                    <TabControl Margin="0">
+                        <TabItem Header="LOOT">
+                            <Grid>
+                                <DataGrid x:Name="itemLootCreature" Margin="10,68,10,0" AutoGenerateColumns="False" VerticalAlignment="Top" Height="250">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="CREATURE" Binding="{Binding Path=Entry}"/>
+                                        <DataGridTextColumn Header="ENTRY" Binding="{Binding Path=Entry}"/>
+                                        <DataGridTextColumn Header="CHANCE" Binding="{Binding Path=Chance}"/>
+                                        <DataGridCheckBoxColumn Header="QUEST" Binding="{Binding Path=QuestRequired}"/>
+                                        <DataGridTextColumn Header="MODE" Binding="{Binding Path=LootMode}"/>
+                                        <DataGridTextColumn Header="GROUP" Binding="{Binding Path=GroupId}"/>
+                                        <DataGridTextColumn Header="MIN" Binding="{Binding Path=MinCount}"/>
+                                        <DataGridTextColumn Header="MAX" Binding="{Binding Path=MaxCount}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <Label Content="FROM CREATURE" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
+                                <Label Content="FROM GAMEOBJECT" HorizontalAlignment="Left" Margin="11,354,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="itemCreatureLootEntry" HorizontalAlignment="Left" Height="23" Margin="11,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Controls:TextboxHelper.Watermark="ENTRY"/>
+                                <TextBox x:Name="itemCreatureLootChance" HorizontalAlignment="Left" Height="23" Margin="76,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Controls:TextboxHelper.Watermark="CHANCE"/>
+                                <TextBox x:Name="itemCreatureLootGroup" HorizontalAlignment="Left" Height="23" Margin="148,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Controls:TextboxHelper.Watermark="GROUP"/>
+                                <TextBox x:Name="itemCreatureLootMin" HorizontalAlignment="Left" Height="23" Margin="220,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Controls:TextboxHelper.Watermark="MIN"/>
+                                <TextBox x:Name="itemCreatureLootMax" HorizontalAlignment="Left" Height="23" Margin="292,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Controls:TextboxHelper.Watermark="MAX"/>
+                                <TextBox x:Name="itemCreatureLootMode" HorizontalAlignment="Left" Height="23" Margin="364,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" Controls:TextboxHelper.Watermark="MODE"/>
+                                <Button x:Name="itemCreatureLootAdd" Content="+" HorizontalAlignment="Left" Margin="423,323,0,0" VerticalAlignment="Top" Width="45" />
+                                <DataGrid x:Name="itemLootGameobject" Margin="11,384,9,0" AutoGenerateColumns="False" VerticalAlignment="Top" Height="250">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="GAMEOBJECT" Binding="{Binding Path=Entry}"/>
+                                        <DataGridTextColumn Header="ENTRY" Binding="{Binding Path=Entry}"/>
+                                        <DataGridTextColumn Header="CHANCE" Binding="{Binding Path=Chance}"/>
+                                        <DataGridCheckBoxColumn Header="QUEST" Binding="{Binding Path=QuestRequired}"/>
+                                        <DataGridTextColumn Header="MODE" Binding="{Binding Path=LootMode}"/>
+                                        <DataGridTextColumn Header="GROUP" Binding="{Binding Path=GroupId}"/>
+                                        <DataGridTextColumn Header="MIN" Binding="{Binding Path=MinCount}"/>
+                                        <DataGridTextColumn Header="MAX" Binding="{Binding Path=MaxCount}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <TextBox HorizontalAlignment="Left" Height="23" Margin="11,639,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Controls:TextboxHelper.Watermark="ENTRY"/>
+                                <TextBox HorizontalAlignment="Left" Height="23" Margin="76,639,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Controls:TextboxHelper.Watermark="CHANCE"/>
+                                <TextBox HorizontalAlignment="Left" Height="23" Margin="148,639,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Controls:TextboxHelper.Watermark="GROUP"/>
+                                <TextBox HorizontalAlignment="Left" Height="23" Margin="220,639,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Controls:TextboxHelper.Watermark="MIN"/>
+                                <TextBox HorizontalAlignment="Left" Height="23" Margin="292,639,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Controls:TextboxHelper.Watermark="MAX"/>
+                                <TextBox HorizontalAlignment="Left" Height="23" Margin="364,639,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" Controls:TextboxHelper.Watermark="MODE"/>
+                                <Button Content="+" HorizontalAlignment="Left" Margin="423,639,0,0" VerticalAlignment="Top" Width="45"/>
+                                <Button x:Name="itemCreatureLootClear" Content="Clear" HorizontalAlignment="Right" Margin="0,38,10,0" VerticalAlignment="Top" Width="76" />
+                                <Button Content="Clear" HorizontalAlignment="Right" Margin="0,354,9,0" VerticalAlignment="Top" Width="76"/>
+                                <Label Content="DON'T USE REFERENCES!" Margin="10,10,10,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Red" HorizontalContentAlignment="Center"/>
+                                <CheckBox x:Name="itemCreatureLootQuest" Content="NEED QUEST" HorizontalAlignment="Right" Margin="0,323,10,0" VerticalAlignment="Top"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="PRODUCTION">
+                            <Grid/>
+                        </TabItem>
+                        <TabItem Header="QUEST">
+                            <Grid/>
+                        </TabItem>
+                        <TabItem Header="VENDOR">
+                            <Grid/>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <ComboBox x:Name="itemFilterClass" Margin="92,40,0,0" VerticalAlignment="Top" SelectedValuePath="Key" DisplayMemberPath="Value" IsEnabled="{Binding ElementName=enableClassFilter, Path=IsChecked}" SelectionChanged="itemFilterClass_SelectionChanged"/>
+        <ComboBox x:Name="itemFilterSubclass" Margin="5,71,0,0" VerticalAlignment="Top" SelectedValuePath="Key" DisplayMemberPath="Value" IsEnabled="{Binding ElementName=enableClassFilter, Path=IsChecked}" SelectionChanged="itemFilterSubclass_SelectionChanged"/>
+        <Button x:Name="exportItemDBC" Content="EXPORT ITEM DBC" Margin="5,0,0,10" VerticalAlignment="Bottom" Height="25" Click="exportItemDBC_Click" />
+        <ProgressBar x:Name="itemTabProgress" Margin="5,0,0,40" VerticalAlignment="Bottom" Opacity="0" Visibility="Hidden"/>
+        <Label x:Name="itemTabProgressLabel" Content="Export Progress" Margin="5,0,0,50" VerticalAlignment="Bottom" Foreground="Red" HorizontalContentAlignment="Center" Opacity="0" Visibility="Hidden"/>
+        <CheckBox x:Name="enableClassFilter" Content="FILTER ON" HorizontalAlignment="Left" Margin="5,44,0,0" VerticalAlignment="Top" Click="enableClassFilter_Click"/>
+    </Grid>
+</UserControl>

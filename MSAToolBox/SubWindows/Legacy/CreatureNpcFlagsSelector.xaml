@@ -1,0 +1,55 @@
+﻿<Controls:MetroWindow x:Class="MSAToolBox.SubWindows.Legacy.CreatureNpcFlagsSelector"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" Height="331" Width="600" Background="White" ResizeMode="NoResize"
+        GlowBrush="{DynamicResource AccentColorBrush}">
+    <Grid x:Name="gossipMenuOptionContainer">
+        <GroupBox x:Name="gossipMenuOptionNpcFlagGroup" Header="NPC FLAGS" Margin="10,10,10,0" VerticalAlignment="Top" Height="227">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <CheckBox x:Name="npcFlag1" Content="GOSSIP" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag1_Click"/>
+                    <CheckBox x:Name="npcFlag2" Content="QUESTGIVER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag2_Click"/>
+                    <CheckBox x:Name="npcFlag3" Content="UNK1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag3_Click"/>
+                    <CheckBox x:Name="npcFlag4" Content="UNK2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag4_Click"/>
+                    <CheckBox x:Name="npcFlag5" Content="TRAINER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag5_Click"/>
+                    <CheckBox x:Name="npcFlag6" Content="CLASS TRAINER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag6_Click"/>
+                    <CheckBox x:Name="npcFlag7" Content="PROFESSION TRAINER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag7_Click"/>
+                    <CheckBox x:Name="npcFlag8" Content="VENDOR" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag8_Click"/>
+                    <CheckBox x:Name="npcFlag9" Content="AMMO VENDOR" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag9_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <CheckBox x:Name="npcFlag10" Content="FOOD VENDOR" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag10_Click"/>
+                    <CheckBox x:Name="npcFlag11" Content="POISON VENDOR" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag11_Click"/>
+                    <CheckBox x:Name="npcFlag12" Content="REAGENTS VENDOR" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag12_Click"/>
+                    <CheckBox x:Name="npcFlag13" Content="REPAIR" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag13_Click"/>
+                    <CheckBox x:Name="npcFlag14" Content="TRAINER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag14_Click"/>
+                    <CheckBox x:Name="npcFlag15" Content="FLIGHTMASTER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag15_Click"/>
+                    <CheckBox x:Name="npcFlag16" Content="SPIRITHEALER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag16_Click"/>
+                    <CheckBox x:Name="npcFlag17" Content="SPIRITGUIDE" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag17_Click"/>
+                    <CheckBox x:Name="npcFlag18" Content="INNKEEPER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag18_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <CheckBox x:Name="npcFlag19" Content="BANKER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag19_Click"/>
+                    <CheckBox x:Name="npcFlag20" Content="PETITIONER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag20_Click"/>
+                    <CheckBox x:Name="npcFlag21" Content="TABARDDESIGNER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag21_Click"/>
+                    <CheckBox x:Name="npcFlag22" Content="BATTLEMASTER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag22_Click"/>
+                    <CheckBox x:Name="npcFlag23" Content="AUCTIONEER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag23_Click"/>
+                    <CheckBox x:Name="npcFlag24" Content="STABLEMASTER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag24_Click"/>
+                    <CheckBox x:Name="npcFlag25" Content="GUILD BANKER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag25_Click"/>
+                    <CheckBox x:Name="npcFlag26" Content="SPELLCLICK" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag26_Click"/>
+                    <CheckBox x:Name="npcFlag27" Content="PLAYER VEHICLE" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag27_Click"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <CheckBox x:Name="showCodeBox" Content="SHOW CODE BOX" HorizontalAlignment="Left" Margin="10,242,0,0" VerticalAlignment="Top" Click="showCodeBox_Click"/>
+        <TextBox x:Name="requiredMoney" HorizontalAlignment="Left" Height="23" Margin="10,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Controls:TextboxHelper.Watermark="REQUIRED MONEY" LostFocus="requiredMoney_LostFocus"/>
+        <TextBox x:Name="boxText" Height="23" Margin="135,265,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Controls:TextboxHelper.Watermark="BOX TEXT" LostFocus="boxText_LostFocus"/>
+        <CheckBox x:Name="singleTimeCheck" Content="SINGLE TIME CHECK" HorizontalAlignment="Right" Margin="0,242,10,0" VerticalAlignment="Top" Click="singleTimeCheck_Click"/>
+
+    </Grid>
+</Controls:MetroWindow>

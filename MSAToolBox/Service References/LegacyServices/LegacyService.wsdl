@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="LegacyService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="Legacy_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:9999/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:9999/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:9999/?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:9999/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ILegacyService_GetLanguages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLanguages" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetLanguages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLanguagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetEmotes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmotes" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetEmotes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmotesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetItemTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemTemplate" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetItemTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_SaveItemTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveItemTemplate" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_SaveItemTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveItemTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetDataDefines_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataDefines" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetDataDefines_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataDefinesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetItemList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemList" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetItemList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_CreateItemTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateItemTemplate" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_CreateItemTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateItemTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_DeleteItemTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteItemTemplate" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_DeleteItemTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteItemTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_CopyItemTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:CopyItemTemplate" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_CopyItemTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CopyItemTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GenerateItemDBC_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateItemDBC" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GenerateItemDBC_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateItemDBCResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetGossipMenu_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGossipMenu" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetGossipMenu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGossipMenuResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetGossipMenuOptionTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGossipMenuOptionTypes" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetGossipMenuOptionTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGossipMenuOptionTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_SaveGossipMenu_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveGossipMenu" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_SaveGossipMenu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveGossipMenuResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_CreateNewGossipMenu_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewGossipMenu" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_CreateNewGossipMenu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewGossipMenuResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetOrCreateCreatureGossipID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrCreateCreatureGossipID" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetOrCreateCreatureGossipID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrCreateCreatureGossipIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetCreatureNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCreatureNames" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetCreatureNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCreatureNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetVendorList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVendorList" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetVendorList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVendorListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_SaveVendorList_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveVendorList" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_SaveVendorList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveVendorListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetCreatureTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCreatureTemplate" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetCreatureTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCreatureTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_SaveCreatureTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveCreatureTemplate" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_SaveCreatureTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveCreatureTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetCreatureList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCreatureList" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetCreatureList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCreatureListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_DeleteCreatureTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCreatureTemplate" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_DeleteCreatureTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCreatureTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetSpawnInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSpawnInfo" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetSpawnInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSpawnInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_SaveSpawnInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSpawnInfo" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_SaveSpawnInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSpawnInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetSmartScript_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSmartScript" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetSmartScript_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSmartScriptResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_SaveSmartScript_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSmartScript" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_SaveSmartScript_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSmartScriptResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ILegacyService">
+    <wsdl:operation name="GetLanguages">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetLanguages" message="tns:ILegacyService_GetLanguages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetLanguagesResponse" message="tns:ILegacyService_GetLanguages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmotes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetEmotes" message="tns:ILegacyService_GetEmotes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetEmotesResponse" message="tns:ILegacyService_GetEmotes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItemTemplate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetItemTemplate" message="tns:ILegacyService_GetItemTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetItemTemplateResponse" message="tns:ILegacyService_GetItemTemplate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveItemTemplate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/SaveItemTemplate" message="tns:ILegacyService_SaveItemTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/SaveItemTemplateResponse" message="tns:ILegacyService_SaveItemTemplate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataDefines">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetDataDefines" message="tns:ILegacyService_GetDataDefines_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetDataDefinesResponse" message="tns:ILegacyService_GetDataDefines_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItemList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetItemList" message="tns:ILegacyService_GetItemList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetItemListResponse" message="tns:ILegacyService_GetItemList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateItemTemplate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/CreateItemTemplate" message="tns:ILegacyService_CreateItemTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/CreateItemTemplateResponse" message="tns:ILegacyService_CreateItemTemplate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItemTemplate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/DeleteItemTemplate" message="tns:ILegacyService_DeleteItemTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/DeleteItemTemplateResponse" message="tns:ILegacyService_DeleteItemTemplate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CopyItemTemplate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/CopyItemTemplate" message="tns:ILegacyService_CopyItemTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/CopyItemTemplateResponse" message="tns:ILegacyService_CopyItemTemplate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateItemDBC">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GenerateItemDBC" message="tns:ILegacyService_GenerateItemDBC_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GenerateItemDBCResponse" message="tns:ILegacyService_GenerateItemDBC_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGossipMenu">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetGossipMenu" message="tns:ILegacyService_GetGossipMenu_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetGossipMenuResponse" message="tns:ILegacyService_GetGossipMenu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGossipMenuOptionTypes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetGossipMenuOptionTypes" message="tns:ILegacyService_GetGossipMenuOptionTypes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetGossipMenuOptionTypesResponse" message="tns:ILegacyService_GetGossipMenuOptionTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveGossipMenu">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/SaveGossipMenu" message="tns:ILegacyService_SaveGossipMenu_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/SaveGossipMenuResponse" message="tns:ILegacyService_SaveGossipMenu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewGossipMenu">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/CreateNewGossipMenu" message="tns:ILegacyService_CreateNewGossipMenu_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/CreateNewGossipMenuResponse" message="tns:ILegacyService_CreateNewGossipMenu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrCreateCreatureGossipID">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetOrCreateCreatureGossipID" message="tns:ILegacyService_GetOrCreateCreatureGossipID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetOrCreateCreatureGossipIDResponse" message="tns:ILegacyService_GetOrCreateCreatureGossipID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreatureNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetCreatureNames" message="tns:ILegacyService_GetCreatureNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetCreatureNamesResponse" message="tns:ILegacyService_GetCreatureNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVendorList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetVendorList" message="tns:ILegacyService_GetVendorList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetVendorListResponse" message="tns:ILegacyService_GetVendorList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveVendorList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/SaveVendorList" message="tns:ILegacyService_SaveVendorList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/SaveVendorListResponse" message="tns:ILegacyService_SaveVendorList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreatureTemplate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetCreatureTemplate" message="tns:ILegacyService_GetCreatureTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetCreatureTemplateResponse" message="tns:ILegacyService_GetCreatureTemplate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveCreatureTemplate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/SaveCreatureTemplate" message="tns:ILegacyService_SaveCreatureTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/SaveCreatureTemplateResponse" message="tns:ILegacyService_SaveCreatureTemplate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreatureList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetCreatureList" message="tns:ILegacyService_GetCreatureList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetCreatureListResponse" message="tns:ILegacyService_GetCreatureList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCreatureTemplate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/DeleteCreatureTemplate" message="tns:ILegacyService_DeleteCreatureTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/DeleteCreatureTemplateResponse" message="tns:ILegacyService_DeleteCreatureTemplate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSpawnInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetSpawnInfo" message="tns:ILegacyService_GetSpawnInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetSpawnInfoResponse" message="tns:ILegacyService_GetSpawnInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveSpawnInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/SaveSpawnInfo" message="tns:ILegacyService_SaveSpawnInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/SaveSpawnInfoResponse" message="tns:ILegacyService_SaveSpawnInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSmartScript">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetSmartScript" message="tns:ILegacyService_GetSmartScript_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetSmartScriptResponse" message="tns:ILegacyService_GetSmartScript_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveSmartScript">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/SaveSmartScript" message="tns:ILegacyService_SaveSmartScript_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/SaveSmartScriptResponse" message="tns:ILegacyService_SaveSmartScript_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Legacy" type="tns:ILegacyService">
+    <wsp:PolicyReference URI="#Legacy_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GetLanguages">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetLanguages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmotes">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetEmotes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemTemplate">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetItemTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveItemTemplate">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/SaveItemTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataDefines">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetDataDefines" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemList">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetItemList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateItemTemplate">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/CreateItemTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItemTemplate">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/DeleteItemTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyItemTemplate">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/CopyItemTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateItemDBC">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GenerateItemDBC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGossipMenu">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetGossipMenu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGossipMenuOptionTypes">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetGossipMenuOptionTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveGossipMenu">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/SaveGossipMenu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewGossipMenu">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/CreateNewGossipMenu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrCreateCreatureGossipID">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetOrCreateCreatureGossipID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreatureNames">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetCreatureNames" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVendorList">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetVendorList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveVendorList">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/SaveVendorList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreatureTemplate">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetCreatureTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCreatureTemplate">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/SaveCreatureTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreatureList">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetCreatureList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCreatureTemplate">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/DeleteCreatureTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSpawnInfo">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetSpawnInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveSpawnInfo">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/SaveSpawnInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSmartScript">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetSmartScript" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveSmartScript">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/SaveSmartScript" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LegacyService">
+    <wsdl:port name="Legacy" binding="tns:Legacy">
+      <soap12:address location="net.tcp://localhost:9998/legacy" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:9998/legacy</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
