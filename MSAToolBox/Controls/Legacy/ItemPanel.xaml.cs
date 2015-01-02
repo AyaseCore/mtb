@@ -27,7 +27,7 @@ namespace MSAToolBox.Controls.Legacy
     public partial class ItemPanel : UserControl
     {
         private ItemTemplate ItemData;
-        private bool Modified;
+        //private bool Modified;
         private DataDefineStore DefineStore;
         public static ItemInfo[] ItemList;
         bool IsLoading;
@@ -35,7 +35,6 @@ namespace MSAToolBox.Controls.Legacy
         {
             InitializeComponent();
             LoadDefines();
-            TryLoadSomething(19019);
         }
 
         private void LoadDefines()
@@ -47,6 +46,8 @@ namespace MSAToolBox.Controls.Legacy
                 {
                     ItemList = client.GetItemList();
                     itemList.ItemsSource = ItemList;
+                    itemList.Items.SortDescriptions.Clear();
+                    itemList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Entry", System.ComponentModel.ListSortDirection.Ascending));
                     DefineStore = client.GetDataDefines();
                     itemQuality.ItemsSource = DefineStore.ItemQuality;
                     itemInventoryType.ItemsSource = DefineStore.ItemInventoryType;
@@ -128,14 +129,16 @@ namespace MSAToolBox.Controls.Legacy
 
         public void TryLoadSomething(int id)
         {
-            LegacyServiceClient client = new LegacyServiceClient("Legacy");
-            ItemTemplate item = client.GetItemTemplate(id);
-            Load(item);
+            using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
+            {
+                ItemTemplate item = client.GetItemTemplate(id);
+                Load(item);
+            }
         }
 
         public void Save(bool loadAfterSave = false)
         {
-            if (ItemData == null || !Modified)
+            if (ItemData == null)
                 return;
 
             try
@@ -282,6 +285,8 @@ namespace MSAToolBox.Controls.Legacy
         {
             ItemList = client.GetItemList();
             itemList.ItemsSource = ItemList;
+            itemList.Items.SortDescriptions.Clear();
+            itemList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Entry", System.ComponentModel.ListSortDirection.Ascending));
         }
 
         private void itemDelete_Click(object sender, RoutedEventArgs e)
@@ -360,6 +365,556 @@ namespace MSAToolBox.Controls.Legacy
                 }
             }
             catch (System.Exception /*ex*/) { }
+        }
+
+        private void calculateDmg_Click(object sender, RoutedEventArgs e)
+        {
+            CalculateWeaponDamage();
+            Save(true);
+        }
+
+        private void CalculateWeaponDamage()
+        {
+            if (ItemData == null || ItemData.Class != 2)
+                return;
+
+            float dps = ItemData.ItemLevel;
+            switch (ItemData.Quality)
+            {
+                case 0:
+                    dps *= 0.35f;
+                    break;
+                case 1:
+                    dps *= 0.5f;
+                    break;
+                case 2:
+                    dps *= 0.7f;
+                    break;
+                case 3:
+                    dps *= 1.0f;
+                    break;
+                case 4:
+                    dps *= 1.4f;
+                    break;
+                case 5:
+                    dps *= 2.0f;
+                    break;
+                case 6:
+                    dps *= 2.8f;
+                    break;
+                default:
+                    dps = 0;
+                    break;
+            }
+
+            switch (ItemData.Subclass)
+            {
+                case 1:
+                case 6:
+                case 5:
+                case 8: // 2hand weapons
+                    dps *= 2.0f;
+                    break;
+                case 15: // dagger
+                    dps *= 1.2f;
+                    break;
+                case 10: // staff
+                    dps *= 1.2f;
+                    break;
+                default:
+                    break;
+            }
+
+            float damage = dps * ItemData.Speed / 1000;
+            float minDamage = damage;
+            float maxDamage = damage;
+
+            switch (ItemData.Subclass)
+            {
+                case 0:
+                case 1:
+                case 18: // axe & crossbow
+                    minDamage /= 1.4f;
+                    maxDamage *= 1.4f;
+                    break;
+                case 4:
+                case 5:
+                case 3: // mace & gun
+                    minDamage /= 1.3f;
+                    maxDamage *= 1.3f;
+                    break;
+                case 7:
+                case 8:
+                case 2:
+                case 19:
+                case 13:
+                case 15:
+                case 16: // sword & bow & wand & fistweapon & dagger & throw
+                    minDamage /= 1.2f;
+                    maxDamage *= 1.2f;
+                    break;
+                case 6:
+                case 10:
+                case 20: // polearm & staff & fishing pole
+                    minDamage /= 1.1f;
+                    maxDamage *= 1.1f;
+                    break;
+            }
+
+            if (minDamage < 1)
+                minDamage = 1;
+            if (maxDamage < 2)
+                maxDamage = 2;
+
+            ItemData.DamageMin[0] = minDamage;
+            ItemData.DamageMax[0] = maxDamage;
+        }
+
+        private void calculateStats_Click(object sender, RoutedEventArgs e)
+        {
+            CalculateStats();
+            Save(true);
+        }
+
+        private void CalculateStats()
+        {
+            if (ItemData == null || (ItemData.Class != 2 && ItemData.Class != 4))
+                return;
+
+            float stats = ItemData.ItemLevel;
+            switch (ItemData.Quality)
+            {
+                case 0:
+                case 1:
+                    stats = 0;
+                    break;
+                case 2:
+                    stats *= 1.0f;
+                    break;
+                case 3:
+                    stats *= 1.4f;
+                    break;
+                case 4:
+                    stats *= 2.0f;
+                    break;
+                case 5:
+                    stats *= 2.8f;
+                    break;
+                case 6:
+                    stats *= 4.0f;
+                    break;
+                case 7:
+                    stats = 0;
+                    break;
+                default:
+                    break;
+            }
+
+            if (ItemData.Class == 2)
+            {
+                switch (ItemData.Subclass)
+                {
+                    case 1:
+                    case 5:
+                    case 6:
+                    case 8:
+                        stats *= 2;
+                        break;
+                    case 10: // staff
+                        stats *= 3;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            if (ItemData.Quality == 0 || ItemData.Quality == 1)
+            {
+                ItemData.StatsCount = 0;
+                ItemData.StatType[0] = 0;
+                ItemData.StatType[1] = 0;
+                ItemData.StatType[2] = 0;
+                ItemData.StatType[3] = 0;
+                ItemData.StatType[4] = 0;
+                ItemData.StatType[5] = 0;
+                ItemData.StatType[6] = 0;
+                ItemData.StatType[7] = 0;
+                ItemData.StatType[8] = 0;
+                ItemData.StatType[9] = 0;
+                ItemData.StatValue[0] = 0;
+                ItemData.StatValue[1] = 0;
+                ItemData.StatValue[2] = 0;
+                ItemData.StatValue[3] = 0;
+                ItemData.StatValue[4] = 0;
+                ItemData.StatValue[5] = 0;
+                ItemData.StatValue[6] = 0;
+                ItemData.StatValue[7] = 0;
+                ItemData.StatValue[8] = 0;
+                ItemData.StatValue[9] = 0;
+                ItemData.Armor = 0;
+                ItemData.ArcaneResistance = 0;
+                ItemData.FireResistance = 0;
+                ItemData.FrostResistance = 0;
+                ItemData.HolyResistance = 0;
+                ItemData.NatureResistance = 0;
+                ItemData.ShadowResistance = 0;
+                if (ItemData.Class == 4)
+                {
+                    ItemData.Armor = (int)(ItemData.Quality == 0 ? ItemData.ItemLevel * 0.3f : ItemData.ItemLevel * 0.5f);
+                    if (ItemData.Armor < 1)
+                        ItemData.Armor = 1;
+                }
+                return;
+            }
+
+            // mod value to right value.
+            int limit = 0;
+            switch (ItemData.Quality)
+            {
+                case 2:
+                    limit = 1;
+                    break;
+                case 3:
+                    limit = 2;
+                    break;
+                case 4:
+                    limit = 3;
+                    break;
+                case 5:
+                    limit = 4;
+                    break;
+                case 6:
+                    limit = 5;
+                    break;
+                default:
+                    break;
+            }
+
+            for (int i = 0; i != ItemData.StatsCount; ++i)
+            {
+                if (ItemData.StatType[i] != 0)
+                {
+                    switch (ItemData.StatType[i])
+                    {
+                        case 13: // dodge
+                        case 14: // parry
+                        case 15: // block
+                        case 16: // melee hit
+                        case 17: // ranged hit
+                        case 18: // spell hit
+                        case 19: // melee crit
+                        case 20: // ranged crit
+                        case 21: // spell crit
+                        case 28: // melee haste
+                        case 29: // ranged haste
+                        case 30: // spell haste
+                        case 22:
+                        case 23:
+                        case 24:
+                        case 25:
+                        case 26:
+                        case 27: // resist
+                        case 31: // hit
+                        case 32: // crit
+                        case 36: // haste
+                            ItemData.StatValue[i] = Math.Min(ItemData.StatValue[i], limit);
+                            break;
+                        case 33: // melee crit dmg
+                        case 34: // ranged crit dmg
+                        case 35: // spell crit dmg
+                            ItemData.StatValue[i] = Math.Min(ItemData.StatValue[i], limit * 2);
+                            break;
+                    }
+                }
+            }
+
+            for (int i = 0; i != ItemData.StatsCount; ++i)
+            {
+                if (ItemData.StatType[i] != 0)
+                {
+                    switch (ItemData.StatType[i])
+                    {
+                        case 13: // dodge
+                        case 14: // parry
+                        case 15: // block
+                        case 16: // melee hit
+                        case 17: // ranged hit
+                        case 18: // spell hit
+                        case 19: // melee crit
+                        case 20: // ranged crit
+                        case 21: // spell crit
+                        case 28: // melee haste
+                        case 29: // ranged haste
+                        case 30: // spell haste
+                            stats -= ItemData.StatValue[i] * 10.0f;
+                            break;
+                        case 22:
+                        case 23:
+                        case 24:
+                        case 25:
+                        case 26:
+                        case 27: // resist
+                            stats -= ItemData.StatValue[i] * 5.0f;
+                            break;
+                        case 31: // hit
+                        case 32: // crit
+                        case 36: // haste
+                            stats -= ItemData.StatValue[i] * 20.0f;
+                            break;
+                        case 33: // melee crit dmg
+                        case 34: // ranged crit dmg
+                        case 35: // spell crit dmg
+                            stats -= ItemData.StatValue[i] * 5.0f;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            if (stats < 0)
+            {
+                ItemData.StatsCount = 0;
+                ItemData.StatType[0] = 0;
+                ItemData.StatType[1] = 0;
+                ItemData.StatType[2] = 0;
+                ItemData.StatType[3] = 0;
+                ItemData.StatType[4] = 0;
+                ItemData.StatType[5] = 0;
+                ItemData.StatType[6] = 0;
+                ItemData.StatType[7] = 0;
+                ItemData.StatType[8] = 0;
+                ItemData.StatType[9] = 0;
+                ItemData.StatValue[0] = 0;
+                ItemData.StatValue[1] = 0;
+                ItemData.StatValue[2] = 0;
+                ItemData.StatValue[3] = 0;
+                ItemData.StatValue[4] = 0;
+                ItemData.StatValue[5] = 0;
+                ItemData.StatValue[6] = 0;
+                ItemData.StatValue[7] = 0;
+                ItemData.StatValue[8] = 0;
+                ItemData.StatValue[9] = 0;
+                ItemData.Armor = 0;
+                ItemData.Block = 0;
+                ItemData.ArcaneResistance = 0;
+                ItemData.FireResistance = 0;
+                ItemData.FrostResistance = 0;
+                ItemData.HolyResistance = 0;
+                ItemData.NatureResistance = 0;
+                ItemData.ShadowResistance = 0;
+                return;
+            }
+
+            float sum = 0;
+
+            for (int i = 0; i != ItemData.StatsCount; ++i)
+            {
+                if (ItemData.StatType[i] != 0)
+                {
+                    float v = ItemData.StatValue[i];
+                    switch (ItemData.StatType[i])
+                    {
+                        case 1: //health
+                            sum += v * 0.25f;
+                            break;
+                        case 3:
+                        case 4:
+                        case 5:
+                        case 6:
+                        case 7: // base stat
+                            sum += v;
+                            break;
+                        case 12: // defense
+                            sum += v * 10.0f;
+                            break;
+                        case 37: // expertise
+                            sum += v * 10.0f;
+                            break;
+                        case 38: // melee ap
+                        case 39: // ranged ap
+                        case 41: // spell dmg
+                        case 42: // spell heal
+                            sum += v * 2.0f;
+                            break;
+                        case 43: // power regen
+                            sum += v * 30.0f;
+                            break;
+                        case 44: // arp
+                        case 47: // spp
+                            sum += v * 1.0f;
+                            break;
+                        case 46:
+                            sum += v * 2.0f;
+                            break;
+                        case 48: // block value
+                            sum += v * 1.0f;
+                            break;
+                        case 49: // max power
+                            sum += v * 10.0f;
+                            break;
+                        case 45: // sp
+                            sum += v * 3.0f;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            sum += ItemData.Armor;
+            sum += ItemData.Block;
+            sum += ItemData.ArcaneResistance;
+            sum += ItemData.FireResistance;
+            sum += ItemData.FrostResistance;
+            sum += ItemData.HolyResistance;
+            sum += ItemData.NatureResistance;
+            sum += ItemData.ShadowResistance;
+
+            if (sum == 0)
+                sum = 1;
+
+            float factor = stats / sum;
+
+            for (int i = 0; i != ItemData.StatsCount; ++i)
+            {
+                switch (ItemData.StatType[i])
+                {
+                    case 1: //health
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7: // base stat
+                    case 12: // defense
+                    case 37: // expertise
+                    case 38: // melee ap
+                    case 39: // ranged ap
+                    case 41: // spell dmg
+                    case 42: // spell heal
+                    case 43: // power regen
+                    case 44: // arp
+                    case 47: // spp
+                    case 46:
+                    case 48: // block value
+                    case 49: // max power
+                    case 45: // sp
+                        ItemData.StatValue[i] = (int)(ItemData.StatValue[i] * factor);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            ItemData.Armor = (int)(ItemData.Armor * factor);
+            ItemData.Block = (int)(ItemData.Block * factor);
+            ItemData.ArcaneResistance = (int)(ItemData.ArcaneResistance * factor);
+            ItemData.FireResistance = (int)(ItemData.FireResistance * factor);
+            ItemData.FrostResistance = (int)(ItemData.FrostResistance * factor);
+            ItemData.HolyResistance = (int)(ItemData.HolyResistance * factor);
+            ItemData.NatureResistance = (int)(ItemData.NatureResistance * factor);
+            ItemData.ShadowResistance = (int)(ItemData.ShadowResistance * factor);
+            Save(true);
+        }
+
+        private void CalculateVendorPrice()
+        {
+            if (ItemData == null || (ItemData.Class != 2 && ItemData.Class != 4))
+                return;
+
+            int buyprice = ItemData.ItemLevel;
+            switch (ItemData.Quality)
+            {
+                case 0:
+                case 1:
+                    buyprice *= 5;
+                    break;
+                case 2:
+                    buyprice *= 30;
+                    break;
+                case 3:
+                    buyprice *= 360;
+                    break;
+                case 4:
+                    buyprice *= 8640;
+                    break;
+                case 5:
+                    buyprice *= 414720;
+                    break;
+                default:
+                    buyprice = 0;
+                    break;
+            }
+
+            if (ItemData.Class == 2)
+            {
+                switch (ItemData.Subclass)
+                {
+                    case 1:
+                    case 5:
+                    case 8:
+                    case 10:
+                        buyprice *= 2;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            int sellprice = buyprice / 5;
+
+            ItemData.BuyPrice = buyprice;
+            ItemData.SellPrice = sellprice;
+            ItemData.BuyCount = 1;
+        }
+
+        private void calculatePrice_Click(object sender, RoutedEventArgs e)
+        {
+            CalculateVendorPrice();
+            Save(true);
+        }
+
+        private void reloadItemList_Click(object sender, RoutedEventArgs e)
+        {
+            using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
+            {
+                ReloadItemList(client);
+            }
+        }
+
+        private void calculateAll_Click(object sender, RoutedEventArgs e)
+        {
+            CalculateWeaponDamage();
+            CalculateStats();
+            CalculateVendorPrice();
+            int reqlevel = ItemData.ItemLevel;
+            switch (ItemData.Quality)
+            {
+                case 0:
+                    reqlevel += 2;
+                    break;
+                case 2:
+                    reqlevel -= 2;
+                    break;
+                case 3:
+                    reqlevel -= 4;
+                    break;
+                case 4:
+                    reqlevel -= 6;
+                    break;
+                case 5:
+                    reqlevel -= 8;
+                    break;
+                case 6:
+                    reqlevel -= 10;
+                    break;
+                default:
+                    break;
+            }
+            if (reqlevel < 0)
+                reqlevel = 0;
+            ItemData.RequiredLevel = reqlevel;
+            Save(true);
         }
     }
 }

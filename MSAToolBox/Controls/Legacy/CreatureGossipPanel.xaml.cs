@@ -26,6 +26,7 @@ namespace MSAToolBox.Controls.Legacy
     {
         private Dictionary<int, string> LanguageDefines;
         private Dictionary<int, string> MenuOptionTypes;
+        private Dictionary<int, string> GossipIconDefines;
         private GossipMenu GossipData;
         private bool IsLoading;
         public static Dictionary<int, string> CreatureNames;
@@ -58,6 +59,7 @@ namespace MSAToolBox.Controls.Legacy
                 {
                     LanguageDefines = client.GetLanguages();
                     MenuOptionTypes = client.GetGossipMenuOptionTypes();
+                    GossipIconDefines = client.GetGossipIconDefines();
                     CreatureNames = client.GetCreatureNames();
                     Emotes = client.GetEmotes();
                     AssignDefine(gossipNpcTextLanguage, LanguageDefines);
@@ -71,6 +73,16 @@ namespace MSAToolBox.Controls.Legacy
                     AssignDefine(gossipOptionType8, MenuOptionTypes);
                     AssignDefine(gossipOptionType9, MenuOptionTypes);
                     AssignDefine(gossipOptionType10, MenuOptionTypes);
+                    AssignDefine(gossipIcon1, GossipIconDefines);
+                    AssignDefine(gossipIcon2, GossipIconDefines);
+                    AssignDefine(gossipIcon3, GossipIconDefines);
+                    AssignDefine(gossipIcon4, GossipIconDefines);
+                    AssignDefine(gossipIcon5, GossipIconDefines);
+                    AssignDefine(gossipIcon6, GossipIconDefines);
+                    AssignDefine(gossipIcon7, GossipIconDefines);
+                    AssignDefine(gossipIcon8, GossipIconDefines);
+                    AssignDefine(gossipIcon9, GossipIconDefines);
+                    AssignDefine(gossipIcon10, GossipIconDefines);
                     AssignDefine(npcTextEmote1, Emotes);
                     AssignDefine(npcTextEmote2, Emotes);
                     AssignDefine(npcTextEmote3, Emotes);
@@ -127,6 +139,8 @@ namespace MSAToolBox.Controls.Legacy
                     {
                         gossipMenu1.Text = GossipData.Options[0].Text;
                         gossipOptionType1.SelectedValue = GossipData.Options[0].Type;
+                        gossipIcon1.SelectedValue = GossipData.Options[0].Icon;
+                        gossipIcon1.IsEnabled = true;
                         gossipMenuGo1.IsEnabled = true;
                         gossipOptionType1.IsEnabled = true;
                         gossipSetOptionAttr1.IsEnabled = true;
@@ -138,12 +152,16 @@ namespace MSAToolBox.Controls.Legacy
                         gossipMenuGo1.IsEnabled = false;
                         gossipOptionType1.IsEnabled = false;
                         gossipSetOptionAttr1.IsEnabled = false;
+                        gossipIcon1.SelectedValue = 0;
+                        gossipIcon1.IsEnabled = false;
                     }
 
                     if (GossipData.Options[1] != null)
                     {
                         gossipMenu2.Text = GossipData.Options[1].Text;
                         gossipOptionType2.SelectedValue = GossipData.Options[1].Type;
+                        gossipIcon2.SelectedValue = GossipData.Options[1].Icon;
+                        gossipIcon2.IsEnabled = true;
                         gossipMenuGo2.IsEnabled = true;
                         gossipOptionType2.IsEnabled = true;
                         gossipSetOptionAttr2.IsEnabled = true;
@@ -155,12 +173,16 @@ namespace MSAToolBox.Controls.Legacy
                         gossipMenuGo2.IsEnabled = false;
                         gossipOptionType2.IsEnabled = false;
                         gossipSetOptionAttr2.IsEnabled = false;
+                        gossipIcon2.SelectedValue = 0;
+                        gossipIcon2.IsEnabled = false;
                     }
 
                     if (GossipData.Options[2] != null)
                     {
                         gossipMenu3.Text = GossipData.Options[2].Text;
                         gossipOptionType3.SelectedValue = GossipData.Options[2].Type;
+                        gossipIcon3.SelectedValue = GossipData.Options[2].Icon;
+                        gossipIcon3.IsEnabled = true;
                         gossipMenuGo3.IsEnabled = true;
                         gossipOptionType3.IsEnabled = true;
                         gossipSetOptionAttr3.IsEnabled = true;
@@ -172,12 +194,16 @@ namespace MSAToolBox.Controls.Legacy
                         gossipMenuGo3.IsEnabled = false;
                         gossipOptionType3.IsEnabled = false;
                         gossipSetOptionAttr3.IsEnabled = false;
+                        gossipIcon3.SelectedValue = 0;
+                        gossipIcon3.IsEnabled = false;
                     }
 
                     if (GossipData.Options[3] != null)
                     {
                         gossipMenu4.Text = GossipData.Options[3].Text;
                         gossipOptionType4.SelectedValue = GossipData.Options[3].Type;
+                        gossipIcon4.SelectedValue = GossipData.Options[3].Icon;
+                        gossipIcon4.IsEnabled = true;
                         gossipMenuGo4.IsEnabled = true;
                         gossipOptionType4.IsEnabled = true;
                         gossipSetOptionAttr4.IsEnabled = true;
@@ -189,12 +215,16 @@ namespace MSAToolBox.Controls.Legacy
                         gossipMenuGo4.IsEnabled = false;
                         gossipOptionType4.IsEnabled = false;
                         gossipSetOptionAttr4.IsEnabled = false;
+                        gossipIcon4.SelectedValue = 0;
+                        gossipIcon4.IsEnabled = false;
                     }
 
                     if (GossipData.Options[4] != null)
                     {
                         gossipMenu5.Text = GossipData.Options[4].Text;
                         gossipOptionType5.SelectedValue = GossipData.Options[4].Type;
+                        gossipIcon5.SelectedValue = GossipData.Options[4].Icon;
+                        gossipIcon5.IsEnabled = true;
                         gossipMenuGo5.IsEnabled = true;
                         gossipOptionType5.IsEnabled = true;
                         gossipSetOptionAttr5.IsEnabled = true;
@@ -206,12 +236,16 @@ namespace MSAToolBox.Controls.Legacy
                         gossipMenuGo5.IsEnabled = false;
                         gossipOptionType5.IsEnabled = false;
                         gossipSetOptionAttr5.IsEnabled = false;
+                        gossipIcon5.SelectedValue = 0;
+                        gossipIcon5.IsEnabled = false;
                     }
 
                     if (GossipData.Options[5] != null)
                     {
                         gossipMenu6.Text = GossipData.Options[5].Text;
                         gossipOptionType6.SelectedValue = GossipData.Options[5].Type;
+                        gossipIcon6.SelectedValue = GossipData.Options[5].Icon;
+                        gossipIcon6.IsEnabled = true;
                         gossipMenuGo6.IsEnabled = true;
                         gossipOptionType6.IsEnabled = true;
                         gossipSetOptionAttr6.IsEnabled = true;
@@ -223,12 +257,16 @@ namespace MSAToolBox.Controls.Legacy
                         gossipMenuGo6.IsEnabled = false;
                         gossipOptionType6.IsEnabled = false;
                         gossipSetOptionAttr6.IsEnabled = false;
+                        gossipIcon6.SelectedValue = 0;
+                        gossipIcon6.IsEnabled = false;
                     }
 
                     if (GossipData.Options[6] != null)
                     {
                         gossipMenu7.Text = GossipData.Options[6].Text;
                         gossipOptionType7.SelectedValue = GossipData.Options[6].Type;
+                        gossipIcon7.SelectedValue = GossipData.Options[6].Icon;
+                        gossipIcon7.IsEnabled = true;
                         gossipMenuGo7.IsEnabled = true;
                         gossipOptionType7.IsEnabled = true;
                         gossipSetOptionAttr7.IsEnabled = true;
@@ -240,12 +278,16 @@ namespace MSAToolBox.Controls.Legacy
                         gossipMenuGo7.IsEnabled = false;
                         gossipOptionType7.IsEnabled = false;
                         gossipSetOptionAttr7.IsEnabled = false;
+                        gossipIcon7.SelectedValue = 0;
+                        gossipIcon7.IsEnabled = false;
                     }
 
                     if (GossipData.Options[7] != null)
                     {
                         gossipMenu8.Text = GossipData.Options[7].Text;
                         gossipOptionType8.SelectedValue = GossipData.Options[7].Type;
+                        gossipIcon8.SelectedValue = GossipData.Options[7].Icon;
+                        gossipIcon8.IsEnabled = true;
                         gossipMenuGo8.IsEnabled = true;
                         gossipOptionType8.IsEnabled = true;
                         gossipSetOptionAttr8.IsEnabled = true;
@@ -257,12 +299,16 @@ namespace MSAToolBox.Controls.Legacy
                         gossipMenuGo8.IsEnabled = false;
                         gossipOptionType8.IsEnabled = false;
                         gossipSetOptionAttr8.IsEnabled = false;
+                        gossipIcon8.SelectedValue = 0;
+                        gossipIcon8.IsEnabled = false;
                     }
 
                     if (GossipData.Options[8] != null)
                     {
                         gossipMenu9.Text = GossipData.Options[8].Text;
                         gossipOptionType9.SelectedValue = GossipData.Options[8].Type;
+                        gossipIcon9.SelectedValue = GossipData.Options[8].Icon;
+                        gossipIcon9.IsEnabled = true;
                         gossipMenuGo9.IsEnabled = true;
                         gossipOptionType9.IsEnabled = true;
                         gossipSetOptionAttr9.IsEnabled = true;
@@ -274,12 +320,16 @@ namespace MSAToolBox.Controls.Legacy
                         gossipMenuGo9.IsEnabled = false;
                         gossipOptionType9.IsEnabled = false;
                         gossipSetOptionAttr9.IsEnabled = false;
+                        gossipIcon9.SelectedValue = 0;
+                        gossipIcon9.IsEnabled = false;
                     }
 
                     if (GossipData.Options[9] != null)
                     {
                         gossipMenu10.Text = GossipData.Options[9].Text;
                         gossipOptionType10.SelectedValue = GossipData.Options[9].Type;
+                        gossipIcon10.SelectedValue = GossipData.Options[9].Icon;
+                        gossipIcon10.IsEnabled = true;
                         gossipMenuGo10.IsEnabled = true;
                         gossipOptionType10.IsEnabled = true;
                         gossipSetOptionAttr10.IsEnabled = true;
@@ -291,6 +341,8 @@ namespace MSAToolBox.Controls.Legacy
                         gossipMenuGo10.IsEnabled = false;
                         gossipOptionType10.IsEnabled = false;
                         gossipSetOptionAttr10.IsEnabled = false;
+                        gossipIcon10.SelectedValue = 0;
+                        gossipIcon10.IsEnabled = false;
                     }
                 }
                 else
@@ -345,6 +397,26 @@ namespace MSAToolBox.Controls.Legacy
                     gossipMenuGo10.IsEnabled = false;
                     gossipOptionType10.IsEnabled = false;
                     gossipSetOptionAttr10.IsEnabled = false;
+                    gossipIcon1.SelectedValue = 0;
+                    gossipIcon1.IsEnabled = false;
+                    gossipIcon2.SelectedValue = 0;
+                    gossipIcon2.IsEnabled = false;
+                    gossipIcon3.SelectedValue = 0;
+                    gossipIcon3.IsEnabled = false;
+                    gossipIcon4.SelectedValue = 0;
+                    gossipIcon4.IsEnabled = false;
+                    gossipIcon5.SelectedValue = 0;
+                    gossipIcon5.IsEnabled = false;
+                    gossipIcon6.SelectedValue = 0;
+                    gossipIcon6.IsEnabled = false;
+                    gossipIcon7.SelectedValue = 0;
+                    gossipIcon7.IsEnabled = false;
+                    gossipIcon8.SelectedValue = 0;
+                    gossipIcon8.IsEnabled = false;
+                    gossipIcon9.SelectedValue = 0;
+                    gossipIcon9.IsEnabled = false;
+                    gossipIcon10.SelectedValue = 0;
+                    gossipIcon10.IsEnabled = false;
                 }
 
                 gossipMenu1.IsEnabled = true;
@@ -1128,6 +1200,65 @@ namespace MSAToolBox.Controls.Legacy
             if (IsLoading || GossipData == null)
                 return;
             GossipData.Emote3 = (int)npcTextEmote3.SelectedValue;
+        }
+
+        private void UpdateGossipIcon(int icon, int optionID)
+        {
+            if (IsLoading || GossipData == null || GossipData.Options == null)
+                return;
+
+            if (GossipData.Options[optionID] != null)
+                GossipData.Options[optionID].Icon = icon;
+        }
+
+        private void gossipIcon1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateGossipIcon((int)gossipIcon1.SelectedValue, 0);
+        }
+
+        private void gossipIcon2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateGossipIcon((int)gossipIcon2.SelectedValue, 1);
+        }
+
+        private void gossipIcon3_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateGossipIcon((int)gossipIcon3.SelectedValue, 2);
+        }
+
+        private void gossipIcon4_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateGossipIcon((int)gossipIcon4.SelectedValue, 3);
+        }
+
+        private void gossipIcon5_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateGossipIcon((int)gossipIcon5.SelectedValue, 4);
+        }
+
+        private void gossipIcon6_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateGossipIcon((int)gossipIcon6.SelectedValue, 5);
+        }
+
+        private void gossipIcon7_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateGossipIcon((int)gossipIcon7.SelectedValue, 6);
+        }
+
+        private void gossipIcon8_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateGossipIcon((int)gossipIcon8.SelectedValue, 7);
+        }
+
+        private void gossipIcon9_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateGossipIcon((int)gossipIcon9.SelectedValue, 8);
+        }
+
+        private void gossipIcon10_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateGossipIcon((int)gossipIcon10.SelectedValue, 9);
         }
     }
 

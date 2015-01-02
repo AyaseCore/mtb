@@ -9,6 +9,7 @@
       d:DesignHeight="2000" d:DesignWidth="1200">
     <UserControl.Resources>
         <Converters:QualityColorConverter x:Key="QualityColorConverter"/>
+        <Converters:ItemInUseConverter x:Key="ItemInUseConverter"/>
         <Storyboard x:Key="ShowProgressBar">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="itemTabProgress">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
@@ -97,9 +98,10 @@
                 <DataTemplate>
                     <TextBlock>
                         <TextBlock.Text>
-                            <MultiBinding StringFormat="{}{0} - {1}">
+                            <MultiBinding StringFormat="{}{0} - {1} {2}">
                                 <Binding Path="Entry"/>
                                 <Binding Path="Name"/>
+                                <Binding Path="InUse" Converter="{StaticResource ItemInUseConverter}"/>
                             </MultiBinding>
                         </TextBlock.Text>
                         <TextBlock.Foreground>
@@ -171,7 +173,7 @@
                         <ComboBox x:Name="itemBonding" Grid.Column="1" Margin="10,289,10,0" VerticalAlignment="Top" SelectedValue="{Binding Bonding, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
                         <TextBox x:Name="itemBagFamily" Grid.Column="1" Margin="10,320,10,0" VerticalAlignment="Top" TextWrapping="Wrap" Text="{Binding BagFamily, Mode=TwoWay}"/>
                         <ComboBox x:Name="itemTotemCategory" Grid.Column="1" Margin="10,351,10,0" VerticalAlignment="Top" SelectedValue="{Binding TotemCategory, Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
-                        <TextBox x:Name="itemBuyPrice" Grid.Column="1" Height="23" Margin="10,382,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding BuyPrice, Mode=TwoWay}"/>
+                        <TextBox x:Name="itemBuyPrice" Grid.Column="1" Height="23" Margin="10,382,142,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding BuyPrice, Mode=TwoWay}"/>
                         <TextBox x:Name="itemSellPrice" Grid.Column="1" Height="23" Margin="10,413,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SellPrice, Mode=TwoWay}"/>
                         <TextBox x:Name="itemBuyCount" Grid.Column="1" Height="23" Margin="10,444,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding BuyCount, Mode=TwoWay}"/>
                         <TextBox x:Name="itemLevel" Grid.Column="1" Height="23" Margin="389,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Text="{Binding ItemLevel, Mode=TwoWay}"/>
@@ -197,6 +199,9 @@
                         <TextBox x:Name="itemGemProperty" Grid.Column="1" Height="23" Margin="10,630,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding GemProperty, Mode=TwoWay}"/>
                         <Button x:Name="itemFlagBtn" Content="CHANGE" Grid.Column="1" HorizontalAlignment="Left" Margin="135,785,0,0" VerticalAlignment="Top" Width="75" Click="itemFlagBtn_Click"/>
                         <Button x:Name="itemSave" Content="Save" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="75" Click="itemSave_Click"/>
+                        <CheckBox Content="In Use" Grid.Column="1" HorizontalAlignment="Right" Margin="0,14,90,0" VerticalAlignment="Top" IsChecked="{Binding InUse, Mode=TwoWay}"/>
+                        <Button x:Name="calculatePrice" Content="Calculate" Grid.Column="1" HorizontalAlignment="Right" Margin="0,382,10,0" VerticalAlignment="Top" Width="127" Click="calculatePrice_Click"/>
+                        <Button x:Name="calculateAll" Content="CALCULATE ALL" Grid.Column="1" Margin="514,10,152,0" VerticalAlignment="Top" Click="calculateAll_Click"/>
                     </Grid>
                 </ScrollViewer>
             </TabItem>
@@ -345,7 +350,7 @@
                                 <Label Content="STAT8" HorizontalAlignment="Right" Margin="0,258,0,0" VerticalAlignment="Top"/>
                                 <Label Content="STAT9" HorizontalAlignment="Right" Margin="0,290,0,0" VerticalAlignment="Top"/>
                                 <Label Content="STAT10" HorizontalAlignment="Right" Margin="0,321,0,0" VerticalAlignment="Top"/>
-                                <TextBox x:Name="itemStatsCount" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding StatsCount, Mode=TwoWay}"/>
+                                <TextBox x:Name="itemStatsCount" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding StatsCount, Mode=TwoWay}" HorizontalAlignment="Left" Width="164"/>
                                 <TextBox x:Name="itemStatValue1" HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1" Text="{Binding StatValue[0], Mode=TwoWay}"/>
                                 <ComboBox x:Name="itemStatType1" Margin="75,41,10,0" VerticalAlignment="Top" Grid.Column="1" SelectedValue="{Binding StatType[0], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
                                 <TextBox x:Name="itemStatValue2" HorizontalAlignment="Left" Height="23" Margin="10,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Grid.Column="1" Text="{Binding StatValue[1], Mode=TwoWay}"/>
@@ -375,7 +380,7 @@
                                 <TextBox x:Name="itemDmgMin2" HorizontalAlignment="Left" Height="23" Margin="10,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Grid.Column="1" Text="{Binding DamageMin[1], Mode=TwoWay}"/>
                                 <TextBox x:Name="itemDmgMax2" HorizontalAlignment="Left" Height="23" Margin="99,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Grid.Column="1" Text="{Binding DamageMax[1], Mode=TwoWay}"/>
                                 <Label Content="~" HorizontalAlignment="Left" Margin="83,382,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                                <TextBox x:Name="itemSpeed" Height="23" Margin="10,412,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding Speed, Mode=TwoWay}"/>
+                                <TextBox x:Name="itemSpeed" Height="23" Margin="10,412,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding Speed, Mode=TwoWay}" HorizontalAlignment="Left" Width="164"/>
                                 <ComboBox x:Name="itemDmgType1" Margin="179,351,10,0" VerticalAlignment="Top" Grid.Column="1" SelectedValue="{Binding DamageSchool[0], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
                                 <ComboBox x:Name="itemDmgType2" Margin="179,382,10,0" VerticalAlignment="Top" Grid.Column="1" SelectedValue="{Binding DamageSchool[1], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
                                 <TextBox x:Name="itemMaxDurability" Height="23" Margin="10,442,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding MaxDurability, Mode=TwoWay}"/>
@@ -384,6 +389,8 @@
                                 <TextBox x:Name="itemRandomProperty" Height="23" Margin="10,504,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding RandomProperty, Mode=TwoWay}"/>
                                 <Label Content="RANDOM_SUFFIX" HorizontalAlignment="Right" Margin="9,474,0,0" VerticalAlignment="Top"/>
                                 <Label Content="RANDOM_PROPERTY" HorizontalAlignment="Right" Margin="0,504,0,0" VerticalAlignment="Top"/>
+                                <Button x:Name="calculateDmg" Content="Calculate Damage" Grid.Column="1" Margin="179,413,10,0" VerticalAlignment="Top" Click="calculateDmg_Click"/>
+                                <Button x:Name="calculateStats" Content="Calculate Stats" Grid.Column="1" Margin="179,10,10,0" VerticalAlignment="Top" Click="calculateStats_Click"/>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -613,10 +620,11 @@
             </TabItem>
         </TabControl>
         <ComboBox x:Name="itemFilterClass" Margin="92,40,0,0" VerticalAlignment="Top" SelectedValuePath="Key" DisplayMemberPath="Value" IsEnabled="{Binding ElementName=enableClassFilter, Path=IsChecked}" SelectionChanged="itemFilterClass_SelectionChanged"/>
-        <ComboBox x:Name="itemFilterSubclass" Margin="5,71,0,0" VerticalAlignment="Top" SelectedValuePath="Key" DisplayMemberPath="Value" IsEnabled="{Binding ElementName=enableClassFilter, Path=IsChecked}" SelectionChanged="itemFilterSubclass_SelectionChanged"/>
+        <ComboBox x:Name="itemFilterSubclass" Margin="92,71,0,0" VerticalAlignment="Top" SelectedValuePath="Key" DisplayMemberPath="Value" IsEnabled="{Binding ElementName=enableClassFilter, Path=IsChecked}" SelectionChanged="itemFilterSubclass_SelectionChanged"/>
         <Button x:Name="exportItemDBC" Content="EXPORT ITEM DBC" Margin="5,0,0,10" VerticalAlignment="Bottom" Height="25" Click="exportItemDBC_Click" />
         <ProgressBar x:Name="itemTabProgress" Margin="5,0,0,40" VerticalAlignment="Bottom" Opacity="0" Visibility="Hidden"/>
         <Label x:Name="itemTabProgressLabel" Content="Export Progress" Margin="5,0,0,50" VerticalAlignment="Bottom" Foreground="Red" HorizontalContentAlignment="Center" Opacity="0" Visibility="Hidden"/>
         <CheckBox x:Name="enableClassFilter" Content="FILTER ON" HorizontalAlignment="Left" Margin="5,44,0,0" VerticalAlignment="Top" Click="enableClassFilter_Click"/>
+        <Button x:Name="reloadItemList" Content="Reload" HorizontalAlignment="Left" Margin="5,71,0,0" VerticalAlignment="Top" Width="82" Click="reloadItemList_Click"/>
     </Grid>
 </UserControl>

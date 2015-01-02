@@ -1,7 +1,7 @@
 ﻿<Controls:MetroWindow x:Class="MSAToolBox.SubWindows.Legacy.CreatureNpcFlagsSelector"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" Height="331" Width="600" Background="White" ResizeMode="NoResize"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" Height="331" Width="600" Background="{x:Null}" ResizeMode="NoResize"
         GlowBrush="{DynamicResource AccentColorBrush}">
     <Grid x:Name="gossipMenuOptionContainer">
         <GroupBox x:Name="gossipMenuOptionNpcFlagGroup" Header="NPC FLAGS" Margin="10,10,10,0" VerticalAlignment="Top" Height="227">

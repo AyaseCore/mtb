@@ -34,25 +34,25 @@
         <TextBox x:Name="gossipNpcID" HorizontalAlignment="Right" Height="26" Margin="0,10,90,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" Controls:TextboxHelper.Watermark="NPC ID" TextChanged="gossipNpcID_TextChanged" Visibility="Hidden"/>
         <Button x:Name="gossipGo" Content="GO!" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="75" Height="25" Click="gossipGo_Click" IsEnabled="False"/>
         <TextBox x:Name="gossipID" HorizontalAlignment="Right" Height="26" Margin="0,10,90,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" Controls:TextboxHelper.Watermark="GOSSIP ID" TextChanged="gossipID_TextChanged"/>
-        <TextBox x:Name="gossipMenu1" Grid.Column="1" Height="26" Margin="0,40,10,0" VerticalAlignment="Top" TextChanged="gossipMenu1_TextChanged" IsEnabled="False" LostFocus="gossipMenu1_LostFocus" />
+        <TextBox x:Name="gossipMenu1" Grid.Column="1" Height="26" Margin="125,40,10,0" VerticalAlignment="Top" TextChanged="gossipMenu1_TextChanged" IsEnabled="False" LostFocus="gossipMenu1_LostFocus" />
         <Button x:Name="gossipMenuGo1" Content="GO!" Grid.Column="2" Margin="0,40,10,0" VerticalAlignment="Top" Height="25" Click="gossipMenuGo1_Click" IsEnabled="False"/>
-        <TextBox x:Name="gossipMenu2" Grid.Column="1" Height="26" Margin="0,71,10,0" VerticalAlignment="Top" TextChanged="gossipMenu2_TextChanged" IsEnabled="False" LostFocus="gossipMenu2_LostFocus"/>
+        <TextBox x:Name="gossipMenu2" Grid.Column="1" Height="26" Margin="125,71,10,0" VerticalAlignment="Top" TextChanged="gossipMenu2_TextChanged" IsEnabled="False" LostFocus="gossipMenu2_LostFocus"/>
         <Button x:Name="gossipMenuGo2" Content="GO!" Grid.Column="2" Margin="0,71,10,0" VerticalAlignment="Top" Height="25" Click="gossipMenuGo2_Click" IsEnabled="False"/>
-        <TextBox x:Name="gossipMenu3" Grid.Column="1" Height="26" Margin="0,102,10,0" VerticalAlignment="Top" TextChanged="gossipMenu3_TextChanged" IsEnabled="False" LostFocus="gossipMenu3_LostFocus"/>
+        <TextBox x:Name="gossipMenu3" Grid.Column="1" Height="26" Margin="125,102,10,0" VerticalAlignment="Top" TextChanged="gossipMenu3_TextChanged" IsEnabled="False" LostFocus="gossipMenu3_LostFocus"/>
         <Button x:Name="gossipMenuGo3" Content="GO!" Grid.Column="2" Margin="0,102,10,0" VerticalAlignment="Top" Height="25" Click="gossipMenuGo3_Click" IsEnabled="False"/>
-        <TextBox x:Name="gossipMenu4" Grid.Column="1" Height="26" Margin="0,133,10,0" VerticalAlignment="Top" TextChanged="gossipMenu4_TextChanged" IsEnabled="False" LostFocus="gossipMenu4_LostFocus"/>
+        <TextBox x:Name="gossipMenu4" Grid.Column="1" Height="26" Margin="125,133,10,0" VerticalAlignment="Top" TextChanged="gossipMenu4_TextChanged" IsEnabled="False" LostFocus="gossipMenu4_LostFocus"/>
         <Button x:Name="gossipMenuGo4" Content="GO!" Grid.Column="2" Margin="0,133,10,0" VerticalAlignment="Top" Height="25" Click="gossipMenuGo4_Click" IsEnabled="False"/>
-        <TextBox x:Name="gossipMenu5" Grid.Column="1" Height="26" Margin="0,164,10,0" VerticalAlignment="Top" TextChanged="gossipMenu5_TextChanged" IsEnabled="False" LostFocus="gossipMenu5_LostFocus"/>
+        <TextBox x:Name="gossipMenu5" Grid.Column="1" Height="26" Margin="125,164,10,0" VerticalAlignment="Top" TextChanged="gossipMenu5_TextChanged" IsEnabled="False" LostFocus="gossipMenu5_LostFocus"/>
         <Button x:Name="gossipMenuGo5" Content="GO!" Grid.Column="2" Margin="0,164,10,0" VerticalAlignment="Top" Height="25" Click="gossipMenuGo5_Click" IsEnabled="False"/>
-        <TextBox x:Name="gossipMenu6" Grid.Column="1" Height="26" Margin="0,195,10,0" VerticalAlignment="Top" TextChanged="gossipMenu6_TextChanged" IsEnabled="False" LostFocus="gossipMenu6_LostFocus"/>
+        <TextBox x:Name="gossipMenu6" Grid.Column="1" Height="26" Margin="125,195,10,0" VerticalAlignment="Top" TextChanged="gossipMenu6_TextChanged" IsEnabled="False" LostFocus="gossipMenu6_LostFocus"/>
         <Button x:Name="gossipMenuGo6" Content="GO!" Grid.Column="2" Margin="0,195,10,0" VerticalAlignment="Top" Height="25" Click="gossipMenuGo6_Click" IsEnabled="False"/>
-        <TextBox x:Name="gossipMenu7" Grid.Column="1" Height="26" Margin="0,226,10,0" VerticalAlignment="Top" TextChanged="gossipMenu7_TextChanged" IsEnabled="False" LostFocus="gossipMenu7_LostFocus"/>
+        <TextBox x:Name="gossipMenu7" Grid.Column="1" Height="26" Margin="125,226,10,0" VerticalAlignment="Top" TextChanged="gossipMenu7_TextChanged" IsEnabled="False" LostFocus="gossipMenu7_LostFocus"/>
         <Button x:Name="gossipMenuGo7" Content="GO!" Grid.Column="2" Margin="0,226,10,0" VerticalAlignment="Top" Height="25" Click="gossipMenuGo7_Click" IsEnabled="False"/>
-        <TextBox x:Name="gossipMenu8" Grid.Column="1" Height="26" Margin="0,257,10,0" VerticalAlignment="Top" TextChanged="gossipMenu8_TextChanged" IsEnabled="False" LostFocus="gossipMenu8_LostFocus"/>
+        <TextBox x:Name="gossipMenu8" Grid.Column="1" Height="26" Margin="125,257,10,0" VerticalAlignment="Top" TextChanged="gossipMenu8_TextChanged" IsEnabled="False" LostFocus="gossipMenu8_LostFocus"/>
         <Button x:Name="gossipMenuGo8" Content="GO!" Grid.Column="2" Margin="0,257,10,0" VerticalAlignment="Top" Height="25" Click="gossipMenuGo8_Click" IsEnabled="False"/>
-        <TextBox x:Name="gossipMenu9" Grid.Column="1" Height="26" Margin="0,288,10,0" VerticalAlignment="Top" TextChanged="gossipMenu9_TextChanged" IsEnabled="False" LostFocus="gossipMenu9_LostFocus"/>
+        <TextBox x:Name="gossipMenu9" Grid.Column="1" Height="26" Margin="125,288,10,0" VerticalAlignment="Top" TextChanged="gossipMenu9_TextChanged" IsEnabled="False" LostFocus="gossipMenu9_LostFocus"/>
         <Button x:Name="gossipMenuGo9" Content="GO!" Grid.Column="2" Margin="0,288,10,0" VerticalAlignment="Top" Height="25" Click="gossipMenuGo9_Click" IsEnabled="False"/>
-        <TextBox x:Name="gossipMenu10" Grid.Column="1" Height="26" Margin="0,319,10,0" VerticalAlignment="Top" TextChanged="gossipMenu10_TextChanged" IsEnabled="False" LostFocus="gossipMenu10_LostFocus"/>
+        <TextBox x:Name="gossipMenu10" Grid.Column="1" Height="26" Margin="125,319,10,0" VerticalAlignment="Top" TextChanged="gossipMenu10_TextChanged" IsEnabled="False" LostFocus="gossipMenu10_LostFocus"/>
         <Button x:Name="gossipMenuGo10" Content="GO!" Grid.Column="2" Margin="0,319,10,0" VerticalAlignment="Top" Height="25" Click="gossipMenuGo10_Click" IsEnabled="False"/>
         <ComboBox x:Name="gossipOptionType1" Grid.Column="3" Margin="0,40,10,0" VerticalAlignment="Top" Height="26" IsEnabled="False" SelectionChanged="gossipOptionType1_SelectionChanged"/>
         <ComboBox x:Name="gossipOptionType2" Grid.Column="3" Margin="0,71,10,0" VerticalAlignment="Top" Height="26" IsEnabled="False" SelectionChanged="gossipOptionType2_SelectionChanged"/>
@@ -98,5 +98,15 @@
         <ComboBox x:Name="npcTextEmote1" Height="23" Margin="0,385,10,0" Text="0" VerticalAlignment="Top" SelectionChanged="npcTextEmote1_SelectionChanged" Grid.Column="1"/>
         <ComboBox x:Name="npcTextEmote2" Height="23" Margin="0,416,10,0" Text="0" VerticalAlignment="Top" SelectionChanged="npcTextEmote2_SelectionChanged" Grid.Column="1"/>
         <ComboBox x:Name="npcTextEmote3" Height="23" Margin="0,447,10,0" Text="0" VerticalAlignment="Top" SelectionChanged="npcTextEmote3_SelectionChanged" Grid.Column="1"/>
+        <ComboBox x:Name="gossipIcon1" Grid.Column="1" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="gossipIcon1_SelectionChanged"/>
+        <ComboBox x:Name="gossipIcon2" Grid.Column="1" HorizontalAlignment="Left" Margin="0,71,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="gossipIcon2_SelectionChanged"/>
+        <ComboBox x:Name="gossipIcon3" Grid.Column="1" HorizontalAlignment="Left" Margin="0,102,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="gossipIcon3_SelectionChanged"/>
+        <ComboBox x:Name="gossipIcon4" Grid.Column="1" HorizontalAlignment="Left" Margin="0,132,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="gossipIcon4_SelectionChanged"/>
+        <ComboBox x:Name="gossipIcon5" Grid.Column="1" HorizontalAlignment="Left" Margin="0,163,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="gossipIcon5_SelectionChanged"/>
+        <ComboBox x:Name="gossipIcon6" Grid.Column="1" HorizontalAlignment="Left" Margin="0,195,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="gossipIcon6_SelectionChanged"/>
+        <ComboBox x:Name="gossipIcon7" Grid.Column="1" HorizontalAlignment="Left" Margin="0,226,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="gossipIcon7_SelectionChanged"/>
+        <ComboBox x:Name="gossipIcon8" Grid.Column="1" HorizontalAlignment="Left" Margin="0,257,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="gossipIcon8_SelectionChanged"/>
+        <ComboBox x:Name="gossipIcon9" Grid.Column="1" HorizontalAlignment="Left" Margin="0,288,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="gossipIcon9_SelectionChanged"/>
+        <ComboBox x:Name="gossipIcon10" Grid.Column="1" HorizontalAlignment="Left" Margin="0,319,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="gossipIcon10_SelectionChanged"/>
     </Grid>
 </UserControl>

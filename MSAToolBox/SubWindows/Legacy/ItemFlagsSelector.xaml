@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         GlowBrush="{DynamicResource AccentColorBrush}"
-        Title="ItemFlags" Height="228" Width="755" ResizeMode="NoResize">
+        Title="ItemFlags" Height="228" Width="755" ResizeMode="NoResize" Background="{x:Null}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

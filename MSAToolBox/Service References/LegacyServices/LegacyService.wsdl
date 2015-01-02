@@ -13,7 +13,7 @@
       <xsd:import schemaLocation="http://localhost:9999/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:9999/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:9999/?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://localhost:9999/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" />
+      <xsd:import schemaLocation="http://localhost:9999/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ILegacyService_GetLanguages_InputMessage">
@@ -87,6 +87,12 @@
   </wsdl:message>
   <wsdl:message name="ILegacyService_GetGossipMenuOptionTypes_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetGossipMenuOptionTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetGossipIconDefines_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGossipIconDefines" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetGossipIconDefines_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGossipIconDefinesResponse" />
   </wsdl:message>
   <wsdl:message name="ILegacyService_SaveGossipMenu_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveGossipMenu" />
@@ -220,6 +226,10 @@
     <wsdl:operation name="GetGossipMenuOptionTypes">
       <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetGossipMenuOptionTypes" message="tns:ILegacyService_GetGossipMenuOptionTypes_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetGossipMenuOptionTypesResponse" message="tns:ILegacyService_GetGossipMenuOptionTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGossipIconDefines">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetGossipIconDefines" message="tns:ILegacyService_GetGossipIconDefines_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetGossipIconDefinesResponse" message="tns:ILegacyService_GetGossipIconDefines_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SaveGossipMenu">
       <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/SaveGossipMenu" message="tns:ILegacyService_SaveGossipMenu_InputMessage" />
@@ -382,6 +392,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetGossipMenuOptionTypes">
       <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetGossipMenuOptionTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGossipIconDefines">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetGossipIconDefines" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

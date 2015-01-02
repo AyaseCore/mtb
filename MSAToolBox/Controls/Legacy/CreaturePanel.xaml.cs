@@ -1,6 +1,7 @@
 ﻿using MSAToolBox.LegacyServices;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,8 @@ namespace MSAToolBox.Controls.Legacy
                 {
                     CreatureList = client.GetCreatureList().ToList();
                     creatureList.ItemsSource = CreatureList;
+                    creatureList.Items.SortDescriptions.Clear();
+                    creatureList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Entry", System.ComponentModel.ListSortDirection.Descending));
                 }
             }
             catch (System.Exception /*ex*/) { }

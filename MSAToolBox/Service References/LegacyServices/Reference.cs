@@ -15,7 +15,7 @@ namespace MSAToolBox.LegacyServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ItemTemplate", Namespace="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ItemTemplate", Namespace="http://schemas.datacontract.org/2004/07/MTBServer.DataSet")]
     [System.SerializableAttribute()]
     public partial class ItemTemplate : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -114,6 +114,9 @@ namespace MSAToolBox.LegacyServices {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int HolyResistanceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool InUseField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int InventoryTypeField;
@@ -689,6 +692,19 @@ namespace MSAToolBox.LegacyServices {
                 if ((this.HolyResistanceField.Equals(value) != true)) {
                     this.HolyResistanceField = value;
                     this.RaisePropertyChanged("HolyResistance");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool InUse {
+            get {
+                return this.InUseField;
+            }
+            set {
+                if ((this.InUseField.Equals(value) != true)) {
+                    this.InUseField = value;
+                    this.RaisePropertyChanged("InUse");
                 }
             }
         }
@@ -1420,12 +1436,15 @@ namespace MSAToolBox.LegacyServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DataDefineStore", Namespace="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DataDefineStore", Namespace="http://schemas.datacontract.org/2004/07/MTBServer.DataSet")]
     [System.SerializableAttribute()]
     public partial class DataDefineStore : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<int, string> GossipIconField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.Dictionary<int, string> HolidayNamesField;
@@ -1506,6 +1525,19 @@ namespace MSAToolBox.LegacyServices {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<int, string> GossipIcon {
+            get {
+                return this.GossipIconField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GossipIconField, value) != true)) {
+                    this.GossipIconField = value;
+                    this.RaisePropertyChanged("GossipIcon");
+                }
             }
         }
         
@@ -1833,7 +1865,7 @@ namespace MSAToolBox.LegacyServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ItemInfo", Namespace="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ItemInfo", Namespace="http://schemas.datacontract.org/2004/07/MTBServer.DataSet")]
     [System.SerializableAttribute()]
     public partial class ItemInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1845,6 +1877,9 @@ namespace MSAToolBox.LegacyServices {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int EntryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool InUseField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
@@ -1887,6 +1922,19 @@ namespace MSAToolBox.LegacyServices {
                 if ((this.EntryField.Equals(value) != true)) {
                     this.EntryField = value;
                     this.RaisePropertyChanged("Entry");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool InUse {
+            get {
+                return this.InUseField;
+            }
+            set {
+                if ((this.InUseField.Equals(value) != true)) {
+                    this.InUseField = value;
+                    this.RaisePropertyChanged("InUse");
                 }
             }
         }
@@ -1942,7 +1990,7 @@ namespace MSAToolBox.LegacyServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ItemDBC", Namespace="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ItemDBC", Namespace="http://schemas.datacontract.org/2004/07/MTBServer.DataSet")]
     [System.SerializableAttribute()]
     public partial class ItemDBC : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -2099,7 +2147,7 @@ namespace MSAToolBox.LegacyServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GossipMenu", Namespace="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GossipMenu", Namespace="http://schemas.datacontract.org/2004/07/MTBServer.DataSet")]
     [System.SerializableAttribute()]
     public partial class GossipMenu : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -2272,7 +2320,7 @@ namespace MSAToolBox.LegacyServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GossipMenuOption", Namespace="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GossipMenuOption", Namespace="http://schemas.datacontract.org/2004/07/MTBServer.DataSet")]
     [System.SerializableAttribute()]
     public partial class GossipMenuOption : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -2493,7 +2541,7 @@ namespace MSAToolBox.LegacyServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="VendorInfo", Namespace="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="VendorInfo", Namespace="http://schemas.datacontract.org/2004/07/MTBServer.DataSet")]
     [System.SerializableAttribute()]
     public partial class VendorInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -2650,7 +2698,7 @@ namespace MSAToolBox.LegacyServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CreatureTemplate", Namespace="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CreatureTemplate", Namespace="http://schemas.datacontract.org/2004/07/MTBServer.DataSet")]
     [System.SerializableAttribute()]
     public partial class CreatureTemplate : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -3607,7 +3655,7 @@ namespace MSAToolBox.LegacyServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CreatureInfo", Namespace="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CreatureInfo", Namespace="http://schemas.datacontract.org/2004/07/MTBServer.DataSet")]
     [System.SerializableAttribute()]
     public partial class CreatureInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -3716,7 +3764,7 @@ namespace MSAToolBox.LegacyServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Creature", Namespace="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Creature", Namespace="http://schemas.datacontract.org/2004/07/MTBServer.DataSet")]
     [System.SerializableAttribute()]
     public partial class Creature : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -4097,7 +4145,7 @@ namespace MSAToolBox.LegacyServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SmartScript", Namespace="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SmartScript", Namespace="http://schemas.datacontract.org/2004/07/MTBServer.DataSet")]
     [System.SerializableAttribute()]
     public partial class SmartScript : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -4440,6 +4488,12 @@ namespace MSAToolBox.LegacyServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILegacyService/GetGossipMenuOptionTypes", ReplyAction="http://tempuri.org/ILegacyService/GetGossipMenuOptionTypesResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> GetGossipMenuOptionTypesAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILegacyService/GetGossipIconDefines", ReplyAction="http://tempuri.org/ILegacyService/GetGossipIconDefinesResponse")]
+        System.Collections.Generic.Dictionary<int, string> GetGossipIconDefines();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILegacyService/GetGossipIconDefines", ReplyAction="http://tempuri.org/ILegacyService/GetGossipIconDefinesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> GetGossipIconDefinesAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILegacyService/SaveGossipMenu", ReplyAction="http://tempuri.org/ILegacyService/SaveGossipMenuResponse")]
         MSAToolBox.LegacyServices.GossipMenu SaveGossipMenu(MSAToolBox.LegacyServices.GossipMenu menu);
         
@@ -4646,6 +4700,14 @@ namespace MSAToolBox.LegacyServices {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> GetGossipMenuOptionTypesAsync() {
             return base.Channel.GetGossipMenuOptionTypesAsync();
+        }
+        
+        public System.Collections.Generic.Dictionary<int, string> GetGossipIconDefines() {
+            return base.Channel.GetGossipIconDefines();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> GetGossipIconDefinesAsync() {
+            return base.Channel.GetGossipIconDefinesAsync();
         }
         
         public MSAToolBox.LegacyServices.GossipMenu SaveGossipMenu(MSAToolBox.LegacyServices.GossipMenu menu) {

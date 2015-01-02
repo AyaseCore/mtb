@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:9999/?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:complexType name="ItemTemplate">
     <xs:sequence>
@@ -34,6 +34,7 @@
       <xs:element minOccurs="0" name="GemProperty" type="xs:int" />
       <xs:element minOccurs="0" name="HolidayID" type="xs:int" />
       <xs:element minOccurs="0" name="HolyResistance" type="xs:int" />
+      <xs:element minOccurs="0" name="InUse" type="xs:boolean" />
       <xs:element minOccurs="0" name="InventoryType" type="xs:int" />
       <xs:element minOccurs="0" name="ItemLevel" type="xs:int" />
       <xs:element minOccurs="0" name="ItemLimitCategory" type="xs:int" />
@@ -94,30 +95,31 @@
   <xs:element name="ItemTemplate" nillable="true" type="tns:ItemTemplate" />
   <xs:complexType name="DataDefineStore">
     <xs:sequence>
-      <xs:element xmlns:q15="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="HolidayNames" nillable="true" type="q15:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemAmmoType" nillable="true" type="q16:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemBagFamily" nillable="true" type="q17:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemBonding" nillable="true" type="q18:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemClass" nillable="true" type="q19:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemDamageSchool" nillable="true" type="q20:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemInventoryType" nillable="true" type="q21:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemMaterial" nillable="true" type="q22:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemPetFood" nillable="true" type="q23:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemQuality" nillable="true" type="q24:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemSet" nillable="true" type="q25:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q26="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemSheath" nillable="true" type="q26:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q27="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemSocketColor" nillable="true" type="q27:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q28="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemSpellTrigger" nillable="true" type="q28:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q29="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemStatType" nillable="true" type="q29:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q30="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemSubclass" nillable="true" type="q30:ArrayOfArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q31="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Language" nillable="true" type="q31:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q32="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PageTextMaterial" nillable="true" type="q32:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q33="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ReputationRank" nillable="true" type="q33:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q34="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SkillLine" nillable="true" type="q34:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q35="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SpellDispel" nillable="true" type="q35:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q36="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SpellIcon" nillable="true" type="q36:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q37="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SpellMechanic" nillable="true" type="q37:ArrayOfKeyValueOfintstring" />
-      <xs:element xmlns:q38="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="TotemCategory" nillable="true" type="q38:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q15="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GossipIcon" nillable="true" type="q15:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="HolidayNames" nillable="true" type="q16:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemAmmoType" nillable="true" type="q17:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemBagFamily" nillable="true" type="q18:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemBonding" nillable="true" type="q19:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemClass" nillable="true" type="q20:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemDamageSchool" nillable="true" type="q21:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemInventoryType" nillable="true" type="q22:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemMaterial" nillable="true" type="q23:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemPetFood" nillable="true" type="q24:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemQuality" nillable="true" type="q25:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q26="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemSet" nillable="true" type="q26:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q27="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemSheath" nillable="true" type="q27:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q28="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemSocketColor" nillable="true" type="q28:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q29="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemSpellTrigger" nillable="true" type="q29:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q30="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemStatType" nillable="true" type="q30:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q31="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemSubclass" nillable="true" type="q31:ArrayOfArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q32="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Language" nillable="true" type="q32:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q33="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PageTextMaterial" nillable="true" type="q33:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q34="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ReputationRank" nillable="true" type="q34:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q35="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SkillLine" nillable="true" type="q35:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q36="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SpellDispel" nillable="true" type="q36:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q37="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SpellIcon" nillable="true" type="q37:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q38="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SpellMechanic" nillable="true" type="q38:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q39="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="TotemCategory" nillable="true" type="q39:ArrayOfKeyValueOfintstring" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DataDefineStore" nillable="true" type="tns:DataDefineStore" />
@@ -131,6 +133,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Class" type="xs:int" />
       <xs:element minOccurs="0" name="Entry" type="xs:int" />
+      <xs:element minOccurs="0" name="InUse" type="xs:boolean" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Quality" type="xs:int" />
       <xs:element minOccurs="0" name="SubClass" type="xs:int" />
@@ -221,7 +224,7 @@
       <xs:element minOccurs="0" name="DamageModifier" type="xs:float" />
       <xs:element minOccurs="0" name="DamageSchool" type="xs:byte" />
       <xs:element minOccurs="0" name="DynamicFlags" type="xs:long" />
-      <xs:element xmlns:q39="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Entry" nillable="true" type="q39:ArrayOfint" />
+      <xs:element xmlns:q40="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Entry" nillable="true" type="q40:ArrayOfint" />
       <xs:element minOccurs="0" name="Expansion" type="xs:short" />
       <xs:element minOccurs="0" name="ExperienceModifier" type="xs:float" />
       <xs:element minOccurs="0" name="ExtraFlags" type="xs:long" />
@@ -233,7 +236,7 @@
       <xs:element minOccurs="0" name="IconName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="InhabitType" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="IsRacialLeader" type="xs:boolean" />
-      <xs:element xmlns:q40="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="KillCredit" nillable="true" type="q40:ArrayOflong" />
+      <xs:element xmlns:q41="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="KillCredit" nillable="true" type="q41:ArrayOflong" />
       <xs:element minOccurs="0" name="LootID" type="xs:int" />
       <xs:element minOccurs="0" name="ManaModifier" type="xs:float" />
       <xs:element minOccurs="0" name="MaxLevel" type="xs:unsignedByte" />
@@ -241,25 +244,25 @@
       <xs:element minOccurs="0" name="MechanicImmuneMask" type="xs:long" />
       <xs:element minOccurs="0" name="MinLevel" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="MinMoneyLoot" type="xs:int" />
-      <xs:element xmlns:q41="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Model" nillable="true" type="q41:ArrayOfint" />
+      <xs:element xmlns:q42="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Model" nillable="true" type="q42:ArrayOfint" />
       <xs:element minOccurs="0" name="MovementID" type="xs:long" />
       <xs:element minOccurs="0" name="MovementType" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NpcFlags" type="xs:long" />
       <xs:element minOccurs="0" name="PetSpellDataID" type="xs:int" />
       <xs:element minOccurs="0" name="PickpocketLoot" type="xs:int" />
-      <xs:element xmlns:q42="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="QuestItem" nillable="true" type="q42:ArrayOflong" />
+      <xs:element xmlns:q43="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="QuestItem" nillable="true" type="q43:ArrayOflong" />
       <xs:element minOccurs="0" name="RangedAttackTime" type="xs:long" />
       <xs:element minOccurs="0" name="RangedVariance" type="xs:float" />
       <xs:element minOccurs="0" name="Rank" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="RegenerateHealth" type="xs:boolean" />
-      <xs:element xmlns:q43="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Resistance" nillable="true" type="q43:ArrayOfshort" />
+      <xs:element xmlns:q44="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Resistance" nillable="true" type="q44:ArrayOfshort" />
       <xs:element minOccurs="0" name="Scale" type="xs:float" />
       <xs:element minOccurs="0" name="ScriptName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SkinLoot" type="xs:int" />
       <xs:element minOccurs="0" name="SpeedRun" type="xs:float" />
       <xs:element minOccurs="0" name="SpeedWalk" type="xs:float" />
-      <xs:element xmlns:q44="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Spell" nillable="true" type="q44:ArrayOfint" />
+      <xs:element xmlns:q45="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Spell" nillable="true" type="q45:ArrayOfint" />
       <xs:element minOccurs="0" name="Subname" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TrainerClass" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="TrainerRace" type="xs:unsignedByte" />
@@ -333,20 +336,20 @@
   <xs:complexType name="SmartScript">
     <xs:sequence>
       <xs:element minOccurs="0" name="Action" type="xs:unsignedByte" />
-      <xs:element xmlns:q45="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ActionParam" nillable="true" type="q45:ArrayOflong" />
+      <xs:element xmlns:q46="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ActionParam" nillable="true" type="q46:ArrayOflong" />
       <xs:element minOccurs="0" name="Chance" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Entry" type="xs:int" />
       <xs:element minOccurs="0" name="Event" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="EventFlags" type="xs:unsignedByte" />
-      <xs:element xmlns:q46="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="EventParam" nillable="true" type="q46:ArrayOflong" />
+      <xs:element xmlns:q47="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="EventParam" nillable="true" type="q47:ArrayOflong" />
       <xs:element minOccurs="0" name="EventPhase" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Link" type="xs:int" />
       <xs:element minOccurs="0" name="SourceType" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="Target" type="xs:unsignedByte" />
-      <xs:element xmlns:q47="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="TargetParam" nillable="true" type="q47:ArrayOflong" />
-      <xs:element xmlns:q48="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="TargetPosition" nillable="true" type="q48:ArrayOffloat" />
+      <xs:element xmlns:q48="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="TargetParam" nillable="true" type="q48:ArrayOflong" />
+      <xs:element xmlns:q49="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="TargetPosition" nillable="true" type="q49:ArrayOffloat" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="SmartScript" nillable="true" type="tns:SmartScript" />

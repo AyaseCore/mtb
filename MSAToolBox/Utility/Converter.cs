@@ -20,7 +20,7 @@ namespace MSAToolBox.Utility
                 case 0:
                     return new SolidColorBrush(Colors.Gray);
                 case 1:
-                    return new SolidColorBrush(Colors.Black);
+                    return new SolidColorBrush(Colors.White);
                 case 2:
                     return new SolidColorBrush(Colors.Green);
                 case 3:
@@ -86,7 +86,7 @@ namespace MSAToolBox.Utility
             switch (quality)
             {
                 case 0:
-                    return new SolidColorBrush(Colors.Black);
+                    return new SolidColorBrush(Colors.White);
                 case 1:
                     return new SolidColorBrush(Colors.Green);
                 case 2:
@@ -104,4 +104,17 @@ namespace MSAToolBox.Utility
             return null;
         }
     }
+
+    public class ItemInUseConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return (bool)value == true ? "(In Use)" : "";
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+    }
 }
+

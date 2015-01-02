@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:9999/?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:import schemaLocation="http://localhost:9999/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" />
+  <xs:import schemaLocation="http://localhost:9999/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" />
   <xs:element name="GetLanguages">
     <xs:complexType>
       <xs:sequence />
@@ -36,21 +36,21 @@
   <xs:element name="GetItemTemplateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="GetItemTemplateResult" nillable="true" type="q3:ItemTemplate" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="GetItemTemplateResult" nillable="true" type="q3:ItemTemplate" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveItemTemplate">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="item" nillable="true" type="q4:ItemTemplate" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="item" nillable="true" type="q4:ItemTemplate" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveItemTemplateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="SaveItemTemplateResult" nillable="true" type="q5:ItemTemplate" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="SaveItemTemplateResult" nillable="true" type="q5:ItemTemplate" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -62,7 +62,7 @@
   <xs:element name="GetDataDefinesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="GetDataDefinesResult" nillable="true" type="q6:DataDefineStore" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="GetDataDefinesResult" nillable="true" type="q6:DataDefineStore" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -74,7 +74,7 @@
   <xs:element name="GetItemListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="GetItemListResult" nillable="true" type="q7:ArrayOfItemInfo" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="GetItemListResult" nillable="true" type="q7:ArrayOfItemInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -86,7 +86,7 @@
   <xs:element name="CreateItemTemplateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="CreateItemTemplateResult" nillable="true" type="q8:ItemTemplate" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="CreateItemTemplateResult" nillable="true" type="q8:ItemTemplate" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -112,7 +112,7 @@
   <xs:element name="CopyItemTemplateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="CopyItemTemplateResult" nillable="true" type="q9:ItemTemplate" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="CopyItemTemplateResult" nillable="true" type="q9:ItemTemplate" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -124,7 +124,7 @@
   <xs:element name="GenerateItemDBCResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="GenerateItemDBCResult" nillable="true" type="q10:ArrayOfItemDBC" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="GenerateItemDBCResult" nillable="true" type="q10:ArrayOfItemDBC" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -138,7 +138,7 @@
   <xs:element name="GetGossipMenuResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="GetGossipMenuResult" nillable="true" type="q11:GossipMenu" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="GetGossipMenuResult" nillable="true" type="q11:GossipMenu" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -154,17 +154,29 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetGossipIconDefines">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGossipIconDefinesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetGossipIconDefinesResult" nillable="true" type="q13:ArrayOfKeyValueOfintstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SaveGossipMenu">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="menu" nillable="true" type="q13:GossipMenu" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="menu" nillable="true" type="q14:GossipMenu" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveGossipMenuResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="SaveGossipMenuResult" nillable="true" type="q14:GossipMenu" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="SaveGossipMenuResult" nillable="true" type="q15:GossipMenu" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -176,7 +188,7 @@
   <xs:element name="CreateNewGossipMenuResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="CreateNewGossipMenuResult" nillable="true" type="q15:GossipMenu" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="CreateNewGossipMenuResult" nillable="true" type="q16:GossipMenu" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -202,7 +214,7 @@
   <xs:element name="GetCreatureNamesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetCreatureNamesResult" nillable="true" type="q16:ArrayOfKeyValueOfintstring" />
+        <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetCreatureNamesResult" nillable="true" type="q17:ArrayOfKeyValueOfintstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -216,7 +228,7 @@
   <xs:element name="GetVendorListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="GetVendorListResult" nillable="true" type="q17:ArrayOfVendorInfo" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="GetVendorListResult" nillable="true" type="q18:ArrayOfVendorInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -224,7 +236,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="entry" type="xs:int" />
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="list" nillable="true" type="q18:ArrayOfVendorInfo" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="list" nillable="true" type="q19:ArrayOfVendorInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -245,21 +257,21 @@
   <xs:element name="GetCreatureTemplateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="GetCreatureTemplateResult" nillable="true" type="q19:CreatureTemplate" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="GetCreatureTemplateResult" nillable="true" type="q20:CreatureTemplate" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveCreatureTemplate">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="creature" nillable="true" type="q20:CreatureTemplate" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="creature" nillable="true" type="q21:CreatureTemplate" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveCreatureTemplateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="SaveCreatureTemplateResult" nillable="true" type="q21:CreatureTemplate" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="SaveCreatureTemplateResult" nillable="true" type="q22:CreatureTemplate" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -271,7 +283,7 @@
   <xs:element name="GetCreatureListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="GetCreatureListResult" nillable="true" type="q22:ArrayOfCreatureInfo" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="GetCreatureListResult" nillable="true" type="q23:ArrayOfCreatureInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -297,7 +309,7 @@
   <xs:element name="GetSpawnInfoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="GetSpawnInfoResult" nillable="true" type="q23:ArrayOfCreature" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="GetSpawnInfoResult" nillable="true" type="q24:ArrayOfCreature" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -305,7 +317,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="entry" type="xs:int" />
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="list" nillable="true" type="q24:ArrayOfCreature" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="list" nillable="true" type="q25:ArrayOfCreature" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -325,14 +337,14 @@
   <xs:element name="GetSmartScriptResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="GetSmartScriptResult" nillable="true" type="q25:ArrayOfSmartScript" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="GetSmartScriptResult" nillable="true" type="q26:ArrayOfSmartScript" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveSmartScript">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/MSAToolBox.Legacy" minOccurs="0" name="list" nillable="true" type="q26:ArrayOfSmartScript" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="list" nillable="true" type="q27:ArrayOfSmartScript" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
