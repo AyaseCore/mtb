@@ -62,6 +62,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\Legacy\ItemIconPanel.xaml.cs">
+      <DependentUpon>ItemIconPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LegacyMorpher.xaml.cs">
       <DependentUpon>LegacyMorpher.xaml</DependentUpon>
     </Compile>
@@ -74,11 +77,29 @@
     <Compile Include="Controls\Legacy\CreatureSpawnPanel.xaml.cs">
       <DependentUpon>CreatureSpawnPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Legacy\CreatureTrainerPanel.xaml.cs">
+      <DependentUpon>CreatureTrainerPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Legacy\IconPanel.xaml.cs">
+      <DependentUpon>IconPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Legacy\ItemPanel.xaml.cs">
       <DependentUpon>ItemPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Legacy\SkillLinePanel.xaml.cs">
+      <DependentUpon>SkillLinePanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Legacy\SmartScriptPanel.xaml.cs">
       <DependentUpon>SmartScriptPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Legacy\SpellAttributesPanel.xaml.cs">
+      <DependentUpon>SpellAttributesPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Legacy\SpellIconPanel.xaml.cs">
+      <DependentUpon>SpellIconPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Legacy\SpellPanel.xaml.cs">
+      <DependentUpon>SpellPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Legacy\VendorPanel.xaml.cs">
       <DependentUpon>VendorPanel.xaml</DependentUpon>
@@ -94,8 +115,19 @@
     <Compile Include="SubWindows\Legacy\ItemFlagsSelector.xaml.cs">
       <DependentUpon>ItemFlagsSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubWindows\Legacy\SpellFamilySelector.xaml.cs">
+      <DependentUpon>SpellFamilySelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindows\Legacy\SpellProcSelector.xaml.cs">
+      <DependentUpon>SpellProcSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utility\Converter.cs" />
+    <Compile Include="Utility\DataStore.cs" />
     <Compile Include="Utility\DBC.cs" />
+    <Page Include="Controls\Legacy\ItemIconPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\LegacyMorpher.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,11 +144,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Legacy\CreatureTrainerPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Legacy\IconPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Legacy\ItemPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Legacy\SkillLinePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Legacy\SmartScriptPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Legacy\SpellAttributesPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Legacy\SpellIconPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Legacy\SpellPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,6 +197,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SubWindows\Legacy\ItemFlagsSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindows\Legacy\SpellFamilySelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindows\Legacy\SpellProcSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,6 +252,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\LegacyServices\MSAToolBox.LegacyServices.CreatureTemplate.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\LegacyServices\MSAToolBox.LegacyServices.CreatureTrainerInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\LegacyServices\MSAToolBox.LegacyServices.DataDefineStore.datasource">

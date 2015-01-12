@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MSAToolBox.LegacyServices;
 
 namespace MSAToolBox.Controls
 {
@@ -20,9 +21,28 @@ namespace MSAToolBox.Controls
     /// </summary>
     public partial class LegacyMorpher : UserControl
     {
+        public static DataDefineStore DefineStore;
         public LegacyMorpher()
         {
             InitializeComponent();
+            Load();
+        }
+
+        public void Load()
+        {
+            LoadDefines();
+            creaturePanel.Load();
+            itemPanel.Load();
+            spellPanel.Load();
+            skillPanel.Load();
+        }
+
+        private void LoadDefines()
+        {
+            using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
+            {
+                DefineStore = client.GetDataDefines();
+            }
         }
     }
 }

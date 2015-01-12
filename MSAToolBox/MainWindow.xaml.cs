@@ -24,6 +24,8 @@ namespace MSAToolBox
     {
         public static string CLIENT_PATH = "E:/CLIENT/";
         public static string SERVER_PATH = "C:/LEGACY/SERVER/";
+        public static string ASSET_PATH = "F:/Projects/ass/";
+
         public MainWindow()
         {
             InitializeComponent();

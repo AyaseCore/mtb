@@ -37,6 +37,10 @@ namespace MSAToolBox.Controls.Legacy
         public CreatureGossipPanel()
         {
             InitializeComponent();
+        }
+
+        public void Load()
+        {
             InitDefines();
         }
 

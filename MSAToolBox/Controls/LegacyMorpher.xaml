@@ -9,14 +9,16 @@
     <Grid>
         <TabControl Margin="0,0,0,0">
             <TabItem Header="Creature">
-                <Grid>
-                    <Legacy:CreaturePanel/>
-                </Grid>
+                <Legacy:CreaturePanel x:Name="creaturePanel"/>
             </TabItem>
             <TabItem Header="Item">
-                <Grid>
-                    <Legacy:ItemPanel/>
-                </Grid>
+                <Legacy:ItemPanel x:Name="itemPanel"/>
+            </TabItem>
+            <TabItem Header="Skill">
+                <Legacy:SkillLinePanel Margin="0" x:Name="skillPanel"/>
+            </TabItem>
+            <TabItem Header="Spell">
+                <Legacy:SpellPanel x:Name="spellPanel"/>
             </TabItem>
         </TabControl>
     </Grid>

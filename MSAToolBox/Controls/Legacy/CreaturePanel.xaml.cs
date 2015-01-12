@@ -28,7 +28,12 @@ namespace MSAToolBox.Controls.Legacy
         public CreaturePanel()
         {
             InitializeComponent();
+        }
+
+        public void Load()
+        {
             GetCreatureList();
+            creatureGossipPanel.Load();
         }
 
         private void GetCreatureList()
@@ -72,6 +77,8 @@ namespace MSAToolBox.Controls.Legacy
                 }
             }
             catch (System.Exception /*ex*/) { }
+
+            creatureTrainerPanel.Load(entry);
         }
 
         private void Load(CreatureTemplate creature)
@@ -113,6 +120,23 @@ namespace MSAToolBox.Controls.Legacy
                 }
                 catch (System.Exception /*ex*/) { }
             }
+        }
+
+        private void ApplySearchFilter()
+        {
+            creatureList.Items.Filter = delegate(object obj)
+            {
+                string name = searchFilter.Text;
+                if (name == "")
+                    return true;
+                CreatureInfo creature = (CreatureInfo)obj;
+                return creature.Name.Contains(name) || creature.Entry.ToString().Contains(name);
+            };
+        }
+
+        private void searchFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ApplySearchFilter();
         }
     }
 }

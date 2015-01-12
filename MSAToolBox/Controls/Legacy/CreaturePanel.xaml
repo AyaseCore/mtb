@@ -16,7 +16,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Button Content="CREATE" Margin="10,10,10,0" VerticalAlignment="Top"/>
-        <TextBox Height="23" Margin="10,40,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="searchFilter" Height="23" Margin="10,40,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="searchFilter_TextChanged"/>
         <ListBox x:Name="creatureList" Margin="10,71,10,10" SelectedValuePath="Entry" SelectionChanged="creatureList_SelectionChanged">
             <ListBox.ContextMenu>
                 <ContextMenu>
@@ -214,23 +214,21 @@
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
             <TabItem Header="Spawn">
-                <Grid>
-                    <local:CreatureSpawnPanel x:Name="creatureSpawn"/>
-                </Grid>
+                <local:CreatureSpawnPanel x:Name="creatureSpawn"/>
             </TabItem>
             <TabItem Header="AI">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
             <TabItem Header="Gossip">
-                <Grid>
-                    <local:CreatureGossipPanel Margin="0"/>
-                </Grid>
+                <local:CreatureGossipPanel x:Name="creatureGossipPanel" Margin="0"/>
             </TabItem>
             <TabItem Header="Vendor">
-                <Grid>
-                    <local:VendorPanel Margin="0"/>
-                </Grid>
+                <local:VendorPanel Margin="0"/>
             </TabItem>
+            <TabItem Header="Trainer">
+                <local:CreatureTrainerPanel x:Name="creatureTrainerPanel"/>
+            </TabItem>
+            <local:CreatureTrainerPanel Height="100" Width="100"/>
         </TabControl>
 
     </Grid>

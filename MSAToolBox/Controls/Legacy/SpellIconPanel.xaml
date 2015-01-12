@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="MSAToolBox.Controls.Legacy.SpellIconPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1200">
+    <Grid>
+        <RadioButton x:Name="spIconRadio" Content="Spell Icon" HorizontalAlignment="Left" Margin="79,56,0,0" VerticalAlignment="Top" IsChecked="True" />
+        <RadioButton x:Name="spActiveIconRadio" Content="Active Icon" HorizontalAlignment="Left" Margin="160,56,0,0" VerticalAlignment="Top" />
+        <ScrollViewer Margin="0,79,0,0">
+            <WrapPanel x:Name="spellIcons" Orientation="Horizontal"/>
+        </ScrollViewer>
+        <Image x:Name="spIconCurrent" HorizontalAlignment="Left" Height="64" Margin="10,10,0,0" VerticalAlignment="Top" Width="64"/>
+        <CheckBox x:Name="spIconShowID" Content="Show Icon ID" HorizontalAlignment="Right" Margin="0,10,5,0" VerticalAlignment="Top"  IsChecked="True"/>
+    </Grid>
+</UserControl>

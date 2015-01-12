@@ -326,6 +326,32 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetCreatureTrainerInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="entry" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCreatureTrainerInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="GetCreatureTrainerInfoResult" nillable="true" type="q26:ArrayOfCreatureTrainerInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveCreatureTrainerInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="info" nillable="true" type="q27:ArrayOfCreatureTrainerInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveCreatureTrainerInfoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetSmartScript">
     <xs:complexType>
       <xs:sequence>
@@ -337,14 +363,14 @@
   <xs:element name="GetSmartScriptResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="GetSmartScriptResult" nillable="true" type="q26:ArrayOfSmartScript" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="GetSmartScriptResult" nillable="true" type="q28:ArrayOfSmartScript" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveSmartScript">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="list" nillable="true" type="q27:ArrayOfSmartScript" />
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/MTBServer.DataSet" minOccurs="0" name="list" nillable="true" type="q29:ArrayOfSmartScript" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

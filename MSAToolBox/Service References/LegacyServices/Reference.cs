@@ -29,10 +29,10 @@ namespace MSAToolBox.LegacyServices {
         private int AllowableRaceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int AmmoTypeField;
+        private byte AmmoTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ArcaneResistanceField;
+        private byte ArcaneResistanceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int AreaField;
@@ -50,22 +50,22 @@ namespace MSAToolBox.LegacyServices {
         private int BlockField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int BondingField;
+        private byte BondingField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int BuyCountField;
+        private byte BuyCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int BuyPriceField;
+        private long BuyPriceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ClassField;
+        private byte ClassField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ContainerSlotField;
+        private byte ContainerSlotField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CustomFlagsField;
+        private long CustomFlagsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private float[] DamageMaxField;
@@ -74,7 +74,7 @@ namespace MSAToolBox.LegacyServices {
         private float[] DamageMinField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int[] DamageSchoolField;
+        private byte[] DamageSchoolField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
@@ -86,61 +86,58 @@ namespace MSAToolBox.LegacyServices {
         private int DisplayIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DurationField;
+        private long DurationField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int EntryField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int FireResistanceField;
+        private byte FireResistanceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private long FlagsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int FlagsExtraField;
+        private long FlagsExtraField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int FoodTypeField;
+        private byte FoodTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int FrostResistanceField;
+        private byte FrostResistanceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int GemPropertyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int HolidayIDField;
+        private long HolidayIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int HolyResistanceField;
+        private byte HolyResistanceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool InUseField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int InventoryTypeField;
+        private byte InventoryTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ItemLevelField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ItemLimitCategoryField;
+        private short ItemLimitCategoryField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ItemSetField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int LanguageIDField;
+        private byte LanguageIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int LockIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MapField;
+        private short MapField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MaterialField;
+        private sbyte MaterialField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int MaxCountField;
@@ -149,25 +146,25 @@ namespace MSAToolBox.LegacyServices {
         private int MaxDurabilityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MaxMoneyLootField;
+        private long MaxMoneyLootField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MinMoneyLootField;
+        private long MinMoneyLootField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int NatureResistanceField;
+        private byte NatureResistanceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int PageMaterialField;
+        private byte PageMaterialField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PageTextField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int QualityField;
+        private byte QualityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int RandomPropertyField;
@@ -182,13 +179,13 @@ namespace MSAToolBox.LegacyServices {
         private int RequiredCityRankField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RequiredDisenchantSkillField;
+        private short RequiredDisenchantSkillField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int RequiredHonorRankField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RequiredLevelField;
+        private byte RequiredLevelField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int RequiredReputationFactionField;
@@ -206,34 +203,34 @@ namespace MSAToolBox.LegacyServices {
         private int RequiredSpellField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ScalingStatDistributionField;
+        private short ScalingStatDistributionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ScalingStatValueField;
+        private long ScalingStatValueField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ScriptNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SellPriceField;
+        private long SellPriceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ShadowResistanceField;
+        private byte ShadowResistanceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SheathField;
+        private byte SheathField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SocketBonusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int[] SocketColorField;
+        private sbyte[] SocketColorField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int[] SocketContentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SoundOverrideSubclassField;
+        private sbyte SoundOverrideSubclassField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SpeedField;
@@ -248,7 +245,7 @@ namespace MSAToolBox.LegacyServices {
         private int[] SpellCategoryCooldownField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int[] SpellChargesField;
+        private short[] SpellChargesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int[] SpellCooldownField;
@@ -257,31 +254,31 @@ namespace MSAToolBox.LegacyServices {
         private float[] SpellPPMField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int[] SpellTriggerField;
+        private byte[] SpellTriggerField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int StackableField;
+        private System.Nullable<int> StackableField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int StartQuestField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int[] StatTypeField;
+        private byte[] StatTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int[] StatValueField;
+        private short[] StatValueField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int StatsCountField;
+        private byte StatsCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SubclassField;
+        private byte SubclassField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int TotemCategoryField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int VerifiedBuildField;
+        private System.Nullable<short> VerifiedBuildField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -320,7 +317,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int AmmoType {
+        public byte AmmoType {
             get {
                 return this.AmmoTypeField;
             }
@@ -333,7 +330,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ArcaneResistance {
+        public byte ArcaneResistance {
             get {
                 return this.ArcaneResistanceField;
             }
@@ -411,7 +408,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Bonding {
+        public byte Bonding {
             get {
                 return this.BondingField;
             }
@@ -424,7 +421,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int BuyCount {
+        public byte BuyCount {
             get {
                 return this.BuyCountField;
             }
@@ -437,7 +434,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int BuyPrice {
+        public long BuyPrice {
             get {
                 return this.BuyPriceField;
             }
@@ -450,7 +447,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Class {
+        public byte Class {
             get {
                 return this.ClassField;
             }
@@ -463,7 +460,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ContainerSlot {
+        public byte ContainerSlot {
             get {
                 return this.ContainerSlotField;
             }
@@ -476,7 +473,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CustomFlags {
+        public long CustomFlags {
             get {
                 return this.CustomFlagsField;
             }
@@ -515,7 +512,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int[] DamageSchool {
+        public byte[] DamageSchool {
             get {
                 return this.DamageSchoolField;
             }
@@ -567,7 +564,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Duration {
+        public long Duration {
             get {
                 return this.DurationField;
             }
@@ -593,7 +590,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int FireResistance {
+        public byte FireResistance {
             get {
                 return this.FireResistanceField;
             }
@@ -619,7 +616,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int FlagsExtra {
+        public long FlagsExtra {
             get {
                 return this.FlagsExtraField;
             }
@@ -632,7 +629,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int FoodType {
+        public byte FoodType {
             get {
                 return this.FoodTypeField;
             }
@@ -645,7 +642,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int FrostResistance {
+        public byte FrostResistance {
             get {
                 return this.FrostResistanceField;
             }
@@ -671,7 +668,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int HolidayID {
+        public long HolidayID {
             get {
                 return this.HolidayIDField;
             }
@@ -684,7 +681,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int HolyResistance {
+        public byte HolyResistance {
             get {
                 return this.HolyResistanceField;
             }
@@ -697,20 +694,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool InUse {
-            get {
-                return this.InUseField;
-            }
-            set {
-                if ((this.InUseField.Equals(value) != true)) {
-                    this.InUseField = value;
-                    this.RaisePropertyChanged("InUse");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int InventoryType {
+        public byte InventoryType {
             get {
                 return this.InventoryTypeField;
             }
@@ -736,7 +720,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ItemLimitCategory {
+        public short ItemLimitCategory {
             get {
                 return this.ItemLimitCategoryField;
             }
@@ -762,7 +746,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int LanguageID {
+        public byte LanguageID {
             get {
                 return this.LanguageIDField;
             }
@@ -788,7 +772,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Map {
+        public short Map {
             get {
                 return this.MapField;
             }
@@ -801,7 +785,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Material {
+        public sbyte Material {
             get {
                 return this.MaterialField;
             }
@@ -840,7 +824,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MaxMoneyLoot {
+        public long MaxMoneyLoot {
             get {
                 return this.MaxMoneyLootField;
             }
@@ -853,7 +837,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MinMoneyLoot {
+        public long MinMoneyLoot {
             get {
                 return this.MinMoneyLootField;
             }
@@ -879,7 +863,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int NatureResistance {
+        public byte NatureResistance {
             get {
                 return this.NatureResistanceField;
             }
@@ -892,7 +876,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int PageMaterial {
+        public byte PageMaterial {
             get {
                 return this.PageMaterialField;
             }
@@ -918,7 +902,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Quality {
+        public byte Quality {
             get {
                 return this.QualityField;
             }
@@ -983,7 +967,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int RequiredDisenchantSkill {
+        public short RequiredDisenchantSkill {
             get {
                 return this.RequiredDisenchantSkillField;
             }
@@ -1009,7 +993,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int RequiredLevel {
+        public byte RequiredLevel {
             get {
                 return this.RequiredLevelField;
             }
@@ -1087,7 +1071,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ScalingStatDistribution {
+        public short ScalingStatDistribution {
             get {
                 return this.ScalingStatDistributionField;
             }
@@ -1100,7 +1084,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ScalingStatValue {
+        public long ScalingStatValue {
             get {
                 return this.ScalingStatValueField;
             }
@@ -1126,7 +1110,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SellPrice {
+        public long SellPrice {
             get {
                 return this.SellPriceField;
             }
@@ -1139,7 +1123,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ShadowResistance {
+        public byte ShadowResistance {
             get {
                 return this.ShadowResistanceField;
             }
@@ -1152,7 +1136,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Sheath {
+        public byte Sheath {
             get {
                 return this.SheathField;
             }
@@ -1178,7 +1162,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int[] SocketColor {
+        public sbyte[] SocketColor {
             get {
                 return this.SocketColorField;
             }
@@ -1204,7 +1188,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SoundOverrideSubclass {
+        public sbyte SoundOverrideSubclass {
             get {
                 return this.SoundOverrideSubclassField;
             }
@@ -1269,7 +1253,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int[] SpellCharges {
+        public short[] SpellCharges {
             get {
                 return this.SpellChargesField;
             }
@@ -1308,7 +1292,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int[] SpellTrigger {
+        public byte[] SpellTrigger {
             get {
                 return this.SpellTriggerField;
             }
@@ -1321,7 +1305,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Stackable {
+        public System.Nullable<int> Stackable {
             get {
                 return this.StackableField;
             }
@@ -1347,7 +1331,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int[] StatType {
+        public byte[] StatType {
             get {
                 return this.StatTypeField;
             }
@@ -1360,7 +1344,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int[] StatValue {
+        public short[] StatValue {
             get {
                 return this.StatValueField;
             }
@@ -1373,7 +1357,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int StatsCount {
+        public byte StatsCount {
             get {
                 return this.StatsCountField;
             }
@@ -1386,7 +1370,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Subclass {
+        public byte Subclass {
             get {
                 return this.SubclassField;
             }
@@ -1412,7 +1396,7 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int VerifiedBuild {
+        public System.Nullable<short> VerifiedBuild {
             get {
                 return this.VerifiedBuildField;
             }
@@ -1507,13 +1491,46 @@ namespace MSAToolBox.LegacyServices {
         private System.Collections.Generic.Dictionary<int, string> SkillLineField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<int, string> SpellAuraField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<int, string> SpellAuraStateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<int, string> SpellCastTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<int, string> SpellDamageClassField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.Dictionary<int, string> SpellDispelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<int, string> SpellDurationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<int, string> SpellEffectField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<int, string> SpellEffectRadiusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<int, string> SpellEffectTargetField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<int, string> SpellFamilyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.Dictionary<int, string> SpellIconField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.Dictionary<int, string> SpellMechanicField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<int, string> SpellPowerTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<int, string> SpellRangeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.Dictionary<int, string> TotemCategoryField;
@@ -1802,6 +1819,58 @@ namespace MSAToolBox.LegacyServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<int, string> SpellAura {
+            get {
+                return this.SpellAuraField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SpellAuraField, value) != true)) {
+                    this.SpellAuraField = value;
+                    this.RaisePropertyChanged("SpellAura");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<int, string> SpellAuraState {
+            get {
+                return this.SpellAuraStateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SpellAuraStateField, value) != true)) {
+                    this.SpellAuraStateField = value;
+                    this.RaisePropertyChanged("SpellAuraState");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<int, string> SpellCastTime {
+            get {
+                return this.SpellCastTimeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SpellCastTimeField, value) != true)) {
+                    this.SpellCastTimeField = value;
+                    this.RaisePropertyChanged("SpellCastTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<int, string> SpellDamageClass {
+            get {
+                return this.SpellDamageClassField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SpellDamageClassField, value) != true)) {
+                    this.SpellDamageClassField = value;
+                    this.RaisePropertyChanged("SpellDamageClass");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Collections.Generic.Dictionary<int, string> SpellDispel {
             get {
                 return this.SpellDispelField;
@@ -1810,6 +1879,71 @@ namespace MSAToolBox.LegacyServices {
                 if ((object.ReferenceEquals(this.SpellDispelField, value) != true)) {
                     this.SpellDispelField = value;
                     this.RaisePropertyChanged("SpellDispel");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<int, string> SpellDuration {
+            get {
+                return this.SpellDurationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SpellDurationField, value) != true)) {
+                    this.SpellDurationField = value;
+                    this.RaisePropertyChanged("SpellDuration");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<int, string> SpellEffect {
+            get {
+                return this.SpellEffectField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SpellEffectField, value) != true)) {
+                    this.SpellEffectField = value;
+                    this.RaisePropertyChanged("SpellEffect");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<int, string> SpellEffectRadius {
+            get {
+                return this.SpellEffectRadiusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SpellEffectRadiusField, value) != true)) {
+                    this.SpellEffectRadiusField = value;
+                    this.RaisePropertyChanged("SpellEffectRadius");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<int, string> SpellEffectTarget {
+            get {
+                return this.SpellEffectTargetField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SpellEffectTargetField, value) != true)) {
+                    this.SpellEffectTargetField = value;
+                    this.RaisePropertyChanged("SpellEffectTarget");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<int, string> SpellFamily {
+            get {
+                return this.SpellFamilyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SpellFamilyField, value) != true)) {
+                    this.SpellFamilyField = value;
+                    this.RaisePropertyChanged("SpellFamily");
                 }
             }
         }
@@ -1836,6 +1970,32 @@ namespace MSAToolBox.LegacyServices {
                 if ((object.ReferenceEquals(this.SpellMechanicField, value) != true)) {
                     this.SpellMechanicField = value;
                     this.RaisePropertyChanged("SpellMechanic");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<int, string> SpellPowerType {
+            get {
+                return this.SpellPowerTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SpellPowerTypeField, value) != true)) {
+                    this.SpellPowerTypeField = value;
+                    this.RaisePropertyChanged("SpellPowerType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<int, string> SpellRange {
+            get {
+                return this.SpellRangeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SpellRangeField, value) != true)) {
+                    this.SpellRangeField = value;
+                    this.RaisePropertyChanged("SpellRange");
                 }
             }
         }
@@ -4145,6 +4305,131 @@ namespace MSAToolBox.LegacyServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CreatureTrainerInfo", Namespace="http://schemas.datacontract.org/2004/07/MTBServer.DataSet")]
+    [System.SerializableAttribute()]
+    public partial class CreatureTrainerInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long CostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EntryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte LevelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SkillField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SkillValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SpellField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long Cost {
+            get {
+                return this.CostField;
+            }
+            set {
+                if ((this.CostField.Equals(value) != true)) {
+                    this.CostField = value;
+                    this.RaisePropertyChanged("Cost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Entry {
+            get {
+                return this.EntryField;
+            }
+            set {
+                if ((this.EntryField.Equals(value) != true)) {
+                    this.EntryField = value;
+                    this.RaisePropertyChanged("Entry");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte Level {
+            get {
+                return this.LevelField;
+            }
+            set {
+                if ((this.LevelField.Equals(value) != true)) {
+                    this.LevelField = value;
+                    this.RaisePropertyChanged("Level");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Skill {
+            get {
+                return this.SkillField;
+            }
+            set {
+                if ((this.SkillField.Equals(value) != true)) {
+                    this.SkillField = value;
+                    this.RaisePropertyChanged("Skill");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SkillValue {
+            get {
+                return this.SkillValueField;
+            }
+            set {
+                if ((this.SkillValueField.Equals(value) != true)) {
+                    this.SkillValueField = value;
+                    this.RaisePropertyChanged("SkillValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Spell {
+            get {
+                return this.SpellField;
+            }
+            set {
+                if ((this.SpellField.Equals(value) != true)) {
+                    this.SpellField = value;
+                    this.RaisePropertyChanged("Spell");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SmartScript", Namespace="http://schemas.datacontract.org/2004/07/MTBServer.DataSet")]
     [System.SerializableAttribute()]
     public partial class SmartScript : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -4566,6 +4851,18 @@ namespace MSAToolBox.LegacyServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILegacyService/SaveSpawnInfo", ReplyAction="http://tempuri.org/ILegacyService/SaveSpawnInfoResponse")]
         System.Threading.Tasks.Task SaveSpawnInfoAsync(int entry, MSAToolBox.LegacyServices.Creature[] list);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILegacyService/GetCreatureTrainerInfo", ReplyAction="http://tempuri.org/ILegacyService/GetCreatureTrainerInfoResponse")]
+        MSAToolBox.LegacyServices.CreatureTrainerInfo[] GetCreatureTrainerInfo(int entry);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILegacyService/GetCreatureTrainerInfo", ReplyAction="http://tempuri.org/ILegacyService/GetCreatureTrainerInfoResponse")]
+        System.Threading.Tasks.Task<MSAToolBox.LegacyServices.CreatureTrainerInfo[]> GetCreatureTrainerInfoAsync(int entry);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILegacyService/SaveCreatureTrainerInfo", ReplyAction="http://tempuri.org/ILegacyService/SaveCreatureTrainerInfoResponse")]
+        void SaveCreatureTrainerInfo(MSAToolBox.LegacyServices.CreatureTrainerInfo[] info);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILegacyService/SaveCreatureTrainerInfo", ReplyAction="http://tempuri.org/ILegacyService/SaveCreatureTrainerInfoResponse")]
+        System.Threading.Tasks.Task SaveCreatureTrainerInfoAsync(MSAToolBox.LegacyServices.CreatureTrainerInfo[] info);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILegacyService/GetSmartScript", ReplyAction="http://tempuri.org/ILegacyService/GetSmartScriptResponse")]
         MSAToolBox.LegacyServices.SmartScript[] GetSmartScript(int type, int entry);
         
@@ -4804,6 +5101,22 @@ namespace MSAToolBox.LegacyServices {
         
         public System.Threading.Tasks.Task SaveSpawnInfoAsync(int entry, MSAToolBox.LegacyServices.Creature[] list) {
             return base.Channel.SaveSpawnInfoAsync(entry, list);
+        }
+        
+        public MSAToolBox.LegacyServices.CreatureTrainerInfo[] GetCreatureTrainerInfo(int entry) {
+            return base.Channel.GetCreatureTrainerInfo(entry);
+        }
+        
+        public System.Threading.Tasks.Task<MSAToolBox.LegacyServices.CreatureTrainerInfo[]> GetCreatureTrainerInfoAsync(int entry) {
+            return base.Channel.GetCreatureTrainerInfoAsync(entry);
+        }
+        
+        public void SaveCreatureTrainerInfo(MSAToolBox.LegacyServices.CreatureTrainerInfo[] info) {
+            base.Channel.SaveCreatureTrainerInfo(info);
+        }
+        
+        public System.Threading.Tasks.Task SaveCreatureTrainerInfoAsync(MSAToolBox.LegacyServices.CreatureTrainerInfo[] info) {
+            return base.Channel.SaveCreatureTrainerInfoAsync(info);
         }
         
         public MSAToolBox.LegacyServices.SmartScript[] GetSmartScript(int type, int entry) {

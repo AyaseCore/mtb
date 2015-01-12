@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MSAToolBox.Controls.Legacy.ItemPanel"
+﻿<UserControl xmlns:Legacy="clr-namespace:MSAToolBox.Controls.Legacy"  x:Class="MSAToolBox.Controls.Legacy.ItemPanel"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,6 +10,7 @@
     <UserControl.Resources>
         <Converters:QualityColorConverter x:Key="QualityColorConverter"/>
         <Converters:ItemInUseConverter x:Key="ItemInUseConverter"/>
+        <Converters:SpellDescriptionConverter x:Key="SpellDescriptionConverter"/>
         <Storyboard x:Key="ShowProgressBar">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="itemTabProgress">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
@@ -98,10 +99,9 @@
                 <DataTemplate>
                     <TextBlock>
                         <TextBlock.Text>
-                            <MultiBinding StringFormat="{}{0} - {1} {2}">
+                            <MultiBinding StringFormat="{}{0} - {1}">
                                 <Binding Path="Entry"/>
                                 <Binding Path="Name"/>
-                                <Binding Path="InUse" Converter="{StaticResource ItemInUseConverter}"/>
                             </MultiBinding>
                         </TextBlock.Text>
                         <TextBlock.Foreground>
@@ -112,7 +112,6 @@
             </ListBox.ItemTemplate>
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Name="itemInUse" Header="IN USE"/>
                     <MenuItem Name="itemCopy" Header="COPY" Click="itemCopy_Click" />
                     <MenuItem Name="itemDelete" Header="DELETE" Click="itemDelete_Click" />
                 </ContextMenu>
@@ -199,7 +198,6 @@
                         <TextBox x:Name="itemGemProperty" Grid.Column="1" Height="23" Margin="10,630,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding GemProperty, Mode=TwoWay}"/>
                         <Button x:Name="itemFlagBtn" Content="CHANGE" Grid.Column="1" HorizontalAlignment="Left" Margin="135,785,0,0" VerticalAlignment="Top" Width="75" Click="itemFlagBtn_Click"/>
                         <Button x:Name="itemSave" Content="Save" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="75" Click="itemSave_Click"/>
-                        <CheckBox Content="In Use" Grid.Column="1" HorizontalAlignment="Right" Margin="0,14,90,0" VerticalAlignment="Top" IsChecked="{Binding InUse, Mode=TwoWay}"/>
                         <Button x:Name="calculatePrice" Content="Calculate" Grid.Column="1" HorizontalAlignment="Right" Margin="0,382,10,0" VerticalAlignment="Top" Width="127" Click="calculatePrice_Click"/>
                         <Button x:Name="calculateAll" Content="CALCULATE ALL" Grid.Column="1" Margin="514,10,152,0" VerticalAlignment="Top" Click="calculateAll_Click"/>
                     </Grid>
@@ -227,7 +225,7 @@
                             <TextBox x:Name="itemSpellCooldown1" Grid.Column="1" Height="23" Margin="10,134,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCooldown[0], Mode=TwoWay}"/>
                             <TextBox x:Name="itemSpellCategory1" Grid.Column="1" Height="23" Margin="10,165,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategory[0], Mode=TwoWay}"/>
                             <TextBox x:Name="itemSpellCategoryCD1" Grid.Column="1" Height="23" Margin="10,196,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategoryCooldown[0], Mode=TwoWay}"/>
-                            <TextBox x:Name="itemSpellName1" Height="23" Margin="135,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                            <TextBox x:Name="itemSpellName1" Height="23" Margin="135,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1" Text="{Binding Spell[0], Converter={StaticResource SpellDescriptionConverter}}"/>
                             <TextBox x:Name="itemSpell2" HorizontalAlignment="Left" Height="23" Margin="10,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" Text="{Binding Spell[1], Mode=TwoWay}"/>
                             <ComboBox x:Name="itemSpellTrigger2" Grid.Column="1" Margin="10,258,10,0" VerticalAlignment="Top" SelectedValue="{Binding SpellTrigger[1], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
                             <TextBox x:Name="itemSpellCharges2" Grid.Column="1" Height="23" Margin="10,289,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCharges[1], Mode=TwoWay}"/>
@@ -235,7 +233,7 @@
                             <TextBox x:Name="itemSpellCooldown2" Grid.Column="1" Height="23" Margin="10,351,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCooldown[1], Mode=TwoWay}"/>
                             <TextBox x:Name="itemSpellCategory2" Grid.Column="1" Height="23" Margin="10,382,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategory[1], Mode=TwoWay}"/>
                             <TextBox x:Name="itemSpellCategoryCD2" Grid.Column="1" Height="23" Margin="10,413,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategoryCooldown[1], Mode=TwoWay}"/>
-                            <TextBox x:Name="itemSpellName2" Height="23" Margin="135,227,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                            <TextBox x:Name="itemSpellName2" Height="23" Margin="135,227,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1" Text="{Binding Spell[1], Converter={StaticResource SpellDescriptionConverter}}"/>
                             <TextBox x:Name="itemSpell3" HorizontalAlignment="Left" Height="23" Margin="10,444,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" Text="{Binding Spell[2], Mode=TwoWay}"/>
                             <ComboBox x:Name="itemSpellTrigger3" Grid.Column="1" Margin="10,475,10,0" VerticalAlignment="Top" SelectedValue="{Binding SpellTrigger[2], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
                             <TextBox x:Name="itemSpellCharges3" Grid.Column="1" Height="23" Margin="10,506,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCharges[2], Mode=TwoWay}"/>
@@ -243,7 +241,7 @@
                             <TextBox x:Name="itemSpellCooldown3" Grid.Column="1" Height="23" Margin="10,568,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCooldown[2], Mode=TwoWay}"/>
                             <TextBox x:Name="itemSpellCategory3" Grid.Column="1" Height="23" Margin="10,599,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategory[2], Mode=TwoWay}"/>
                             <TextBox x:Name="itemSpellCategoryCD3" Grid.Column="1" Height="23" Margin="10,630,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategoryCooldown[2], Mode=TwoWay}"/>
-                            <TextBox x:Name="itemSpellName3" Height="23" Margin="135,444,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                            <TextBox x:Name="itemSpellName3" Height="23" Margin="135,444,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1" Text="{Binding Spell[2], Converter={StaticResource SpellDescriptionConverter}}"/>
                             <TextBox x:Name="itemSpell4" HorizontalAlignment="Left" Height="23" Margin="10,661,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" Text="{Binding Spell[3], Mode=TwoWay}"/>
                             <ComboBox x:Name="itemSpellTrigger4" Grid.Column="1" Margin="10,692,10,0" VerticalAlignment="Top" SelectedValue="{Binding SpellTrigger[3], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
                             <TextBox x:Name="itemSpellCharges4" Grid.Column="1" Height="23" Margin="10,723,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCharges[3], Mode=TwoWay}"/>
@@ -251,7 +249,7 @@
                             <TextBox x:Name="itemSpellCooldown4" Grid.Column="1" Height="23" Margin="10,785,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCooldown[3], Mode=TwoWay}"/>
                             <TextBox x:Name="itemSpellCategory4" Grid.Column="1" Height="23" Margin="10,816,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategory[3], Mode=TwoWay}"/>
                             <TextBox x:Name="itemSpellCategoryCD4" Grid.Column="1" Height="23" Margin="10,847,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategoryCooldown[3], Mode=TwoWay}"/>
-                            <TextBox x:Name="itemSpellName4" Height="23" Margin="135,661,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                            <TextBox x:Name="itemSpellName4" Height="23" Margin="135,661,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1" Text="{Binding Spell[3], Converter={StaticResource SpellDescriptionConverter}}"/>
                             <TextBox x:Name="itemSpell5" HorizontalAlignment="Left" Height="23" Margin="10,878,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" Text="{Binding Spell[4], Mode=TwoWay}"/>
                             <ComboBox x:Name="itemSpellTrigger5" Grid.Column="1" Margin="10,909,10,0" VerticalAlignment="Top" SelectedValue="{Binding SpellTrigger[4], Mode=TwoWay}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
                             <TextBox x:Name="itemSpellCharges5" Grid.Column="1" Height="23" Margin="10,940,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCharges[4], Mode=TwoWay}"/>
@@ -259,7 +257,7 @@
                             <TextBox x:Name="itemSpellCooldown5" Grid.Column="1" Height="23" Margin="10,1003,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCooldown[4], Mode=TwoWay}"/>
                             <TextBox x:Name="itemSpellCategory5" Grid.Column="1" Height="23" Margin="10,1034,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategory[4], Mode=TwoWay}"/>
                             <TextBox x:Name="itemSpellCategoryCD5" Grid.Column="1" Height="23" Margin="10,1065,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SpellCategoryCooldown[4], Mode=TwoWay}"/>
-                            <TextBox x:Name="itemSpellName5" Height="23" Margin="135,878,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                            <TextBox x:Name="itemSpellName5" Height="23" Margin="135,878,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1" Text="{Binding Spell[4], Converter={StaticResource SpellDescriptionConverter}}"/>
                             <Label Content="SPELL2" HorizontalAlignment="Right" Margin="0,228,0,0" VerticalAlignment="Top" Foreground="Red"/>
                             <Label Content="TRIGGER" HorizontalAlignment="Right" Margin="0,259,0,0" VerticalAlignment="Top"/>
                             <Label Content="CHARGE" HorizontalAlignment="Right" Margin="0,290,0,0" VerticalAlignment="Top"/>
@@ -555,6 +553,9 @@
                     <Button Content="PREV" Grid.Column="1" HorizontalAlignment="Right" Margin="0,72,75,0" VerticalAlignment="Top" Width="60" IsEnabled="False"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="DISPAY">
+                <Legacy:ItemIconPanel />
+            </TabItem>
             <TabItem Header="RELATIONS">
                 <Grid>
                     <TabControl Margin="0">
@@ -573,15 +574,8 @@
                                     </DataGrid.Columns>
                                 </DataGrid>
                                 <Label Content="FROM CREATURE" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
-                                <Label Content="FROM GAMEOBJECT" HorizontalAlignment="Left" Margin="11,354,0,0" VerticalAlignment="Top"/>
-                                <TextBox x:Name="itemCreatureLootEntry" HorizontalAlignment="Left" Height="23" Margin="11,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Controls:TextboxHelper.Watermark="ENTRY"/>
-                                <TextBox x:Name="itemCreatureLootChance" HorizontalAlignment="Left" Height="23" Margin="76,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Controls:TextboxHelper.Watermark="CHANCE"/>
-                                <TextBox x:Name="itemCreatureLootGroup" HorizontalAlignment="Left" Height="23" Margin="148,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Controls:TextboxHelper.Watermark="GROUP"/>
-                                <TextBox x:Name="itemCreatureLootMin" HorizontalAlignment="Left" Height="23" Margin="220,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Controls:TextboxHelper.Watermark="MIN"/>
-                                <TextBox x:Name="itemCreatureLootMax" HorizontalAlignment="Left" Height="23" Margin="292,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Controls:TextboxHelper.Watermark="MAX"/>
-                                <TextBox x:Name="itemCreatureLootMode" HorizontalAlignment="Left" Height="23" Margin="364,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" Controls:TextboxHelper.Watermark="MODE"/>
-                                <Button x:Name="itemCreatureLootAdd" Content="+" HorizontalAlignment="Left" Margin="423,323,0,0" VerticalAlignment="Top" Width="45" />
-                                <DataGrid x:Name="itemLootGameobject" Margin="11,384,9,0" AutoGenerateColumns="False" VerticalAlignment="Top" Height="250">
+                                <Label Content="FROM GAMEOBJECT" HorizontalAlignment="Left" Margin="10,323,0,0" VerticalAlignment="Top"/>
+                                <DataGrid x:Name="itemLootGameobject" Margin="10,353,10,0" AutoGenerateColumns="False" VerticalAlignment="Top" Height="250">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="GAMEOBJECT" Binding="{Binding Path=Entry}"/>
                                         <DataGridTextColumn Header="ENTRY" Binding="{Binding Path=Entry}"/>
@@ -593,17 +587,9 @@
                                         <DataGridTextColumn Header="MAX" Binding="{Binding Path=MaxCount}"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
-                                <TextBox HorizontalAlignment="Left" Height="23" Margin="11,639,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Controls:TextboxHelper.Watermark="ENTRY"/>
-                                <TextBox HorizontalAlignment="Left" Height="23" Margin="76,639,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Controls:TextboxHelper.Watermark="CHANCE"/>
-                                <TextBox HorizontalAlignment="Left" Height="23" Margin="148,639,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Controls:TextboxHelper.Watermark="GROUP"/>
-                                <TextBox HorizontalAlignment="Left" Height="23" Margin="220,639,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Controls:TextboxHelper.Watermark="MIN"/>
-                                <TextBox HorizontalAlignment="Left" Height="23" Margin="292,639,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Controls:TextboxHelper.Watermark="MAX"/>
-                                <TextBox HorizontalAlignment="Left" Height="23" Margin="364,639,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" Controls:TextboxHelper.Watermark="MODE"/>
-                                <Button Content="+" HorizontalAlignment="Left" Margin="423,639,0,0" VerticalAlignment="Top" Width="45"/>
-                                <Button x:Name="itemCreatureLootClear" Content="Clear" HorizontalAlignment="Right" Margin="0,38,10,0" VerticalAlignment="Top" Width="76" />
-                                <Button Content="Clear" HorizontalAlignment="Right" Margin="0,354,9,0" VerticalAlignment="Top" Width="76"/>
+                                <Button x:Name="itemCreatureLootClear" Content="SAVE" HorizontalAlignment="Right" Margin="0,38,10,0" VerticalAlignment="Top" Width="76" />
+                                <Button Content="Save" HorizontalAlignment="Right" Margin="0,323,10,0" VerticalAlignment="Top" Width="76"/>
                                 <Label Content="DON'T USE REFERENCES!" Margin="10,10,10,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Red" HorizontalContentAlignment="Center"/>
-                                <CheckBox x:Name="itemCreatureLootQuest" Content="NEED QUEST" HorizontalAlignment="Right" Margin="0,323,10,0" VerticalAlignment="Top"/>
                             </Grid>
                         </TabItem>
                         <TabItem Header="PRODUCTION">

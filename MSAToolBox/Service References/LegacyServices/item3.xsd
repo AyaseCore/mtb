@@ -24,12 +24,24 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOffloat" nillable="true" type="tns:ArrayOffloat" />
+  <xs:complexType name="ArrayOfbyte">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="byte" type="xs:byte" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfbyte" nillable="true" type="tns:ArrayOfbyte" />
   <xs:complexType name="ArrayOfint">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint" />
+  <xs:complexType name="ArrayOfshort">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="short" type="xs:short" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfshort" nillable="true" type="tns:ArrayOfshort" />
   <xs:complexType name="ArrayOfArrayOfKeyValueOfintstring">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfKeyValueOfintstring" nillable="true" type="tns:ArrayOfKeyValueOfintstring" />
@@ -42,10 +54,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOflong" nillable="true" type="tns:ArrayOflong" />
-  <xs:complexType name="ArrayOfshort">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="short" type="xs:short" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfshort" nillable="true" type="tns:ArrayOfshort" />
 </xs:schema>

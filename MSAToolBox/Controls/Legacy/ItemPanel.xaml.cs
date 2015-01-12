@@ -26,14 +26,18 @@ namespace MSAToolBox.Controls.Legacy
     /// </summary>
     public partial class ItemPanel : UserControl
     {
-        private ItemTemplate ItemData;
+        public static ItemTemplate ItemData;
         //private bool Modified;
-        private DataDefineStore DefineStore;
         public static ItemInfo[] ItemList;
         bool IsLoading;
+        Random ran = new Random();
         public ItemPanel()
         {
             InitializeComponent();
+        }
+
+        public void Load()
+        {
             LoadDefines();
         }
 
@@ -48,47 +52,46 @@ namespace MSAToolBox.Controls.Legacy
                     itemList.ItemsSource = ItemList;
                     itemList.Items.SortDescriptions.Clear();
                     itemList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Entry", System.ComponentModel.ListSortDirection.Ascending));
-                    DefineStore = client.GetDataDefines();
-                    itemQuality.ItemsSource = DefineStore.ItemQuality;
-                    itemInventoryType.ItemsSource = DefineStore.ItemInventoryType;
-                    itemSheath.ItemsSource = DefineStore.ItemSheath;
-                    itemBonding.ItemsSource = DefineStore.ItemBonding;
-                    itemAmmoType.ItemsSource = DefineStore.ItemAmmoType;
-                    itemStatType1.ItemsSource = DefineStore.ItemStatType;
-                    itemStatType2.ItemsSource = DefineStore.ItemStatType;
-                    itemStatType3.ItemsSource = DefineStore.ItemStatType;
-                    itemStatType4.ItemsSource = DefineStore.ItemStatType;
-                    itemStatType5.ItemsSource = DefineStore.ItemStatType;
-                    itemStatType6.ItemsSource = DefineStore.ItemStatType;
-                    itemStatType7.ItemsSource = DefineStore.ItemStatType;
-                    itemStatType8.ItemsSource = DefineStore.ItemStatType;
-                    itemStatType9.ItemsSource = DefineStore.ItemStatType;
-                    itemStatType10.ItemsSource = DefineStore.ItemStatType;
-                    itemDmgType1.ItemsSource = DefineStore.ItemDamageSchool;
-                    itemDmgType2.ItemsSource = DefineStore.ItemDamageSchool;
-                    itemSocket1.ItemsSource = DefineStore.ItemSocketColor;
-                    itemSocket2.ItemsSource = DefineStore.ItemSocketColor;
-                    itemSocket3.ItemsSource = DefineStore.ItemSocketColor;
-                    itemSpellTrigger1.ItemsSource = DefineStore.ItemSpellTrigger;
-                    itemSpellTrigger2.ItemsSource = DefineStore.ItemSpellTrigger;
-                    itemSpellTrigger3.ItemsSource = DefineStore.ItemSpellTrigger;
-                    itemSpellTrigger4.ItemsSource = DefineStore.ItemSpellTrigger;
-                    itemSpellTrigger5.ItemsSource = DefineStore.ItemSpellTrigger;
-                    itemReqFactionRank.ItemsSource = DefineStore.ReputationRank;
-                    itemReqSkill.ItemsSource = DefineStore.SkillLine;
-                    itemTotemCategory.ItemsSource = DefineStore.TotemCategory;
-                    itemReqHoliday.ItemsSource = DefineStore.HolidayNames;
-                    itemPageMaterial.ItemsSource = DefineStore.PageTextMaterial;
-                    itemPageTextLanguage.ItemsSource = DefineStore.Language;
-                    itemClass.ItemsSource = DefineStore.ItemClass;
-                    itemSubClass.ItemsSource = DefineStore.ItemSubclass[0];
-                    itemFilterClass.ItemsSource = DefineStore.ItemClass;
-                    itemFilterSubclass.ItemsSource = DefineStore.ItemSubclass[0];
+                    itemQuality.ItemsSource = LegacyMorpher.DefineStore.ItemQuality;
+                    itemInventoryType.ItemsSource = LegacyMorpher.DefineStore.ItemInventoryType;
+                    itemSheath.ItemsSource = LegacyMorpher.DefineStore.ItemSheath;
+                    itemBonding.ItemsSource = LegacyMorpher.DefineStore.ItemBonding;
+                    itemAmmoType.ItemsSource = LegacyMorpher.DefineStore.ItemAmmoType;
+                    itemStatType1.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+                    itemStatType2.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+                    itemStatType3.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+                    itemStatType4.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+                    itemStatType5.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+                    itemStatType6.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+                    itemStatType7.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+                    itemStatType8.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+                    itemStatType9.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+                    itemStatType10.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+                    itemDmgType1.ItemsSource = LegacyMorpher.DefineStore.ItemDamageSchool;
+                    itemDmgType2.ItemsSource = LegacyMorpher.DefineStore.ItemDamageSchool;
+                    itemSocket1.ItemsSource = LegacyMorpher.DefineStore.ItemSocketColor;
+                    itemSocket2.ItemsSource = LegacyMorpher.DefineStore.ItemSocketColor;
+                    itemSocket3.ItemsSource = LegacyMorpher.DefineStore.ItemSocketColor;
+                    itemSpellTrigger1.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
+                    itemSpellTrigger2.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
+                    itemSpellTrigger3.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
+                    itemSpellTrigger4.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
+                    itemSpellTrigger5.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
+                    itemReqFactionRank.ItemsSource = LegacyMorpher.DefineStore.ReputationRank;
+                    itemReqSkill.ItemsSource = LegacyMorpher.DefineStore.SkillLine;
+                    itemTotemCategory.ItemsSource = LegacyMorpher.DefineStore.TotemCategory;
+                    itemReqHoliday.ItemsSource = LegacyMorpher.DefineStore.HolidayNames;
+                    itemPageMaterial.ItemsSource = LegacyMorpher.DefineStore.PageTextMaterial;
+                    itemPageTextLanguage.ItemsSource = LegacyMorpher.DefineStore.Language;
+                    itemClass.ItemsSource = LegacyMorpher.DefineStore.ItemClass;
+                    itemSubClass.ItemsSource = LegacyMorpher.DefineStore.ItemSubclass[0];
+                    itemFilterClass.ItemsSource = LegacyMorpher.DefineStore.ItemClass;
+                    itemFilterSubclass.ItemsSource = LegacyMorpher.DefineStore.ItemSubclass[0];
                     itemFilterClass.SelectedIndex = 0;
                     itemFilterSubclass.SelectedIndex = 0;
-                    itemMaterial.ItemsSource = DefineStore.ItemMaterial;
-                    itemFoodType.ItemsSource = DefineStore.ItemPetFood;
-                    itemSetCombo.ItemsSource = DefineStore.ItemSet;
+                    itemMaterial.ItemsSource = LegacyMorpher.DefineStore.ItemMaterial;
+                    itemFoodType.ItemsSource = LegacyMorpher.DefineStore.ItemPetFood;
+                    itemSetCombo.ItemsSource = LegacyMorpher.DefineStore.ItemSet;
                 }
             }
             catch (System.Exception /*ex*/) { }
@@ -97,7 +100,7 @@ namespace MSAToolBox.Controls.Legacy
 
         public void DataModified()
         {
-            Modified = true;
+            //Modified = true;
         }
 
         public void Load(ItemTemplate item)
@@ -122,7 +125,7 @@ namespace MSAToolBox.Controls.Legacy
             }
 
             ItemData = item;
-            itemSubClass.ItemsSource = DefineStore.ItemSubclass[ItemData.Class];
+            itemSubClass.ItemsSource = LegacyMorpher.DefineStore.ItemSubclass[ItemData.Class];
             itemTab.DataContext = ItemData;
             itemTab.IsEnabled = true;
         }
@@ -148,7 +151,7 @@ namespace MSAToolBox.Controls.Legacy
                     ItemTemplate item = client.SaveItemTemplate(ItemData);
                     if (item != null)
                     {
-                        Modified = false;
+                        //Modified = false;
                         if (loadAfterSave)
                             Load(item);
                     }
@@ -184,7 +187,7 @@ namespace MSAToolBox.Controls.Legacy
             KeyValuePair<int, string> keyPair = (KeyValuePair<int, string>)e.AddedItems[0];
             if (keyPair.Key != -1)
             {
-                itemSubClass.ItemsSource = DefineStore.ItemSubclass[keyPair.Key];
+                itemSubClass.ItemsSource = LegacyMorpher.DefineStore.ItemSubclass[keyPair.Key];
                 itemSubClass.SelectedIndex = 0;
             }
         }
@@ -210,7 +213,7 @@ namespace MSAToolBox.Controls.Legacy
             if (keyPair.Key != -1)
             {
                 itemFilterSubclass.SelectedIndex = 0;
-                itemFilterSubclass.ItemsSource = DefineStore.ItemSubclass[keyPair.Key];
+                itemFilterSubclass.ItemsSource = LegacyMorpher.DefineStore.ItemSubclass[keyPair.Key];
             }
             UpdateItemListFilter();
         }
@@ -478,9 +481,6 @@ namespace MSAToolBox.Controls.Legacy
 
         private void CalculateStats()
         {
-            if (ItemData == null || (ItemData.Class != 2 && ItemData.Class != 4))
-                return;
-
             float stats = ItemData.ItemLevel;
             switch (ItemData.Quality)
             {
@@ -508,6 +508,45 @@ namespace MSAToolBox.Controls.Legacy
                     break;
                 default:
                     break;
+            }
+
+            float armor = stats / 2;
+            float resistance = stats / 2;
+
+            if (ItemData.Class == 4)
+            {
+                switch (ItemData.Subclass)
+                {
+                    case 1:
+                        armor /= 1.4f;
+                        resistance *= 2.0f;
+                        break;
+                    case 2:
+                        resistance *= 1.4f;
+                        break;
+                    case 3:
+                        armor *= 1.4f;
+                        break;
+                    case 4:
+                        armor *= 2.0f;
+                        resistance /= 1.4f;
+                        break;
+                    case 5: // shield
+                    case 6:
+                        armor *= 3.84f;
+                        break;
+                    default:
+                        break;
+                }
+                if (armor < 0) armor = 0;
+                if (resistance < 0) resistance = 0;
+                ItemData.Armor = (int)armor;
+                ItemData.FireResistance = (byte)resistance; // place holder
+                ItemData.HolyResistance = 0;
+                ItemData.NatureResistance = 0;
+                ItemData.ShadowResistance = 0;
+                ItemData.ArcaneResistance = 0;
+                ItemData.FrostResistance = 0;
             }
 
             if (ItemData.Class == 2)
@@ -551,19 +590,6 @@ namespace MSAToolBox.Controls.Legacy
                 ItemData.StatValue[7] = 0;
                 ItemData.StatValue[8] = 0;
                 ItemData.StatValue[9] = 0;
-                ItemData.Armor = 0;
-                ItemData.ArcaneResistance = 0;
-                ItemData.FireResistance = 0;
-                ItemData.FrostResistance = 0;
-                ItemData.HolyResistance = 0;
-                ItemData.NatureResistance = 0;
-                ItemData.ShadowResistance = 0;
-                if (ItemData.Class == 4)
-                {
-                    ItemData.Armor = (int)(ItemData.Quality == 0 ? ItemData.ItemLevel * 0.3f : ItemData.ItemLevel * 0.5f);
-                    if (ItemData.Armor < 1)
-                        ItemData.Armor = 1;
-                }
                 return;
             }
 
@@ -617,12 +643,12 @@ namespace MSAToolBox.Controls.Legacy
                         case 31: // hit
                         case 32: // crit
                         case 36: // haste
-                            ItemData.StatValue[i] = Math.Min(ItemData.StatValue[i], limit);
+                            ItemData.StatValue[i] = (short)Math.Min(ItemData.StatValue[i], limit);
                             break;
                         case 33: // melee crit dmg
                         case 34: // ranged crit dmg
                         case 35: // spell crit dmg
-                            ItemData.StatValue[i] = Math.Min(ItemData.StatValue[i], limit * 2);
+                            ItemData.StatValue[i] = (short)Math.Min(ItemData.StatValue[i], limit * 2);
                             break;
                     }
                 }
@@ -674,36 +700,37 @@ namespace MSAToolBox.Controls.Legacy
 
             if (stats < 0)
             {
-                ItemData.StatsCount = 0;
-                ItemData.StatType[0] = 0;
-                ItemData.StatType[1] = 0;
-                ItemData.StatType[2] = 0;
-                ItemData.StatType[3] = 0;
-                ItemData.StatType[4] = 0;
-                ItemData.StatType[5] = 0;
-                ItemData.StatType[6] = 0;
-                ItemData.StatType[7] = 0;
-                ItemData.StatType[8] = 0;
-                ItemData.StatType[9] = 0;
-                ItemData.StatValue[0] = 0;
-                ItemData.StatValue[1] = 0;
-                ItemData.StatValue[2] = 0;
-                ItemData.StatValue[3] = 0;
-                ItemData.StatValue[4] = 0;
-                ItemData.StatValue[5] = 0;
-                ItemData.StatValue[6] = 0;
-                ItemData.StatValue[7] = 0;
-                ItemData.StatValue[8] = 0;
-                ItemData.StatValue[9] = 0;
-                ItemData.Armor = 0;
-                ItemData.Block = 0;
-                ItemData.ArcaneResistance = 0;
-                ItemData.FireResistance = 0;
-                ItemData.FrostResistance = 0;
-                ItemData.HolyResistance = 0;
-                ItemData.NatureResistance = 0;
-                ItemData.ShadowResistance = 0;
-                return;
+                //ItemData.StatsCount = 0;
+                //ItemData.StatType[0] = 0;
+                //ItemData.StatType[1] = 0;
+                //ItemData.StatType[2] = 0;
+                //ItemData.StatType[3] = 0;
+                //ItemData.StatType[4] = 0;
+                //ItemData.StatType[5] = 0;
+                //ItemData.StatType[6] = 0;
+                //ItemData.StatType[7] = 0;
+                //ItemData.StatType[8] = 0;
+                //ItemData.StatType[9] = 0;
+                //ItemData.StatValue[0] = 0;
+                //ItemData.StatValue[1] = 0;
+                //ItemData.StatValue[2] = 0;
+                //ItemData.StatValue[3] = 0;
+                //ItemData.StatValue[4] = 0;
+                //ItemData.StatValue[5] = 0;
+                //ItemData.StatValue[6] = 0;
+                //ItemData.StatValue[7] = 0;
+                //ItemData.StatValue[8] = 0;
+                //ItemData.StatValue[9] = 0;
+                //ItemData.Armor = 0;
+                //ItemData.Block = 0;
+                //ItemData.ArcaneResistance = 0;
+                //ItemData.FireResistance = 0;
+                //ItemData.FrostResistance = 0;
+                //ItemData.HolyResistance = 0;
+                //ItemData.NatureResistance = 0;
+                //ItemData.ShadowResistance = 0;
+                //return;
+                stats = 0;
             }
 
             float sum = 0;
@@ -799,7 +826,7 @@ namespace MSAToolBox.Controls.Legacy
                     case 48: // block value
                     case 49: // max power
                     case 45: // sp
-                        ItemData.StatValue[i] = (int)(ItemData.StatValue[i] * factor);
+                        ItemData.StatValue[i] = (short)(ItemData.StatValue[i] * factor);
                         break;
                     default:
                         break;
@@ -808,13 +835,12 @@ namespace MSAToolBox.Controls.Legacy
 
             ItemData.Armor = (int)(ItemData.Armor * factor);
             ItemData.Block = (int)(ItemData.Block * factor);
-            ItemData.ArcaneResistance = (int)(ItemData.ArcaneResistance * factor);
-            ItemData.FireResistance = (int)(ItemData.FireResistance * factor);
-            ItemData.FrostResistance = (int)(ItemData.FrostResistance * factor);
-            ItemData.HolyResistance = (int)(ItemData.HolyResistance * factor);
-            ItemData.NatureResistance = (int)(ItemData.NatureResistance * factor);
-            ItemData.ShadowResistance = (int)(ItemData.ShadowResistance * factor);
-            Save(true);
+            ItemData.ArcaneResistance = (byte)(ItemData.ArcaneResistance * factor);
+            ItemData.FireResistance = (byte)(ItemData.FireResistance * factor);
+            ItemData.FrostResistance = (byte)(ItemData.FrostResistance * factor);
+            ItemData.HolyResistance = (byte)(ItemData.HolyResistance * factor);
+            ItemData.NatureResistance = (byte)(ItemData.NatureResistance * factor);
+            ItemData.ShadowResistance = (byte)(ItemData.ShadowResistance * factor);
         }
 
         private void CalculateVendorPrice()
@@ -913,8 +939,117 @@ namespace MSAToolBox.Controls.Legacy
             }
             if (reqlevel < 0)
                 reqlevel = 0;
-            ItemData.RequiredLevel = reqlevel;
+            ItemData.RequiredLevel = (byte)reqlevel;
             Save(true);
+        }
+
+        public void ModAllEquipments()
+        {
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                exportItemDBC.IsEnabled = false;
+                itemTabProgressLabel.Content = "0 of " + ItemList.Length;
+                itemTabProgress.Maximum = ItemList.Length;
+                Storyboard anim = FindResource("ShowProgressBar") as Storyboard;
+                anim.Begin();
+            }));
+
+            using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
+            {
+                int index = 0;
+                foreach (var item in ItemList)
+                {
+                    ++index;
+                    if (item.Class != 2)
+                        if (item.Class != 4)
+                        continue;
+
+                    ItemData = client.GetItemTemplate(item.Entry);
+                    ItemData.ItemLevel = (int)(ItemData.ItemLevel * 0.7f);
+                    if (ItemData.ItemLevel < 1)
+                        ItemData.ItemLevel = 1;
+
+                    CalculateWeaponDamage();
+                    CalculateStats();
+                    CalculateVendorPrice();
+
+                    int reqlevel = ItemData.ItemLevel;
+                    switch (ItemData.Quality)
+                    {
+                        case 0:
+                            reqlevel += 2;
+                            break;
+                        case 2:
+                            reqlevel -= 2;
+                            break;
+                        case 3:
+                            reqlevel -= 4;
+                            break;
+                        case 4:
+                            reqlevel -= 6;
+                            break;
+                        case 5:
+                            reqlevel -= 8;
+                            break;
+                        case 6:
+                            reqlevel -= 10;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (reqlevel < 0)
+                        reqlevel = 0;
+
+                    ItemData.RequiredLevel = (byte)reqlevel;
+                    client.SaveItemTemplate(ItemData);
+
+                    this.Dispatcher.Invoke(new Action(() =>
+                    {
+                        itemTabProgressLabel.Content = index + " of " + ItemList.Length;
+                        itemTabProgress.Value = index;
+                    }));
+                }
+            }
+        }
+
+        private bool IsRatingStat(int type)
+        {
+            switch (type)
+            {
+                case 13: // dodge
+                case 14: // parry
+                case 15: // block
+                case 16: // melee hit
+                case 17: // ranged hit
+                case 18: // spell hit
+                case 19: // melee crit
+                case 20: // ranged crit
+                case 21: // spell crit
+                case 28: // melee haste
+                case 29: // ranged haste
+                case 30: // spell haste
+                case 22:
+                case 23:
+                case 24:
+                case 25:
+                case 26:
+                case 27: // resist
+                case 31: // hit
+                case 32: // crit
+                case 36: // haste
+                case 33: // melee crit dmg
+                case 34: // ranged crit dmg
+                case 35: // spell crit dmg
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new Thread(ModAllEquipments).Start();
         }
     }
 }

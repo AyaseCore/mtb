@@ -166,6 +166,18 @@
   <wsdl:message name="ILegacyService_SaveSpawnInfo_OutputMessage">
     <wsdl:part name="parameters" element="tns:SaveSpawnInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="ILegacyService_GetCreatureTrainerInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCreatureTrainerInfo" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_GetCreatureTrainerInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCreatureTrainerInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_SaveCreatureTrainerInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveCreatureTrainerInfo" />
+  </wsdl:message>
+  <wsdl:message name="ILegacyService_SaveCreatureTrainerInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveCreatureTrainerInfoResponse" />
+  </wsdl:message>
   <wsdl:message name="ILegacyService_GetSmartScript_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSmartScript" />
   </wsdl:message>
@@ -278,6 +290,14 @@
     <wsdl:operation name="SaveSpawnInfo">
       <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/SaveSpawnInfo" message="tns:ILegacyService_SaveSpawnInfo_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/SaveSpawnInfoResponse" message="tns:ILegacyService_SaveSpawnInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreatureTrainerInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetCreatureTrainerInfo" message="tns:ILegacyService_GetCreatureTrainerInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/GetCreatureTrainerInfoResponse" message="tns:ILegacyService_GetCreatureTrainerInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveCreatureTrainerInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/SaveCreatureTrainerInfo" message="tns:ILegacyService_SaveCreatureTrainerInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILegacyService/SaveCreatureTrainerInfoResponse" message="tns:ILegacyService_SaveCreatureTrainerInfo_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSmartScript">
       <wsdl:input wsaw:Action="http://tempuri.org/ILegacyService/GetSmartScript" message="tns:ILegacyService_GetSmartScript_InputMessage" />
@@ -509,6 +529,24 @@
     </wsdl:operation>
     <wsdl:operation name="SaveSpawnInfo">
       <soap12:operation soapAction="http://tempuri.org/ILegacyService/SaveSpawnInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreatureTrainerInfo">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/GetCreatureTrainerInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCreatureTrainerInfo">
+      <soap12:operation soapAction="http://tempuri.org/ILegacyService/SaveCreatureTrainerInfo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

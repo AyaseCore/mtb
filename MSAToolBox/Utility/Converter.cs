@@ -116,5 +116,54 @@ namespace MSAToolBox.Utility
             return null;
         }
     }
+
+    public class SpellNameConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            int entry = (int)value;
+            if (entry < 0)
+                return "Reference";
+            if (SpellPanel.spells == null)
+                return "";
+            var s = (from d in SpellPanel.spells where d.ID == entry select new { d.Name, d.Rank }).SingleOrDefault();
+            if (s != null)
+                return s.Name + (s.Rank == "" ? "" : "(" + s.Rank + ")");
+            else
+                return "";
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    public class SpellDescriptionConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (SpellPanel.spells == null)
+                return "";
+            return (from d in SpellPanel.spells where d.ID == (int)value select d.Description).SingleOrDefault();
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    public class SkillNameConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (SkillLinePanel.SkillLines == null)
+                return "";
+            return (from d in SkillLinePanel.SkillLines where d.ID == (int)value select d.Description).SingleOrDefault();
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+    } 
 }
 

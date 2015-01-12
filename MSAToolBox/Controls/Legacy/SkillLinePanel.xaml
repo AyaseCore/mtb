@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="MSAToolBox.Controls.Legacy.SkillLinePanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:Utility="clr-namespace:MSAToolBox.Utility"
+             d:DesignHeight="300" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <Utility:SpellNameConverter x:Key="SpellNameConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <TabControl Margin="0">
+            <TabItem Header="Skills">
+                <Grid>
+                    <DataGrid x:Name="skilllinesGrid"  Margin="0"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Abilities">
+                <Grid>
+                    <DataGrid x:Name="skillLineGrid" Margin="0,40,0,0" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                            <DataGridComboBoxColumn Header="SkillLine" SelectedValueBinding="{Binding Skill}" x:Name="abilitySkill" DisplayMemberPath="Name" SelectedValuePath="ID"/>
+                            <DataGridTextColumn Header="SkillValue" Binding="{Binding RequiredSkillValue}"/>
+                            <DataGridTextColumn Header="Spell" Binding="{Binding Spell}"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Spell, Converter={StaticResource SpellNameConverter}}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="Race" Binding="{Binding Race}"/>
+                            <DataGridTextColumn Header="Class" Binding="{Binding Class}"/>
+                            <DataGridTextColumn Header="SuperSpell" Binding="{Binding SupercededBySpell}"/>
+                            <DataGridTextColumn Header="Accquire" Binding="{Binding AccquiredMethod}"/>
+                            <DataGridTextColumn Header="TurnYellow" Binding="{Binding SkillLineRankHigh}"/>
+                            <DataGridTextColumn Header="TurnGrey" Binding="{Binding SkillLineRankLow}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label x:Name="skillLabel"  Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Save" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>
