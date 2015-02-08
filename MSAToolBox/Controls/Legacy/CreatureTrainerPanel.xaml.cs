@@ -1,4 +1,4 @@
-﻿using MSAToolBox.LegacyServices;
+﻿using MSAToolBox.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,26 +33,20 @@ namespace MSAToolBox.Controls.Legacy
                 trainerInfoGrid.ItemsSource = null;
                 return;
             }
-            using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-            {
-                var data = client.GetCreatureTrainerInfo(entry);
-                if (data != null)
-                    trainerInfoGrid.ItemsSource = data.ToList();
-                else
-                    trainerInfoGrid.ItemsSource = null;
 
-            }
+            var data = LegacyMorpher.Data.GetCreatureTrainerInfo(entry);
+            if (data != null)
+                trainerInfoGrid.ItemsSource = data.ToList();
+            else
+                trainerInfoGrid.ItemsSource = null;
         }
 
         public void Save()
         {
             List<CreatureTrainerInfo> list = trainerInfoGrid.ItemsSource as List<CreatureTrainerInfo>;
             if (list != null && list.Count != 0)
-            using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-            {
-                client.SaveCreatureTrainerInfo(list.ToArray());
-                statusLabel.Content = "Saved.";
-            }
+                LegacyMorpher.Data.SaveCreatureTrainerInfo(list);
+            statusLabel.Content = "Saved.";
         }
 
         private void saveTrainerInfo_Click(object sender, RoutedEventArgs e)
@@ -71,6 +65,21 @@ namespace MSAToolBox.Controls.Legacy
                     list.Remove(item);
                 }
             }
+        }
+
+        private void loadVendor_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int entry = Convert.ToInt32(loadVendorEntry.Text);
+
+                var data = LegacyMorpher.Data.GetCreatureTrainerInfo(entry);
+                if (data != null)
+                    trainerInfoGrid.ItemsSource = data.ToList();
+                else
+                    trainerInfoGrid.ItemsSource = null;
+            }
+            catch (Exception /*e*/) {  }
         }
     }
 }

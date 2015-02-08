@@ -12,7 +12,7 @@
         <Utility:CreatureNameConverter x:Key="CreatureNameConverter"/>
     </UserControl.Resources>
     <Grid>
-        <DataGrid x:Name="vendorData" Margin="10,41,10,10" AutoGenerateColumns="False" KeyDown="vendorData_KeyDown">
+        <DataGrid x:Name="vendorData" Margin="10,41" AutoGenerateColumns="False" KeyDown="vendorData_KeyDown">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="SLOT" Binding="{Binding Path=Slot}"/>
                 <DataGridTextColumn Header="ITEM" Binding="{Binding Path=Item}"/>
@@ -29,6 +29,17 @@
         <TextBox x:Name="vendorEntry" HorizontalAlignment="Right" Height="23" Margin="0,10,170,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="vendorEntry_TextChanged"/>
         <Button x:Name="vendorGo" Content="GO" HorizontalAlignment="Right" Margin="0,10,90,0" VerticalAlignment="Top" Width="75" Click="vendorGo_Click" IsEnabled="False"/>
         <Button x:Name="vendorSave" Content="SAVE" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="75" Click="vendorSave_Click"/>
+        <TextBox x:Name="appendRelation" HorizontalAlignment="Left" Height="23" Margin="83,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" Text="0"/>
+        <Label Content="RelatedTo" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"/>
+        <Label Content="Item" HorizontalAlignment="Left" Margin="208,0,0,10" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="appendItem" HorizontalAlignment="Left" Height="23" Margin="249,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" Text="0"/>
+        <Label Content="MaxCount" HorizontalAlignment="Left" Margin="374,0,0,9" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="appendMaxCount" HorizontalAlignment="Left" Height="23" Margin="448,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" Text="0"/>
+        <Label Content="IncrTime" HorizontalAlignment="Left" Margin="568,0,0,9" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="appendIncrTime" HorizontalAlignment="Left" Height="23" Margin="633,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" Text="0"/>
+        <Label Content="ExtendedCost" HorizontalAlignment="Left" Margin="758,0,0,9" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="appendExtendedCost" HorizontalAlignment="Left" Height="23" Margin="852,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" Text="0"/>
+        <Button x:Name="appendLoot" Content="Append" HorizontalAlignment="Left" Margin="977,0,0,11" VerticalAlignment="Bottom" Width="75" Click="appendLoot_Click"/>
 
     </Grid>
 </UserControl>

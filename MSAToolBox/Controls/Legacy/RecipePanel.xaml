@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="MSAToolBox.Controls.Legacy.RecipePanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Recipe Item" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Recipe Spell" Grid.Column="2" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top"/>
+        <ListBox HorizontalAlignment="Left" Height="550" Margin="10,40,0,0" VerticalAlignment="Top" Width="230"/>
+        <Label Content="Item Name" Grid.Column="1" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="recipeItemName" Grid.Column="1" Height="23" Margin="10,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120"/>
+        <ListBox HorizontalAlignment="Right" Height="550" Margin="0,40,10,0" VerticalAlignment="Top" Width="230" Grid.Column="2"/>
+        <Label Content="Spell Name" Grid.Column="1" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="recipeSpellName" Grid.Column="1" Height="23" Margin="10,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" IsEnabled="False"/>
+        <Button x:Name="create" Content="Create a new" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <ComboBox x:Name="type" Grid.Column="1" Margin="135,10,260,0" VerticalAlignment="Top" SelectionChanged="type_SelectionChanged"/>
+        <Button x:Name="save" Content="Create" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="120" Click="save_Click"/>
+        <Label Content="Reagents" Grid.Column="1" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="r1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="r2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="r3" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="r4" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,270,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="r5" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="r6" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,332,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="r7" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="r8" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,394,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="r1f" Content="Find" Grid.Column="1" HorizontalAlignment="Left" Margin="135,177,0,0" VerticalAlignment="Top" Width="75" Click="r1f_Click"/>
+        <Button x:Name="r1n" Content="New" Grid.Column="1" HorizontalAlignment="Left" Margin="215,177,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="r2f" Content="Find" Grid.Column="1" HorizontalAlignment="Left" Margin="135,209,0,0" VerticalAlignment="Top" Width="75" Click="r2f_Click"/>
+        <Button x:Name="r2n" Content="New" Grid.Column="1" HorizontalAlignment="Left" Margin="215,209,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="r3f" Content="Find" Grid.Column="1" HorizontalAlignment="Left" Margin="135,240,0,0" VerticalAlignment="Top" Width="75" Click="r3f_Click"/>
+        <Button x:Name="r3n" Content="New" Grid.Column="1" HorizontalAlignment="Left" Margin="215,240,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="r4f" Content="Find" Grid.Column="1" HorizontalAlignment="Left" Margin="135,271,0,0" VerticalAlignment="Top" Width="75" Click="r4f_Click"/>
+        <Button x:Name="r4n" Content="New" Grid.Column="1" HorizontalAlignment="Left" Margin="215,271,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="r5f" Content="Find" Grid.Column="1" HorizontalAlignment="Left" Margin="135,302,0,0" VerticalAlignment="Top" Width="75" Click="r5f_Click"/>
+        <Button x:Name="r5n" Content="New" Grid.Column="1" HorizontalAlignment="Left" Margin="215,302,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="r6f" Content="Find" Grid.Column="1" HorizontalAlignment="Left" Margin="135,333,0,0" VerticalAlignment="Top" Width="75" Click="r6f_Click"/>
+        <Button x:Name="r6n" Content="New" Grid.Column="1" HorizontalAlignment="Left" Margin="215,333,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="r7f" Content="Find" Grid.Column="1" HorizontalAlignment="Left" Margin="135,364,0,0" VerticalAlignment="Top" Width="75" Click="r7f_Click"/>
+        <Button x:Name="r7n" Content="New" Grid.Column="1" HorizontalAlignment="Left" Margin="215,364,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="r8f" Content="Find" Grid.Column="1" HorizontalAlignment="Left" Margin="135,395,0,0" VerticalAlignment="Top" Width="75" Click="r8f_Click"/>
+        <Button x:Name="r8n" Content="New" Grid.Column="1" HorizontalAlignment="Left" Margin="215,395,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="r1e" Content="Edit" Grid.Column="1" HorizontalAlignment="Left" Margin="295,177,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="r2e" Content="Edit" Grid.Column="1" HorizontalAlignment="Left" Margin="295,209,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="r3e" Content="Edit" Grid.Column="1" HorizontalAlignment="Left" Margin="295,240,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="r4e" Content="Edit" Grid.Column="1" HorizontalAlignment="Left" Margin="295,271,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="r5e" Content="Edit" Grid.Column="1" HorizontalAlignment="Left" Margin="295,302,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="r6e" Content="Edit" Grid.Column="1" HorizontalAlignment="Left" Margin="295,333,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="r7e" Content="Edit" Grid.Column="1" HorizontalAlignment="Left" Margin="295,364,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="r8e" Content="Edit" Grid.Column="1" HorizontalAlignment="Left" Margin="295,395,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="375,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="r2i" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="375,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="r3i" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="375,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="r4i" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="375,270,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="r5i" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="375,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="r6i" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="375,332,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="r7i" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="375,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="r8i" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="375,395,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="r1i" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="375,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="r2c" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="500,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="r3c" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="500,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="r4c" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="500,270,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="r5c" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="500,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="r6c" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="500,332,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="r7c" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="500,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="r8c" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="500,395,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="r1c" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="500,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <Label Content="Count" Grid.Column="1" HorizontalAlignment="Left" Margin="500,152,0,0" VerticalAlignment="Top"/>
+        <Label Content="Totem" Grid.Column="1" HorizontalAlignment="Left" Margin="10,425,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="rt1" Grid.Column="1" HorizontalAlignment="Left" Margin="62,425,0,0" VerticalAlignment="Top" Width="100"/>
+        <ComboBox x:Name="rt2" Grid.Column="1" HorizontalAlignment="Left" Margin="167,425,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="TotemItem" Grid.Column="1" HorizontalAlignment="Left" Margin="297,427,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="rti1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="375,426,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="rti2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="500,426,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <Label Content="SpellFocus" Grid.Column="1" HorizontalAlignment="Left" Margin="10,457,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="rf" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="86,456,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Text="0"/>
+        <Button x:Name="i1f" Content="Find" Grid.Column="1" HorizontalAlignment="Left" Margin="135,65,0,0" VerticalAlignment="Top" Width="75" Click="i1f_Click"/>
+        <Button x:Name="i1n" Content="New" Grid.Column="1" HorizontalAlignment="Left" Margin="215,65,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="i1e" Content="Edit" Grid.Column="1" HorizontalAlignment="Left" Margin="295,65,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="i1i" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="375,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <Label x:Name="i1e2" Content="Count" Grid.Column="1" HorizontalAlignment="Left" Margin="500,41,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="recipeSpellEntry" Grid.Column="1" Height="23" Margin="135,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="0" HorizontalAlignment="Left" Width="120"/>
+        <TextBox x:Name="recipeRequiredSkillValue" Grid.Column="1" Height="23" Margin="260,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="1" HorizontalAlignment="Left" Width="120" IsEnabled="False"/>
+        <TextBox x:Name="recipeSkillGoYellow" Grid.Column="1" Height="23" Margin="385,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="1" HorizontalAlignment="Left" Width="120"/>
+        <Label Content="Entry" Grid.Column="1" HorizontalAlignment="Left" Margin="135,96,0,0" VerticalAlignment="Top"/>
+        <Label Content="Required Skill" Grid.Column="1" HorizontalAlignment="Left" Margin="260,95,0,0" VerticalAlignment="Top"/>
+        <Label Content="Go Yellow" Grid.Column="1" HorizontalAlignment="Left" Margin="385,96,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="recipeSkillGoGray" Grid.Column="1" Height="23" Margin="510,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="1" HorizontalAlignment="Left" Width="110"/>
+        <Label Content="Go Gray" Grid.Column="1" HorizontalAlignment="Left" Margin="510,96,0,0" VerticalAlignment="Top"/>
+        <Label Content="Entry" Grid.Column="1" HorizontalAlignment="Left" Margin="375,152,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="i1c" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="500,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="1"/>
+        <TextBox x:Name="rs" Grid.Column="1" HorizontalAlignment="Right" Height="23" Margin="0,10,135,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</UserControl>

@@ -3,13 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:Legacy="clr-namespace:MSAToolBox.Controls.Legacy" xmlns:Controls1="clr-namespace:MSAToolBox.Controls" x:Class="MSAToolBox.MainWindow"
-        Title="MSAToolBox" Height="600" Width="1200" FontFamily="Microsoft YaHei UI Light" GlowBrush="{StaticResource AccentColorBrush}">
+        Title="MSAToolBox" Height="600" Width="1200" FontFamily="Microsoft YaHei UI Light" GlowBrush="{StaticResource AccentColorBrush}" Icon="mario.ico">
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
             <Button Name="restartGame" Content="RESTART" Click="restartGame_Click"/>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
     <Grid>
-        <Controls1:LegacyMorpher Margin="0"/>
+        <Controls1:LegacyMorpher Margin="0" x:Name="legacyMorpher"/>
     </Grid>
 </Controls:MetroWindow>

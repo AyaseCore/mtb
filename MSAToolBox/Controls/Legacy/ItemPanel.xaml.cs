@@ -1,5 +1,4 @@
-﻿using MSAToolBox.LegacyServices;
-using MSAToolBox.SubWindows.Legacy;
+﻿using MSAToolBox.SubWindows.Legacy;
 using MSAToolBox.Utility;
 using System;
 using System.Collections.Generic;
@@ -28,9 +27,58 @@ namespace MSAToolBox.Controls.Legacy
     {
         public static ItemTemplate ItemData;
         //private bool Modified;
-        public static ItemInfo[] ItemList;
+        public static List<ItemInfo> ItemList;
         bool IsLoading;
         Random ran = new Random();
+
+        const float FACTOR_HEAD = 0.75f;
+        const float FACTOR_SHOULDER = 0.685f;
+        const float FACTOR_CHEST = 0.921f;
+        const float FACTOR_WRIST = 0.396f;
+        const float FACTOR_GLOVE = 0.616f;
+        const float FACTOR_WAIST = 0.567f;
+        const float FACTOR_LEGGING = 0.803f;
+        const float FACTOR_FEET = 0.632f;
+        const float FACTOR_1H_WEAPON = 0.4f;
+        const float FACTOR_2H_WEAPON = 0.8f;
+        const float FACTOR_RING = 0.4f;
+        const float FACTOR_TRINKET = 0.4f;
+        const float FACTOR_NECKLACE = 0.4f;
+        const float FACTOR_RANGED = 0.6f;
+        const float FACTOR_OFFHAND = 0.4f;
+        const float FACTOR_CLOAK = 0.4f;
+
+        const float FACTOR_POOR = 0.455f;
+        const float FACTOR_NORMAL = 0.592f;
+        const float FACTOR_UNCOMMON = 0.77f;
+        const float FACTOR_RARE = 1.0f;
+        const float FACTOR_EPIC = 1.3f;
+        const float FACTOR_LEGENDARY = 1.69f;
+
+        const float FACTOR_1H_DPS = 0.65f;
+        const float FACTOR_2H_DPS = 0.85f;
+        const float FACTOR_STAFF_DPS = 0.7f;
+        const float FACTOR_RANGED_DPS = 0.65f;
+        const float FACTOR_WAND_DPS = 1.0f;
+
+        const float FACTOR_POOR_DPS = 0.614f;
+        const float FACTOR_NORMAL_DPS = 0.723f;
+        const float FACTOR_UNCOMMON_DPS = 0.85f;
+        const float FACTOR_RARE_DPS = 1.0f;
+        const float FACTOR_EPIC_DPS = 1.176f;
+        const float FACTOR_LEGENDARY_DPS = 1.384f;
+
+        const float FACTOR_ARMOR_PLATE = 1.0f;
+        const float FACTOR_ARMOR_MAIL = 0.558f;
+        const float FACTOR_ARMOR_LEATHER = 0.267f;
+        const float FACTOR_ARMOR_CLOTH = 0.14f;
+        const float FACTOR_ARMOR_SHIELD = 3.66f;
+
+        const float FACTOR_SELLPRICE_PLATE = 1.0f;
+        const float FACTOR_SELLPRICE_MAIL = 0.857f;
+        const float FACTOR_SELLPRICE_LEATHER = 0.683f;
+        const float FACTOR_SELLPRICE_CLOTH = 0.542f;
+
         public ItemPanel()
         {
             InitializeComponent();
@@ -39,62 +87,57 @@ namespace MSAToolBox.Controls.Legacy
         public void Load()
         {
             LoadDefines();
+            iconPanel.Load();
+            enchantPanel.Load();
         }
 
         private void LoadDefines()
         {
             IsLoading = true;
-            try
-            {
-                using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                {
-                    ItemList = client.GetItemList();
-                    itemList.ItemsSource = ItemList;
-                    itemList.Items.SortDescriptions.Clear();
-                    itemList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Entry", System.ComponentModel.ListSortDirection.Ascending));
-                    itemQuality.ItemsSource = LegacyMorpher.DefineStore.ItemQuality;
-                    itemInventoryType.ItemsSource = LegacyMorpher.DefineStore.ItemInventoryType;
-                    itemSheath.ItemsSource = LegacyMorpher.DefineStore.ItemSheath;
-                    itemBonding.ItemsSource = LegacyMorpher.DefineStore.ItemBonding;
-                    itemAmmoType.ItemsSource = LegacyMorpher.DefineStore.ItemAmmoType;
-                    itemStatType1.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-                    itemStatType2.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-                    itemStatType3.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-                    itemStatType4.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-                    itemStatType5.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-                    itemStatType6.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-                    itemStatType7.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-                    itemStatType8.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-                    itemStatType9.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-                    itemStatType10.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-                    itemDmgType1.ItemsSource = LegacyMorpher.DefineStore.ItemDamageSchool;
-                    itemDmgType2.ItemsSource = LegacyMorpher.DefineStore.ItemDamageSchool;
-                    itemSocket1.ItemsSource = LegacyMorpher.DefineStore.ItemSocketColor;
-                    itemSocket2.ItemsSource = LegacyMorpher.DefineStore.ItemSocketColor;
-                    itemSocket3.ItemsSource = LegacyMorpher.DefineStore.ItemSocketColor;
-                    itemSpellTrigger1.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
-                    itemSpellTrigger2.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
-                    itemSpellTrigger3.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
-                    itemSpellTrigger4.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
-                    itemSpellTrigger5.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
-                    itemReqFactionRank.ItemsSource = LegacyMorpher.DefineStore.ReputationRank;
-                    itemReqSkill.ItemsSource = LegacyMorpher.DefineStore.SkillLine;
-                    itemTotemCategory.ItemsSource = LegacyMorpher.DefineStore.TotemCategory;
-                    itemReqHoliday.ItemsSource = LegacyMorpher.DefineStore.HolidayNames;
-                    itemPageMaterial.ItemsSource = LegacyMorpher.DefineStore.PageTextMaterial;
-                    itemPageTextLanguage.ItemsSource = LegacyMorpher.DefineStore.Language;
-                    itemClass.ItemsSource = LegacyMorpher.DefineStore.ItemClass;
-                    itemSubClass.ItemsSource = LegacyMorpher.DefineStore.ItemSubclass[0];
-                    itemFilterClass.ItemsSource = LegacyMorpher.DefineStore.ItemClass;
-                    itemFilterSubclass.ItemsSource = LegacyMorpher.DefineStore.ItemSubclass[0];
-                    itemFilterClass.SelectedIndex = 0;
-                    itemFilterSubclass.SelectedIndex = 0;
-                    itemMaterial.ItemsSource = LegacyMorpher.DefineStore.ItemMaterial;
-                    itemFoodType.ItemsSource = LegacyMorpher.DefineStore.ItemPetFood;
-                    itemSetCombo.ItemsSource = LegacyMorpher.DefineStore.ItemSet;
-                }
-            }
-            catch (System.Exception /*ex*/) { }
+            ItemList = LegacyMorpher.Data.GetItemList();
+            itemList.ItemsSource = ItemList;
+            itemList.Items.SortDescriptions.Clear();
+            itemList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Entry", System.ComponentModel.ListSortDirection.Ascending));
+            itemQuality.ItemsSource = LegacyMorpher.DefineStore.ItemQuality;
+            itemInventoryType.ItemsSource = LegacyMorpher.DefineStore.ItemInventoryType;
+            itemSheath.ItemsSource = LegacyMorpher.DefineStore.ItemSheath;
+            itemBonding.ItemsSource = LegacyMorpher.DefineStore.ItemBonding;
+            itemAmmoType.ItemsSource = LegacyMorpher.DefineStore.ItemAmmoType;
+            itemStatType1.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+            itemStatType2.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+            itemStatType3.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+            itemStatType4.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+            itemStatType5.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+            itemStatType6.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+            itemStatType7.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+            itemStatType8.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+            itemStatType9.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+            itemStatType10.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
+            itemDmgType1.ItemsSource = LegacyMorpher.DefineStore.ItemDamageSchool;
+            itemDmgType2.ItemsSource = LegacyMorpher.DefineStore.ItemDamageSchool;
+            itemSocket1.ItemsSource = LegacyMorpher.DefineStore.ItemSocketColor;
+            itemSocket2.ItemsSource = LegacyMorpher.DefineStore.ItemSocketColor;
+            itemSocket3.ItemsSource = LegacyMorpher.DefineStore.ItemSocketColor;
+            itemSpellTrigger1.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
+            itemSpellTrigger2.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
+            itemSpellTrigger3.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
+            itemSpellTrigger4.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
+            itemSpellTrigger5.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
+            itemReqFactionRank.ItemsSource = LegacyMorpher.DefineStore.ReputationRank;
+            itemReqSkill.ItemsSource = LegacyMorpher.DefineStore.SkillLine;
+            itemTotemCategory.ItemsSource = LegacyMorpher.DefineStore.TotemCategory;
+            itemReqHoliday.ItemsSource = LegacyMorpher.DefineStore.HolidayNames;
+            itemPageMaterial.ItemsSource = LegacyMorpher.DefineStore.PageTextMaterial;
+            itemPageTextLanguage.ItemsSource = LegacyMorpher.DefineStore.Language;
+            itemClass.ItemsSource = LegacyMorpher.DefineStore.ItemClass;
+            itemSubClass.ItemsSource = LegacyMorpher.DefineStore.ItemSubclass[0];
+            itemFilterClass.ItemsSource = LegacyMorpher.DefineStore.ItemClass;
+            itemFilterSubclass.ItemsSource = LegacyMorpher.DefineStore.ItemSubclass[0];
+            itemFilterClass.SelectedIndex = 0;
+            itemFilterSubclass.SelectedIndex = 0;
+            itemMaterial.ItemsSource = LegacyMorpher.DefineStore.ItemMaterial;
+            itemFoodType.ItemsSource = LegacyMorpher.DefineStore.ItemPetFood;
+            itemSetCombo.ItemsSource = LegacyMorpher.DefineStore.ItemSet;
             IsLoading = false;
         }
 
@@ -105,16 +148,9 @@ namespace MSAToolBox.Controls.Legacy
 
         public void Load(ItemTemplate item)
         {
-            if (ItemData != null)
+            if (item != null && ItemData != null)
             {
-                try
-                {
-                    using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                    {
-                        client.SaveItemTemplate(ItemData);
-                    }
-                }
-                catch (System.Exception /*ex*/) { }
+                LegacyMorpher.Data.SaveItemTemplate(ItemData, false);
             }
 
             if (item == null)
@@ -132,11 +168,9 @@ namespace MSAToolBox.Controls.Legacy
 
         public void TryLoadSomething(int id)
         {
-            using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-            {
-                ItemTemplate item = client.GetItemTemplate(id);
-                Load(item);
-            }
+            ItemTemplate item = LegacyMorpher.Data.GetItemTemplate(id);
+            Load(item);
+            iconPanel.Load(item);
         }
 
         public void Save(bool loadAfterSave = false)
@@ -144,39 +178,25 @@ namespace MSAToolBox.Controls.Legacy
             if (ItemData == null)
                 return;
 
-            try
+            ItemTemplate item = LegacyMorpher.Data.SaveItemTemplate(ItemData, false);
+            if (item != null)
             {
-                using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                {
-                    ItemTemplate item = client.SaveItemTemplate(ItemData);
-                    if (item != null)
-                    {
-                        //Modified = false;
-                        if (loadAfterSave)
-                            Load(item);
-                    }
-                }
+                //Modified = false;
+                if (loadAfterSave)
+                    Load(item);
             }
-            catch (System.Exception /*ex*/) { }
         }
 
         private void itemSave_Click(object sender, RoutedEventArgs e)
         {
             if (ItemData != null)
             {
-                try
+                ItemTemplate item = LegacyMorpher.Data.SaveItemTemplate(ItemData, false);
+                if (item != null)
                 {
-                    using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                    {
-                        ItemTemplate item = client.SaveItemTemplate(ItemData);
-                        if (item != null)
-                        {
-                            ItemData = item;
-                            Load(ItemData);
-                        }
-                    }
+                    ItemData = item;
+                    Load(ItemData);
                 }
-                catch (System.Exception /*ex*/) { }
             }
         }
 
@@ -258,35 +278,22 @@ namespace MSAToolBox.Controls.Legacy
 
         private void itemCreate_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                {
-                    ItemTemplate item = client.CreateItemTemplate();
-                    ReloadItemList(client);
-                    Load(item);
-                }
-            }
-            catch (System.Exception /*ex*/) { }
+            new Thread(ModAllItem).Start();
+            //ItemTemplate item = LegacyMorpher.Data.CreateItemTemplate();
+            //ReloadItemList(LegacyMorpher.Data);
+            //Load(item);
         }
 
         private void itemCopy_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                {
-                    ItemTemplate item = client.CopyItemTemplate((int)itemList.SelectedValue);
-                    Load(item);
-                    ReloadItemList(client);
-                }
-            }
-            catch (System.Exception /*ex*/) { }
+            ItemTemplate item = LegacyMorpher.Data.CopyItemTemplate((int)itemList.SelectedValue);
+            Load(item);
+            ReloadItemList(LegacyMorpher.Data);
         }
 
-        private void ReloadItemList(LegacyServiceClient client)
+        private void ReloadItemList(LegacyWorld world)
         {
-            ItemList = client.GetItemList();
+            ItemList = world.GetItemList();
             itemList.ItemsSource = ItemList;
             itemList.Items.SortDescriptions.Clear();
             itemList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Entry", System.ComponentModel.ListSortDirection.Ascending));
@@ -294,16 +301,9 @@ namespace MSAToolBox.Controls.Legacy
 
         private void itemDelete_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                {
-                    client.DeleteItemTemplate((int)itemList.SelectedValue);
-                    Load(null);
-                    ReloadItemList(client);
-                }
-            }
-            catch (System.Exception /*ex*/) { }
+            LegacyMorpher.Data.DeleteItemTemplate((int)itemList.SelectedValue);
+            Load(null);
+            ReloadItemList(LegacyMorpher.Data);
         }
 
         private void exportItemDBC_Click(object sender, RoutedEventArgs e)
@@ -313,61 +313,54 @@ namespace MSAToolBox.Controls.Legacy
 
         private void GenerateItemDBC()
         {
-            try
+            this.Dispatcher.Invoke(new Action(() =>
             {
-                using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
+                exportItemDBC.IsEnabled = false;
+                itemTabProgressLabel.Content = "正在获取数据...";
+                Storyboard anim = FindResource("ShowProgressBar") as Storyboard;
+                anim.Begin();
+            }));
+            List<ItemDBC> dbc = LegacyMorpher.Data.GenerateItemDBC();
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                itemTabProgressLabel.Content = "正在处理第0个（共" + dbc.Count + "个)";
+                itemTabProgress.Maximum = dbc.Count;
+            }));
+            int index = 0;
+            using (FileStream stream = File.Create(MainWindow.CLIENT_PATH + "DBFilesClient/Item.dbc"))
+            {
+                BinaryWriter w = new BinaryWriter(stream);
+                DBC.WriteDBCHeader(w, dbc.Count, 8, 32);
+                foreach (ItemDBC d in dbc)
                 {
-                    this.Dispatcher.Invoke(new Action(() =>
+                    index++;
+                    w.Write(d.Entry);
+                    w.Write(d.Class);
+                    w.Write(d.SubClass);
+                    w.Write(d.SoundOverrideSubClass);
+                    w.Write(d.Material);
+                    w.Write(d.DisplayID);
+                    w.Write(d.InventoryType);
+                    w.Write(d.Sheath);
+                    if (index % 64 == 0)
                     {
-                        exportItemDBC.IsEnabled = false;
-                        itemTabProgressLabel.Content = "正在获取数据...";
-                        Storyboard anim = FindResource("ShowProgressBar") as Storyboard;
-                        anim.Begin();
-                    }));
-                    ItemDBC[] dbc = client.GenerateItemDBC();
-                    this.Dispatcher.Invoke(new Action(() =>
-                    {
-                        itemTabProgressLabel.Content = "正在处理第0个（共" + dbc.Length + "个)";
-                        itemTabProgress.Maximum = dbc.Length;
-                    }));
-                    int index = 0;
-                    using (FileStream stream = File.Create(MainWindow.CLIENT_PATH + "DBFilesClient/Item.dbc"))
-                    {
-                        BinaryWriter w = new BinaryWriter(stream);
-                        DBC.WriteDBCHeader(w, dbc.Length, 8, 32);
-                        foreach (ItemDBC d in dbc)
-                        {
-                            index++;
-                            w.Write(d.Entry);
-                            w.Write(d.Class);
-                            w.Write(d.SubClass);
-                            w.Write(d.SoundOverrideSubClass);
-                            w.Write(d.Material);
-                            w.Write(d.DisplayID);
-                            w.Write(d.InventoryType);
-                            w.Write(d.Sheath);
-                            if (index % 64 == 0)
-                            {
-                                this.Dispatcher.Invoke(new Action(() =>
-                                {
-                                    itemTabProgressLabel.Content = "正在处理第" + index + "个（共" + dbc.Length + "个)";
-                                    itemTabProgress.Value = index;
-                                }));
-                            }
-                        }
-                        w.Close();
-                        File.Copy(MainWindow.CLIENT_PATH + "DBFilesClient/Item.dbc", MainWindow.SERVER_PATH + "DBC/Item.dbc", true);
                         this.Dispatcher.Invoke(new Action(() =>
                         {
-                            exportItemDBC.IsEnabled = true;
-                            itemTabProgressLabel.Content = "完成。";
-                            Storyboard anim2 = FindResource("HideProgressBar") as Storyboard;
-                            anim2.Begin();
+                            itemTabProgressLabel.Content = "正在处理第" + index + "个（共" + dbc.Count + "个)";
+                            itemTabProgress.Value = index;
                         }));
                     }
                 }
+                w.Close();
+                File.Copy(MainWindow.CLIENT_PATH + "DBFilesClient/Item.dbc", MainWindow.SERVER_PATH + "DBC/Item.dbc", true);
+                this.Dispatcher.Invoke(new Action(() =>
+                {
+                    exportItemDBC.IsEnabled = true;
+                    itemTabProgressLabel.Content = "完成。";
+                    Storyboard anim2 = FindResource("HideProgressBar") as Storyboard;
+                    anim2.Begin();
+                }));
             }
-            catch (System.Exception /*ex*/) { }
         }
 
         private void calculateDmg_Click(object sender, RoutedEventArgs e)
@@ -902,44 +895,12 @@ namespace MSAToolBox.Controls.Legacy
 
         private void reloadItemList_Click(object sender, RoutedEventArgs e)
         {
-            using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-            {
-                ReloadItemList(client);
-            }
+            ReloadItemList(LegacyMorpher.Data);
         }
 
         private void calculateAll_Click(object sender, RoutedEventArgs e)
         {
-            CalculateWeaponDamage();
-            CalculateStats();
-            CalculateVendorPrice();
-            int reqlevel = ItemData.ItemLevel;
-            switch (ItemData.Quality)
-            {
-                case 0:
-                    reqlevel += 2;
-                    break;
-                case 2:
-                    reqlevel -= 2;
-                    break;
-                case 3:
-                    reqlevel -= 4;
-                    break;
-                case 4:
-                    reqlevel -= 6;
-                    break;
-                case 5:
-                    reqlevel -= 8;
-                    break;
-                case 6:
-                    reqlevel -= 10;
-                    break;
-                default:
-                    break;
-            }
-            if (reqlevel < 0)
-                reqlevel = 0;
-            ItemData.RequiredLevel = (byte)reqlevel;
+            CalculateValues();
             Save(true);
         }
 
@@ -948,68 +909,65 @@ namespace MSAToolBox.Controls.Legacy
             this.Dispatcher.Invoke(new Action(() =>
             {
                 exportItemDBC.IsEnabled = false;
-                itemTabProgressLabel.Content = "0 of " + ItemList.Length;
-                itemTabProgress.Maximum = ItemList.Length;
+                itemTabProgressLabel.Content = "0 of " + ItemList.Count;
+                itemTabProgress.Maximum = ItemList.Count;
                 Storyboard anim = FindResource("ShowProgressBar") as Storyboard;
                 anim.Begin();
             }));
 
-            using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
+            int index = 0;
+            foreach (var item in ItemList)
             {
-                int index = 0;
-                foreach (var item in ItemList)
+                ++index;
+                if (item.Class != 2)
+                    if (item.Class != 4)
+                    continue;
+
+                ItemData = LegacyMorpher.Data.GetItemTemplate(item.Entry);
+                ItemData.ItemLevel = (int)(ItemData.ItemLevel * 0.7f);
+                if (ItemData.ItemLevel < 1)
+                    ItemData.ItemLevel = 1;
+
+                CalculateWeaponDamage();
+                CalculateStats();
+                CalculateVendorPrice();
+
+                int reqlevel = ItemData.ItemLevel;
+                switch (ItemData.Quality)
                 {
-                    ++index;
-                    if (item.Class != 2)
-                        if (item.Class != 4)
-                        continue;
-
-                    ItemData = client.GetItemTemplate(item.Entry);
-                    ItemData.ItemLevel = (int)(ItemData.ItemLevel * 0.7f);
-                    if (ItemData.ItemLevel < 1)
-                        ItemData.ItemLevel = 1;
-
-                    CalculateWeaponDamage();
-                    CalculateStats();
-                    CalculateVendorPrice();
-
-                    int reqlevel = ItemData.ItemLevel;
-                    switch (ItemData.Quality)
-                    {
-                        case 0:
-                            reqlevel += 2;
-                            break;
-                        case 2:
-                            reqlevel -= 2;
-                            break;
-                        case 3:
-                            reqlevel -= 4;
-                            break;
-                        case 4:
-                            reqlevel -= 6;
-                            break;
-                        case 5:
-                            reqlevel -= 8;
-                            break;
-                        case 6:
-                            reqlevel -= 10;
-                            break;
-                        default:
-                            break;
-                    }
-
-                    if (reqlevel < 0)
-                        reqlevel = 0;
-
-                    ItemData.RequiredLevel = (byte)reqlevel;
-                    client.SaveItemTemplate(ItemData);
-
-                    this.Dispatcher.Invoke(new Action(() =>
-                    {
-                        itemTabProgressLabel.Content = index + " of " + ItemList.Length;
-                        itemTabProgress.Value = index;
-                    }));
+                    case 0:
+                        reqlevel += 2;
+                        break;
+                    case 2:
+                        reqlevel -= 2;
+                        break;
+                    case 3:
+                        reqlevel -= 4;
+                        break;
+                    case 4:
+                        reqlevel -= 6;
+                        break;
+                    case 5:
+                        reqlevel -= 8;
+                        break;
+                    case 6:
+                        reqlevel -= 10;
+                        break;
+                    default:
+                        break;
                 }
+
+                if (reqlevel < 0)
+                    reqlevel = 0;
+
+                ItemData.RequiredLevel = (byte)reqlevel;
+                LegacyMorpher.Data.SaveItemTemplate(ItemData, false);
+
+                this.Dispatcher.Invoke(new Action(() =>
+                {
+                    itemTabProgressLabel.Content = index + " of " + ItemList.Count;
+                    itemTabProgress.Value = index;
+                }));
             }
         }
 
@@ -1050,6 +1008,491 @@ namespace MSAToolBox.Controls.Legacy
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             new Thread(ModAllEquipments).Start();
+        }
+
+        public void ModResistance()
+        {
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                exportItemDBC.IsEnabled = false;
+                itemTabProgressLabel.Content = "0 of " + ItemList.Count;
+                itemTabProgress.Maximum = ItemList.Count;
+                Storyboard anim = FindResource("ShowProgressBar") as Storyboard;
+                anim.Begin();
+            }));
+
+            Random rand = new Random();
+
+            int index = 0;
+            foreach (var item in ItemList)
+            {
+                ++index;
+                if (item.Class != 4)
+                    continue;
+
+                ItemData = LegacyMorpher.Data.GetItemTemplate(item.Entry);
+
+                int resistance = ItemData.FireResistance;
+                double resistance1 = 0;
+                double resistance2 = 0;
+                double resistance3 = 0;
+                double resistance4 = 0;
+                double resistance5 = 0;
+
+                for (int i = 0; i != 5; i++)
+                {
+                    switch (rand.Next(4))
+                    {
+                        case 0:
+                            resistance1 = rand.Next(10000);
+                            break;
+                        case 1:
+                            resistance2 = rand.Next(10000);
+                            break;
+                        case 2:
+                            resistance3 = rand.Next(10000);
+                            break;
+                        case 3:
+                            resistance4 = rand.Next(10000);
+                            break;
+                        case 4:
+                            resistance5 = rand.Next(10000);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                double factor = resistance / (resistance1 + resistance2 + resistance3 + resistance4 + resistance5);
+                int res1 = (int)(resistance1 * factor);
+                int res2 = (int)(resistance2 * factor);
+                int res3 = (int)(resistance3 * factor);
+                int res4 = (int)(resistance4 * factor);
+                int res5 = (int)(resistance5 * factor);
+
+                // sum lefty
+                int lefty = resistance - res1 - res2 - res3 - res4 - res5;
+                if (lefty > 0)
+                {
+                    switch (rand.Next(4))
+                    {
+                        case 0:
+                            res1 += lefty;
+                            break;
+                        case 1:
+                            res2 += lefty;
+                            break;
+                        case 2:
+                            res3 += lefty;
+                            break;
+                        case 3:
+                            res4 += lefty;
+                            break;
+                        case 4:
+                            res5 += lefty;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                ItemData.FireResistance = (byte)res1;
+                ItemData.NatureResistance = (byte)res2;
+                ItemData.FrostResistance = (byte)res3;
+                ItemData.ShadowResistance = (byte)res4;
+                ItemData.ArcaneResistance = (byte)res5;
+
+                LegacyMorpher.Data.SaveItemTemplate(ItemData, false);
+
+                this.Dispatcher.Invoke(new Action(() =>
+                {
+                    itemTabProgressLabel.Content = index + " of " + ItemList.Count;
+                    itemTabProgress.Value = index;
+                }));
+            }
+        }
+
+        private void CalculateValues(ItemTemplate itemData = null)
+        {
+            if (itemData != null)
+                ItemData = itemData;
+
+            if (ItemData == null)
+                return;
+
+            float factor = ItemData.ItemLevel;
+            if (factor == 0) return;
+
+            if (ItemData.Class == 2 || ItemData.Class == 4)
+                ItemData.RequiredLevel = 0;
+
+            switch (ItemData.Quality)
+            {
+                case 0:
+                    factor *= FACTOR_POOR;
+                    break;
+                case 1:
+                    factor *= FACTOR_NORMAL;
+                    break;
+                case 2:
+                    factor *= FACTOR_UNCOMMON;
+                    break;
+                case 3:
+                    factor *= FACTOR_RARE;
+                    break;
+                case 4:
+                    factor *= FACTOR_EPIC;
+                    break;
+                case 5:
+                    factor *= FACTOR_LEGENDARY;
+                    break;
+                default:
+                    return;
+            }
+
+            switch (ItemData.InventoryType)
+            {
+                case 1:
+                    factor *= FACTOR_HEAD;
+                    break;
+                case 2:
+                    factor *= FACTOR_NECKLACE;
+                    break;
+                case 3:
+                    factor *= FACTOR_SHOULDER;
+                    break;
+                case 5:
+                case 20:
+                    factor *= FACTOR_CHEST;
+                    break;
+                case 6:
+                    factor *= FACTOR_WAIST;
+                    break;
+                case 7:
+                    factor *= FACTOR_LEGGING;
+                    break;
+                case 8:
+                    factor *= FACTOR_FEET;
+                    break;
+                case 9:
+                    factor *= FACTOR_WRIST;
+                    break;
+                case 10:
+                    factor *= FACTOR_GLOVE;
+                    break;
+                case 11:
+                    factor *= FACTOR_RING;
+                    break;
+                case 12:
+                    factor *= FACTOR_TRINKET;
+                    break;
+                case 13:
+                case 14:
+                case 21:
+                case 22:
+                case 23:
+                    factor *= FACTOR_1H_WEAPON;
+                    break;
+                case 15:
+                case 25:
+                case 26:
+                case 28:
+                    factor *= FACTOR_RANGED;
+                    break;
+                case 16:
+                    factor *= FACTOR_CLOAK;
+                    break;
+                case 17:
+                    factor *= FACTOR_2H_WEAPON;
+                    break;
+                default:
+                    break;
+            }
+
+            if (ItemData.Class == 4 && ItemData.Subclass != 0)
+            {
+                switch (ItemData.Subclass)
+                {
+                    case 1:
+                        ItemData.Armor = (int)(factor * FACTOR_ARMOR_CLOTH);
+                        break;
+                    case 2:
+                        ItemData.Armor = (int)(factor * FACTOR_ARMOR_LEATHER);
+                        break;
+                    case 3:
+                        ItemData.Armor = (int)(factor * FACTOR_ARMOR_MAIL);
+                        break;
+                    case 4:
+                        ItemData.Armor = (int)(factor * FACTOR_ARMOR_PLATE);
+                        break;
+                    case 6:
+                        ItemData.Armor = (int)(factor * FACTOR_ARMOR_SHIELD);
+                        break;
+                    default:
+                        break;
+                }
+                if (ItemData.Armor < 1) ItemData.Armor = 1;
+            }
+
+            float sum = 0;
+            float sta = 0;
+            for (int i = 0; i != ItemData.StatsCount; ++i)
+            {
+                float fa = 1.0f;
+                switch (ItemData.StatType[i])
+                {
+                    case 1:
+                        fa = 0.1f;
+                        sta += 0.1f * ItemData.StatValue[i];
+                        break;
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                        fa = 1.0f;
+                        sta += 1.0f * ItemData.StatValue[i];
+                        break;
+                    case 12:
+                    case 13:
+                    case 14:
+                    case 15:
+                    case 16:
+                    case 17:
+                    case 18:
+                    case 19:
+                    case 20:
+                    case 21:
+                    case 22:
+                    case 23:
+                    case 24:
+                    case 25:
+                    case 26:
+                    case 27:
+                    case 28:
+                    case 29:
+                    case 30:
+                        fa = 5.0f;
+                        break;
+                    case 31:
+                    case 32:
+                    case 36:
+                    case 37:
+                        fa = 10.0f;
+                        break;
+                    case 33:
+                    case 34:
+                    case 35:
+                        fa = 5.0f;
+                        break;
+                    case 38:
+                    case 39:
+                    case 41:
+                    case 42:
+                        fa = 2.0f;
+                        sta += 2.0f * ItemData.StatValue[i];
+                        break;
+                    case 43:
+                    case 49:
+                        fa = 5.0f;
+                        sta += 5.0f * ItemData.StatValue[i];
+                        break;
+                    case 44:
+                    case 47:
+                    case 48:
+                        fa = 1.0f;
+                        sta += 1.0f * ItemData.StatValue[i];
+                        break;
+                    case 46:
+                        fa = 1.5f;
+                        sta += 1.5f * ItemData.StatValue[i];
+                        break;
+                    default:
+                        break;
+                }
+                sum += fa * ItemData.StatValue[i];
+            }
+
+            if (sum != 0)
+            {
+                float mod = factor / sum;
+
+                for (int i = 0; i != ItemData.StatsCount; ++i)
+                {
+                    switch (ItemData.StatType[i])
+                    {
+                        case 1:
+                        case 3:
+                        case 4:
+                        case 5:
+                        case 6:
+                        case 7:
+                        case 38:
+                        case 39:
+                        case 41:
+                        case 42:
+                        case 43:
+                        case 44:
+                        case 45:
+                        case 46:
+                        case 47:
+                        case 48:
+                        case 49:
+                            ItemData.StatValue[i] = (short)(ItemData.StatValue[i] * mod);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            float dps = ItemData.ItemLevel;
+            if (ItemData.Class == 2 || ItemData.Speed != 0)
+            {
+                switch (ItemData.Subclass)
+                {
+                    case 0:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 7:
+                    case 13:
+                    case 15:
+                    case 16:
+                    case 18:
+                        dps *= FACTOR_1H_DPS;
+                        break;
+                    case 1:
+                    case 5:
+                    case 6:
+                    case 8:
+                        dps *= FACTOR_2H_DPS;
+                        break;
+                    case 10:
+                        dps *= FACTOR_STAFF_DPS;
+                        break;
+                    case 19:
+                        dps *= FACTOR_WAND_DPS;
+                        break;
+                    default:
+                        break;
+                }
+
+                switch (ItemData.Quality)
+                {
+                    case 0:
+                        dps *= FACTOR_POOR_DPS;
+                        break;
+                    case 1:
+                        dps *= FACTOR_NORMAL_DPS;
+                        break;
+                    case 2:
+                        dps *= FACTOR_UNCOMMON_DPS;
+                        break;
+                    case 3:
+                        dps *= FACTOR_RARE_DPS;
+                        break;
+                    case 4:
+                        dps *= FACTOR_EPIC_DPS;
+                        break;
+                    case 5:
+                        dps *= FACTOR_LEGENDARY_DPS;
+                        break;
+                    default:
+                        break;
+                }
+
+                ItemData.DamageMin[0] = dps * ItemData.Speed / 1.2f / 1000;
+                ItemData.DamageMax[0] = dps * ItemData.Speed * 1.2f / 1000;
+
+                if (ItemData.DamageMin[0] < 1) ItemData.DamageMin[0] = 1;
+                if (ItemData.DamageMax[0] < 2) ItemData.DamageMax[0] = 2;
+            }
+        }
+
+        private void ModAllItem()
+        {
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                Storyboard anim = FindResource("ShowProgressBar") as Storyboard;
+                anim.Begin();
+            }));
+            var itemlist = (from d in ItemList where d.Class == 2 || d.Class == 4 select d).ToList();
+            int count = itemlist.Count;
+            int index = 0;
+            foreach (var itemInfo in itemlist)
+            {
+                index++;
+                ItemTemplate item = LegacyMorpher.Data.GetItemTemplate(itemInfo.Entry);
+                CalculateValues(item);
+                LegacyMorpher.Data.SaveItemTemplate(item, false);
+                if (index % 5 == 0)
+                {
+                    this.Dispatcher.Invoke(new Action(() =>
+                    {
+                        itemTabProgressLabel.Content = "Proccessing " + index + " of " + count;
+                    }));
+                }
+            }
+        }
+
+        private void addRecipeItem_Click(object sender, RoutedEventArgs e)
+        {
+            ItemInfo info = itemList.SelectedItem as ItemInfo;
+            RecipePanel.self.AddItem(info.Name, info.Entry);
+        }
+
+        private void addReagent1_Click(object sender, RoutedEventArgs e)
+        {
+            ItemInfo info = itemList.SelectedItem as ItemInfo;
+            RecipePanel.self.AddReagent(info.Name, info.Entry, 0);
+        }
+
+        private void addReagent2_Click(object sender, RoutedEventArgs e)
+        {
+            ItemInfo info = itemList.SelectedItem as ItemInfo;
+            RecipePanel.self.AddReagent(info.Name, info.Entry, 1);
+        }
+
+        private void addReagent3_Click(object sender, RoutedEventArgs e)
+        {
+            ItemInfo info = itemList.SelectedItem as ItemInfo;
+            RecipePanel.self.AddReagent(info.Name, info.Entry, 2);
+        }
+
+        private void addReagent4_Click(object sender, RoutedEventArgs e)
+        {
+            ItemInfo info = itemList.SelectedItem as ItemInfo;
+            RecipePanel.self.AddReagent(info.Name, info.Entry, 3);
+        }
+
+        private void addReagent5_Click(object sender, RoutedEventArgs e)
+        {
+            ItemInfo info = itemList.SelectedItem as ItemInfo;
+            RecipePanel.self.AddReagent(info.Name, info.Entry, 4);
+        }
+
+        private void addReagent6_Click(object sender, RoutedEventArgs e)
+        {
+            ItemInfo info = itemList.SelectedItem as ItemInfo;
+            RecipePanel.self.AddReagent(info.Name, info.Entry, 5);
+        }
+
+        private void addReagent7_Click(object sender, RoutedEventArgs e)
+        {
+            ItemInfo info = itemList.SelectedItem as ItemInfo;
+            RecipePanel.self.AddReagent(info.Name, info.Entry, 6);
+        }
+
+        private void addReagent8_Click(object sender, RoutedEventArgs e)
+        {
+            ItemInfo info = itemList.SelectedItem as ItemInfo;
+            RecipePanel.self.AddReagent(info.Name, info.Entry, 7);
+        }
+
+        private void addNextReagent_Click(object sender, RoutedEventArgs e)
+        {
+            ItemInfo info = itemList.SelectedItem as ItemInfo;
+            RecipePanel.self.AddReagent(info.Name, info.Entry, -1);
         }
     }
 }

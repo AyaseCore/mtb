@@ -114,6 +114,18 @@
                 <ContextMenu>
                     <MenuItem Name="itemCopy" Header="COPY" Click="itemCopy_Click" />
                     <MenuItem Name="itemDelete" Header="DELETE" Click="itemDelete_Click" />
+                    <MenuItem Name="addToRecipe" Header="AddToRecipe">
+                        <MenuItem Name="addRecipeItem" Header="Item" Click="addRecipeItem_Click"/>
+                        <MenuItem Name="addNextReagent" Header="NextReagent" Click="addNextReagent_Click"/>
+                        <MenuItem Name="addReagent1" Header="Reagent1" Click="addReagent1_Click"/>
+                        <MenuItem Name="addReagent2" Header="Reagent2" Click="addReagent2_Click"/>
+                        <MenuItem Name="addReagent3" Header="Reagent3" Click="addReagent3_Click"/>
+                        <MenuItem Name="addReagent4" Header="Reagent4" Click="addReagent4_Click"/>
+                        <MenuItem Name="addReagent5" Header="Reagent5" Click="addReagent5_Click"/>
+                        <MenuItem Name="addReagent6" Header="Reagent6" Click="addReagent6_Click"/>
+                        <MenuItem Name="addReagent7" Header="Reagent7" Click="addReagent7_Click"/>
+                        <MenuItem Name="addReagent8" Header="Reagent8" Click="addReagent8_Click"/>
+                    </MenuItem>
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>
@@ -198,7 +210,7 @@
                         <TextBox x:Name="itemGemProperty" Grid.Column="1" Height="23" Margin="10,630,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding GemProperty, Mode=TwoWay}"/>
                         <Button x:Name="itemFlagBtn" Content="CHANGE" Grid.Column="1" HorizontalAlignment="Left" Margin="135,785,0,0" VerticalAlignment="Top" Width="75" Click="itemFlagBtn_Click"/>
                         <Button x:Name="itemSave" Content="Save" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="75" Click="itemSave_Click"/>
-                        <Button x:Name="calculatePrice" Content="Calculate" Grid.Column="1" HorizontalAlignment="Right" Margin="0,382,10,0" VerticalAlignment="Top" Width="127" Click="calculatePrice_Click"/>
+                        <Button x:Name="calculatePrice" Content="Calculate" Grid.Column="1" HorizontalAlignment="Right" Margin="0,382,10,0" VerticalAlignment="Top" Width="127" Click="calculatePrice_Click" IsEnabled="False"/>
                         <Button x:Name="calculateAll" Content="CALCULATE ALL" Grid.Column="1" Margin="514,10,152,0" VerticalAlignment="Top" Click="calculateAll_Click"/>
                     </Grid>
                 </ScrollViewer>
@@ -387,8 +399,8 @@
                                 <TextBox x:Name="itemRandomProperty" Height="23" Margin="10,504,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding RandomProperty, Mode=TwoWay}"/>
                                 <Label Content="RANDOM_SUFFIX" HorizontalAlignment="Right" Margin="9,474,0,0" VerticalAlignment="Top"/>
                                 <Label Content="RANDOM_PROPERTY" HorizontalAlignment="Right" Margin="0,504,0,0" VerticalAlignment="Top"/>
-                                <Button x:Name="calculateDmg" Content="Calculate Damage" Grid.Column="1" Margin="179,413,10,0" VerticalAlignment="Top" Click="calculateDmg_Click"/>
-                                <Button x:Name="calculateStats" Content="Calculate Stats" Grid.Column="1" Margin="179,10,10,0" VerticalAlignment="Top" Click="calculateStats_Click"/>
+                                <Button x:Name="calculateDmg" Content="Calculate Damage" Grid.Column="1" Margin="179,413,10,0" VerticalAlignment="Top" Click="calculateDmg_Click" IsEnabled="False"/>
+                                <Button x:Name="calculateStats" Content="Calculate Stats" Grid.Column="1" Margin="179,10,10,0" VerticalAlignment="Top" Click="calculateStats_Click" IsEnabled="False"/>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -554,7 +566,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="DISPAY">
-                <Legacy:ItemIconPanel />
+                <Legacy:IconPanel x:Name="iconPanel"/>
             </TabItem>
             <TabItem Header="RELATIONS">
                 <Grid>
@@ -603,6 +615,9 @@
                         </TabItem>
                     </TabControl>
                 </Grid>
+            </TabItem>
+            <TabItem Header="ENCHANT">
+                <Legacy:EnchantsPanel x:Name="enchantPanel"/>
             </TabItem>
         </TabControl>
         <ComboBox x:Name="itemFilterClass" Margin="92,40,0,0" VerticalAlignment="Top" SelectedValuePath="Key" DisplayMemberPath="Value" IsEnabled="{Binding ElementName=enableClassFilter, Path=IsChecked}" SelectionChanged="itemFilterClass_SelectionChanged"/>

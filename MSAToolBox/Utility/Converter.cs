@@ -158,12 +158,52 @@ namespace MSAToolBox.Utility
         {
             if (SkillLinePanel.SkillLines == null)
                 return "";
-            return (from d in SkillLinePanel.SkillLines where d.ID == (int)value select d.Description).SingleOrDefault();
+            return (from d in SkillLinePanel.SkillLines where d.ID == (int)value select d.Name).SingleOrDefault();
         }
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             return null;
         }
-    } 
+    }
+
+    public class LootBgConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            int reference = (int)value;
+            if (reference == 0)
+                return new SolidColorBrush(Colors.Black);
+            else
+                return new SolidColorBrush(Colors.Gray);
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    public class SpellEnchantNameConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (EnchantsPanel.ItemEnchantments == null || EnchantsPanel.ItemRandomProperties == null)
+                return "";
+            int prop = (int)value;
+            if (prop == 0) return "";
+            var p = (from d in EnchantsPanel.ItemRandomProperties where d.ID == prop select d).SingleOrDefault();
+            if (p == null) return "";
+            var s1 = (from d in EnchantsPanel.ItemEnchantments where d.ID == p.Enchant[0] select d.Name).SingleOrDefault();
+            var s2 = (from d in EnchantsPanel.ItemEnchantments where d.ID == p.Enchant[1] select d.Name).SingleOrDefault();
+            var s3 = (from d in EnchantsPanel.ItemEnchantments where d.ID == p.Enchant[2] select d.Name).SingleOrDefault();
+            var s4 = (from d in EnchantsPanel.ItemEnchantments where d.ID == p.Enchant[3] select d.Name).SingleOrDefault();
+            var s5 = (from d in EnchantsPanel.ItemEnchantments where d.ID == p.Enchant[4] select d.Name).SingleOrDefault();
+            return String.Format("{0} | {1} | {2} | {3} | {4}", s1 == null ? "null" : s1, s2 == null ? "null" : s2, s3 == null ? "null" : s3, s4 == null ? "null" : s4, s5 == null ? "null" : s5);
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
 }
 

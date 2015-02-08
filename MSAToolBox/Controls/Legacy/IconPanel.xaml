@@ -12,7 +12,7 @@
         </Grid.ColumnDefinitions>
         <ComboBox x:Name="itemGroupSound" Grid.Column="1" Margin="10,40,10,0" VerticalAlignment="Top"/>
         <Label Content="GROUP SOUND" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top"/>
-        <Button x:Name="itemCreateDisplayID" Content="FIND OR GENERATE" Grid.Column="1" Margin="10,71,10,0" VerticalAlignment="Top" />
+        <Button x:Name="itemCreateDisplayID" Content="FIND OR GENERATE" Grid.Column="1" Margin="10,71,10,0" VerticalAlignment="Top" IsEnabled="False" />
         <TextBox x:Name="itemCreateDisplayIDResult" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False"/>
         <Label Content="RESULT" Grid.Column="1" HorizontalAlignment="Right" Margin="0,232,10,0" VerticalAlignment="Top"/>
         <ScrollViewer Margin="0,62,0,0">
@@ -21,11 +21,11 @@
         <ProgressBar x:Name="itemIconProgress" Grid.Column="1" Margin="0" VerticalAlignment="Bottom"/>
         <Label x:Name="itemIconProgressLabel" Content="Label" Grid.Column="1" Margin="0,0,0,10" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"/>
         <TextBox x:Name="itemIconCreateID" Grid.Column="1" Height="23" Margin="10,262,10,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" IsEnabled="False"/>
-        <Button x:Name="itemIconCreateSaveDisplayId" Content="SAVE DISPLAYID" Grid.Column="1" Margin="10,293,10,0" VerticalAlignment="Top" />
+        <Button x:Name="itemIconCreateSaveDisplayId" Content="SAVE DISPLAYID" Grid.Column="1" Margin="10,293,10,0" VerticalAlignment="Top" Click="itemIconCreateSaveDisplayId_Click" />
         <Label Content="COPY MODEL DATA FROM" Grid.Column="1" HorizontalAlignment="Right" Margin="0,101,10,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="itemCreateDisplayCopyModelData" Grid.Column="1" Height="23" Margin="10,131,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="itemCreateDisplayCopyModelData" Grid.Column="1" Height="23" Margin="10,131,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False"/>
         <Label Content="WITH ITEMVISUAL" Grid.Column="1" HorizontalAlignment="Right" Margin="0,162,10,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="itemCreateDisplayIDVisual" Grid.Column="1" Height="23" Margin="10,192,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="0"/>
-        <TextBox x:Name="itemIconFilter" Height="23" Margin="0,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" Padding="7,0,0,0" />
+        <TextBox x:Name="itemCreateDisplayIDVisual" Grid.Column="1" Height="23" Margin="10,192,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="0" IsEnabled="False"/>
+        <TextBox x:Name="itemIconFilter" Height="23" Margin="0,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" Padding="7,0,0,0" TextChanged="itemIconFilter_TextChanged"/>
     </Grid>
 </UserControl>

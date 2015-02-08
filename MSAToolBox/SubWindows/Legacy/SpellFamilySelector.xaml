@@ -1,4 +1,4 @@
-﻿<Controls:MetroWindow x:Class="MSAToolBox.SubWindows.SpellFamilySelector"
+﻿<Controls:MetroWindow x:Class="MSAToolBox.SubWindows.Legacy.SpellFamilySelector"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"

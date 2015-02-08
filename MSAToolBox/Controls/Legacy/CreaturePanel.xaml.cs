@@ -1,5 +1,4 @@
-﻿using MSAToolBox.LegacyServices;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -14,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MSAToolBox.SubWindows.Legacy;
+using MSAToolBox.Utility;
 
 namespace MSAToolBox.Controls.Legacy
 {
@@ -22,7 +23,7 @@ namespace MSAToolBox.Controls.Legacy
     /// </summary>
     public partial class CreaturePanel : UserControl
     {
-        private List<CreatureInfo> CreatureList;
+        public static List<CreatureInfo> CreatureList;
         private List<Creature> CreatureSpawnList;
         private CreatureTemplate CreatureData;
         public CreaturePanel()
@@ -38,17 +39,10 @@ namespace MSAToolBox.Controls.Legacy
 
         private void GetCreatureList()
         {
-            try
-            {
-                using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                {
-                    CreatureList = client.GetCreatureList().ToList();
-                    creatureList.ItemsSource = CreatureList;
-                    creatureList.Items.SortDescriptions.Clear();
-                    creatureList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Entry", System.ComponentModel.ListSortDirection.Descending));
-                }
-            }
-            catch (System.Exception /*ex*/) { }
+            CreatureList = LegacyMorpher.Data.GetCreatureList().ToList();
+            creatureList.ItemsSource = CreatureList;
+            creatureList.Items.SortDescriptions.Clear();
+            creatureList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Entry", System.ComponentModel.ListSortDirection.Descending));
         }
 
         private void creatureList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -65,20 +59,15 @@ namespace MSAToolBox.Controls.Legacy
             if (entry == 0)
                 return;
 
-            try
-            {
-                using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                {
-                    if (CreatureData != null)
-                        client.SaveCreatureTemplate(CreatureData);
-                    Load(client.GetCreatureTemplate(entry));
-                    CreatureSpawnList = client.GetSpawnInfo(entry).ToList();
-                    creatureSpawn.Load(CreatureSpawnList);
-                }
-            }
-            catch (System.Exception /*ex*/) { }
+            if (CreatureData != null)
+                LegacyMorpher.Data.SaveCreatureTemplate(CreatureData);
+            Load(LegacyMorpher.Data.GetCreatureTemplate(entry));
+            CreatureSpawnList = LegacyMorpher.Data.GetSpawnInfo(entry);
+            creatureSpawn.Load(CreatureSpawnList);
 
             creatureTrainerPanel.Load(entry);
+            creatureLootPanel.Load(entry);
+            vendorPanel.Load(entry);
         }
 
         private void Load(CreatureTemplate creature)
@@ -89,37 +78,20 @@ namespace MSAToolBox.Controls.Legacy
 
         private void creatureCopy_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (CreatureData != null)
             {
-                using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                {
-                    if (CreatureData != null)
-                    {
-                        CreatureData.Entry[0] = 0;
-                        CreatureTemplate creature = client.SaveCreatureTemplate(CreatureData);
-                        Load(creature);
-                        GetCreatureList();
-                    }
-                }
+                CreatureData.Entry[0] = 0;
+                CreatureTemplate creature = LegacyMorpher.Data.SaveCreatureTemplate(CreatureData);
+                Load(creature);
+                GetCreatureList();
             }
-            catch (System.Exception /*ex*/) { }
         }
 
         private void creatureDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (CreatureData != null)
-            {
-                try
-                {
-                    using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                    {
-                        client.DeleteCreatureTemplate(CreatureData.Entry[0]);
-                        Load(null);
-                        GetCreatureList();
-                    }
-                }
-                catch (System.Exception /*ex*/) { }
-            }
+            LegacyMorpher.Data.DeleteCreatureTemplate(CreatureData.Entry[0]);
+            Load(null);
+            GetCreatureList();
         }
 
         private void ApplySearchFilter()
@@ -137,6 +109,21 @@ namespace MSAToolBox.Controls.Legacy
         private void searchFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
             ApplySearchFilter();
+        }
+
+        public void ModCreatureLevels()
+        {
+            foreach (var c in CreatureList)
+            {
+                CreatureTemplate creature = LegacyMorpher.Data.GetCreatureTemplate(c.Entry);
+                float level = (creature.MinLevel+creature.MaxLevel)/2;
+                creature.HealthModifier *= level / 20;
+            }
+        }
+
+        private void npcFlagsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new CreatureNpcFlagSelector(CreatureData).Show();
         }
     }
 }

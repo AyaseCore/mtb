@@ -20,6 +20,10 @@
             <TabItem Header="Spell">
                 <Legacy:SpellPanel x:Name="spellPanel"/>
             </TabItem>
+            <TabItem Header="Recipe">
+                <Legacy:RecipePanel x:Name="recipePanel" />
+            </TabItem>
+            <Legacy:RecipePanel Height="100" Width="100"/>
         </TabControl>
     </Grid>
 </UserControl>

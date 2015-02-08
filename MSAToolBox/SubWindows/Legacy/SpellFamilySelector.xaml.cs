@@ -16,7 +16,7 @@ using MSAToolBox.Utility;
 using MSAToolBox.Controls.Legacy;
 using MSAToolBox.Controls;
 
-namespace MSAToolBox.SubWindows
+namespace MSAToolBox.SubWindows.Legacy
 {
     /// <summary>
     /// SpellFamilyFlagsSelector.xaml 的交互逻辑

@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="MSAToolBox.Controls.Legacy.EnchantsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:Utility="clr-namespace:MSAToolBox.Utility"
+             d:DesignHeight="600" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <Utility:SpellEnchantNameConverter x:Key="SpellEnchantNameConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <TabControl Margin="0,0,0,40">
+            <TabItem Header="Entries">
+                <DataGrid x:Name="dbEnchantGrid" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ENTRY" Binding="{Binding ID}"/>
+                        <DataGridTextColumn Header="ENCHANT" Binding="{Binding Enchant}"/>
+                        <DataGridTextColumn Header="CHANCE" Binding="{Binding Chance}"/>
+                        <DataGridTextColumn Header="Detail" Binding="{Binding Enchant, Converter={StaticResource SpellEnchantNameConverter}}" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="RandProp">
+                <Grid>
+                    <DataGrid x:Name="randomPropertiesGrid" Margin="5" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Enchant1" Binding="{Binding Enchant[0]}"/>
+                            <DataGridTextColumn Header="Enchant2" Binding="{Binding Enchant[1]}"/>
+                            <DataGridTextColumn Header="Enchant3" Binding="{Binding Enchant[2]}"/>
+                            <DataGridTextColumn Header="Enchant4" Binding="{Binding Enchant[3]}"/>
+                            <DataGridTextColumn Header="Enchant5" Binding="{Binding Enchant[4]}"/>
+                            <DataGridTextColumn Header="InnerName" Binding="{Binding InnerName}"/>
+                            <DataGridTextColumn Header="NameFlags" Binding="{Binding NameFlag}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Enchants">
+                <DataGrid x:Name="enchantsGrid" Margin="5,5,5,-2" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                        <DataGridTextColumn Header="Suffix" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Charges" Binding="{Binding Charges}"/>
+                        <DataGridTextColumn Header="Type1" Binding="{Binding EnchantType[0]}"/>
+                        <DataGridTextColumn Header="Min1" Binding="{Binding Min[0]}"/>
+                        <DataGridTextColumn Header="Max1" Binding="{Binding Max[0]}"/>
+                        <DataGridTextColumn Header="Obj1" Binding="{Binding Object[0]}"/>
+                        <DataGridTextColumn Header="Type2" Binding="{Binding EnchantType[1]}"/>
+                        <DataGridTextColumn Header="Min2" Binding="{Binding Min[1]}"/>
+                        <DataGridTextColumn Header="Max2" Binding="{Binding Max[1]}"/>
+                        <DataGridTextColumn Header="Obj3" Binding="{Binding Object[1]}"/>
+                        <DataGridTextColumn Header="Type3" Binding="{Binding EnchantType[2]}"/>
+                        <DataGridTextColumn Header="Min3" Binding="{Binding Min[2]}"/>
+                        <DataGridTextColumn Header="Max3" Binding="{Binding Max[2]}"/>
+                        <DataGridTextColumn Header="Obj3" Binding="{Binding Object[2]}"/>
+                        <DataGridTextColumn Header="Visual" Binding="{Binding ItemVisual}"/>
+                        <DataGridTextColumn Header="NameFlag" Binding="{Binding NameFlags}"/>
+                        <DataGridTextColumn Header="Slot" Binding="{Binding Slot}"/>
+                        <DataGridTextColumn Header="Item" Binding="{Binding Item}"/>
+                        <DataGridTextColumn Header="Condition" Binding="{Binding Condition}"/>
+                        <DataGridTextColumn Header="Skill" Binding="{Binding SkillLine}"/>
+                        <DataGridTextColumn Header="Value" Binding="{Binding SkillLevel}"/>
+                        <DataGridTextColumn Header="ReqLevel" Binding="{Binding RequiredLevel}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+        <Button x:Name="save" Content="SAVE" HorizontalAlignment="Right" Margin="4,0,10,10" VerticalAlignment="Bottom" Width="75" Click="save_Click"/>
+    </Grid>
+</UserControl>

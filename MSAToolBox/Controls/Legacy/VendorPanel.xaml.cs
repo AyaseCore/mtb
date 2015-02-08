@@ -1,4 +1,4 @@
-﻿using MSAToolBox.LegacyServices;
+﻿using MSAToolBox.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,16 +30,9 @@ namespace MSAToolBox.Controls.Legacy
 
         public void Load(int entry)
         {
-            try
-            {
-                using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                {
-                    VendorData = client.GetVendorList(entry).ToList();
-                    vendorData.ItemsSource = VendorData;
-                    VendorEntry = entry;
-                }
-            }
-            catch (System.Exception /*ex*/) { }
+            VendorData = LegacyMorpher.Data.GetVendorList(entry).ToList();
+            vendorData.ItemsSource = VendorData;
+            VendorEntry = entry;
         }
 
         private void Save()
@@ -48,14 +41,7 @@ namespace MSAToolBox.Controls.Legacy
             if (VendorData == null || VendorEntry == 0)
                 return;
 
-            try
-            {
-                using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                {
-                    client.SaveVendorList(VendorEntry, VendorData.ToArray());
-                }
-            }
-            catch (System.Exception /*ex*/) { }
+            LegacyMorpher.Data.SaveVendorList(VendorEntry, VendorData);
         }
 
         private void vendorSave_Click(object sender, RoutedEventArgs e)
@@ -95,6 +81,24 @@ namespace MSAToolBox.Controls.Legacy
                     list.Remove(item);
                 }
             }
+        }
+
+        private void appendLoot_Click(object sender, RoutedEventArgs e)
+        {
+            int relatedTo = Convert.ToInt32(appendRelation.Text);
+            int item = Convert.ToInt32(appendItem.Text);
+            int maxcount = Convert.ToInt32(appendMaxCount.Text);
+            int incrTime = Convert.ToInt32(appendIncrTime.Text);
+            int extendedCost = Convert.ToInt32(appendExtendedCost.Text);
+            if (relatedTo == 0 || item == 0) return;
+            VendorInfo info = new VendorInfo();
+            info.ExtendedCost = extendedCost;
+            info.IncrTime = incrTime;
+            info.Item = item;
+            info.MaxCount = (byte)maxcount;
+            info.Slot = 0;
+            info.VerifiedBuild = 10000;
+            LegacyMorpher.Data.AppendVendorInfo(relatedTo, info);
         }
     }
 }

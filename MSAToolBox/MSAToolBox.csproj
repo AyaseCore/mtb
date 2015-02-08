@@ -33,13 +33,22 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>mario.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro">
       <HintPath>..\..\lib\MahApps.Metro.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -62,6 +71,54 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="access_requirement.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="achievement_criteria_data.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="achievement_dbc.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="achievement_reward.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="areatrigger_involvedrelation.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="areatrigger_scripts.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="areatrigger_tavern.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="areatrigger_teleport.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="battleground_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="battlemaster_entry.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="broadcast_text.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="capital_cities.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="command.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="conditions.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Legacy\CreatureLootPanel.xaml.cs">
+      <DependentUpon>CreatureLootPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Legacy\EnchantsPanel.xaml.cs">
+      <DependentUpon>EnchantsPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Legacy\ItemIconPanel.xaml.cs">
       <DependentUpon>ItemIconPanel.xaml</DependentUpon>
     </Compile>
@@ -86,6 +143,9 @@
     <Compile Include="Controls\Legacy\ItemPanel.xaml.cs">
       <DependentUpon>ItemPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Legacy\RecipePanel.xaml.cs">
+      <DependentUpon>RecipePanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Legacy\SkillLinePanel.xaml.cs">
       <DependentUpon>SkillLinePanel.xaml</DependentUpon>
     </Compile>
@@ -104,10 +164,560 @@
     <Compile Include="Controls\Legacy\VendorPanel.xaml.cs">
       <DependentUpon>VendorPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Service References\LegacyServices\Reference.cs">
+    <Compile Include="creature.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creature_addon.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creature_classlevelstats.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creature_equip_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creature_formations.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creature_loot_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creature_model_info.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creature_onkill_reputation.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creature_questender.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creature_queststarter.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creature_summon_groups.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creature_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creature_template_addon.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creature_text.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbc_achievement.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbc_achievement_criteria.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbc_achivement_category.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbc_item.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbc_itemset.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbc_skilllineability.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbc_spell.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbc_spell_item_enchantment.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbc_spell_obs.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbc_spell_original.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbc_spell_visual.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbc_talent.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_gossip_icon.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_item_ammo_type.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_item_bonding.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_item_damage_type.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_item_group_sound.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_item_inventory_type.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_item_material.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_item_quality.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_item_sheath.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_item_socket_color.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_item_spell_trigger.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_item_stat_type.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_menu_option_type.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_reputation_rank.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_smart_script_action.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_smart_script_event.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_smart_script_target.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_spell_aura.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_spell_aura_state.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_spell_damage_class.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_spell_effect.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_spell_family.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_spell_implicit_target.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_spell_item_enchantment_type.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_spell_power_type.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="define_talent_tab.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="disables.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="disenchant_loot_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="event_scripts.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="exploration_basexp.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fishing_loot_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="gameobject.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="gameobject_loot_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="gameobject_questender.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="gameobject_queststarter.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="gameobject_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_event.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_event_arena_seasons.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_event_battleground_holiday.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_event_condition.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_event_creature.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_event_creature_quest.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_event_gameobject.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_event_gameobject_quest.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_event_model_equip.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_event_npcflag.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_event_npc_vendor.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_event_pool.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_event_prerequisite.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_event_quest_condition.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_event_seasonal_questrelation.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_graveyard_zone.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_tele.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="game_weather.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="gossip_menu.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="gossip_menu_option.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="instance_encounters.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="instance_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="item_enchantment_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="item_loot_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="item_set_names.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="item_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegacyData.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
+      <DependentUpon>LegacyData.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegacyData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegacyData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LegacyData.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="LegacyWorld.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LegacyWorld.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegacyWorld.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegacyWorld.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LegacyWorld.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="lfg_dungeon_rewards.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lfg_entrances.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="linked_respawn.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="locales_achievement_reward.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="locales_broadcast_text.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="locales_creature.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="locales_creature_text.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="locales_gameobject.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="locales_gossip_menu_option.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="locales_item.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="locales_item_set_names.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="locales_npc_text.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="locales_page_text.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="locales_points_of_interest.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="locales_quest.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="loot_pool.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mail_level_reward.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mail_loot_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="milling_loot_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="npc_spellclick_spells.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="npc_text.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="npc_trainer.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="npc_vendor.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="outdoorpvp_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="page_text.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pet_levelstats.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pet_name_generation.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pickpocketing_loot_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="playercreateinfo.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="playercreateinfo_action.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="playercreateinfo_item.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="playercreateinfo_skills.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="playercreateinfo_spell_custom.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="player_classlevelstats.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="player_factionchange_achievement.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="player_factionchange_items.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="player_factionchange_quests.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="player_factionchange_reputations.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="player_factionchange_spells.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="player_factionchange_titles.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="player_levelstats.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="player_level_spell.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="player_xp_for_level.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="points_of_interest.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pool_creature.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pool_gameobject.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pool_pool.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pool_quest.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pool_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prospecting_loot_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="quest_poi.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="quest_poi_points.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="quest_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="random_enchantment.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="reference_loot_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="reputation_reward_rate.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="reputation_spillover_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="resource_points.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="script_waypoint.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="server_messages.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="skill_discovery_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="skill_extra_item_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="skill_fishing_base_level.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="skinning_loot_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="smart_scripts.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spelldifficulty_dbc.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_area.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_bonus_data.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_custom_attr.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_dbc.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_enchant_proc_data.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_group.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_group_stack_rules.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_learn_spell.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_linked_spell.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_loot_template.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_pet_auras.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_proc.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_proc_event.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_ranks.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_required.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_scripts.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_script_names.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_target_position.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_threat.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spell_v4.cs">
+      <DependentUpon>LegacyData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindows\Legacy\CreatureNpcFlagSelector.xaml.cs">
+      <DependentUpon>CreatureNpcFlagSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubWindows\Legacy\CreatureNpcFlagsSelector.xaml.cs">
       <DependentUpon>CreatureNpcFlagsSelector.xaml</DependentUpon>
@@ -115,15 +725,65 @@
     <Compile Include="SubWindows\Legacy\ItemFlagsSelector.xaml.cs">
       <DependentUpon>ItemFlagsSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubWindows\Legacy\SpellAuraInterruptSelector.xaml.cs">
+      <DependentUpon>SpellAuraInterruptSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindows\Legacy\SpellCastInterruptSelector.xaml.cs">
+      <DependentUpon>SpellCastInterruptSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\Legacy\SpellFamilySelector.xaml.cs">
       <DependentUpon>SpellFamilySelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubWindows\Legacy\SpellProcSelector.xaml.cs">
       <DependentUpon>SpellProcSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="supremacy_level_xp.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="transports.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="trinity_string.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
     <Compile Include="Utility\Converter.cs" />
     <Compile Include="Utility\DataStore.cs" />
     <Compile Include="Utility\DBC.cs" />
+    <Compile Include="vehicle_accessory.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vehicle_template_accessory.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="version.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="warden_checks.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="war_school.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="war_school_spell.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="waypoints.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="waypoint_data.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="waypoint_scripts.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Page Include="Controls\Legacy\CreatureLootPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Legacy\EnchantsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Legacy\ItemIconPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -153,6 +813,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Legacy\ItemPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Legacy\RecipePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -192,11 +856,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SubWindows\Legacy\CreatureNpcFlagSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SubWindows\Legacy\CreatureNpcFlagsSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SubWindows\Legacy\ItemFlagsSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindows\Legacy\SpellAuraInterruptSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindows\Legacy\SpellCastInterruptSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,81 +903,57 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="LegacyWorld.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LegacyWorld.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="LegacyData.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LegacyData.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="LegacyData.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LegacyData.edmx</DependentUpon>
+      <LastGenOutput>LegacyData.Context.cs</LastGenOutput>
+    </None>
+    <None Include="LegacyData.edmx.diagram">
+      <DependentUpon>LegacyData.edmx</DependentUpon>
+    </None>
+    <None Include="LegacyData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LegacyData.edmx</DependentUpon>
+      <LastGenOutput>LegacyData.cs</LastGenOutput>
+    </None>
+    <None Include="LegacyWorld.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LegacyWorld.edmx</DependentUpon>
+      <LastGenOutput>LegacyWorld.Context.cs</LastGenOutput>
+    </None>
+    <None Include="LegacyWorld.edmx.diagram">
+      <DependentUpon>LegacyWorld.edmx</DependentUpon>
+    </None>
+    <None Include="LegacyWorld.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LegacyWorld.edmx</DependentUpon>
+      <LastGenOutput>LegacyWorld.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\LegacyServices\item.xsd">
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\LegacyServices\item1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\LegacyServices\item2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\LegacyServices\item3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\LegacyServices\LegacyService.wsdl" />
-    <None Include="Service References\LegacyServices\MSAToolBox.LegacyServices.Creature.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\LegacyServices\MSAToolBox.LegacyServices.CreatureInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\LegacyServices\MSAToolBox.LegacyServices.CreatureTemplate.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\LegacyServices\MSAToolBox.LegacyServices.CreatureTrainerInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\LegacyServices\MSAToolBox.LegacyServices.DataDefineStore.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\LegacyServices\MSAToolBox.LegacyServices.GossipMenu.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\LegacyServices\MSAToolBox.LegacyServices.ItemDBC.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\LegacyServices\MSAToolBox.LegacyServices.ItemInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\LegacyServices\MSAToolBox.LegacyServices.ItemTemplate.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\LegacyServices\MSAToolBox.LegacyServices.SmartScript.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\LegacyServices\MSAToolBox.LegacyServices.VendorInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\LegacyServices\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\LegacyServices\item.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\LegacyServices\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\LegacyServices\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\LegacyServices\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <Resource Include="mario.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

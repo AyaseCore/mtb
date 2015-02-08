@@ -213,7 +213,7 @@ namespace MSAToolBox.Controls.Legacy
             "UNKNOWN 24",
             "PET SCALING",
             "CAN ONLY BE CASTED IN OUTLAND",
-            "UNKNOWN 27",
+            "SHOW CASTBAR ON RANGED SPELL",
             "AIMED SHOT",
             "UNKNOWN 29",
             "UNKNOWN 30",
@@ -482,7 +482,7 @@ namespace MSAToolBox.Controls.Legacy
             uint flags = 0;
             for (int i = 0; i != attrEx4.Count; ++i)
             {
-                if (attrEx[i].IsChecked == true)
+                if (attrEx4[i].IsChecked == true)
                     flags += (uint)Math.Pow(2, i);
             }
 

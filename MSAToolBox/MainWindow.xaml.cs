@@ -29,6 +29,7 @@ namespace MSAToolBox
         public MainWindow()
         {
             InitializeComponent();
+            legacyMorpher.Load();
         }
 
         private void restartGame_Click(object sender, RoutedEventArgs e)

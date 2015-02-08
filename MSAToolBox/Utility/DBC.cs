@@ -18,8 +18,25 @@ namespace MSAToolBox.Utility
             w.Write(stringBlockSize);
         }
 
-        public static string ReadString(BinaryReader r, int ofs)
+        public static void WriteString(BinaryWriter w, string s, ref int ofs, ref List<string> stringBlock, int skip = 0, int jump = 0)
         {
+            for (int i = 0; i != skip; i++)
+                w.Write(0);
+            if (s == null || s == "")
+                w.Write(0);
+            else
+            {
+                w.Write(ofs);
+                stringBlock.Add(s);
+                ofs += Encoding.UTF8.GetBytes(s + "\0").Length;
+            }
+            for (int i = 0; i != jump; i++)
+                w.Write(0);
+        }
+
+        public static string ReadString(BinaryReader r, int ofs, int skip = 0, int jump = 0)
+        {
+            r.BaseStream.Position += skip;
             int pos = r.ReadInt32();
             long rec = r.BaseStream.Position;
             r.BaseStream.Position = pos + ofs;
@@ -39,7 +56,7 @@ namespace MSAToolBox.Utility
                     stringBytes[j] = blist[j];
                 s = Encoding.UTF8.GetString(stringBytes);
             }
-            r.BaseStream.Position = rec;
+            r.BaseStream.Position = rec + jump;
             return s;
         }
 
@@ -505,5 +522,73 @@ namespace MSAToolBox.Utility
         public int Icon { get; set; }
         public string Verb { get; set; }
         public int CanLink { get; set; }
+    }
+
+    public class ItemDisplayInfo
+    {
+        public int ID { get; set; }
+        public string LeftModel { get; set; }
+        public string RightModel { get; set; }
+        public string LeftModelTexture { get; set; }
+        public string RightModelTexture { get; set; }
+        public string Icon1 { get; set; }
+        public string Icon2 { get; set; }
+        public int GeosetGroup1 { get; set; }
+        public int GeosetGroup2 { get; set; }
+        public int GeosetGroup3 { get; set; }
+        public int Flags { get; set; }
+        public int SpellVisualID { get; set; }
+        public int GroupSoundIndex { get; set; }
+        public int HelmetGeosetMale { get; set; }
+        public int HelmetGeosetFemale { get; set; }
+        public string UpperArmTexture { get; set; }
+        public string LowerArmTexture { get; set; }
+        public string HandsTexture { get; set; }
+        public string UpperTorsoTexture { get; set; }
+        public string LowerTorsoTexture { get; set; }
+        public string UpperLegTexture { get; set; }
+        public string LowerLegTexture { get; set; }
+        public string FootTexture { get; set; }
+        public int ItemVisual { get; set; }
+        public int ParticleColorID { get; set; }
+    }
+
+    public class SpellItemEnchantment
+    {
+        public SpellItemEnchantment()
+        {
+            EnchantType = new int[3];
+            Min = new int[3];
+            Max = new int[3];
+            Object = new int[3];
+        }
+        public int ID { get; set; }
+        public int Charges { get; set; }
+        public int[] EnchantType { get; set; }
+        public int[] Min { get; set; }
+        public int[] Max { get; set; }
+        public int[] Object { get; set; }
+        public string Name { get; set; }
+        public int NameFlags { get; set; }
+        public int ItemVisual { get; set; }
+        public int Slot { get; set; }
+        public int Item { get; set; }
+        public int Condition { get; set; }
+        public int SkillLine { get; set; }
+        public int SkillLevel { get; set; }
+        public int RequiredLevel { get; set; }
+    }
+
+    public class ItemRandomProperty
+    {
+        public ItemRandomProperty()
+        {
+            Enchant = new int[5];
+        }
+        public int ID { get; set; }
+        public string InnerName { get; set; }
+        public int[] Enchant { get; set; }
+        public string Name { get; set; }
+        public int NameFlag { get; set; }
     }
 }

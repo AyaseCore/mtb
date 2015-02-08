@@ -39,22 +39,22 @@
                         <MenuItem  Header="MAIN ABILITY(811)" x:Name="addToSkill811Btn" Click="addToSkill811Btn_Click" />
                         <MenuItem  Header="SECONDARY ABILITY(812)" x:Name="addToSkill812Btn" Click="addToSkill812Btn_Click"/>
                         <MenuItem  Header="CLASS BENEFIT(813)" x:Name="addToSkill813Btn" Click="addToSkill813Btn_Click"/>
-                        <MenuItem  Header="FIRST AID(129)" />
-                        <MenuItem  Header="BLACKSMITING(164)" />
-                        <MenuItem  Header="MAILCRAFTING(165)" />
-                        <MenuItem  Header="ACHEDEMY(129)" />
-                        <MenuItem  Header="HERBALISM(129)" />
-                        <MenuItem  Header="COOKING(185)" />
-                        <MenuItem  Header="MINING(186)" />
-                        <MenuItem  Header="CLOTHCRATING(197)" />
-                        <MenuItem  Header="ENGINEERING(202)" />
-                        <MenuItem  Header="ENCHANTING(333)" />
-                        <MenuItem  Header="FISHING(356)" />
-                        <MenuItem  Header="FURING(393)" />
-                        <MenuItem  Header="GEMCRAFTING(755)" />
-                        <MenuItem  Header="INSCRIPTION(773)" />
-                        <MenuItem  Header="MAGOLOGY(789)" />
-                        <MenuItem  Header="ADVENTURE(790)" />
+                        <MenuItem  Header="FIRST AID(129)" x:Name="addToSkill129Btn" Click="addToSkill129Btn_Click"/>
+                        <MenuItem  Header="BLACKSMITING(164)" x:Name="addToSkill164Btn" Click="addToSkill164Btn_Click"/>
+                        <MenuItem  Header="MAILCRAFTING(165)" x:Name="addToSkill165Btn" Click="addToSkill165Btn_Click"/>
+                        <MenuItem  Header="ACHEDEMY(171)" x:Name="addToSkill171Btn" Click="addToSkill171Btn_Click"/>
+                        <MenuItem  Header="HERBALISM(182)" x:Name="addToSkill182Btn" Click="addToSkill182Btn_Click"/>
+                        <MenuItem  Header="COOKING(185)" x:Name="addToSkill185Btn" Click="addToSkill185Btn_Click"/>
+                        <MenuItem  Header="MINING(186)" x:Name="addToSkill186Btn" Click="addToSkill186Btn_Click"/>
+                        <MenuItem  Header="CLOTHCRATING(197)" x:Name="addToSkill197Btn" Click="addToSkill197Btn_Click"/>
+                        <MenuItem  Header="ENGINEERING(202)" x:Name="addToSkill202Btn" Click="addToSkill202Btn_Click"/>
+                        <MenuItem  Header="ENCHANTING(333)" x:Name="addToSkill333Btn" Click="addToSkill333Btn_Click"/>
+                        <MenuItem  Header="FISHING(356)" x:Name="addToSkill356Btn" Click="addToSkill356Btn_Click"/>
+                        <MenuItem  Header="FURING(393)" x:Name="addToSkill393Btn" Click="addToSkill393Btn_Click"/>
+                        <MenuItem  Header="GEMCRAFTING(755)" x:Name="addToSkill755Btn" Click="addToSkill755Btn_Click"/>
+                        <MenuItem  Header="INSCRIPTION(773)" x:Name="addToSkill773Btn" Click="addToSkill773Btn_Click"/>
+                        <MenuItem  Header="MAGOLOGY(789)" x:Name="addToSkill789Btn" Click="addToSkill789Btn_Click"/>
+                        <MenuItem  Header="ADVENTURE(790)" x:Name="addToSkill790Btn" Click="addToSkill790Btn_Click"/>
                     </MenuItem>
                 </ContextMenu>
             </ListBox.ContextMenu>
@@ -181,15 +181,15 @@
                             <Label Content="COOLDOWN" HorizontalAlignment="Left" Margin="5,259,0,0" VerticalAlignment="Top" Grid.Column="1" Foreground="Red"/>
                             <TextBox  Grid.Column="1" Height="23" Margin="5,413,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding GlobalCooldown}" />
                             <Label Content="CATEGORY" HorizontalAlignment="Right" Margin="0,321,5,0" VerticalAlignment="Top"/>
-                            <TextBox  Grid.Column="1" Height="23" Margin="5,475,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding InterruptFlags}" Width="100" HorizontalAlignment="Left" IsEnabled="False" />
-                            <TextBox  Grid.Column="1" Height="23" Margin="5,506,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding AuraInterruptFlags}" HorizontalAlignment="Left" Width="100" IsEnabled="False" />
-                            <TextBox  Grid.Column="1" Height="23" Margin="5,537,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ChannelInterruptFlags}" HorizontalAlignment="Left" Width="100" IsEnabled="False" />
+                            <TextBox  Grid.Column="1" Height="23" Margin="5,475,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding InterruptFlags}" Width="100" HorizontalAlignment="Left" />
+                            <TextBox  Grid.Column="1" Height="23" Margin="5,506,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding AuraInterruptFlags}" HorizontalAlignment="Left" Width="100" />
+                            <TextBox  Grid.Column="1" Height="23" Margin="5,537,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ChannelInterruptFlags}" HorizontalAlignment="Left" Width="100" />
                             <Label Content="CAST" HorizontalAlignment="Right" Margin="0,475,5,0" VerticalAlignment="Top"/>
                             <Label Content="AURA" HorizontalAlignment="Right" Margin="0,506,5,0" VerticalAlignment="Top"/>
                             <Label Content="CHANNEL" HorizontalAlignment="Right" Margin="0,537,5,0" VerticalAlignment="Top"/>
                             <Label Content="INTERRUPTION" HorizontalAlignment="Left" Margin="5,445,0,0" VerticalAlignment="Top" Grid.Column="1" Foreground="Red"/>
-                            <TextBox  Grid.Column="1" Height="23" Margin="5,599,5,0" VerticalAlignment="Top" IsEnabled="False" Width="100" HorizontalAlignment="Left" Text="{Binding Targets}" />
-                            <TextBox  Grid.Column="1" Height="23" Margin="5,630,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding TargetCreatureType}" HorizontalAlignment="Left" Grid.Row="5" Width="100" IsEnabled="False" />
+                            <TextBox  Grid.Column="1" Height="23" Margin="5,599,5,0" VerticalAlignment="Top" Width="100" HorizontalAlignment="Left" Text="{Binding Targets}" />
+                            <TextBox  Grid.Column="1" Height="23" Margin="5,630,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding TargetCreatureType}" HorizontalAlignment="Left" Grid.Row="5" Width="100" />
                             <TextBox  Grid.Column="1" Height="23" Margin="5,661,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding RequiredSpellFocus}" />
                             <Label Content="TARGETS" HorizontalAlignment="Right" Margin="0,599,5,0" VerticalAlignment="Top"/>
                             <Label Content="CREATURE_TYPE" HorizontalAlignment="Right" Margin="0,630,5,0" VerticalAlignment="Top"/>
@@ -206,8 +206,8 @@
                             <TextBox  Grid.Column="1" Height="23" Margin="5,940,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ExcludeCasterAuraSpell}" />
                             <TextBox  Grid.Column="1" Height="23" Margin="5,971,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ExcludeTargetAuraSpell}" />
                             <TextBox  Grid.Column="1" Height="23" Margin="5,1033,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding EquippedItemClass}"  />
-                            <TextBox  Grid.Column="1" Height="23" Margin="5,1064,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding EquippedItemSubClassMask}" HorizontalAlignment="Left" Width="100" IsEnabled="False" />
-                            <TextBox  Grid.Column="1" Height="23" Margin="5,1095,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding EquippedItemInventoryTypeMask}" HorizontalAlignment="Left" Width="100" IsEnabled="False" />
+                            <TextBox  Grid.Column="1" Height="23" Margin="5,1064,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding EquippedItemSubClassMask}" HorizontalAlignment="Left" Width="100" />
+                            <TextBox  Grid.Column="1" Height="23" Margin="5,1095,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding EquippedItemInventoryTypeMask}" HorizontalAlignment="Left" Width="100" />
                             <Label Content="CASTER_AURA_STATE" HorizontalAlignment="Right" Margin="0,754,5,0" VerticalAlignment="Top"/>
                             <Label Content="TARGET_AURA_STATE" HorizontalAlignment="Right" Margin="0,785,5,0" VerticalAlignment="Top"/>
                             <Label Content="XCASTER_AURA_STATE" HorizontalAlignment="Right" Margin="0,816,5,0" VerticalAlignment="Top"/>
@@ -233,7 +233,7 @@
                             <Label Content="REQ_REPUTATION" HorizontalAlignment="Right" Margin="0,1281,5,0" VerticalAlignment="Top"/>
                             <TextBox  Grid.Column="1" Height="23" Margin="5,1312,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding RequiredAuraVision}" />
                             <Label Content="REQ_AURA_VISION" HorizontalAlignment="Right" Margin="0,1311,5,0" VerticalAlignment="Top"/>
-                            <ComboBox x:Name="totemcategory1"  Grid.Column="1" Height="23" Margin="5,1343,5,0" VerticalAlignment="Top" SelectedValue="{Binding TotemCategory[1]}"  SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                            <ComboBox x:Name="totemcategory1"  Grid.Column="1" Height="23" Margin="5,1343,5,0" VerticalAlignment="Top" SelectedValue="{Binding TotemCategory[0]}"  SelectedValuePath="Key" DisplayMemberPath="Value"/>
                             <Label Content="TOTEM_CATEGORY_A" HorizontalAlignment="Right" Margin="0,1343,5,0" VerticalAlignment="Top"/>
                             <ComboBox x:Name="totemcategory2"  Grid.Column="1" Height="23" Margin="5,1374,5,0" VerticalAlignment="Top" SelectedValue="{Binding TotemCategory[1]}"  SelectedValuePath="Key" DisplayMemberPath="Value"/>
                             <Label Content="TOTEM_CATEGORY_B" HorizontalAlignment="Right" Margin="0,1374,5,0" VerticalAlignment="Top"/>
@@ -251,8 +251,8 @@
                             <Label Content="SPELL_DIFFICULTY" HorizontalAlignment="Right" Margin="0,1560,5,0" VerticalAlignment="Top"/>
                             <Label Content="MISC" HorizontalAlignment="Left" Margin="5,1127,0,0" VerticalAlignment="Top" Grid.Column="1" Foreground="Red"/>
                             <Button x:Name="spellProc"  Content="Change" Grid.Column="1" HorizontalAlignment="Left" Margin="110,165,0,0" VerticalAlignment="Top" Width="74" Click="spellProc_Click" />
-                            <Button  Content="Change" Grid.Column="1" HorizontalAlignment="Left" Margin="110,475,0,0" VerticalAlignment="Top" Width="75" />
-                            <Button  Content="Change" Grid.Column="1" HorizontalAlignment="Left" Margin="110,506,0,0" VerticalAlignment="Top" Width="75" />
+                            <Button x:Name="spellCastInterrupt"  Content="Change" Grid.Column="1" HorizontalAlignment="Left" Margin="110,475,0,0" VerticalAlignment="Top" Width="75" Click="spellCastInterrupt_Click" />
+                            <Button x:Name="auraInterrupt"  Content="Change" Grid.Column="1" HorizontalAlignment="Left" Margin="110,506,0,0" VerticalAlignment="Top" Width="75" Click="auraInterrupt_Click" />
                             <Button  Content="Change" Grid.Column="1" HorizontalAlignment="Left" Margin="110,537,0,0" VerticalAlignment="Top" Width="75" />
                             <Button x:Name="selectFamilyMask"  Content="SET FLAG" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,5,0" VerticalAlignment="Top" Width="75" Click="selectFamilyMask_Click" />
                             <Button  Content="Change" Grid.Column="1" HorizontalAlignment="Left" Margin="110,630,0,0" VerticalAlignment="Top" Width="75" />
@@ -313,11 +313,11 @@
                                         <Label Content="MISC_B" HorizontalAlignment="Left" Margin="10,469,0,0" VerticalAlignment="Top"/>
                                         <TextBox  Height="23" Margin="10,494,10,0" TextWrapping="Wrap" Text="{Binding EffectMiscB[0]}" VerticalAlignment="Top" />
                                         <Label Content="SPELL_MASK_HIGH" HorizontalAlignment="Left" Margin="10,571,0,0" VerticalAlignment="Top"/>
-                                        <TextBox  Height="23" Margin="10,596,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskA[0]}" VerticalAlignment="Top" IsEnabled="False" />
+                                        <TextBox  Height="23" Margin="10,596,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskA[0]}" VerticalAlignment="Top" />
                                         <Label Content="SPELL_MASK_MID" HorizontalAlignment="Left" Margin="10,622,0,0" VerticalAlignment="Top"/>
-                                        <TextBox  Height="23" Margin="10,647,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskB[0]}" VerticalAlignment="Top" IsEnabled="False" />
+                                        <TextBox  Height="23" Margin="10,647,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskB[0]}" VerticalAlignment="Top" />
                                         <Label Content="SPELL_MASK_LOW" HorizontalAlignment="Left" Margin="10,673,0,0" VerticalAlignment="Top"/>
-                                        <TextBox  Height="23" Margin="10,698,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskC[0]}" VerticalAlignment="Top" IsEnabled="False" />
+                                        <TextBox  Height="23" Margin="10,698,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskC[0]}" VerticalAlignment="Top" />
                                         <TextBox  HorizontalAlignment="Left" Height="24" Margin="10,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Text="{Binding Effect[0]}"/>
                                         <TextBox  HorizontalAlignment="Left" Height="24" Margin="10,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Text="{Binding EffectMechanic[0]}"/>
                                         <TextBox  HorizontalAlignment="Left" Height="24" Margin="10,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Text="{Binding EffectTargetA[0]}"/>
@@ -375,11 +375,11 @@
                                         <Label Content="MISC_B" HorizontalAlignment="Left" Margin="10,469,0,0" VerticalAlignment="Top"/>
                                         <TextBox  Height="23" Margin="10,494,10,0" TextWrapping="Wrap" Text="{Binding EffectMiscB[1]}" VerticalAlignment="Top" />
                                         <Label Content="SPELL_MASK_HIGH" HorizontalAlignment="Left" Margin="10,571,0,0" VerticalAlignment="Top"/>
-                                        <TextBox  Height="23" Margin="10,596,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskA[1]}" VerticalAlignment="Top" IsEnabled="False" />
+                                        <TextBox  Height="23" Margin="10,596,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskA[1]}" VerticalAlignment="Top" />
                                         <Label Content="SPELL_MASK_MID" HorizontalAlignment="Left" Margin="10,622,0,0" VerticalAlignment="Top"/>
-                                        <TextBox  Height="23" Margin="10,647,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskB[1]}" VerticalAlignment="Top" IsEnabled="False" />
+                                        <TextBox  Height="23" Margin="10,647,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskB[1]}" VerticalAlignment="Top" />
                                         <Label Content="SPELL_MASK_LOW" HorizontalAlignment="Left" Margin="10,673,0,0" VerticalAlignment="Top"/>
-                                        <TextBox  Height="23" Margin="10,698,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskC[1]}" VerticalAlignment="Top" IsEnabled="False" />
+                                        <TextBox  Height="23" Margin="10,698,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskC[1]}" VerticalAlignment="Top" />
                                         <TextBox  HorizontalAlignment="Left" Height="24" Margin="10,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Text="{Binding Effect[1]}"/>
                                         <TextBox  HorizontalAlignment="Left" Height="24" Margin="10,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Text="{Binding EffectMechanic[1]}"/>
                                         <TextBox  HorizontalAlignment="Left" Height="24" Margin="10,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Text="{Binding EffectTargetA[1]}"/>
@@ -437,11 +437,11 @@
                                         <Label Content="MISC_B" HorizontalAlignment="Left" Margin="10,469,0,0" VerticalAlignment="Top"/>
                                         <TextBox  Height="23" Margin="10,494,10,0" TextWrapping="Wrap" Text="{Binding EffectMiscB[2]}" VerticalAlignment="Top" />
                                         <Label Content="SPELL_MASK_HIGH" HorizontalAlignment="Left" Margin="10,571,0,0" VerticalAlignment="Top"/>
-                                        <TextBox  Height="23" Margin="10,596,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskA[2]}" VerticalAlignment="Top" IsEnabled="False" />
+                                        <TextBox  Height="23" Margin="10,596,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskA[2]}" VerticalAlignment="Top" />
                                         <Label Content="SPELL_MASK_MID" HorizontalAlignment="Left" Margin="10,622,0,0" VerticalAlignment="Top"/>
-                                        <TextBox  Height="23" Margin="10,647,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskB[2]}" VerticalAlignment="Top" IsEnabled="False" />
+                                        <TextBox  Height="23" Margin="10,647,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskB[2]}" VerticalAlignment="Top" />
                                         <Label Content="SPELL_MASK_LOW" HorizontalAlignment="Left" Margin="10,673,0,0" VerticalAlignment="Top"/>
-                                        <TextBox  Height="23" Margin="10,698,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskC[2]}" VerticalAlignment="Top" IsEnabled="False" />
+                                        <TextBox  Height="23" Margin="10,698,10,0" TextWrapping="Wrap" Text="{Binding EffectSpellMaskC[2]}" VerticalAlignment="Top" />
                                         <TextBox  HorizontalAlignment="Left" Height="24" Margin="10,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Text="{Binding Effect[2]}"/>
                                         <TextBox  HorizontalAlignment="Left" Height="24" Margin="10,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Text="{Binding EffectMechanic[2]}"/>
                                         <TextBox  HorizontalAlignment="Left" Height="24" Margin="10,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Text="{Binding EffectTargetA[2]}"/>
@@ -468,17 +468,17 @@
                         </Grid.ColumnDefinitions>
                         <Label Content="TOTEM" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                         <Label Content="TOTEM_A" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                        <Label Content="TOTEM_B" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                        <Label Content="TOTEM_B" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="3"/>
                         <Label Content="REAGENT" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                         <Label Content="COUNT" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-                        <TextBox  Grid.Column="1" Height="23" Margin="10,91,90,0" TextWrapping="Wrap" Text="{Binding Reagent[0]}" VerticalAlignment="Top"  IsEnabled="False"/>
-                        <TextBox  Grid.Column="1" Height="23" Margin="10,122,90,0" TextWrapping="Wrap" Text="{Binding Reagent[1]}" VerticalAlignment="Top"  IsEnabled="False"/>
-                        <TextBox  Grid.Column="1" Height="23" Margin="10,153,90,0" TextWrapping="Wrap" Text="{Binding Reagent[2]}" VerticalAlignment="Top"  IsEnabled="False"/>
-                        <TextBox  Grid.Column="1" Height="23" Margin="10,184,90,0" TextWrapping="Wrap" Text="{Binding Reagent[3]}" VerticalAlignment="Top"  IsEnabled="False"/>
-                        <TextBox  Grid.Column="1" Height="23" Margin="10,215,90,0" TextWrapping="Wrap" Text="{Binding Reagent[4]}" VerticalAlignment="Top"  IsEnabled="False"/>
-                        <TextBox  Grid.Column="1" Height="23" Margin="10,246,90,0" TextWrapping="Wrap" Text="{Binding Reagent[5]}" VerticalAlignment="Top"  IsEnabled="False"/>
-                        <TextBox  Grid.Column="1" Height="23" Margin="10,277,90,0" TextWrapping="Wrap" Text="{Binding Reagent[6]}" VerticalAlignment="Top"  IsEnabled="False"/>
-                        <TextBox  Grid.Column="1" Height="23" Margin="10,308,90,0" TextWrapping="Wrap" Text="{Binding Reagent[7]}" VerticalAlignment="Top"  IsEnabled="False"/>
+                        <TextBox  Grid.Column="1" Height="23" Margin="10,91,90,0" TextWrapping="Wrap" Text="{Binding Reagent[0]}" VerticalAlignment="Top"/>
+                        <TextBox  Grid.Column="1" Height="23" Margin="10,122,90,0" TextWrapping="Wrap" Text="{Binding Reagent[1]}" VerticalAlignment="Top"/>
+                        <TextBox  Grid.Column="1" Height="23" Margin="10,153,90,0" TextWrapping="Wrap" Text="{Binding Reagent[2]}" VerticalAlignment="Top"/>
+                        <TextBox  Grid.Column="1" Height="23" Margin="10,184,90,0" TextWrapping="Wrap" Text="{Binding Reagent[3]}" VerticalAlignment="Top"/>
+                        <TextBox  Grid.Column="1" Height="23" Margin="10,215,90,0" TextWrapping="Wrap" Text="{Binding Reagent[4]}" VerticalAlignment="Top"/>
+                        <TextBox  Grid.Column="1" Height="23" Margin="10,246,90,0" TextWrapping="Wrap" Text="{Binding Reagent[5]}" VerticalAlignment="Top"/>
+                        <TextBox  Grid.Column="1" Height="23" Margin="10,277,90,0" TextWrapping="Wrap" Text="{Binding Reagent[6]}" VerticalAlignment="Top"/>
+                        <TextBox  Grid.Column="1" Height="23" Margin="10,308,90,0" TextWrapping="Wrap" Text="{Binding Reagent[7]}" VerticalAlignment="Top"/>
                         <TextBox  Grid.Column="2" Height="23" Margin="10,91,10,0" TextWrapping="Wrap" Text="{Binding ReagentCount[0]}" VerticalAlignment="Top" />
                         <TextBox  Grid.Column="2" Height="23" Margin="10,122,10,0" TextWrapping="Wrap" Text="{Binding ReagentCount[1]}" VerticalAlignment="Top" />
                         <TextBox  Grid.Column="2" Height="23" Margin="10,153,10,0" TextWrapping="Wrap" Text="{Binding ReagentCount[2]}" VerticalAlignment="Top" />
@@ -496,8 +496,8 @@
                         <TextBox  Grid.Column="3" Height="23" Margin="10,277,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Text="{Binding Reagent[6], Converter={StaticResource ItemNameConverter}}"/>
                         <TextBox  Grid.Column="3" Height="23" Margin="10,308,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Text="{Binding Reagent[7], Converter={StaticResource ItemNameConverter}}"/>
                         <Label Content="ITEM" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Grid.Column="3"/>
-                        <ComboBox x:Name="t1"  Grid.Column="1" Margin="10,35,10,0" VerticalAlignment="Top" SelectedValue="{Binding Totem[0]}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
-                        <ComboBox x:Name="t2"  Grid.Column="2" Margin="10,35,10,0" VerticalAlignment="Top" SelectedValue="{Binding Totem[1]}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                        <TextBox x:Name="t1"  Grid.Column="1" Margin="10,35,10,0" VerticalAlignment="Top" Text="{Binding Totem[0]}"/>
+                        <TextBox x:Name="t2"  Grid.Column="3" Margin="10,35,0,0" VerticalAlignment="Top" Text="{Binding Totem[1]}" HorizontalAlignment="Left" Width="180"/>
                         <Label Content="REAGENT" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
                         <Button  Content="SEARCH" Grid.Column="1" HorizontalAlignment="Right" Margin="0,92,10,0" VerticalAlignment="Top" Width="75" />
                         <Button  Content="SEARCH" Grid.Column="1" HorizontalAlignment="Right" Margin="0,123,10,0" VerticalAlignment="Top" Width="75" />
@@ -507,6 +507,8 @@
                         <Button  Content="SEARCH" Grid.Column="1" HorizontalAlignment="Right" Margin="0,246,10,0" VerticalAlignment="Top" Width="75" />
                         <Button  Content="SEARCH" Grid.Column="1" HorizontalAlignment="Right" Margin="0,277,10,0" VerticalAlignment="Top" Width="75" />
                         <Button  Content="SEARCH" Grid.Column="1" HorizontalAlignment="Right" Margin="0,308,10,0" VerticalAlignment="Top" Width="75" />
+                        <TextBox x:Name="t1Name"  Grid.Column="2" Margin="10,35,10,0" VerticalAlignment="Top" Text="{Binding Totem[0], Converter={StaticResource ItemNameConverter}}" IsEnabled="False"/>
+                        <TextBox x:Name="t2Name"  Grid.Column="3" Margin="195,35,0,0" VerticalAlignment="Top" Text="{Binding Totem[1]}" HorizontalAlignment="Left" Width="180" IsEnabled="False"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="ICON">
@@ -519,7 +521,7 @@
                 </TabItem>
             </TabControl>
         </Grid>
-        <Button  Content="Create..." Margin="5,10,0,0" VerticalAlignment="Top" x:Name="spellCreate" Click="spellCreate_Click"/>
+        <Button  Content="Save" Margin="5,10,0,0" VerticalAlignment="Top" x:Name="spellSave" Click="spellSave_Click"/>
         <ComboBox  Margin="5,71,0,0" VerticalAlignment="Top" />
     </Grid>
 </UserControl>

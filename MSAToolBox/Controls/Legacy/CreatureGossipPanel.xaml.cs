@@ -1,5 +1,4 @@
-﻿using MSAToolBox.LegacyServices;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +15,7 @@ using System.Windows.Shapes;
 using System.Threading;
 using System.Windows.Media.Animation;
 using MSAToolBox.SubWindows.Legacy;
+using MSAToolBox.Utility;
 
 namespace MSAToolBox.Controls.Legacy
 {
@@ -57,58 +57,44 @@ namespace MSAToolBox.Controls.Legacy
 
         private void InitDefines()
         {
-            try
-            {
-                using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                {
-                    LanguageDefines = client.GetLanguages();
-                    MenuOptionTypes = client.GetGossipMenuOptionTypes();
-                    GossipIconDefines = client.GetGossipIconDefines();
-                    CreatureNames = client.GetCreatureNames();
-                    Emotes = client.GetEmotes();
-                    AssignDefine(gossipNpcTextLanguage, LanguageDefines);
-                    AssignDefine(gossipOptionType1, MenuOptionTypes);
-                    AssignDefine(gossipOptionType2, MenuOptionTypes);
-                    AssignDefine(gossipOptionType3, MenuOptionTypes);
-                    AssignDefine(gossipOptionType4, MenuOptionTypes);
-                    AssignDefine(gossipOptionType5, MenuOptionTypes);
-                    AssignDefine(gossipOptionType6, MenuOptionTypes);
-                    AssignDefine(gossipOptionType7, MenuOptionTypes);
-                    AssignDefine(gossipOptionType8, MenuOptionTypes);
-                    AssignDefine(gossipOptionType9, MenuOptionTypes);
-                    AssignDefine(gossipOptionType10, MenuOptionTypes);
-                    AssignDefine(gossipIcon1, GossipIconDefines);
-                    AssignDefine(gossipIcon2, GossipIconDefines);
-                    AssignDefine(gossipIcon3, GossipIconDefines);
-                    AssignDefine(gossipIcon4, GossipIconDefines);
-                    AssignDefine(gossipIcon5, GossipIconDefines);
-                    AssignDefine(gossipIcon6, GossipIconDefines);
-                    AssignDefine(gossipIcon7, GossipIconDefines);
-                    AssignDefine(gossipIcon8, GossipIconDefines);
-                    AssignDefine(gossipIcon9, GossipIconDefines);
-                    AssignDefine(gossipIcon10, GossipIconDefines);
-                    AssignDefine(npcTextEmote1, Emotes);
-                    AssignDefine(npcTextEmote2, Emotes);
-                    AssignDefine(npcTextEmote3, Emotes);
-                }
-            }
-            catch (System.Exception /*ex*/) { }
+            LanguageDefines = LegacyMorpher.Data.GetLanguages();
+            MenuOptionTypes = LegacyMorpher.Data.GetGossipMenuOptionTypes();
+            GossipIconDefines = LegacyMorpher.Data.GetGossipIconDefines();
+            CreatureNames = LegacyMorpher.Data.GetCreatureNames();
+            Emotes = LegacyMorpher.Data.GetEmotes();
+            AssignDefine(gossipNpcTextLanguage, LanguageDefines);
+            AssignDefine(gossipOptionType1, MenuOptionTypes);
+            AssignDefine(gossipOptionType2, MenuOptionTypes);
+            AssignDefine(gossipOptionType3, MenuOptionTypes);
+            AssignDefine(gossipOptionType4, MenuOptionTypes);
+            AssignDefine(gossipOptionType5, MenuOptionTypes);
+            AssignDefine(gossipOptionType6, MenuOptionTypes);
+            AssignDefine(gossipOptionType7, MenuOptionTypes);
+            AssignDefine(gossipOptionType8, MenuOptionTypes);
+            AssignDefine(gossipOptionType9, MenuOptionTypes);
+            AssignDefine(gossipOptionType10, MenuOptionTypes);
+            AssignDefine(gossipIcon1, GossipIconDefines);
+            AssignDefine(gossipIcon2, GossipIconDefines);
+            AssignDefine(gossipIcon3, GossipIconDefines);
+            AssignDefine(gossipIcon4, GossipIconDefines);
+            AssignDefine(gossipIcon5, GossipIconDefines);
+            AssignDefine(gossipIcon6, GossipIconDefines);
+            AssignDefine(gossipIcon7, GossipIconDefines);
+            AssignDefine(gossipIcon8, GossipIconDefines);
+            AssignDefine(gossipIcon9, GossipIconDefines);
+            AssignDefine(gossipIcon10, GossipIconDefines);
+            AssignDefine(npcTextEmote1, Emotes);
+            AssignDefine(npcTextEmote2, Emotes);
+            AssignDefine(npcTextEmote3, Emotes);
         }
 
         public void Load(int id)
         {
             IsLoading = true;
             Update();
-            try
-            {
-                using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                {
-                    GossipData = client.GetGossipMenu(id);
-                    Load(GossipData);
-                    FlashMessage(Colors.Green, "菜单" + id + "已载入。");
-                };
-            }
-            catch (Exception /*ex*/) { FlashMessage(Colors.Red, "获取菜单" + id + "失败。"); }
+            GossipData = LegacyMorpher.Data.GetGossipMenu(id);
+            Load(GossipData);
+            FlashMessage(Colors.Green, "菜单" + id + "已载入。");
         }
 
         public void Load(GossipMenu menu)
@@ -446,17 +432,14 @@ namespace MSAToolBox.Controls.Legacy
         {
             try
             {
-                using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
+                GossipMenu menu = LegacyMorpher.Data.SaveGossipMenu(GossipData);
+                if (menu == null)
                 {
-                    GossipMenu menu = client.SaveGossipMenu(GossipData);
-                    if (menu == null)
-                    {
-                        FlashMessage(Colors.Red, "保存失败。");
-                        return;
-                    }
-                    FlashMessage(Colors.Green, "菜单" + GossipData.ID + "保存成功。");
-                    Load(menu);
+                    FlashMessage(Colors.Red, "保存失败。");
+                    return;
                 }
+                FlashMessage(Colors.Green, "菜单" + GossipData.ID + "保存成功。");
+                Load(menu);
             }
             catch (System.Exception /*ex*/) { FlashMessage(Colors.Red, "保存失败。"); }
         }
@@ -468,16 +451,13 @@ namespace MSAToolBox.Controls.Legacy
 
             try
             {
-                using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
+                GossipMenu menu = LegacyMorpher.Data.SaveGossipMenu(GossipData);
+                if (menu == null)
                 {
-                    GossipMenu menu = client.SaveGossipMenu(GossipData);
-                    if (menu == null)
-                    {
-                        FlashMessage(Colors.Red, "保存失败。");
-                        return;
-                    }
-                    FlashMessage(Colors.Green, "菜单" + menu.ID + "保存成功。");
+                    FlashMessage(Colors.Red, "保存失败。");
+                    return;
                 }
+                FlashMessage(Colors.Green, "菜单" + menu.ID + "保存成功。");
             }
             catch (System.Exception /*ex*/)
             {
@@ -561,18 +541,8 @@ namespace MSAToolBox.Controls.Legacy
 
         private GossipMenu CreateGossipMenu()
         {
-            try
-            {
-                using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                {
-                    GossipMenu menu = client.CreateNewGossipMenu();
-                    return menu;
-                }
-            }
-            catch (System.Exception /*ex*/)
-            {
-                return null;
-            }
+            GossipMenu menu = LegacyMorpher.Data.CreateNewGossipMenu();
+            return menu;
         }
 
         private int NavigateToMenu(int optionID)
@@ -876,15 +846,8 @@ namespace MSAToolBox.Controls.Legacy
             if (showNpcEntryText.IsChecked == true)
             {
                 int npcEntry = Convert.ToInt32(gossipNpcID.Text);
-                try
-                {
-                    using (LegacyServiceClient client = new LegacyServiceClient("Legacy"))
-                    {
-                        menuID = client.GetOrCreateCreatureGossipID(npcEntry);
-                        GossipNavigation = new GossipNavigator(menuID);
-                    }
-                }
-                catch (System.Exception /*ex*/) { }
+                menuID = LegacyMorpher.Data.GetOrCreateCreatureGossipID(npcEntry);
+                GossipNavigation = new GossipNavigator(menuID);
             }
             else
             {
