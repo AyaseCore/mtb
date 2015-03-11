@@ -30,7 +30,7 @@ namespace MSAToolBox.Controls.Legacy
 
         public void Load(int entry)
         {
-            VendorData = LegacyMorpher.Data.GetVendorList(entry).ToList();
+            VendorData = LegacyWorld.GetVendorList(entry).ToList();
             vendorData.ItemsSource = VendorData;
             VendorEntry = entry;
         }
@@ -41,7 +41,7 @@ namespace MSAToolBox.Controls.Legacy
             if (VendorData == null || VendorEntry == 0)
                 return;
 
-            LegacyMorpher.Data.SaveVendorList(VendorEntry, VendorData);
+            LegacyWorld.SaveVendorList(VendorEntry, VendorData);
         }
 
         private void vendorSave_Click(object sender, RoutedEventArgs e)
@@ -98,7 +98,7 @@ namespace MSAToolBox.Controls.Legacy
             info.MaxCount = (byte)maxcount;
             info.Slot = 0;
             info.VerifiedBuild = 10000;
-            LegacyMorpher.Data.AppendVendorInfo(relatedTo, info);
+            LegacyWorld.AppendVendorInfo(relatedTo, info);
         }
     }
 }

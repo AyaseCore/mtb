@@ -37,14 +37,18 @@ namespace MSAToolBox.Controls.Legacy
         public void Load()
         {
             AssignDefines();
-            LoadSpellDBC();
+            spells = new ObservableCollection<SpellTemplate>();
+            LoadSpellDBC(ref spells, "Spell.dbc");
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                spellList.ItemsSource = spells;
+            }));
             spellIconPanel.Load();
         }
 
-        public void LoadSpellDBC()
+        public void LoadSpellDBC(ref ObservableCollection<SpellTemplate> sp, string path)
         {
-            spells = new ObservableCollection<SpellTemplate>();
-            using (FileStream stream = File.OpenRead("Spell.dbc"))
+            using (FileStream stream = File.OpenRead(path))
             {
                 BinaryReader r = new BinaryReader(stream);
                 stream.Position = 4;
@@ -220,26 +224,236 @@ namespace MSAToolBox.Controls.Legacy
                     spell.EffectBonusMultiplier[2] = r.ReadSingle();
                     spell.DescriptionVariable = r.ReadUInt32();
                     spell.Difficulty = r.ReadUInt32();
-                    spells.Add(spell);
+                    sp.Add(spell);
                 }
                 r.Close();
-
-                this.Dispatcher.Invoke(new Action(() =>
-                {
-                    spellList.ItemsSource = spells;
-                }));
             }
         }
 
-        public static void WriteClientDBC()
+        public static void WriteSpellDBC(ObservableCollection<SpellTemplate> sp, List<string> outputPath)
         {
-            using (FileStream stream = File.Create(MainWindow.CLIENT_PATH + "DBFilesClient/Spell.dbc"))
+            using (FileStream stream = File.Create("Spell.dbc"))
             {
                 BinaryWriter w = new BinaryWriter(stream);
-                DBC.WriteDBCHeader(w, spells.Count, 234, 936);
+                DBC.WriteDBCHeader(w, sp.Count, 234, 936);
                 List<string> dbcStrings = new List<string>();
                 int stringPos = 1;
-                foreach (var spell in spells)
+                foreach (var spell in sp)
+                {
+                    w.Write(spell.ID);
+                    w.Write(spell.Category);
+                    w.Write(spell.Dispel);
+                    w.Write(spell.Mechanic);
+                    for (int i = 0; i != spell.Attributes.Length; ++i)
+                        w.Write(spell.Attributes[i]);
+                    w.Write(spell.Stance[0]);
+                    w.Write(spell.Stance[1]);
+                    w.Write(spell.StanceNot[0]);
+                    w.Write(spell.StanceNot[1]);
+                    w.Write(spell.Targets);
+                    w.Write(spell.TargetCreatureType);
+                    w.Write(spell.RequiredSpellFocus);
+                    w.Write(spell.RequireFacingTarget == false ? 0 : 1);
+                    w.Write(spell.CasterAuraState);
+                    w.Write(spell.TargetAuraState);
+                    w.Write(spell.ExcludeCasterAuraState);
+                    w.Write(spell.ExcludeTargetAuraState);
+                    w.Write(spell.CasterAuraSpell);
+                    w.Write(spell.TargetAuraSpell);
+                    w.Write(spell.ExcludeCasterAuraSpell);
+                    w.Write(spell.ExcludeTargetAuraSpell);
+                    w.Write(spell.CastingTime);
+                    w.Write(spell.Cooldown);
+                    w.Write(spell.CategoryCooldown);
+                    w.Write(spell.InterruptFlags);
+                    w.Write(spell.AuraInterruptFlags);
+                    w.Write(spell.ChannelInterruptFlags);
+                    w.Write(spell.Proc);
+                    w.Write(spell.ProcChance);
+                    w.Write(spell.ProcCharges);
+                    w.Write(spell.MaxLevel);
+                    w.Write(spell.BaseLevel);
+                    w.Write(spell.Level);
+                    w.Write(spell.Duration);
+                    w.Write(spell.PowerType);
+                    w.Write(spell.PowerCost);
+                    w.Write(spell.PowerCostPerLevel);
+                    w.Write(spell.PowerCostPerSecond);
+                    w.Write(spell.PowerCostPerSecondPerLevel);
+                    w.Write(spell.Range);
+                    w.Write(spell.Speed);
+                    w.Write(spell.ModalNextSpell);
+                    w.Write(spell.StackAmount);
+                    w.Write(spell.Totem[0]);
+                    w.Write(spell.Totem[1]);
+                    for (int i = 0; i != spell.Reagent.Length; ++i)
+                        w.Write(spell.Reagent[i]);
+                    for (int i = 0; i != spell.ReagentCount.Length; ++i)
+                        w.Write(spell.ReagentCount[i]);
+                    w.Write(spell.EquippedItemClass);
+                    w.Write(spell.EquippedItemSubClassMask);
+                    w.Write(spell.EquippedItemInventoryTypeMask);
+                    w.Write(spell.Effect[0]);
+                    w.Write(spell.Effect[1]);
+                    w.Write(spell.Effect[2]);
+                    w.Write(spell.EffectDieSides[0]);
+                    w.Write(spell.EffectDieSides[1]);
+                    w.Write(spell.EffectDieSides[2]);
+                    w.Write(spell.EffectPointsPerLevel[0]);
+                    w.Write(spell.EffectPointsPerLevel[1]);
+                    w.Write(spell.EffectPointsPerLevel[2]);
+                    w.Write(spell.EffectBasePoints[0]);
+                    w.Write(spell.EffectBasePoints[1]);
+                    w.Write(spell.EffectBasePoints[2]);
+                    w.Write(spell.EffectMechanic[0]);
+                    w.Write(spell.EffectMechanic[1]);
+                    w.Write(spell.EffectMechanic[2]);
+                    w.Write(spell.EffectTargetA[0]);
+                    w.Write(spell.EffectTargetA[1]);
+                    w.Write(spell.EffectTargetA[2]);
+                    w.Write(spell.EffectTargetB[0]);
+                    w.Write(spell.EffectTargetB[1]);
+                    w.Write(spell.EffectTargetB[2]);
+                    w.Write(spell.EffectRadius[0]);
+                    w.Write(spell.EffectRadius[1]);
+                    w.Write(spell.EffectRadius[2]);
+                    w.Write(spell.EffectApplyAura[0]);
+                    w.Write(spell.EffectApplyAura[1]);
+                    w.Write(spell.EffectApplyAura[2]);
+                    w.Write(spell.EffectAmplitude[0]);
+                    w.Write(spell.EffectAmplitude[1]);
+                    w.Write(spell.EffectAmplitude[2]);
+                    w.Write(spell.EffectMultipleValue[0]);
+                    w.Write(spell.EffectMultipleValue[1]);
+                    w.Write(spell.EffectMultipleValue[2]);
+                    w.Write(spell.EffectChainTargets[0]);
+                    w.Write(spell.EffectChainTargets[1]);
+                    w.Write(spell.EffectChainTargets[2]);
+                    w.Write(spell.EffectItemType[0]);
+                    w.Write(spell.EffectItemType[1]);
+                    w.Write(spell.EffectItemType[2]);
+                    w.Write(spell.EffectMisc[0]);
+                    w.Write(spell.EffectMisc[1]);
+                    w.Write(spell.EffectMisc[2]);
+                    w.Write(spell.EffectMiscB[0]);
+                    w.Write(spell.EffectMiscB[1]);
+                    w.Write(spell.EffectMiscB[2]);
+                    w.Write(spell.EffectTriggerSpell[0]);
+                    w.Write(spell.EffectTriggerSpell[1]);
+                    w.Write(spell.EffectTriggerSpell[2]);
+                    w.Write(spell.EffectPointsPerComboPoint[0]);
+                    w.Write(spell.EffectPointsPerComboPoint[1]);
+                    w.Write(spell.EffectPointsPerComboPoint[2]);
+                    w.Write(spell.EffectSpellMaskA[0]);
+                    w.Write(spell.EffectSpellMaskB[0]);
+                    w.Write(spell.EffectSpellMaskC[0]);
+                    w.Write(spell.EffectSpellMaskA[1]);
+                    w.Write(spell.EffectSpellMaskB[1]);
+                    w.Write(spell.EffectSpellMaskC[1]);
+                    w.Write(spell.EffectSpellMaskA[2]);
+                    w.Write(spell.EffectSpellMaskB[2]);
+                    w.Write(spell.EffectSpellMaskC[2]);
+                    w.Write(spell.Visual[0]);
+                    w.Write(spell.Visual[1]);
+                    w.Write(spell.Icon);
+                    w.Write(spell.ActiveIcon);
+                    w.Write(spell.Priority);
+                    DBC.WriteZeros(w, 4);
+                    if (spell.Name == "")
+                        w.Write(0);
+                    else
+                    {
+                        w.Write(stringPos);
+                        stringPos += Encoding.UTF8.GetBytes(spell.Name + "\0").Length;
+                        dbcStrings.Add(spell.Name);
+                    }
+                    DBC.WriteZeros(w, 11);
+                    w.Write(spell.NameFlags);
+                    DBC.WriteZeros(w, 4);
+                    if (spell.Rank == "")
+                        w.Write(0);
+                    else
+                    {
+                        w.Write(stringPos);
+                        stringPos += Encoding.UTF8.GetBytes(spell.Rank + "\0").Length;
+                        dbcStrings.Add(spell.Rank);
+                    }
+                    DBC.WriteZeros(w, 11);
+                    w.Write(spell.RankFlags);
+                    DBC.WriteZeros(w, 4);
+                    if (spell.Description == "")
+                        w.Write(0);
+                    else
+                    {
+                        w.Write(stringPos);
+                        stringPos += Encoding.UTF8.GetBytes(spell.Description + "\0").Length;
+                        dbcStrings.Add(spell.Description);
+                    }
+                    DBC.WriteZeros(w, 11);
+                    w.Write(spell.DescriptionFlags);
+                    DBC.WriteZeros(w, 4);
+                    if (spell.ToolTip == "")
+                        w.Write(0);
+                    else
+                    {
+                        w.Write(stringPos);
+                        stringPos += Encoding.UTF8.GetBytes(spell.ToolTip + "\0").Length;
+                        dbcStrings.Add(spell.ToolTip);
+                    }
+                    DBC.WriteZeros(w, 11);
+                    w.Write(spell.ToolTipFlags);
+                    w.Write(spell.PowerCostPercent);
+                    w.Write(spell.GlobalCategory);
+                    w.Write(spell.GlobalCooldown);
+                    w.Write(spell.MaxTargetLevel);
+                    w.Write(spell.Family);
+                    w.Write(spell.FamilyMaskA);
+                    w.Write(spell.FamilyMaskB);
+                    w.Write(spell.FamilyMaskC);
+                    w.Write(spell.MaxAffectTargets);
+                    w.Write(spell.DamageClass);
+                    w.Write(spell.PreventionType);
+                    w.Write(spell.StanceBarOrder);
+                    w.Write(spell.EffectDamageMultiplier[0]);
+                    w.Write(spell.EffectDamageMultiplier[1]);
+                    w.Write(spell.EffectDamageMultiplier[2]);
+                    w.Write(spell.MinFaction);
+                    w.Write(spell.MinReputation);
+                    w.Write(spell.RequiredAuraVision);
+                    w.Write(spell.TotemCategory[0]);
+                    w.Write(spell.TotemCategory[1]);
+                    w.Write(spell.AreaGroup);
+                    w.Write(spell.SchoolMask);
+                    w.Write(spell.RuneCost);
+                    w.Write(spell.Missile);
+                    w.Write(spell.PowerDisplay);
+                    w.Write(spell.EffectBonusMultiplier[0]);
+                    w.Write(spell.EffectBonusMultiplier[1]);
+                    w.Write(spell.EffectBonusMultiplier[2]);
+                    w.Write(spell.DescriptionVariable);
+                    w.Write(spell.Difficulty);
+                }
+                w.Write((byte)0);
+                foreach (string s in dbcStrings)
+                    w.Write(Encoding.UTF8.GetBytes(s + "\0"));
+                stream.Position = 16;
+                w.Write(stringPos);
+                w.Close();
+
+                foreach (var path in outputPath)
+                    File.Copy("Spell.dbc", path, true);
+            }
+        }
+
+        public static void WriteClientDBC(ObservableCollection<SpellTemplate> sp, string path)
+        {
+            using (FileStream stream = File.Create(path))
+            {
+                BinaryWriter w = new BinaryWriter(stream);
+                DBC.WriteDBCHeader(w, sp.Count, 234, 936);
+                List<string> dbcStrings = new List<string>();
+                int stringPos = 1;
+                foreach (var spell in sp)
                 {
                     w.Write(spell.ID);
                     w.Write(spell.Category);
@@ -443,221 +657,6 @@ namespace MSAToolBox.Controls.Legacy
             }
         }
 
-        public static void WriteSpellDBC()
-        {
-            using (FileStream stream = File.Create("Spell.dbc"))
-            {
-                BinaryWriter w = new BinaryWriter(stream);
-                DBC.WriteDBCHeader(w, spells.Count, 234, 936);
-                List<string> dbcStrings = new List<string>();
-                int stringPos = 1;
-                foreach (var spell in spells)
-                {
-                    w.Write(spell.ID);
-                    w.Write(spell.Category);
-                    w.Write(spell.Dispel);
-                    w.Write(spell.Mechanic);
-                    for (int i = 0; i != spell.Attributes.Length; ++i)
-                        w.Write(spell.Attributes[i]);
-                    w.Write(spell.Stance[0]);
-                    w.Write(spell.Stance[1]);
-                    w.Write(spell.StanceNot[0]);
-                    w.Write(spell.StanceNot[1]);
-                    w.Write(spell.Targets);
-                    w.Write(spell.TargetCreatureType);
-                    w.Write(spell.RequiredSpellFocus);
-                    w.Write(spell.RequireFacingTarget == false ? 0 : 1);
-                    w.Write(spell.CasterAuraState);
-                    w.Write(spell.TargetAuraState);
-                    w.Write(spell.ExcludeCasterAuraState);
-                    w.Write(spell.ExcludeTargetAuraState);
-                    w.Write(spell.CasterAuraSpell);
-                    w.Write(spell.TargetAuraSpell);
-                    w.Write(spell.ExcludeCasterAuraSpell);
-                    w.Write(spell.ExcludeTargetAuraSpell);
-                    w.Write(spell.CastingTime);
-                    w.Write(spell.Cooldown);
-                    w.Write(spell.CategoryCooldown);
-                    w.Write(spell.InterruptFlags);
-                    w.Write(spell.AuraInterruptFlags);
-                    w.Write(spell.ChannelInterruptFlags);
-                    w.Write(spell.Proc);
-                    w.Write(spell.ProcChance);
-                    w.Write(spell.ProcCharges);
-                    w.Write(spell.MaxLevel);
-                    w.Write(spell.BaseLevel);
-                    w.Write(spell.Level);
-                    w.Write(spell.Duration);
-                    w.Write(spell.PowerType);
-                    w.Write(spell.PowerCost);
-                    w.Write(spell.PowerCostPerLevel);
-                    w.Write(spell.PowerCostPerSecond);
-                    w.Write(spell.PowerCostPerSecondPerLevel);
-                    w.Write(spell.Range);
-                    w.Write(spell.Speed);
-                    w.Write(spell.ModalNextSpell);
-                    w.Write(spell.StackAmount);
-                    w.Write(spell.Totem[0]);
-                    w.Write(spell.Totem[1]);
-                    for (int i = 0; i != spell.Reagent.Length; ++i)
-                        w.Write(spell.Reagent[i]);
-                    for (int i = 0; i != spell.ReagentCount.Length; ++i)
-                        w.Write(spell.ReagentCount[i]);
-                    w.Write(spell.EquippedItemClass);
-                    w.Write(spell.EquippedItemSubClassMask);
-                    w.Write(spell.EquippedItemInventoryTypeMask);
-                    w.Write(spell.Effect[0]);
-                    w.Write(spell.Effect[1]);
-                    w.Write(spell.Effect[2]);
-                    w.Write(spell.EffectDieSides[0]);
-                    w.Write(spell.EffectDieSides[1]);
-                    w.Write(spell.EffectDieSides[2]);
-                    w.Write(spell.EffectPointsPerLevel[0]);
-                    w.Write(spell.EffectPointsPerLevel[1]);
-                    w.Write(spell.EffectPointsPerLevel[2]);
-                    w.Write(spell.EffectBasePoints[0]);
-                    w.Write(spell.EffectBasePoints[1]);
-                    w.Write(spell.EffectBasePoints[2]);
-                    w.Write(spell.EffectMechanic[0]);
-                    w.Write(spell.EffectMechanic[1]);
-                    w.Write(spell.EffectMechanic[2]);
-                    w.Write(spell.EffectTargetA[0]);
-                    w.Write(spell.EffectTargetA[1]);
-                    w.Write(spell.EffectTargetA[2]);
-                    w.Write(spell.EffectTargetB[0]);
-                    w.Write(spell.EffectTargetB[1]);
-                    w.Write(spell.EffectTargetB[2]);
-                    w.Write(spell.EffectRadius[0]);
-                    w.Write(spell.EffectRadius[1]);
-                    w.Write(spell.EffectRadius[2]);
-                    w.Write(spell.EffectApplyAura[0]);
-                    w.Write(spell.EffectApplyAura[1]);
-                    w.Write(spell.EffectApplyAura[2]);
-                    w.Write(spell.EffectAmplitude[0]);
-                    w.Write(spell.EffectAmplitude[1]);
-                    w.Write(spell.EffectAmplitude[2]);
-                    w.Write(spell.EffectMultipleValue[0]);
-                    w.Write(spell.EffectMultipleValue[1]);
-                    w.Write(spell.EffectMultipleValue[2]);
-                    w.Write(spell.EffectChainTargets[0]);
-                    w.Write(spell.EffectChainTargets[1]);
-                    w.Write(spell.EffectChainTargets[2]);
-                    w.Write(spell.EffectItemType[0]);
-                    w.Write(spell.EffectItemType[1]);
-                    w.Write(spell.EffectItemType[2]);
-                    w.Write(spell.EffectMisc[0]);
-                    w.Write(spell.EffectMisc[1]);
-                    w.Write(spell.EffectMisc[2]);
-                    w.Write(spell.EffectMiscB[0]);
-                    w.Write(spell.EffectMiscB[1]);
-                    w.Write(spell.EffectMiscB[2]);
-                    w.Write(spell.EffectTriggerSpell[0]);
-                    w.Write(spell.EffectTriggerSpell[1]);
-                    w.Write(spell.EffectTriggerSpell[2]);
-                    w.Write(spell.EffectPointsPerComboPoint[0]);
-                    w.Write(spell.EffectPointsPerComboPoint[1]);
-                    w.Write(spell.EffectPointsPerComboPoint[2]);
-                    w.Write(spell.EffectSpellMaskA[0]);
-                    w.Write(spell.EffectSpellMaskB[0]);
-                    w.Write(spell.EffectSpellMaskC[0]);
-                    w.Write(spell.EffectSpellMaskA[1]);
-                    w.Write(spell.EffectSpellMaskB[1]);
-                    w.Write(spell.EffectSpellMaskC[1]);
-                    w.Write(spell.EffectSpellMaskA[2]);
-                    w.Write(spell.EffectSpellMaskB[2]);
-                    w.Write(spell.EffectSpellMaskC[2]);
-                    w.Write(spell.Visual[0]);
-                    w.Write(spell.Visual[1]);
-                    w.Write(spell.Icon);
-                    w.Write(spell.ActiveIcon);
-                    w.Write(spell.Priority);
-                    DBC.WriteZeros(w, 4);
-                    if (spell.Name == "")
-                        w.Write(0);
-                    else
-                    {
-                        w.Write(stringPos);
-                        stringPos += Encoding.UTF8.GetBytes(spell.Name + "\0").Length;
-                        dbcStrings.Add(spell.Name);
-                    }
-                    DBC.WriteZeros(w, 11);
-                    w.Write(spell.NameFlags);
-                    DBC.WriteZeros(w, 4);
-                    if (spell.Rank == "")
-                        w.Write(0);
-                    else
-                    {
-                        w.Write(stringPos);
-                        stringPos += Encoding.UTF8.GetBytes(spell.Rank + "\0").Length;
-                        dbcStrings.Add(spell.Rank);
-                    }
-                    DBC.WriteZeros(w, 11);
-                    w.Write(spell.RankFlags);
-                    DBC.WriteZeros(w, 4);
-                    if (spell.Description == "")
-                        w.Write(0);
-                    else
-                    {
-                        w.Write(stringPos);
-                        stringPos += Encoding.UTF8.GetBytes(spell.Description + "\0").Length;
-                        dbcStrings.Add(spell.Description);
-                    }
-                    DBC.WriteZeros(w, 11);
-                    w.Write(spell.DescriptionFlags);
-                    DBC.WriteZeros(w, 4);
-                    if (spell.ToolTip == "")
-                        w.Write(0);
-                    else
-                    {
-                        w.Write(stringPos);
-                        stringPos += Encoding.UTF8.GetBytes(spell.ToolTip + "\0").Length;
-                        dbcStrings.Add(spell.ToolTip);
-                    }
-                    DBC.WriteZeros(w, 11);
-                    w.Write(spell.ToolTipFlags);
-                    w.Write(spell.PowerCostPercent);
-                    w.Write(spell.GlobalCategory);
-                    w.Write(spell.GlobalCooldown);
-                    w.Write(spell.MaxTargetLevel);
-                    w.Write(spell.Family);
-                    w.Write(spell.FamilyMaskA);
-                    w.Write(spell.FamilyMaskB);
-                    w.Write(spell.FamilyMaskC);
-                    w.Write(spell.MaxAffectTargets);
-                    w.Write(spell.DamageClass);
-                    w.Write(spell.PreventionType);
-                    w.Write(spell.StanceBarOrder);
-                    w.Write(spell.EffectDamageMultiplier[0]);
-                    w.Write(spell.EffectDamageMultiplier[1]);
-                    w.Write(spell.EffectDamageMultiplier[2]);
-                    w.Write(spell.MinFaction);
-                    w.Write(spell.MinReputation);
-                    w.Write(spell.RequiredAuraVision);
-                    w.Write(spell.TotemCategory[0]);
-                    w.Write(spell.TotemCategory[1]);
-                    w.Write(spell.AreaGroup);
-                    w.Write(spell.SchoolMask);
-                    w.Write(spell.RuneCost);
-                    w.Write(spell.Missile);
-                    w.Write(spell.PowerDisplay);
-                    w.Write(spell.EffectBonusMultiplier[0]);
-                    w.Write(spell.EffectBonusMultiplier[1]);
-                    w.Write(spell.EffectBonusMultiplier[2]);
-                    w.Write(spell.DescriptionVariable);
-                    w.Write(spell.Difficulty);
-                }
-                w.Write((byte)0);
-                foreach (string s in dbcStrings)
-                    w.Write(Encoding.UTF8.GetBytes(s + "\0"));
-                stream.Position = 16;
-                w.Write(stringPos);
-                w.Close();
-
-                File.Copy("Spell.dbc", MainWindow.SERVER_PATH + "dbc/Spell.dbc", true);
-                WriteClientDBC();
-            }
-        }
-
         private void spellList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //if (spellTab.DataContext != null)
@@ -718,13 +717,9 @@ namespace MSAToolBox.Controls.Legacy
             ef3au.ItemsSource = LegacyMorpher.DefineStore.SpellAura;
         }
 
-        private void spellCreate_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void exportDBC_Click(object sender, RoutedEventArgs e)
         {
-            WriteSpellDBC();
+            WriteSpellDBC(spells, new List<string>() { MainWindow.SERVER_PATH + "dbc/Spell.dbc", MainWindow.CLIENT_PATH + "DBFilesClient/Spell.dbc" });
         }
 
         private void copySpell_Click(object sender, RoutedEventArgs e)
@@ -1362,10 +1357,8 @@ namespace MSAToolBox.Controls.Legacy
 
         private void spellSave_Click(object sender, RoutedEventArgs e)
         {
-            WriteSpellDBC();
-            //ModRating();
-            //ModInterrupt();
-            //FlushSpells();
+            WriteSpellDBC(spells, new List<string>() { MainWindow.SERVER_PATH + "dbc/Spell.dbc" });
+            WriteClientDBC(spells, MainWindow.CLIENT_PATH + "DBFilesClient/Spell.dbc");
         }
 
         private void ModRating()
@@ -1381,7 +1374,7 @@ namespace MSAToolBox.Controls.Legacy
                     }
                 }
             }
-            WriteSpellDBC();
+            WriteSpellDBC(spells, new List<string>() { MainWindow.SERVER_PATH + "dbc/Spell.dbc", MainWindow.CLIENT_PATH + "DBFilesClient/Spell.dbc" });
         }
 
         private void ModInterrupt()
@@ -1395,7 +1388,7 @@ namespace MSAToolBox.Controls.Legacy
                     spell.InterruptFlags = 17;
                 }
             }
-            WriteSpellDBC();
+            WriteSpellDBC(spells, new List<string>() { MainWindow.SERVER_PATH + "dbc/Spell.dbc", MainWindow.CLIENT_PATH + "DBFilesClient/Spell.dbc" });
         }
 
         private void FlushSpells()
@@ -1408,37 +1401,33 @@ namespace MSAToolBox.Controls.Legacy
                     if (spell.EffectApplyAura[i] > 316) spell.EffectApplyAura[i] = 0;
                 }
             }
-            WriteSpellDBC();
+            WriteSpellDBC(spells, new List<string>() { MainWindow.SERVER_PATH + "dbc/Spell.dbc", MainWindow.CLIENT_PATH + "DBFilesClient/Spell.dbc" });
         }
 
         private static int ReplaceEffect(int effect)
         {
             if (effect < 165)
                 return effect;
-
-            switch (effect)
-            {
-                case 165:
-                    return 2;
-                case 166:
-                    return 10;
-                default:
-                    return 3;
-            }
+            return 3;
         }
 
         private static int ReplaceAura(int aura)
         {
             if (aura < 317)
                 return aura;
+            return 4;
+        }
 
-            switch (aura)
-            {
-                case 320:
-                    return 69;
-                default:
-                    return 4;
-            }
+        private void CopySpells()
+        {
+            ObservableCollection<SpellTemplate> original_spells = new ObservableCollection<SpellTemplate>();
+            ObservableCollection<SpellTemplate> new_spells = new ObservableCollection<SpellTemplate>();
+            LoadSpellDBC(ref original_spells, "Spell_A.dbc");
+            LoadSpellDBC(ref new_spells, "Spell_B.dbc");
+            var new_sp = from d in original_spells where d.ID > 80865 select d;
+            foreach (var n in new_sp)
+                new_spells.Add(n);
+            WriteSpellDBC(new_spells, new List<string>() { "Spell_New.dbc" });
         }
     }
 }

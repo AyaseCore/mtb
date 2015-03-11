@@ -104,7 +104,7 @@ namespace MSAToolBox.Controls.Legacy
             randomPropertiesGrid.ItemsSource = ItemRandomProperties;
 
             DBEnchants = new List<ItemEnchantmentTemplate>();
-            DBEnchants = LegacyMorpher.Data.GetItemEnchants().ToList();
+            DBEnchants = LegacyWorld.GetItemEnchants().ToList();
             dbEnchantGrid.ItemsSource = DBEnchants;
         }
 
@@ -173,7 +173,7 @@ namespace MSAToolBox.Controls.Legacy
 
             File.Copy(MainWindow.CLIENT_PATH + "DBFilesClient/SpellItemEnchantment.dbc", MainWindow.SERVER_PATH + "dbc/SpellItemEnchantment.dbc", true);
 
-            LegacyMorpher.Data.SaveItemEnchants(DBEnchants);
+            LegacyWorld.SaveItemEnchants(DBEnchants);
         }
 
         private void save_Click(object sender, RoutedEventArgs e)

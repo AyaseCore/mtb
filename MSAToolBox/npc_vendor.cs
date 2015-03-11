@@ -20,6 +20,7 @@ namespace MSAToolBox
         public byte maxcount { get; set; }
         public long incrtime { get; set; }
         public int ExtendedCost { get; set; }
+        public int ReqCityRank { get; set; }
         public Nullable<short> VerifiedBuild { get; set; }
     }
 }

@@ -16,6 +16,8 @@ namespace MSAToolBox
     {
         public long leaderGUID { get; set; }
         public long memberGUID { get; set; }
+        public float dist { get; set; }
+        public float angle { get; set; }
         public long groupAI { get; set; }
         public int point_1 { get; set; }
         public int point_2 { get; set; }

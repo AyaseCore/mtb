@@ -16,5 +16,6 @@ namespace MSAToolBox
     {
         public int entry { get; set; }
         public int text_id { get; set; }
+        public string Comment { get; set; }
     }
 }

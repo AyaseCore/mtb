@@ -17,15 +17,13 @@ namespace MSAToolBox
         public int menu_id { get; set; }
         public int id { get; set; }
         public int option_icon { get; set; }
-        public string option_text { get; set; }
         public int OptionBroadcastTextID { get; set; }
         public byte option_id { get; set; }
         public long npc_option_npcflag { get; set; }
-        public long action_menu_id { get; set; }
+        public int action_menu_id { get; set; }
         public int action_poi_id { get; set; }
         public byte box_coded { get; set; }
-        public long box_money { get; set; }
-        public string box_text { get; set; }
+        public int box_money { get; set; }
         public int BoxBroadcastTextID { get; set; }
         public byte SingleTimeCheck { get; set; }
     }

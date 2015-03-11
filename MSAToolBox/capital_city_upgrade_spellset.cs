@@ -12,16 +12,10 @@ namespace MSAToolBox
     using System;
     using System.Collections.Generic;
     
-    public partial class random_enchantment
+    public partial class capital_city_upgrade_spellset
     {
-        public int ID { get; set; }
-        public int Set { get; set; }
-        public int Level { get; set; }
-        public int Chance { get; set; }
-        public int ClassMask { get; set; }
-        public int SubClassMask { get; set; }
-        public int InventoryTypeMask { get; set; }
-        public int QualityMask { get; set; }
+        public int City { get; set; }
+        public int SpellSet { get; set; }
         public string Comment { get; set; }
     }
 }

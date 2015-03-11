@@ -12,12 +12,10 @@ namespace MSAToolBox
     using System;
     using System.Collections.Generic;
     
-    public partial class player_level_spell
+    public partial class capital_city_upgrade_cost
     {
-        public int Class { get; set; }
         public int Level { get; set; }
-        public int Spell1 { get; set; }
-        public int Spell2 { get; set; }
-        public int Spell3 { get; set; }
+        public int Resource { get; set; }
+        public int MagicPower { get; set; }
     }
 }

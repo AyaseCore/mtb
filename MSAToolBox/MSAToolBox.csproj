@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <NuGetPackageImportStamp>05c9220a</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -104,7 +105,10 @@
     <Compile Include="broadcast_text.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
-    <Compile Include="capital_cities.cs">
+    <Compile Include="capital_city_upgrade_cost.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="capital_city_upgrade_spellset.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
     <Compile Include="command.cs">
@@ -113,20 +117,23 @@
     <Compile Include="conditions.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Legacy\AchievementPanel.xaml.cs">
+      <DependentUpon>AchievementPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Legacy\CreatureLootPanel.xaml.cs">
       <DependentUpon>CreatureLootPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Legacy\EnchantsPanel.xaml.cs">
       <DependentUpon>EnchantsPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Legacy\GossipPanel.xaml.cs">
+      <DependentUpon>GossipPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Legacy\ItemIconPanel.xaml.cs">
       <DependentUpon>ItemIconPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\LegacyMorpher.xaml.cs">
       <DependentUpon>LegacyMorpher.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Legacy\CreatureGossipPanel.xaml.cs">
-      <DependentUpon>CreatureGossipPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Legacy\CreaturePanel.xaml.cs">
       <DependentUpon>CreaturePanel.xaml</DependentUpon>
@@ -503,9 +510,6 @@
     <Compile Include="locales_quest.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
-    <Compile Include="loot_pool.cs">
-      <DependentUpon>LegacyWorld.tt</DependentUpon>
-    </Compile>
     <Compile Include="mail_level_reward.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
@@ -581,7 +585,7 @@
     <Compile Include="player_levelstats.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
-    <Compile Include="player_level_spell.cs">
+    <Compile Include="player_supremacy_level_xp.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
     <Compile Include="player_xp_for_level.cs">
@@ -617,9 +621,6 @@
     <Compile Include="quest_template.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
-    <Compile Include="random_enchantment.cs">
-      <DependentUpon>LegacyWorld.tt</DependentUpon>
-    </Compile>
     <Compile Include="reference_loot_template.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
@@ -629,13 +630,7 @@
     <Compile Include="reputation_spillover_template.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
-    <Compile Include="resource_points.cs">
-      <DependentUpon>LegacyWorld.tt</DependentUpon>
-    </Compile>
     <Compile Include="script_waypoint.cs">
-      <DependentUpon>LegacyWorld.tt</DependentUpon>
-    </Compile>
-    <Compile Include="server_messages.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
     <Compile Include="skill_discovery_template.cs">
@@ -719,8 +714,8 @@
     <Compile Include="SubWindows\Legacy\CreatureNpcFlagSelector.xaml.cs">
       <DependentUpon>CreatureNpcFlagSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SubWindows\Legacy\CreatureNpcFlagsSelector.xaml.cs">
-      <DependentUpon>CreatureNpcFlagsSelector.xaml</DependentUpon>
+    <Compile Include="SubWindows\Legacy\GossipItemPropertySelector.xaml.cs">
+      <DependentUpon>GossipItemPropertySelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubWindows\Legacy\ItemFlagsSelector.xaml.cs">
       <DependentUpon>ItemFlagsSelector.xaml</DependentUpon>
@@ -737,9 +732,6 @@
     <Compile Include="SubWindows\Legacy\SpellProcSelector.xaml.cs">
       <DependentUpon>SpellProcSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="supremacy_level_xp.cs">
-      <DependentUpon>LegacyWorld.tt</DependentUpon>
-    </Compile>
     <Compile Include="transports.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
@@ -749,6 +741,7 @@
     <Compile Include="Utility\Converter.cs" />
     <Compile Include="Utility\DataStore.cs" />
     <Compile Include="Utility\DBC.cs" />
+    <Compile Include="Utility\Entity.cs" />
     <Compile Include="vehicle_accessory.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
@@ -761,12 +754,6 @@
     <Compile Include="warden_checks.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
-    <Compile Include="war_school.cs">
-      <DependentUpon>LegacyWorld.tt</DependentUpon>
-    </Compile>
-    <Compile Include="war_school_spell.cs">
-      <DependentUpon>LegacyWorld.tt</DependentUpon>
-    </Compile>
     <Compile Include="waypoints.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
@@ -776,6 +763,10 @@
     <Compile Include="waypoint_scripts.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
+    <Page Include="Controls\Legacy\AchievementPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Legacy\CreatureLootPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -784,15 +775,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Legacy\GossipPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Legacy\ItemIconPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\LegacyMorpher.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\Legacy\CreatureGossipPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -860,7 +851,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SubWindows\Legacy\CreatureNpcFlagsSelector.xaml">
+    <Page Include="SubWindows\Legacy\GossipItemPropertySelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -903,10 +894,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="LegacyWorld.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LegacyWorld.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <EntityDeploy Include="LegacyData.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>LegacyData.Designer.cs</LastGenOutput>
@@ -924,6 +911,10 @@
       <DependentUpon>LegacyData.edmx</DependentUpon>
       <LastGenOutput>LegacyData.cs</LastGenOutput>
     </None>
+    <EntityDeploy Include="LegacyWorld.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LegacyWorld.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="LegacyWorld.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>LegacyWorld.edmx</DependentUpon>
@@ -955,7 +946,17 @@
   <ItemGroup>
     <Resource Include="mario.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FodyWeavers.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Fody.1.28.0\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.0\build\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。启用“NuGet 程序包还原”可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.1.28.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.28.0\build\Fody.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -17,13 +17,10 @@ namespace MSAToolBox
         public int entry { get; set; }
         public byte groupid { get; set; }
         public byte id { get; set; }
-        public string text { get; set; }
         public byte type { get; set; }
         public byte language { get; set; }
         public float probability { get; set; }
-        public int emote { get; set; }
         public int duration { get; set; }
-        public int sound { get; set; }
         public int BroadcastTextId { get; set; }
         public byte TextRange { get; set; }
         public string comment { get; set; }

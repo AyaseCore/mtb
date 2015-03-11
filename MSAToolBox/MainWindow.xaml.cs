@@ -22,8 +22,8 @@ namespace MSAToolBox
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        public static string CLIENT_PATH = "E:/CLIENT/";
-        public static string SERVER_PATH = "C:/LEGACY/SERVER/";
+        public static string CLIENT_PATH = "E:/CLIENT/V4/";
+        public static string SERVER_PATH = "E:/SERVER/V4/";
         public static string ASSET_PATH = "F:/Projects/ass/";
 
         public MainWindow()
@@ -41,9 +41,9 @@ namespace MSAToolBox
                     p.Kill();
             }
             ProcessStartInfo psi1 = new ProcessStartInfo("worldserver.exe");
-            psi1.WorkingDirectory = "C:\\LEGACY\\SERVER\\";
+            psi1.WorkingDirectory = "E:\\SERVER\\V4\\";
             ProcessStartInfo psi2 = new ProcessStartInfo("Local.bat");
-            psi2.WorkingDirectory = "E:\\CLIENT\\";
+            psi2.WorkingDirectory = "E:\\CLIENT\\V4\\";
             Process.Start(psi1);
             Process.Start(psi2);
         }

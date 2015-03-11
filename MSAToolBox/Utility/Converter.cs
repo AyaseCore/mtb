@@ -65,7 +65,7 @@ namespace MSAToolBox.Utility
             try
             {
                 entry = System.Convert.ToInt32(value);
-                return (from d in CreatureGossipPanel.CreatureNames where d.Key == entry select d.Value).SingleOrDefault();
+                return "NYI";
             }
             catch (System.Exception /*ex*/)
             {
@@ -199,6 +199,30 @@ namespace MSAToolBox.Utility
             var s5 = (from d in EnchantsPanel.ItemEnchantments where d.ID == p.Enchant[4] select d.Name).SingleOrDefault();
             return String.Format("{0} | {1} | {2} | {3} | {4}", s1 == null ? "null" : s1, s2 == null ? "null" : s2, s3 == null ? "null" : s3, s4 == null ? "null" : s4, s5 == null ? "null" : s5);
         }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    public class BroadCastTextConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            int entry = (int)value;
+            if (entry == 0)
+                return "<no bct assigned>";
+            else
+            {
+                BroadCastText text = LegacyWorld.GetBroadCastText(entry);
+                if (text == null)
+                    return "<bct entry not exist>";
+                if (text.MaleText == "")
+                    return text.FemaleText;
+                return text.MaleText;
+            }
+        }
+
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             return null;

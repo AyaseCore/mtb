@@ -36,7 +36,8 @@ namespace MSAToolBox
         public DbSet<battleground_template> battleground_template { get; set; }
         public DbSet<battlemaster_entry> battlemaster_entry { get; set; }
         public DbSet<broadcast_text> broadcast_text { get; set; }
-        public DbSet<capital_cities> capital_cities { get; set; }
+        public DbSet<capital_city_upgrade_cost> capital_city_upgrade_cost { get; set; }
+        public DbSet<capital_city_upgrade_spellset> capital_city_upgrade_spellset { get; set; }
         public DbSet<command> command { get; set; }
         public DbSet<conditions> conditions { get; set; }
         public DbSet<creature> creature { get; set; }
@@ -101,7 +102,6 @@ namespace MSAToolBox
         public DbSet<locales_page_text> locales_page_text { get; set; }
         public DbSet<locales_points_of_interest> locales_points_of_interest { get; set; }
         public DbSet<locales_quest> locales_quest { get; set; }
-        public DbSet<loot_pool> loot_pool { get; set; }
         public DbSet<mail_level_reward> mail_level_reward { get; set; }
         public DbSet<mail_loot_template> mail_loot_template { get; set; }
         public DbSet<milling_loot_template> milling_loot_template { get; set; }
@@ -121,8 +121,8 @@ namespace MSAToolBox
         public DbSet<player_factionchange_reputations> player_factionchange_reputations { get; set; }
         public DbSet<player_factionchange_spells> player_factionchange_spells { get; set; }
         public DbSet<player_factionchange_titles> player_factionchange_titles { get; set; }
-        public DbSet<player_level_spell> player_level_spell { get; set; }
         public DbSet<player_levelstats> player_levelstats { get; set; }
+        public DbSet<player_supremacy_level_xp> player_supremacy_level_xp { get; set; }
         public DbSet<player_xp_for_level> player_xp_for_level { get; set; }
         public DbSet<playercreateinfo> playercreateinfo { get; set; }
         public DbSet<playercreateinfo_action> playercreateinfo_action { get; set; }
@@ -139,13 +139,10 @@ namespace MSAToolBox
         public DbSet<quest_poi> quest_poi { get; set; }
         public DbSet<quest_poi_points> quest_poi_points { get; set; }
         public DbSet<quest_template> quest_template { get; set; }
-        public DbSet<random_enchantment> random_enchantment { get; set; }
         public DbSet<reference_loot_template> reference_loot_template { get; set; }
         public DbSet<reputation_reward_rate> reputation_reward_rate { get; set; }
         public DbSet<reputation_spillover_template> reputation_spillover_template { get; set; }
-        public DbSet<resource_points> resource_points { get; set; }
         public DbSet<script_waypoint> script_waypoint { get; set; }
-        public DbSet<server_messages> server_messages { get; set; }
         public DbSet<skill_discovery_template> skill_discovery_template { get; set; }
         public DbSet<skill_extra_item_template> skill_extra_item_template { get; set; }
         public DbSet<skill_fishing_base_level> skill_fishing_base_level { get; set; }
@@ -168,14 +165,11 @@ namespace MSAToolBox
         public DbSet<spell_target_position> spell_target_position { get; set; }
         public DbSet<spell_threat> spell_threat { get; set; }
         public DbSet<spelldifficulty_dbc> spelldifficulty_dbc { get; set; }
-        public DbSet<supremacy_level_xp> supremacy_level_xp { get; set; }
         public DbSet<transports> transports { get; set; }
         public DbSet<trinity_string> trinity_string { get; set; }
         public DbSet<vehicle_accessory> vehicle_accessory { get; set; }
         public DbSet<vehicle_template_accessory> vehicle_template_accessory { get; set; }
         public DbSet<version> version { get; set; }
-        public DbSet<war_school> war_school { get; set; }
-        public DbSet<war_school_spell> war_school_spell { get; set; }
         public DbSet<warden_checks> warden_checks { get; set; }
         public DbSet<waypoint_data> waypoint_data { get; set; }
         public DbSet<waypoint_scripts> waypoint_scripts { get; set; }

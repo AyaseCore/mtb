@@ -29,18 +29,18 @@ namespace MSAToolBox.Controls.Legacy
 
         public void Load(int entry)
         {
-            lootGrid.ItemsSource = LegacyMorpher.Data.GetCreatureLoot(entry, false).ToList();
+            lootGrid.ItemsSource = LegacyWorld.GetCreatureLoot(entry, false).ToList();
         }
 
         public void Load(int entry, bool isRef)
         {
-            lootGrid.ItemsSource = LegacyMorpher.Data.GetCreatureLoot(entry, isRef).ToList();
+            lootGrid.ItemsSource = LegacyWorld.GetCreatureLoot(entry, isRef).ToList();
         }
 
         public void Save()
         {
             List<Loot> list = lootGrid.ItemsSource as List<Loot>;
-            LegacyMorpher.Data.SaveCreatureLoot(list);
+            LegacyWorld.SaveCreatureLoot(list);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -87,7 +87,7 @@ namespace MSAToolBox.Controls.Legacy
             foreach (var creature in creatureList)
             {
                 index++;
-                CreatureTemplate cp = LegacyMorpher.Data.GetCreatureTemplate(creature.Entry);
+                CreatureTemplate cp = LegacyWorld.GetCreatureTemplate(creature.Entry);
                 if ((cp.ExtraFlags & 2) != 0 || (cp.ExtraFlags & 128) != 0 || (cp.ExtraFlags & 32768) != 0 || cp.Type == 11 || cp.Type == 12 || cp.Type == 13) // skip civillian & trigger & guard
                     continue;
                 Loot loot = new Loot();
@@ -103,7 +103,7 @@ namespace MSAToolBox.Controls.Legacy
                 loot.LootMode = 1;
                 List<Loot> list = new List<Loot>();
                 list.Add(loot);
-                LegacyMorpher.Data.SaveCreatureLoot(list);
+                LegacyWorld.SaveCreatureLoot(list);
                 this.Dispatcher.Invoke(new Action(() =>
                 {
                     assignLootProgress.Value = index;

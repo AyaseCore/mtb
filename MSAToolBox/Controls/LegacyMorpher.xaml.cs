@@ -22,7 +22,6 @@ namespace MSAToolBox.Controls
     public partial class LegacyMorpher : UserControl
     {
         public static DataDefineStore DefineStore;
-        public static LegacyWorld Data;
         public LegacyMorpher()
         {
             InitializeComponent();
@@ -30,7 +29,6 @@ namespace MSAToolBox.Controls
 
         public void Load()
         {
-            Data = new LegacyWorld();
             LoadDefines();
             creaturePanel.Load();
             itemPanel.Load();
@@ -41,7 +39,7 @@ namespace MSAToolBox.Controls
 
         private void LoadDefines()
         {
-            DefineStore = Data.GetDataDefines();
+            DefineStore = LegacyWorld.GetDataDefines();
         }
     }
 }

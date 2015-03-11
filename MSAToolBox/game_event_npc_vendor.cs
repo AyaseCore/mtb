@@ -21,5 +21,6 @@ namespace MSAToolBox
         public int maxcount { get; set; }
         public int incrtime { get; set; }
         public int ExtendedCost { get; set; }
+        public int ReqCityRank { get; set; }
     }
 }

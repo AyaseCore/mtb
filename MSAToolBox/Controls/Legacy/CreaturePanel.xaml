@@ -221,9 +221,6 @@
             <TabItem Header="AI">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="Gossip">
-                <local:CreatureGossipPanel x:Name="creatureGossipPanel" Margin="0"/>
-            </TabItem>
             <TabItem Header="Vendor">
                 <local:VendorPanel x:Name="vendorPanel" Margin="0"/>
             </TabItem>

@@ -16,6 +16,7 @@ namespace MSAToolBox
     {
         public long entry { get; set; }
         public long customChance { get; set; }
+        public float PPMChance { get; set; }
         public long procEx { get; set; }
     }
 }

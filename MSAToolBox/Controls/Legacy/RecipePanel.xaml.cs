@@ -347,10 +347,10 @@ namespace MSAToolBox.Controls.Legacy
             spell.ReagentCount[6] = Convert.ToUInt32(r7c.Text);
             spell.ReagentCount[7] = Convert.ToUInt32(r8c.Text);
 
-            SpellPanel.WriteSpellDBC();
+            SpellPanel.WriteSpellDBC(SpellPanel.spells, new List<string>() { MainWindow.SERVER_PATH + "dbc/Spell.dbc", MainWindow.CLIENT_PATH + "DBFilesClient/Spell.dbc" });
 
             // save item - only recipe.
-            ItemTemplate item = LegacyMorpher.Data.CreateItemTemplate();
+            ItemTemplate item = LegacyWorld.CreateItemTemplate();
             item.Name = define.Prefix + recipeItemName.Text;
             item.Description = "教你学会制作" + recipeItemName.Text + "。";
             item.DisplayID = define.DisplayID;
@@ -367,7 +367,7 @@ namespace MSAToolBox.Controls.Legacy
             item.SpellCharges[0] = -1;
             item.Spell[1] = Convert.ToInt32(recipeSpellEntry.Text);
             item.SpellTrigger[1] = 6;
-            LegacyMorpher.Data.SaveItemTemplate(item, false);
+            LegacyWorld.SaveItemTemplate(item, false);
 
             // save skillline
             SkillLinePanel.AddToSkill((int)spell.ID, Convert.ToInt32(type.SelectedValue), Convert.ToInt32(recipeRequiredSkillValue.Text), Convert.ToInt32(recipeSkillGoYellow.Text), Convert.ToInt32(recipeSkillGoGray.Text));

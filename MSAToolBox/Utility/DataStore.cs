@@ -7,90 +7,6 @@ using System.Threading.Tasks;
 
 namespace MSAToolBox.Utility
 {
-    public class VendorInfo
-    {
-        public short Slot { get; set; }
-        public int Item { get; set; }
-        public byte MaxCount { get; set; }
-        public long IncrTime { get; set; }
-        public int ExtendedCost { get; set; }
-        public int RelatedToStage { get; set; }
-        public int StageLevel { get; set; }
-        public short? VerifiedBuild { get; set; }
-    }
-
-    public class ItemInfo
-    {
-        public int Entry { get; set; }
-        public int Class { get; set; }
-        public int SubClass { get; set; }
-        public string Name { get; set; }
-        public int Quality { get; set; }
-        public bool InUse { get; set; }
-    }
-
-    public class CreatureInfo
-    {
-        public int Entry { get; set; }
-        public string Name { get; set; }
-        public int MinLevel { get; set; }
-        public int MaxLevel { get; set; }
-        public int Rank { get; set; }
-    }
-
-    public class ItemDBC
-    {
-        public ItemDBC() { }
-        public ItemDBC(int entry, int _class, int subclass, int soundoverridesubclass, int material, int displayid, int inventorytype, int sheath)
-        {
-            Entry = entry;
-            Class = _class;
-            SubClass = subclass;
-            SoundOverrideSubClass = soundoverridesubclass;
-            Material = material;
-            DisplayID = displayid;
-            InventoryType = inventorytype;
-            Sheath = sheath;
-        }
-        public int Entry { get; set; }
-        public int Class { get; set; }
-        public int SubClass { get; set; }
-        public int SoundOverrideSubClass { get; set; }
-        public int Material { get; set; }
-        public int DisplayID { get; set; }
-        public int InventoryType { get; set; }
-        public int Sheath { get; set; }
-    }
-
-    public class GossipMenu
-    {
-        public int NpcTextID { get; set; }
-        public string NpcTextMale { get; set; }
-        public string NpcTextFemale { get; set; }
-        public int NpcTextLanguage { get; set; }
-        public int Emote1 { get; set; }
-        public int Emote2 { get; set; }
-        public int Emote3 { get; set; }
-        public int ID { get; set; }
-        public GossipMenuOption[] Options { get; set; }
-    }
-
-    public class GossipMenuOption
-    {
-        public int Icon { get; set; }
-        public string Text { get; set; }
-        public int OptionBroadcastTextID { get; set; }
-        public int Type { get; set; }
-        public int NpcFlags { get; set; }
-        public int ActionMenu { get; set; }
-        public int ActionPOI { get; set; }
-        public bool ShowCodeBox { get; set; }
-        public int BoxMoney { get; set; }
-        public string BoxText { get; set; }
-        public int BoxBroadcastTextID { get; set; }
-        public bool SingleTimeCheck { get; set; }
-    }
-
     public class DB
     {
         private static LegacyWorldEntities _LEGACY;
@@ -131,417 +47,11 @@ namespace MSAToolBox.Utility
         }
     }
 
-    public class CreatureTemplate
-    {
-        public CreatureTemplate()
-        {
-            Entry = new int[4];
-            KillCredit = new long[2];
-            Resistance = new short[6];
-            Spell = new int[8];
-            QuestItem = new long[6];
-            Model = new int[4];
-        }
-
-        public int[] Entry { get; set; }
-        public long[] KillCredit { get; set; }
-        public int[] Model { get; set; }
-        public string Name { get; set; }
-        public string Subname { get; set; }
-        public string IconName { get; set; }
-        public int GossipMenuID { get; set; }
-        public byte MinLevel { get; set; }
-        public byte MaxLevel { get; set; }
-        public short Expansion { get; set; }
-        public int Faction { get; set; }
-        public long NpcFlags { get; set; }
-        public float SpeedWalk { get; set; }
-        public float SpeedRun { get; set; }
-        public float Scale { get; set; }
-        public byte Rank { get; set; }
-        public sbyte DamageSchool { get; set; }
-        public long BaseAttackTime { get; set; }
-        public long RangedAttackTime { get; set; }
-        public float BaseVariance { get; set; }
-        public float RangedVariance { get; set; }
-        public byte UnitClass { get; set; }
-        public long UnitFlags { get; set; }
-        public long UnitFlags2 { get; set; }
-        public long DynamicFlags { get; set; }
-        public sbyte Family { get; set; }
-        public sbyte TrainerType { get; set; }
-        public int TrainerSpell { get; set; }
-        public byte TrainerClass { get; set; }
-        public byte TrainerRace { get; set; }
-        public byte Type { get; set; }
-        public long TypeFlags { get; set; }
-        public int LootID { get; set; }
-        public int PickpocketLoot { get; set; }
-        public int SkinLoot { get; set; }
-        public short[] Resistance { get; set; }
-        public int[] Spell { get; set; }
-        public int PetSpellDataID { get; set; }
-        public int VehicleID { get; set; }
-        public int MinMoneyLoot { get; set; }
-        public int MaxMoneyLoot { get; set; }
-        public string AIName { get; set; }
-        public byte MovementType { get; set; }
-        public byte InhabitType { get; set; }
-        public float HoverHeight { get; set; }
-        public float HealthModifier { get; set; }
-        public float ManaModifier { get; set; }
-        public float ArmorModifier { get; set; }
-        public float DamageModifier { get; set; }
-        public float ExperienceModifier { get; set; }
-        public bool IsRacialLeader { get; set; }
-        public long[] QuestItem { get; set; }
-        public long MovementID { get; set; }
-        public bool RegenerateHealth { get; set; }
-        public long MechanicImmuneMask { get; set; }
-        public long ExtraFlags { get; set; }
-        public string ScriptName { get; set; }
-        public short? VerifiedBuild { get; set; }
-        public int WarSchool { get; set; }
-    }
-
-    public class Creature
-    {
-        public long Guid { get; set; }
-        public int Map { get; set; }
-        public int Zone { get; set; }
-        public int Area { get; set; }
-        public byte SpawnMask { get; set; }
-        public long PhaseMask { get; set; }
-        public int Model { get; set; }
-        public sbyte EquipmentID { get; set; }
-        public float PositionX { get; set; }
-        public float PositionY { get; set; }
-        public float PositionZ { get; set; }
-        public float Orientation { get; set; }
-        public long SpawnTime { get; set; }
-        public float SpawnDistance { get; set; }
-        public int CurrentWaypoint { get; set; }
-        public long CurrentHealth { get; set; }
-        public long CurrentMana { get; set; }
-        public byte MovementType { get; set; }
-        public long NpcFlags { get; set; }
-        public long UnitFlags { get; set; }
-        public long DynamicFlags { get; set; }
-        public short? VerifiedBuild { get; set; }
-    }
-
-    public class ItemTemplate
-    {
-        public ItemTemplate()
-        {
-            StatType = new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            StatValue = new short[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            DamageMin = new float[2] { 0, 0 };
-            DamageMax = new float[2] { 0, 0 };
-            DamageSchool = new int[2] { 0, 0 };
-            Spell = new int[5] { 0, 0, 0, 0, 0 };
-            SpellTrigger = new int[5] { 0, 0, 0, 0, 0 };
-            SpellCharges = new short[5] { 0, 0, 0, 0, 0 };
-            SpellPPM = new float[5] { 0, 0, 0, 0, 0 };
-            SpellCooldown = new int[5] { 0, 0, 0, 0, 0 };
-            SpellCategory = new int[5] { 0, 0, 0, 0, 0 };
-            SpellCategoryCooldown = new int[5] { 0, 0, 0, 0, 0 };
-            SocketColor = new int[3] { 0, 0, 0 };
-            SocketContent = new int[3] { 0, 0, 0 };
-        }
-
-        public int Entry { get; set; }
-        public int Class { get; set; }
-        public int Subclass { get; set; }
-        public int SoundOverrideSubclass { get; set; }
-        public string Name { get; set; }
-        public int DisplayID { get; set; }
-        public int Quality { get; set; }
-        public long Flags { get; set; }
-        public long FlagsExtra { get; set; }
-        public byte BuyCount { get; set; }
-        public long BuyPrice { get; set; }
-        public long SellPrice { get; set; }
-        public int InventoryType { get; set; }
-        public int AllowableClass { get; set; }
-        public int AllowableRace { get; set; }
-        public int ItemLevel { get; set; }
-        public byte RequiredLevel { get; set; }
-        public int RequiredSkill { get; set; }
-        public int RequiredSkillRank { get; set; }
-        public int RequiredSpell { get; set; }
-        public int RequiredHonorRank { get; set; }
-        public int RequiredCityRank { get; set; }
-        public int RequiredReputationFaction { get; set; }
-        public int RequiredReputationRank { get; set; }
-        public int MaxCount { get; set; }
-        public int? Stackable { get; set; }
-        public byte ContainerSlot { get; set; }
-        public byte StatsCount { get; set; }
-        public int[] StatType { get; set; }
-        public short[] StatValue { get; set; }
-        public short ScalingStatDistribution { get; set; }
-        public long ScalingStatValue { get; set; }
-        public float[] DamageMin { get; set; }
-        public float[] DamageMax { get; set; }
-        public int[] DamageSchool { get; set; }
-        public int Armor { get; set; }
-        public byte HolyResistance { get; set; }
-        public byte FireResistance { get; set; }
-        public byte NatureResistance { get; set; }
-        public byte FrostResistance { get; set; }
-        public byte ShadowResistance { get; set; }
-        public byte ArcaneResistance { get; set; }
-        public int Speed { get; set; }
-        public int AmmoType { get; set; }
-        public float RangedModRange { get; set; }
-        public int[] Spell { get; set; }
-        public int[] SpellTrigger { get; set; }
-        public short[] SpellCharges { get; set; }
-        public float[] SpellPPM { get; set; }
-        public int[] SpellCooldown { get; set; }
-        public int[] SpellCategory { get; set; }
-        public int[] SpellCategoryCooldown { get; set; }
-        public int Bonding { get; set; }
-        public string Description { get; set; }
-        public int PageText { get; set; }
-        public byte LanguageID { get; set; }
-        public int PageMaterial { get; set; }
-        public int StartQuest { get; set; }
-        public int LockID { get; set; }
-        public int Material { get; set; }
-        public int Sheath { get; set; }
-        public int RandomProperty { get; set; }
-        public int RandomSuffix { get; set; }
-        public int Block { get; set; }
-        public int ItemSet { get; set; }
-        public int MaxDurability { get; set; }
-        public int Area { get; set; }
-        public short Map { get; set; }
-        public int BagFamily { get; set; }
-        public int TotemCategory { get; set; }
-        public int[] SocketColor { get; set; }
-        public int[] SocketContent { get; set; }
-        public int SocketBonus { get; set; }
-        public int GemProperty { get; set; }
-        public short RequiredDisenchantSkill { get; set; }
-        public float ArmorDamageModifier { get; set; }
-        public long Duration { get; set; }
-        public short ItemLimitCategory { get; set; }
-        public long HolidayID { get; set; }
-        public string ScriptName { get; set; }
-        public int DisenchantID { get; set; }
-        public int FoodType { get; set; }
-        public long MinMoneyLoot { get; set; }
-        public long MaxMoneyLoot { get; set; }
-        public long CustomFlags { get; set; }
-        public short? VerifiedBuild { get; set; }
-    }
-
-    public class Spell
-    {
-        public Spell()
-        {
-            Attributes = new uint[8];
-            Totem = new int[2];
-            Reagent = new int[8];
-            ReagentCount = new int[8];
-            Effect = new int[3];
-            EffectDieSides = new int[3];
-            EffectBasePoints = new int[3];
-            EffectPointsPerLevel = new float[3];
-            EffectMechanic = new int[3];
-            EffectImplicitTargetA = new int[3];
-            EffectImplicitTargetB = new int[3];
-            EffectRadius = new int[3];
-            EffectAura = new int[3];
-            EffectAmplitude = new int[3];
-            EffectMultipleValue = new float[3];
-            EffectChainTargets = new int[3];
-            EffectItemType = new int[3];
-            EffectMisc = new int[3];
-            EffectMiscB = new int[3];
-            EffectTriggerSpell = new int[3];
-            EffectPointsPerComboPoint = new float[3];
-            EffectSpellClassMaskA = new uint[3];
-            EffectSpellClassMaskB = new uint[3];
-            EffectSpellClassMaskC = new uint[3];
-            EffectDamageMultiplier = new float[3];
-            EffectBonusMultiplier = new float[3];
-        }
-
-        public uint ID { get; set; }
-        public uint Category { get; set; }
-        public uint Dispel { get; set; }
-        public uint Mechanic { get; set; }
-        public uint[] Attributes { get; set; }
-        public uint Stance { get; set; }
-        public uint StanceNot { get; set; }
-        public uint Targets { get; set; }
-        public uint TargetCreatureType { get; set; }
-        public uint RequiresSpellFocus { get; set; }
-        public uint FacingCasterFlags { get; set; }
-        public uint CasterAuraState { get; set; }
-        public uint TargetAuraState { get; set; }
-        public uint CasterAuraStateNot { get; set; }
-        public uint TargetAuraStateNot { get; set; }
-        public uint CasterAuraSpell { get; set; }
-        public uint TargetAuraSpell { get; set; }
-        public uint ExcludeCasterAuraSpell { get; set; }
-        public uint ExcludeTargetAuraSpell { get; set; }
-        public uint CastingTimeIndex { get; set; }
-        public uint RecoveryTime { get; set; }
-        public uint CategoryRecoveryTime { get; set; }
-        public uint InterruptFlags { get; set; }
-        public uint AuraInterruptFlags { get; set; }
-        public uint ChannelInterruptFlags { get; set; }
-        public uint ProcFlags { get; set; }
-        public int ProcChance { get; set; }
-        public int ProcCharges { get; set; }
-        public int MaxLevel { get; set; }
-        public int BaseLevel { get; set; }
-        public int SpellLevel { get; set; }
-        public int Duration { get; set; }
-        public int PowerType { get; set; }
-        public int PowerCost { get; set; }
-        public int PowerCostPerLevel { get; set; }
-        public int PowerPerSecond { get; set; }
-        public int PowerPerSecondPerLevel { get; set; }
-        public int Range { get; set; }
-        public float Speed { get; set; }
-        public int ModalNextSpell { get; set; }
-        public int StackAmount { get; set; }
-        public int[] Totem { get; set; }
-        public int[] Reagent { get; set; }
-        public int[] ReagentCount { get; set; }
-        public int EquippedItemClass { get; set; }
-        public uint EquippedItemSubClassMask { get; set; }
-        public uint EquippedItemInventoryTypeMask { get; set; }
-        public int[] Effect { get; set; }
-        public int[] EffectDieSides { get; set; }
-        public float[] EffectPointsPerLevel { get; set; }
-        public int[] EffectBasePoints { get; set; }
-        public int[] EffectMechanic { get; set; }
-        public int[] EffectImplicitTargetA { get; set; }
-        public int[] EffectImplicitTargetB { get; set; }
-        public int[] EffectRadius { get; set; }
-        public int[] EffectAura { get; set; }
-        public int[] EffectAmplitude { get; set; }
-        public float[] EffectMultipleValue { get; set; }
-        public int[] EffectChainTargets { get; set; }
-        public int[] EffectItemType { get; set; }
-        public int[] EffectMisc { get; set; }
-        public int[] EffectMiscB { get; set; }
-        public int[] EffectTriggerSpell { get; set; }
-        public float[] EffectPointsPerComboPoint { get; set; }
-        public uint[] EffectSpellClassMaskA { get; set; }
-        public uint[] EffectSpellClassMaskB { get; set; }
-        public uint[] EffectSpellClassMaskC { get; set; }
-        public int SpellVisual1 { get; set; }
-        public int SpellVisual2 { get; set; }
-        public int SpellIconID { get; set; }
-        public int ActiveIconID { get; set; }
-        public int SpellPriority { get; set; }
-        public string Name { get; set; }
-        public int SpellNameFlag { get; set; }
-        public string Rank { get; set; }
-        public int SpellRankFlags { get; set; }
-        public string Description { get; set; }
-        public int SpellDescriptionFlags { get; set; }
-        public string ToolTip { get; set; }
-        public int SpellToolTipFlags { get; set; }
-        public int PowerCostPercent { get; set; }
-        public int StartRecoveryCategory { get; set; }
-        public int StartRecoveryTime { get; set; }
-        public int MaxTargetLevel { get; set; }
-        public int FamilyName { get; set; }
-        public uint FamilyFlagsA { get; set; }
-        public uint FamilyFlagsB { get; set; }
-        public uint FamilyFlagsC { get; set; }
-        public int MaxAffectedTargets { get; set; }
-        public int DamageClass { get; set; }
-        public int PreventionType { get; set; }
-        public int StanceBarOrder { get; set; }
-        public float[] EffectDamageMultiplier { get; set; }
-        public int MinFactionId { get; set; }
-        public int MinReputation { get; set; }
-        public int RequiredAuraVision { get; set; }
-        public int TotemCategory1 { get; set; }
-        public int TotemCategory2 { get; set; }
-        public int AreaGroupID { get; set; }
-        public int SchoolMask { get; set; }
-        public int RuneCostID { get; set; }
-        public int SpellMissileID { get; set; }
-        public int PowerDisplayId { get; set; }
-        public float[] EffectBonusMultiplier { get; set; }
-        public int SpellDescriptionVariableID { get; set; }
-        public int SpellDifficultyID { get; set; }
-    }
-
-    public class Loot
-    {
-        public int Entry { get; set; }
-        public int Item { get; set; }
-        public int Reference { get; set; }
-        public float Chance { get; set; }
-        public bool QuestRequired { get; set; }
-        public int LootMode { get; set; }
-        public byte GroupID { get; set; }
-        public byte MinCount { get; set; }
-        public byte MaxCount { get; set; }
-        public bool IsRef { get; set; }
-        public string Comment { get; set; }
-    }
-
-    public class SmartScript
-    {
-        public SmartScript()
-        {
-            EventParam = new long[4];
-            ActionParam = new long[6];
-            TargetParam = new long[3];
-            TargetPosition = new float[4];
-        }
-
-        public int Entry { get; set; }
-        public byte SourceType { get; set; }
-        public int ID { get; set; }
-        public int Link { get; set; }
-        public byte Event { get; set; }
-        public byte EventPhase { get; set; }
-        public byte EventFlags { get; set; }
-        public byte Chance { get; set; }
-        public long[] EventParam { get; set; }
-        public byte Action { get; set; }
-        public long[] ActionParam { get; set; }
-        public byte Target { get; set; }
-        public long[] TargetParam { get; set; }
-        public float[] TargetPosition { get; set; }
-        public string Comment { get; set; }
-    }
-
-    public class CreatureTrainerInfo
-    {
-        public int Entry { get; set; }
-        public int Spell { get; set; }
-        public long Cost { get; set; }
-        public int Skill { get; set; }
-        public int SkillValue { get; set; }
-        public byte Level { get; set; }
-        public int CityRank { get; set; }
-    }
-
-    public class ItemEnchantmentTemplate
-    {
-        public int ID { get; set; }
-        public int Enchant { get; set; }
-        public float Chance { get; set; }
-    }
-
+    // preload defines
     public class DataDefine
     {
-        private const string DBC_ROOT_PATH = "C:/LEGACY/SERVER/DBC/";
-        private const int DBC_COLUMN_SIZE = 4;
+        private static string DBC_ROOT_PATH = MainWindow.SERVER_PATH + "dbc/";
+        private static int DBC_COLUMN_SIZE = 4;
 
         private static Dictionary<int, string> LoadDBDefine(string type)
         {
@@ -1053,100 +563,23 @@ namespace MSAToolBox.Utility
         public Dictionary<int, string> ItemGroupSound { get; set; }
     }
 
-    class LootPool
-    {
-        public int Pool { get; set; }
-        public int Item { get; set; }
-        public float Chance { get; set; }
-    }
-
-    public class LegacyWorld
+    // get or set world game data.
+    public static class LegacyWorld
     {
         private const int MAX_GOSSIP_ITEM = 32;
         #region GENERIC
-        public Dictionary<int, string> GetLanguages()
+        public static Dictionary<int, string> GetLanguages()
         {
             return DataDefine.Language;
         }
 
-        public Dictionary<int, string> GetEmotes()
+        public static Dictionary<int, string> GetEmotes()
         {
             return DataDefine.Emotes;
         }
-
-        public void InsertLoots()
-        {
-            List<LootPool> lootPool = new List<LootPool>();
-
-            var items = from d in DB.LEGACY.item_template where d.entry > 56811 && d.entry < 59007 select d;
-            foreach (var item in items)
-            {
-                int pool = 0;
-                float chance = 0;
-                switch (item.subclass)
-                {
-                    case 1: // armor
-                        pool = 2;
-                        break;
-                    case 2: // tailoring
-                        pool = 3;
-                        break;
-                    case 3: // engineering
-                        pool = 4;
-                        break;
-                    case 4: // blacksmithing
-                        pool = 1;
-                        break;
-                    case 5: // cooking
-                        pool = 5;
-                        break;
-                    case 6: // achedemy
-                        pool = 6;
-                        break;
-                    default:
-                        continue;
-                }
-                switch (item.Quality)
-                {
-                    case 1:
-                        chance = 10.0f;
-                        break;
-                    case 2:
-                        chance = 5.0f;
-                        break;
-                    case 3:
-                        chance = 0.5f;
-                        break;
-                    case 4:
-                        chance = 0.1f;
-                        break;
-                    default:
-                        break;
-                }
-                lootPool.Add(new LootPool()
-                {
-                    Pool = pool,
-                    Item = item.entry,
-                    Chance = chance
-                });
-            }
-
-            DB.Refresh();
-
-            foreach (var loot in lootPool)
-            {
-                DB.LEGACY.loot_pool.Add(new loot_pool()
-                {
-                    pool = loot.Pool,
-                    item = loot.Item,
-                    chance = loot.Chance
-                });
-            }
-            DB.LEGACY.SaveChanges();
-        }
         #endregion
         #region ITEM
-        public DataDefineStore GetDataDefines()
+        public static DataDefineStore GetDataDefines()
         {
             DataDefineStore store = new DataDefineStore();
             store.ItemAmmoType = DataDefine.ItemAmmoType;
@@ -1189,7 +622,7 @@ namespace MSAToolBox.Utility
             return store;
         }
 
-        public ItemTemplate GetItemTemplate(int entry)
+        public static ItemTemplate GetItemTemplate(int entry)
         {
             var itemDB = (from d in DB.LEGACY.item_template where d.entry == entry select d).SingleOrDefault();
             if (itemDB == null)
@@ -1337,7 +770,8 @@ namespace MSAToolBox.Utility
                 return item;
             }
         }
-        public ItemTemplate SaveItemTemplate(ItemTemplate item, bool newItem = false)
+
+        public static ItemTemplate SaveItemTemplate(ItemTemplate item, bool newItem = false)
         {
             if (item == null)
                 return null;
@@ -1501,12 +935,13 @@ namespace MSAToolBox.Utility
             DB.Refresh();
             return item;
         }
-        public List<ItemInfo> GetItemList()
+
+        public static List<ItemInfo> GetItemList()
         {
             return DBCache.GetItems();
         }
 
-        public ItemTemplate CreateItemTemplate()
+        public static ItemTemplate CreateItemTemplate()
         {
             return SaveItemTemplate(new ItemTemplate()
             {
@@ -1582,7 +1017,7 @@ namespace MSAToolBox.Utility
             });
         }
 
-        public void DeleteItemTemplate(int entry)
+        public static void DeleteItemTemplate(int entry)
         {
             var item = (from d in DB.LEGACY.item_template where d.entry == entry select d).SingleOrDefault();
             if (item != null)
@@ -1593,13 +1028,13 @@ namespace MSAToolBox.Utility
             }
         }
 
-        public ItemTemplate CopyItemTemplate(int entry)
+        public static ItemTemplate CopyItemTemplate(int entry)
         {
             ItemTemplate newItem = SaveItemTemplate(GetItemTemplate(entry), true);
             return newItem;
         }
 
-        public List<ItemDBC> GenerateItemDBC()
+        public static List<ItemDBC> GenerateItemDBC()
         {
             List<ItemDBC> list = new List<ItemDBC>();
             var items = from d in DB.LEGACY.item_template select d;
@@ -1610,60 +1045,7 @@ namespace MSAToolBox.Utility
         }
         #endregion
         #region CREATURE GOSSIP
-        public GossipMenu GetGossipMenu(int id)
-        {
-            if ((from d in DB.LEGACY.gossip_menu select d).Count() == 0)
-                return null;
-
-            GossipMenu gossipMenu = new GossipMenu();
-
-            gossipMenu.ID = id;
-
-            int textID = (from d in DB.LEGACY.gossip_menu where d.entry == id select d.text_id).SingleOrDefault();
-            if (textID != 0)
-            {
-                var text = (from d in DB.LEGACY.npc_text where d.ID == textID select d).SingleOrDefault();
-
-                if (text != null)
-                {
-                    gossipMenu.NpcTextID = text.ID;
-                    gossipMenu.NpcTextMale = text.text0_0;
-                    gossipMenu.NpcTextFemale = text.text0_1;
-                    gossipMenu.NpcTextLanguage = text.lang0;
-                    gossipMenu.Emote1 = text.em0_1;
-                    gossipMenu.Emote2 = text.em0_3;
-                    gossipMenu.Emote3 = text.em0_5;
-                }
-            }
-
-            var options = from d in DB.LEGACY.gossip_menu_option where d.menu_id == id select d;
-
-            if (options.Count() == 0)
-                return gossipMenu;
-
-            gossipMenu.Options = new GossipMenuOption[MAX_GOSSIP_ITEM];
-
-            foreach (var option in options)
-            {
-                GossipMenuOption menuItem = new GossipMenuOption();
-                menuItem.Icon = option.option_icon;
-                menuItem.Text = option.option_text;
-                menuItem.OptionBroadcastTextID = option.OptionBroadcastTextID;
-                menuItem.Type = option.option_id;
-                menuItem.NpcFlags = (int)option.npc_option_npcflag;
-                menuItem.ActionMenu = (int)option.action_menu_id;
-                menuItem.ActionPOI = option.action_poi_id;
-                menuItem.ShowCodeBox = option.box_coded == 0 ? false : true;
-                menuItem.BoxMoney = (int)option.box_money;
-                menuItem.BoxText = option.box_text;
-                menuItem.BoxBroadcastTextID = option.BoxBroadcastTextID;
-                menuItem.SingleTimeCheck = option.SingleTimeCheck == 0 ? false : true;
-                gossipMenu.Options[option.id] = menuItem;
-            }
-
-            return gossipMenu;
-        }
-        public Dictionary<int, string> GetGossipMenuOptionTypes()
+        public static Dictionary<int, string> GetGossipMenuOptionTypes()
         {
             Dictionary<int, string> dict = new Dictionary<int, string>();
             var types = from d in DB.DATA.define_menu_option_type select d;
@@ -1672,7 +1054,7 @@ namespace MSAToolBox.Utility
             return dict;
         }
 
-        public Dictionary<int, string> GetGossipIconDefines()
+        public static Dictionary<int, string> GetGossipIconDefines()
         {
             Dictionary<int, string> dict = new Dictionary<int, string>();
             var gossipIconDefines = from d in DB.DATA.define_gossip_icon select d;
@@ -1681,201 +1063,7 @@ namespace MSAToolBox.Utility
             return dict;
         }
 
-        public GossipMenu SaveGossipMenu(GossipMenu menu)
-        {
-            if (menu == null)
-                return null;
-
-            if (menu.ID == 0)
-                return null;
-
-            try
-            {
-                var gossipMenu = (from d in DB.LEGACY.gossip_menu where d.entry == menu.ID select d).SingleOrDefault();
-                if (gossipMenu != null)
-                    gossipMenu.text_id = menu.NpcTextID;
-
-                var npcText = (from d in DB.LEGACY.npc_text where d.ID == menu.NpcTextID select d).SingleOrDefault();
-                if (npcText != null)
-                {
-                    npcText.lang0 = (byte)menu.NpcTextLanguage;
-                    npcText.text0_0 = menu.NpcTextMale;
-                    npcText.text0_1 = menu.NpcTextFemale;
-                    npcText.em0_1 = menu.Emote1;
-                    npcText.em0_3 = menu.Emote2;
-                    npcText.em0_5 = menu.Emote3;
-                }
-
-                var oldGossipMenuOptions = from d in DB.LEGACY.gossip_menu_option
-                                           where d.menu_id == menu.ID
-                                           select d;
-
-                foreach (var oldGossipMenuOption in oldGossipMenuOptions)
-                    DB.LEGACY.gossip_menu_option.Remove(oldGossipMenuOption);
-
-                if (menu.Options != null)
-                {
-                    for (int i = 0; i != MAX_GOSSIP_ITEM; ++i)
-                    {
-                        if (menu.Options[i] != null)
-                        {
-                            DB.LEGACY.gossip_menu_option.Add(new gossip_menu_option()
-                            {
-                                menu_id = menu.ID,
-                                id = i,
-                                option_icon = menu.Options[i].Icon,
-                                option_text = menu.Options[i].Text,
-                                OptionBroadcastTextID = 0,
-                                option_id = (byte)menu.Options[i].Type,
-                                npc_option_npcflag = menu.Options[i].NpcFlags,
-                                action_menu_id = menu.Options[i].ActionMenu,
-                                action_poi_id = menu.Options[i].ActionPOI,
-                                box_coded = (byte)(menu.Options[i].ShowCodeBox == true ? 1 : 0),
-                                box_money = menu.Options[i].BoxMoney,
-                                box_text = menu.Options[i].BoxText,
-                                BoxBroadcastTextID = 0,
-                                SingleTimeCheck = (byte)(menu.Options[i].SingleTimeCheck == true ? 1 : 0)
-                            });
-                        }
-                    }
-                }
-
-                DB.LEGACY.SaveChanges();
-
-                return menu;
-            }
-            catch (System.Exception /*ex*/)
-            {
-                return null;
-            }
-        }
-
-        public GossipMenu CreateNewGossipMenu()
-        {
-            int menuMaxID = (from d in DB.LEGACY.gossip_menu select d.entry).Max() + 1;
-            int npcTextMaxID = (from d in DB.LEGACY.npc_text where d.ID < 724000 select d.ID).Max() + 1;
-
-            DB.LEGACY.gossip_menu.Add(new gossip_menu()
-            {
-                entry = menuMaxID,
-                text_id = npcTextMaxID
-            });
-
-            DB.LEGACY.npc_text.Add(new npc_text()
-            {
-                ID = npcTextMaxID,
-                text0_0 = "",
-                text0_1 = "",
-                BroadcastTextID0 = 0,
-                lang0 = 0,
-                prob0 = 100,
-                em0_0 = 0,
-                em0_1 = 1,
-                em0_2 = 0,
-                em0_3 = 0,
-                em0_4 = 0,
-                em0_5 = 0,
-                BroadcastTextID1 = 0,
-                lang1 = 0,
-                prob1 = 0,
-                em1_0 = 0,
-                em1_1 = 0,
-                em1_2 = 0,
-                em1_3 = 0,
-                em1_4 = 0,
-                em1_5 = 0,
-                BroadcastTextID2 = 0,
-                lang2 = 0,
-                prob2 = 0,
-                em2_0 = 0,
-                em2_1 = 0,
-                em2_2 = 0,
-                em2_3 = 0,
-                em2_4 = 0,
-                em2_5 = 0,
-                BroadcastTextID3 = 0,
-                lang3 = 0,
-                prob3 = 0,
-                em3_0 = 0,
-                em3_1 = 0,
-                em3_2 = 0,
-                em3_3 = 0,
-                em3_4 = 0,
-                em3_5 = 0,
-                BroadcastTextID4 = 0,
-                lang4 = 0,
-                prob4 = 0,
-                em4_0 = 0,
-                em4_1 = 0,
-                em4_2 = 0,
-                em4_3 = 0,
-                em4_4 = 0,
-                em4_5 = 0,
-                BroadcastTextID5 = 0,
-                lang5 = 0,
-                prob5 = 0,
-                em5_0 = 0,
-                em5_1 = 0,
-                em5_2 = 0,
-                em5_3 = 0,
-                em5_4 = 0,
-                em5_5 = 0,
-                BroadcastTextID6 = 0,
-                lang6 = 0,
-                prob6 = 0,
-                em6_0 = 0,
-                em6_1 = 0,
-                em6_2 = 0,
-                em6_3 = 0,
-                em6_4 = 0,
-                em6_5 = 0,
-                BroadcastTextID7 = 0,
-                lang7 = 0,
-                prob7 = 0,
-                em7_0 = 0,
-                em7_1 = 0,
-                em7_2 = 0,
-                em7_3 = 0,
-                em7_4 = 0,
-                em7_5 = 0,
-                VerifiedBuild = 10000
-            });
-
-            DB.LEGACY.SaveChanges();
-
-            GossipMenu menu = new GossipMenu();
-            menu.ID = menuMaxID;
-            menu.NpcTextID = npcTextMaxID;
-            menu.NpcTextMale = "";
-            menu.NpcTextFemale = "";
-            menu.NpcTextLanguage = 0;
-            menu.Emote1 = 1;
-            menu.Emote2 = 0;
-            menu.Emote3 = 0;
-
-            return menu;
-        }
-
-        public int GetOrCreateCreatureGossipID(int entry)
-        {
-            var creature = (from d in DB.LEGACY.creature_template where d.entry == entry select d).SingleOrDefault();
-
-            if (creature == null)
-                return 0;
-
-            if (creature.gossip_menu_id == 0)
-            {
-                GossipMenu menu = CreateNewGossipMenu();
-                creature.gossip_menu_id = menu.ID;
-                creature.npcflag |= 1;
-                DB.LEGACY.SaveChanges();
-                return menu.ID;
-            }
-            else
-                return creature.gossip_menu_id;
-        }
-
-        public Dictionary<int, string> GetCreatureNames()
+        public static Dictionary<int, string> GetCreatureNames()
         {
             Dictionary<int, string> dict = new Dictionary<int, string>();
             var creatureNames = from d in DB.LEGACY.creature_template select d;
@@ -1886,7 +1074,7 @@ namespace MSAToolBox.Utility
         }
         #endregion
         #region CREATURE VENDOR
-        public List<VendorInfo> GetVendorList(int entry)
+        public static List<VendorInfo> GetVendorList(int entry)
         {
             List<VendorInfo> list = new List<VendorInfo>();
             var vendor = from d in DB.LEGACY.npc_vendor where d.entry == entry select d;
@@ -1899,15 +1087,32 @@ namespace MSAToolBox.Utility
                     MaxCount = v.maxcount,
                     IncrTime = v.incrtime,
                     ExtendedCost = v.ExtendedCost,
-                    //RelatedToStage = v.RelatedToStage,
-                    //StageLevel = v.StageLevel,
                     VerifiedBuild = v.VerifiedBuild
                 });
             }
             return list;
         }
 
-        public void AppendVendorInfo(int relatedItem, VendorInfo vendor)
+        public static List<VendorInfo> GetVendorListAll()
+        {
+            List<VendorInfo> list = new List<VendorInfo>();
+            var vendors = from d in DB.LEGACY.npc_vendor select d;
+            foreach (var v in vendors)
+            {
+                list.Add(new VendorInfo()
+                {
+                    Slot = v.slot,
+                    Item = v.item,
+                    MaxCount = v.maxcount,
+                    IncrTime = v.incrtime,
+                    ExtendedCost = v.ExtendedCost,
+                    VerifiedBuild = v.VerifiedBuild
+                });
+            }
+            return list;
+        }
+
+        public static void AppendVendorInfo(int relatedItem, VendorInfo vendor)
         {
             var relation = (from d in DB.LEGACY.npc_vendor where d.item == relatedItem select d).ToList();
             if (relation.Count == 0) return;
@@ -1926,15 +1131,13 @@ namespace MSAToolBox.Utility
                     maxcount = vendor.MaxCount,
                     incrtime = vendor.IncrTime,
                     ExtendedCost = vendor.ExtendedCost,
-                    //RelatedToStage = vendor.RelatedToStage,
-                    //StageLevel = vendor.StageLevel,
                     VerifiedBuild = vendor.VerifiedBuild
                 });
             }
             DB.LEGACY.SaveChanges();
         }
 
-        public bool SaveVendorList(int npcEntry, List<VendorInfo> list)
+        public static bool SaveVendorList(int npcEntry, List<VendorInfo> list)
         {
             if (list.Count == 0)
             {
@@ -1970,8 +1173,6 @@ namespace MSAToolBox.Utility
                     maxcount = vendor.MaxCount,
                     incrtime = vendor.IncrTime,
                     ExtendedCost = vendor.ExtendedCost,
-                    //RelatedToStage = vendor.RelatedToStage,
-                    //StageLevel = vendor.StageLevel,
                     VerifiedBuild = vendor.VerifiedBuild
                 });
             }
@@ -1982,7 +1183,7 @@ namespace MSAToolBox.Utility
         }
         #endregion
         #region CREATURE TEMPLATE
-        public CreatureTemplate GetCreatureTemplate(int entry)
+        public static CreatureTemplate GetCreatureTemplate(int entry)
         {
             var c = (from d in DB.LEGACY.creature_template where d.entry == entry select d).SingleOrDefault();
             if (c == null)
@@ -2071,12 +1272,12 @@ namespace MSAToolBox.Utility
             creature.ExtraFlags = c.flags_extra;
             creature.ScriptName = c.ScriptName;
             creature.VerifiedBuild = c.VerifiedBuild;
-            creature.WarSchool = c.warSchool;
+            creature.WarSchool = c.WarSchool;
             DB.Refresh();
             return creature;
         }
 
-        public CreatureTemplate SaveCreatureTemplate(CreatureTemplate creature)
+        public static CreatureTemplate SaveCreatureTemplate(CreatureTemplate creature)
         {
             if (creature.Entry[0] != 0)
             {
@@ -2175,7 +1376,7 @@ namespace MSAToolBox.Utility
                 flags_extra = creature.ExtraFlags,
                 ScriptName = creature.ScriptName,
                 VerifiedBuild = creature.VerifiedBuild,
-                warSchool = creature.WarSchool
+                WarSchool = creature.WarSchool
             });
 
             DB.LEGACY.SaveChanges();
@@ -2183,12 +1384,12 @@ namespace MSAToolBox.Utility
             return creature;
         }
 
-        public List<CreatureInfo> GetCreatureList()
+        public static List<CreatureInfo> GetCreatureList()
         {
             return DBCache.GetCreatures();
         }
 
-        public void DeleteCreatureTemplate(int entry)
+        public static void DeleteCreatureTemplate(int entry)
         {
             var creature = (from d in DB.LEGACY.creature_template where d.entry == entry select d).SingleOrDefault();
             if (creature != null)
@@ -2199,7 +1400,7 @@ namespace MSAToolBox.Utility
             }
         }
 
-        public List<Creature> GetSpawnInfo(int entry)
+        public static List<Creature> GetSpawnInfo(int entry)
         {
             List<Creature> list = new List<Creature>();
 
@@ -2236,7 +1437,7 @@ namespace MSAToolBox.Utility
             return list;
         }
 
-        public void SaveSpawnInfo(int entry, List<Creature> list)
+        public static void SaveSpawnInfo(int entry, List<Creature> list)
         {
             if (list == null || list.Count == 0)
                 return;
@@ -2285,15 +1486,15 @@ namespace MSAToolBox.Utility
         }
         #endregion
         #region CREATURE TRAINER
-        public List<CreatureTrainerInfo> GetCreatureTrainerInfo(int entry)
+        public static List<NpcTrainerInfo> GetCreatureTrainerInfo(int entry)
         {
-            List<CreatureTrainerInfo> list = new List<CreatureTrainerInfo>();
+            List<NpcTrainerInfo> list = new List<NpcTrainerInfo>();
             var trainerInfo = from d in DB.LEGACY.npc_trainer where d.entry == entry select d;
             if (trainerInfo.Count() == 0)
                 return list;
             foreach (var info in trainerInfo)
             {
-                CreatureTrainerInfo cti = new CreatureTrainerInfo();
+                NpcTrainerInfo cti = new NpcTrainerInfo();
                 cti.Cost = info.spellcost;
                 cti.Entry = info.entry;
                 cti.Level = info.reqlevel;
@@ -2304,7 +1505,7 @@ namespace MSAToolBox.Utility
                 list.Add(cti);
             }
 
-            List<CreatureTrainerInfo> list2 = new List<CreatureTrainerInfo>();
+            List<NpcTrainerInfo> list2 = new List<NpcTrainerInfo>();
             foreach (var item in list)
             {
                 if (item.Spell < 0)
@@ -2313,7 +1514,7 @@ namespace MSAToolBox.Utility
                     var realInfo = from d in DB.LEGACY.npc_trainer where d.entry == realentry select d;
                     foreach (var rInfo in realInfo)
                     {
-                        CreatureTrainerInfo cti2 = new CreatureTrainerInfo();
+                        NpcTrainerInfo cti2 = new NpcTrainerInfo();
                         cti2.Entry = rInfo.entry;
                         cti2.Cost = rInfo.spellcost;
                         cti2.Level = rInfo.reqlevel;
@@ -2335,7 +1536,7 @@ namespace MSAToolBox.Utility
             return list;
         }
 
-        public void SaveCreatureTrainerInfo(List<CreatureTrainerInfo> list)
+        public static void SaveCreatureTrainerInfo(List<NpcTrainerInfo> list)
         {
             if (list == null || list.Count == 0)
                 return;
@@ -2364,7 +1565,7 @@ namespace MSAToolBox.Utility
         }
         #endregion
         #region CREATURE LOOT
-        public List<Loot> GetCreatureLoot(int entry, bool onlyRef)
+        public static List<Loot> GetCreatureLoot(int entry, bool onlyRef)
         {
             List<Loot> list = new List<Loot>();
             if (onlyRef)
@@ -2440,7 +1641,7 @@ namespace MSAToolBox.Utility
             }
         }
 
-        public void SaveCreatureLoot(List<Loot> list)
+        public static void SaveCreatureLoot(List<Loot> list)
         {
             var creatureLoots = from d in list where d.IsRef == false select d;
             foreach (var creatureLoot in creatureLoots)
@@ -2487,7 +1688,7 @@ namespace MSAToolBox.Utility
         }
         #endregion
         #region SMARTSCRIPT
-        public List<SmartScript> GetSmartScript(int type, int entry)
+        public static List<SmartScript> GetSmartScript(int type, int entry)
         {
             List<SmartScript> list = new List<SmartScript>();
             var scripts = from d in DB.LEGACY.smart_scripts where d.source_type == type && d.entryorguid == entry select d;
@@ -2531,7 +1732,7 @@ namespace MSAToolBox.Utility
             return list;
         }
 
-        public void SaveSmartScript(List<SmartScript> list)
+        public static void SaveSmartScript(List<SmartScript> list)
         {
             //var oldScripts = from d in DB.LEGACY.smart_scripts where d.source_type == type && d.entryorguid == entry select d;
             //if (oldScripts.Count() != 0)
@@ -2576,7 +1777,7 @@ namespace MSAToolBox.Utility
         }
         #endregion
 
-        public List<ItemEnchantmentTemplate> GetItemEnchants()
+        public static List<ItemEnchantmentTemplate> GetItemEnchants()
         {
             List<ItemEnchantmentTemplate> list = new List<ItemEnchantmentTemplate>();
             var enchants = from d in DB.LEGACY.item_enchantment_template select d;
@@ -2591,7 +1792,7 @@ namespace MSAToolBox.Utility
             return list;
         }
 
-        public void SaveItemEnchants(List<ItemEnchantmentTemplate> list)
+        public static void SaveItemEnchants(List<ItemEnchantmentTemplate> list)
         {
             var olds = from d in DB.LEGACY.item_enchantment_template select d;
             foreach (var old in olds)
@@ -2607,6 +1808,156 @@ namespace MSAToolBox.Utility
                 });
             }
 
+            DB.LEGACY.SaveChanges();
+        }
+
+        public static BroadCastText GetBroadCastText(int entry)
+        {
+            var bct = (from d in DB.LEGACY.broadcast_text where d.ID == entry select d).SingleOrDefault();
+            if (bct == null)
+                return null;
+
+            BroadCastText text = new BroadCastText();
+            text.ID = bct.ID;
+            text.Language = bct.Language;
+            text.MaleText = bct.MaleText;
+            text.FemaleText = bct.FemaleText;
+            text.Emote0 = bct.EmoteID0;
+            text.Emote1 = bct.EmoteID1;
+            text.Emote2 = bct.EmoteID2;
+            text.EmoteDelay0 = bct.EmoteDelay0;
+            text.EmoteDelay1 = bct.EmoteDelay1;
+            text.EmoteDelay2 = bct.EmoteDelay2;
+            text.SoundID = bct.SoundId;
+            return text;
+        }
+
+        public static void SaveBroadCastText(BroadCastText text, bool createNew = true)
+        {
+            int maxID = (from d in DB.LEGACY.broadcast_text select d.ID).Max() + 1;
+
+            if (createNew)
+                text.ID = maxID;
+            else
+            {
+                var oldEntry = (from d in DB.LEGACY.broadcast_text where d.ID == text.ID select d).SingleOrDefault();
+                if (oldEntry != null)
+                    DB.LEGACY.broadcast_text.Remove(oldEntry);
+            }
+
+            DB.LEGACY.broadcast_text.Add(new broadcast_text()
+            {
+                ID = text.ID,
+                Language = text.Language,
+                MaleText = text.MaleText,
+                FemaleText = text.FemaleText,
+                EmoteID0 = text.Emote0,
+                EmoteID1 = text.Emote1,
+                EmoteID2 = text.Emote2,
+                EmoteDelay0 = text.EmoteDelay0,
+                EmoteDelay1 = text.EmoteDelay1,
+                EmoteDelay2 = text.EmoteDelay2,
+                Unk1 = 0,
+                Unk2 = 1,
+                VerifiedBuild = 10000
+            });
+
+            DB.LEGACY.SaveChanges();
+        }
+
+        public static List<GossipMenu> GetGossipMenu(int entry)
+        {
+            List<GossipMenu> menu = new List<GossipMenu>();
+            var gossips = from d in DB.LEGACY.gossip_menu where d.entry == entry select d;
+            foreach (var gossip in gossips)
+            {
+                GossipMenu m = new GossipMenu();
+                m.Menu = gossip.entry;
+                m.NpcText = gossip.text_id;
+            }
+            return menu;
+        }
+
+        public static void SaveGossipMenu(List<GossipMenu> menu, int menuID)
+        {
+            if (menu == null || menu.Count == 0)
+                return;
+
+            var oldMenus = from d in DB.LEGACY.gossip_menu where d.entry == menuID select d;
+            if (oldMenus.Count() > 0)
+            {
+                foreach (var oldMenu in oldMenus)
+                    DB.LEGACY.gossip_menu.Remove(oldMenu);
+            }
+
+            foreach (var m in menu)
+            {
+                DB.LEGACY.gossip_menu.Add(new gossip_menu()
+                {
+                    entry = menuID,
+                    text_id = m.NpcText
+                });
+            }
+
+            DB.LEGACY.SaveChanges();
+        }
+
+        public static List<GossipMenuItem> GetGossipMenuItems(int menuID)
+        {
+            List<GossipMenuItem> menuItems = new List<GossipMenuItem>();
+            var items = from d in DB.LEGACY.gossip_menu_option where d.menu_id == menuID select d;
+            if (items.Count() != 0)
+            {
+                foreach (var item in items)
+                {
+                    GossipMenuItem it = new GossipMenuItem();
+                    it.Menu = item.menu_id;
+                    it.ID = item.id;
+                    it.Icon = item.option_icon;
+                    it.GossipTextID = item.OptionBroadcastTextID;
+                    it.OptionID = item.option_id;
+                    it.NpcFlags = item.npc_option_npcflag;
+                    it.ToMenu = item.action_menu_id;
+                    it.POI = item.action_poi_id;
+                    it.BoxCoded = item.box_coded != 0;
+                    it.BoxMoney = item.box_money;
+                    it.BoxTextID = item.BoxBroadcastTextID;
+                    it.SingleTimeCheck = item.SingleTimeCheck != 0;
+                }
+            }
+            return menuItems;
+        }
+
+        public static void SaveGossipMenuItems(List<GossipMenuItem> menuItems, int menuID)
+        {
+            if (menuItems == null || menuItems.Count == 0)
+                return;
+
+            var oldMenuItems = from d in DB.LEGACY.gossip_menu_option where d.menu_id == menuID select d;
+            if (oldMenuItems.Count() > 0)
+            {
+                foreach (var oldMenuItem in oldMenuItems)
+                    DB.LEGACY.gossip_menu_option.Remove(oldMenuItem);
+            }
+
+            foreach (var m in menuItems)
+            {
+                DB.LEGACY.gossip_menu_option.Add(new gossip_menu_option()
+                {
+                    menu_id = menuID,
+                    id = m.ID,
+                    option_icon = m.Icon,
+                    OptionBroadcastTextID = m.GossipTextID,
+                    option_id = m.OptionID,
+                    npc_option_npcflag = m.NpcFlags,
+                    action_menu_id = m.ToMenu,
+                    action_poi_id = m.POI,
+                    box_coded = (byte)(m.BoxCoded ? 1 : 0),
+                    box_money = m.BoxMoney,
+                    BoxBroadcastTextID = m.BoxTextID,
+                    SingleTimeCheck = (byte)(m.SingleTimeCheck ? 1 : 0)
+                });
+            }
             DB.LEGACY.SaveChanges();
         }
     }

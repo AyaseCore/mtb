@@ -34,7 +34,7 @@ namespace MSAToolBox.Controls.Legacy
                 return;
             }
 
-            var data = LegacyMorpher.Data.GetCreatureTrainerInfo(entry);
+            var data = LegacyWorld.GetCreatureTrainerInfo(entry);
             if (data != null)
                 trainerInfoGrid.ItemsSource = data.ToList();
             else
@@ -43,9 +43,9 @@ namespace MSAToolBox.Controls.Legacy
 
         public void Save()
         {
-            List<CreatureTrainerInfo> list = trainerInfoGrid.ItemsSource as List<CreatureTrainerInfo>;
+            List<NpcTrainerInfo> list = trainerInfoGrid.ItemsSource as List<NpcTrainerInfo>;
             if (list != null && list.Count != 0)
-                LegacyMorpher.Data.SaveCreatureTrainerInfo(list);
+                LegacyWorld.SaveCreatureTrainerInfo(list);
             statusLabel.Content = "Saved.";
         }
 
@@ -60,8 +60,8 @@ namespace MSAToolBox.Controls.Legacy
             {
                 if (trainerInfoGrid.SelectedItem != null)
                 {
-                    var item = trainerInfoGrid.SelectedItem as CreatureTrainerInfo;
-                    var list = trainerInfoGrid.ItemsSource as List<CreatureTrainerInfo>;
+                    var item = trainerInfoGrid.SelectedItem as NpcTrainerInfo;
+                    var list = trainerInfoGrid.ItemsSource as List<NpcTrainerInfo>;
                     list.Remove(item);
                 }
             }
@@ -73,7 +73,7 @@ namespace MSAToolBox.Controls.Legacy
             {
                 int entry = Convert.ToInt32(loadVendorEntry.Text);
 
-                var data = LegacyMorpher.Data.GetCreatureTrainerInfo(entry);
+                var data = LegacyWorld.GetCreatureTrainerInfo(entry);
                 if (data != null)
                     trainerInfoGrid.ItemsSource = data.ToList();
                 else

@@ -28,7 +28,6 @@ namespace MSAToolBox
         public string subname { get; set; }
         public string IconName { get; set; }
         public int gossip_menu_id { get; set; }
-        public int warSchool { get; set; }
         public byte minlevel { get; set; }
         public byte maxlevel { get; set; }
         public short exp { get; set; }
@@ -95,6 +94,7 @@ namespace MSAToolBox
         public byte RegenHealth { get; set; }
         public long mechanic_immune_mask { get; set; }
         public long flags_extra { get; set; }
+        public int WarSchool { get; set; }
         public string ScriptName { get; set; }
         public Nullable<short> VerifiedBuild { get; set; }
     }

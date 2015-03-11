@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LegacyWorldModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="LegacyWorldModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="access_requirement">
           <Key>
             <PropertyRef Name="mapId" />
@@ -122,7 +122,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="umediumint" Nullable="false" />
+          <Property Name="ID" Type="umediumint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Language" Type="umediumint" Nullable="false" />
           <Property Name="MaleText" Type="longtext" />
           <Property Name="FemaleText" Type="longtext" />
@@ -137,15 +137,22 @@
           <Property Name="Unk2" Type="umediumint" Nullable="false" />
           <Property Name="VerifiedBuild" Type="smallint" />
         </EntityType>
-        <EntityType Name="capital_cities">
+        <EntityType Name="capital_city_upgrade_cost">
           <Key>
-            <PropertyRef Name="zone" />
+            <PropertyRef Name="Level" />
           </Key>
-          <Property Name="zone" Type="uint" Nullable="false" />
-          <Property Name="faction" Type="uint" Nullable="false" />
-          <Property Name="startlevel" Type="int" Nullable="false" />
-          <Property Name="scriptname" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="comment" Type="varchar" MaxLength="255" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="Resource" Type="int" Nullable="false" />
+          <Property Name="MagicPower" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="capital_city_upgrade_spellset">
+          <Key>
+            <PropertyRef Name="City" />
+            <PropertyRef Name="SpellSet" />
+          </Key>
+          <Property Name="City" Type="int" Nullable="false" />
+          <Property Name="SpellSet" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="command">
           <Key>
@@ -255,15 +262,14 @@
           <Property Name="itemEntry3" Type="umediumint" Nullable="false" />
           <Property Name="VerifiedBuild" Type="smallint" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6005: 目标实体框架版本目前不支持数据类型“ufloat”；已排除表“def.original_world.creature_formations”中的列“dist”。
-警告 6005: 目标实体框架版本目前不支持数据类型“ufloat”；已排除表“def.original_world.creature_formations”中的列“angle”。-->
         <EntityType Name="creature_formations">
           <Key>
             <PropertyRef Name="memberGUID" />
           </Key>
           <Property Name="leaderGUID" Type="uint" Nullable="false" />
           <Property Name="memberGUID" Type="uint" Nullable="false" />
+          <Property Name="dist" Type="float" Nullable="false" />
+          <Property Name="angle" Type="float" Nullable="false" />
           <Property Name="groupAI" Type="uint" Nullable="false" />
           <Property Name="point_1" Type="usmallint" Nullable="false" />
           <Property Name="point_2" Type="usmallint" Nullable="false" />
@@ -326,7 +332,7 @@
           <Property Name="quest" Type="umediumint" Nullable="false" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“def.original_world.creature_summon_groups”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“def.v4_world.creature_summon_groups”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="creature_summon_groups">
           <Key>
             <PropertyRef Name="summonerId" />
@@ -369,7 +375,6 @@
           <Property Name="subname" Type="char" MaxLength="100" />
           <Property Name="IconName" Type="char" MaxLength="100" />
           <Property Name="gossip_menu_id" Type="umediumint" Nullable="false" />
-          <Property Name="warSchool" Type="int" Nullable="false" />
           <Property Name="minlevel" Type="utinyint" Nullable="false" />
           <Property Name="maxlevel" Type="utinyint" Nullable="false" />
           <Property Name="exp" Type="smallint" Nullable="false" />
@@ -436,6 +441,7 @@
           <Property Name="RegenHealth" Type="utinyint" Nullable="false" />
           <Property Name="mechanic_immune_mask" Type="uint" Nullable="false" />
           <Property Name="flags_extra" Type="uint" Nullable="false" />
+          <Property Name="WarSchool" Type="int" Nullable="false" />
           <Property Name="ScriptName" Type="char" MaxLength="64" Nullable="false" />
           <Property Name="VerifiedBuild" Type="smallint" />
         </EntityType>
@@ -460,13 +466,10 @@
           <Property Name="entry" Type="umediumint" Nullable="false" />
           <Property Name="groupid" Type="utinyint" Nullable="false" />
           <Property Name="id" Type="utinyint" Nullable="false" />
-          <Property Name="text" Type="longtext" />
           <Property Name="type" Type="utinyint" Nullable="false" />
           <Property Name="language" Type="utinyint" Nullable="false" />
           <Property Name="probability" Type="float" Nullable="false" />
-          <Property Name="emote" Type="umediumint" Nullable="false" />
           <Property Name="duration" Type="umediumint" Nullable="false" />
-          <Property Name="sound" Type="umediumint" Nullable="false" />
           <Property Name="BroadcastTextId" Type="mediumint" Nullable="false" />
           <Property Name="TextRange" Type="utinyint" Nullable="false" />
           <Property Name="comment" Type="varchar" MaxLength="255" />
@@ -500,7 +503,7 @@
           <Property Name="Comment" Type="varchar" MaxLength="255" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“def.original_world.event_scripts”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“def.v4_world.event_scripts”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="event_scripts">
           <Key>
             <PropertyRef Name="id" />
@@ -563,7 +566,7 @@
           <Property Name="announce" Type="utinyint" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“def.original_world.game_event_arena_seasons”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“def.v4_world.game_event_arena_seasons”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="game_event_arena_seasons">
           <Key>
             <PropertyRef Name="eventEntry" />
@@ -647,6 +650,7 @@
           <Property Name="maxcount" Type="umediumint" Nullable="false" />
           <Property Name="incrtime" Type="umediumint" Nullable="false" />
           <Property Name="ExtendedCost" Type="umediumint" Nullable="false" />
+          <Property Name="ReqCityRank" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="game_event_npcflag">
           <Key>
@@ -840,6 +844,7 @@
           </Key>
           <Property Name="entry" Type="usmallint" Nullable="false" />
           <Property Name="text_id" Type="umediumint" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="gossip_menu_option">
           <Key>
@@ -849,7 +854,6 @@
           <Property Name="menu_id" Type="usmallint" Nullable="false" />
           <Property Name="id" Type="usmallint" Nullable="false" />
           <Property Name="option_icon" Type="umediumint" Nullable="false" />
-          <Property Name="option_text" Type="text" />
           <Property Name="OptionBroadcastTextID" Type="mediumint" Nullable="false" />
           <Property Name="option_id" Type="utinyint" Nullable="false" />
           <Property Name="npc_option_npcflag" Type="uint" Nullable="false" />
@@ -857,9 +861,8 @@
           <Property Name="action_poi_id" Type="umediumint" Nullable="false" />
           <Property Name="box_coded" Type="utinyint" Nullable="false" />
           <Property Name="box_money" Type="uint" Nullable="false" />
-          <Property Name="box_text" Type="text" />
           <Property Name="BoxBroadcastTextID" Type="mediumint" Nullable="false" />
-          <Property Name="SingleTimeCheck" Type="utinyint" Nullable="false" />
+          <Property Name="SingleTimeCheck" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="instance_encounters">
           <Key>
@@ -943,7 +946,7 @@
           <Property Name="RequiredReputationFaction" Type="usmallint" Nullable="false" />
           <Property Name="RequiredReputationRank" Type="usmallint" Nullable="false" />
           <Property Name="maxcount" Type="int" Nullable="false" />
-          <Property Name="stackable" Type="int" />
+          <Property Name="stackable" Type="int" Nullable="false" />
           <Property Name="ContainerSlots" Type="utinyint" Nullable="false" />
           <Property Name="StatsCount" Type="utinyint" Nullable="false" />
           <Property Name="stat_type1" Type="utinyint" Nullable="false" />
@@ -1517,15 +1520,6 @@
           <Property Name="ObjectiveText4_loc8" Type="text" />
           <Property Name="VerifiedBuild" Type="smallint" />
         </EntityType>
-        <EntityType Name="loot_pool">
-          <Key>
-            <PropertyRef Name="pool" />
-            <PropertyRef Name="item" />
-          </Key>
-          <Property Name="pool" Type="int" Nullable="false" />
-          <Property Name="item" Type="int" Nullable="false" />
-          <Property Name="chance" Type="float" Nullable="false" />
-        </EntityType>
         <EntityType Name="mail_level_reward">
           <Key>
             <PropertyRef Name="level" />
@@ -1583,94 +1577,22 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="umediumint" Nullable="false" />
-          <Property Name="text0_0" Type="longtext" />
-          <Property Name="text0_1" Type="longtext" />
           <Property Name="BroadcastTextID0" Type="mediumint" Nullable="false" />
-          <Property Name="lang0" Type="utinyint" Nullable="false" />
           <Property Name="prob0" Type="float" Nullable="false" />
-          <Property Name="em0_0" Type="usmallint" Nullable="false" />
-          <Property Name="em0_1" Type="usmallint" Nullable="false" />
-          <Property Name="em0_2" Type="usmallint" Nullable="false" />
-          <Property Name="em0_3" Type="usmallint" Nullable="false" />
-          <Property Name="em0_4" Type="usmallint" Nullable="false" />
-          <Property Name="em0_5" Type="usmallint" Nullable="false" />
-          <Property Name="text1_0" Type="longtext" />
-          <Property Name="text1_1" Type="longtext" />
           <Property Name="BroadcastTextID1" Type="mediumint" Nullable="false" />
-          <Property Name="lang1" Type="utinyint" Nullable="false" />
           <Property Name="prob1" Type="float" Nullable="false" />
-          <Property Name="em1_0" Type="usmallint" Nullable="false" />
-          <Property Name="em1_1" Type="usmallint" Nullable="false" />
-          <Property Name="em1_2" Type="usmallint" Nullable="false" />
-          <Property Name="em1_3" Type="usmallint" Nullable="false" />
-          <Property Name="em1_4" Type="usmallint" Nullable="false" />
-          <Property Name="em1_5" Type="usmallint" Nullable="false" />
-          <Property Name="text2_0" Type="longtext" />
-          <Property Name="text2_1" Type="longtext" />
           <Property Name="BroadcastTextID2" Type="mediumint" Nullable="false" />
-          <Property Name="lang2" Type="utinyint" Nullable="false" />
           <Property Name="prob2" Type="float" Nullable="false" />
-          <Property Name="em2_0" Type="usmallint" Nullable="false" />
-          <Property Name="em2_1" Type="usmallint" Nullable="false" />
-          <Property Name="em2_2" Type="usmallint" Nullable="false" />
-          <Property Name="em2_3" Type="usmallint" Nullable="false" />
-          <Property Name="em2_4" Type="usmallint" Nullable="false" />
-          <Property Name="em2_5" Type="usmallint" Nullable="false" />
-          <Property Name="text3_0" Type="longtext" />
-          <Property Name="text3_1" Type="longtext" />
           <Property Name="BroadcastTextID3" Type="mediumint" Nullable="false" />
-          <Property Name="lang3" Type="utinyint" Nullable="false" />
           <Property Name="prob3" Type="float" Nullable="false" />
-          <Property Name="em3_0" Type="usmallint" Nullable="false" />
-          <Property Name="em3_1" Type="usmallint" Nullable="false" />
-          <Property Name="em3_2" Type="usmallint" Nullable="false" />
-          <Property Name="em3_3" Type="usmallint" Nullable="false" />
-          <Property Name="em3_4" Type="usmallint" Nullable="false" />
-          <Property Name="em3_5" Type="usmallint" Nullable="false" />
-          <Property Name="text4_0" Type="longtext" />
-          <Property Name="text4_1" Type="longtext" />
           <Property Name="BroadcastTextID4" Type="mediumint" Nullable="false" />
-          <Property Name="lang4" Type="utinyint" Nullable="false" />
           <Property Name="prob4" Type="float" Nullable="false" />
-          <Property Name="em4_0" Type="usmallint" Nullable="false" />
-          <Property Name="em4_1" Type="usmallint" Nullable="false" />
-          <Property Name="em4_2" Type="usmallint" Nullable="false" />
-          <Property Name="em4_3" Type="usmallint" Nullable="false" />
-          <Property Name="em4_4" Type="usmallint" Nullable="false" />
-          <Property Name="em4_5" Type="usmallint" Nullable="false" />
-          <Property Name="text5_0" Type="longtext" />
-          <Property Name="text5_1" Type="longtext" />
           <Property Name="BroadcastTextID5" Type="mediumint" Nullable="false" />
-          <Property Name="lang5" Type="utinyint" Nullable="false" />
           <Property Name="prob5" Type="float" Nullable="false" />
-          <Property Name="em5_0" Type="usmallint" Nullable="false" />
-          <Property Name="em5_1" Type="usmallint" Nullable="false" />
-          <Property Name="em5_2" Type="usmallint" Nullable="false" />
-          <Property Name="em5_3" Type="usmallint" Nullable="false" />
-          <Property Name="em5_4" Type="usmallint" Nullable="false" />
-          <Property Name="em5_5" Type="usmallint" Nullable="false" />
-          <Property Name="text6_0" Type="longtext" />
-          <Property Name="text6_1" Type="longtext" />
           <Property Name="BroadcastTextID6" Type="mediumint" Nullable="false" />
-          <Property Name="lang6" Type="utinyint" Nullable="false" />
           <Property Name="prob6" Type="float" Nullable="false" />
-          <Property Name="em6_0" Type="usmallint" Nullable="false" />
-          <Property Name="em6_1" Type="usmallint" Nullable="false" />
-          <Property Name="em6_2" Type="usmallint" Nullable="false" />
-          <Property Name="em6_3" Type="usmallint" Nullable="false" />
-          <Property Name="em6_4" Type="usmallint" Nullable="false" />
-          <Property Name="em6_5" Type="usmallint" Nullable="false" />
-          <Property Name="text7_0" Type="longtext" />
-          <Property Name="text7_1" Type="longtext" />
           <Property Name="BroadcastTextID7" Type="mediumint" Nullable="false" />
-          <Property Name="lang7" Type="utinyint" Nullable="false" />
           <Property Name="prob7" Type="float" Nullable="false" />
-          <Property Name="em7_0" Type="usmallint" Nullable="false" />
-          <Property Name="em7_1" Type="usmallint" Nullable="false" />
-          <Property Name="em7_2" Type="usmallint" Nullable="false" />
-          <Property Name="em7_3" Type="usmallint" Nullable="false" />
-          <Property Name="em7_4" Type="usmallint" Nullable="false" />
-          <Property Name="em7_5" Type="usmallint" Nullable="false" />
           <Property Name="VerifiedBuild" Type="smallint" />
         </EntityType>
         <EntityType Name="npc_trainer">
@@ -1698,6 +1620,7 @@
           <Property Name="maxcount" Type="utinyint" Nullable="false" />
           <Property Name="incrtime" Type="uint" Nullable="false" />
           <Property Name="ExtendedCost" Type="umediumint" Nullable="false" />
+          <Property Name="ReqCityRank" Type="int" Nullable="false" />
           <Property Name="VerifiedBuild" Type="smallint" />
         </EntityType>
         <EntityType Name="outdoorpvp_template">
@@ -1820,17 +1743,6 @@
           <Property Name="alliance_id" Type="int" Nullable="false" />
           <Property Name="horde_id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="player_level_spell">
-          <Key>
-            <PropertyRef Name="Class" />
-            <PropertyRef Name="Level" />
-          </Key>
-          <Property Name="Class" Type="int" Nullable="false" />
-          <Property Name="Level" Type="int" Nullable="false" />
-          <Property Name="Spell1" Type="int" Nullable="false" />
-          <Property Name="Spell2" Type="int" Nullable="false" />
-          <Property Name="Spell3" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="player_levelstats">
           <Key>
             <PropertyRef Name="race" />
@@ -1845,6 +1757,13 @@
           <Property Name="sta" Type="utinyint" Nullable="false" />
           <Property Name="inte" Type="utinyint" Nullable="false" />
           <Property Name="spi" Type="utinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="player_supremacy_level_xp">
+          <Key>
+            <PropertyRef Name="level" />
+          </Key>
+          <Property Name="level" Type="int" Nullable="false" />
+          <Property Name="xp" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="player_xp_for_level">
           <Key>
@@ -1926,24 +1845,22 @@
           <Property Name="icon_name" Type="text" Nullable="false" />
           <Property Name="VerifiedBuild" Type="smallint" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6005: 目标实体框架版本目前不支持数据类型“ufloat”；已排除表“def.original_world.pool_creature”中的列“chance”。-->
         <EntityType Name="pool_creature">
           <Key>
             <PropertyRef Name="guid" />
           </Key>
           <Property Name="guid" Type="uint" Nullable="false" />
           <Property Name="pool_entry" Type="umediumint" Nullable="false" />
+          <Property Name="chance" Type="float" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="255" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6005: 目标实体框架版本目前不支持数据类型“ufloat”；已排除表“def.original_world.pool_gameobject”中的列“chance”。-->
         <EntityType Name="pool_gameobject">
           <Key>
             <PropertyRef Name="guid" />
           </Key>
           <Property Name="guid" Type="uint" Nullable="false" />
           <Property Name="pool_entry" Type="umediumint" Nullable="false" />
+          <Property Name="chance" Type="float" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="pool_pool">
@@ -2161,20 +2078,6 @@
           <Property Name="OfferRewardEmoteDelay4" Type="uint" Nullable="false" />
           <Property Name="VerifiedBuild" Type="smallint" />
         </EntityType>
-        <EntityType Name="random_enchantment">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Set" Type="int" Nullable="false" />
-          <Property Name="Level" Type="int" Nullable="false" />
-          <Property Name="Chance" Type="int" Nullable="false" />
-          <Property Name="ClassMask" Type="int" Nullable="false" />
-          <Property Name="SubClassMask" Type="int" Nullable="false" />
-          <Property Name="InventoryTypeMask" Type="int" Nullable="false" />
-          <Property Name="QualityMask" Type="int" Nullable="false" />
-          <Property Name="Comment" Type="varchar" MaxLength="255" Nullable="false" />
-        </EntityType>
         <EntityType Name="reference_loot_template">
           <Key>
             <PropertyRef Name="Entry" />
@@ -2222,32 +2125,6 @@
           <Property Name="rate_4" Type="float" Nullable="false" />
           <Property Name="rank_4" Type="utinyint" Nullable="false" />
         </EntityType>
-        <EntityType Name="resource_points">
-          <Key>
-            <PropertyRef Name="area" />
-          </Key>
-          <Property Name="area" Type="uint" Nullable="false" />
-          <Property Name="max_guard" Type="uint" Nullable="false" />
-          <Property Name="max_worker" Type="uint" Nullable="false" />
-          <Property Name="allianceCity1" Type="uint" Nullable="false" />
-          <Property Name="allianceResourcePct1" Type="uint" Nullable="false" />
-          <Property Name="allianceCity2" Type="uint" Nullable="false" />
-          <Property Name="allianceResourcePct2" Type="uint" Nullable="false" />
-          <Property Name="allianceCity3" Type="uint" Nullable="false" />
-          <Property Name="allianceResourcePct3" Type="uint" Nullable="false" />
-          <Property Name="allianceCity4" Type="uint" Nullable="false" />
-          <Property Name="allianceResourcePct4" Type="uint" Nullable="false" />
-          <Property Name="hordeCity1" Type="uint" Nullable="false" />
-          <Property Name="hordeResourcePct1" Type="uint" Nullable="false" />
-          <Property Name="hordeCity2" Type="uint" Nullable="false" />
-          <Property Name="hordeResourcePct2" Type="uint" Nullable="false" />
-          <Property Name="hordeCity3" Type="uint" Nullable="false" />
-          <Property Name="hordeResourcePct3" Type="uint" Nullable="false" />
-          <Property Name="hordeCity4" Type="uint" Nullable="false" />
-          <Property Name="hordeResourcePct4" Type="uint" Nullable="false" />
-          <Property Name="scriptname" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="comment" Type="varchar" MaxLength="255" />
-        </EntityType>
         <EntityType Name="script_waypoint">
           <Key>
             <PropertyRef Name="entry" />
@@ -2260,13 +2137,6 @@
           <Property Name="location_z" Type="float" Nullable="false" />
           <Property Name="waittime" Type="uint" Nullable="false" />
           <Property Name="point_comment" Type="text" />
-        </EntityType>
-        <EntityType Name="server_messages">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="content" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="skill_discovery_template">
           <Key>
@@ -2485,14 +2355,13 @@
           <Property Name="SchoolMask" Type="uint" Nullable="false" />
           <Property Name="Comment" Type="text" Nullable="false" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6005: 目标实体框架版本目前不支持数据类型“ufloat”；已排除表“def.original_world.spell_enchant_proc_data”中的列“PPMChance”。-->
         <EntityType Name="spell_enchant_proc_data">
           <Key>
             <PropertyRef Name="entry" />
           </Key>
           <Property Name="entry" Type="uint" Nullable="false" />
           <Property Name="customChance" Type="uint" Nullable="false" />
+          <Property Name="PPMChance" Type="float" Nullable="false" />
           <Property Name="procEx" Type="uint" Nullable="false" />
         </EntityType>
         <EntityType Name="spell_group">
@@ -2520,7 +2389,7 @@
           <Property Name="Active" Type="utinyint" Nullable="false" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“def.original_world.spell_linked_spell”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“def.v4_world.spell_linked_spell”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="spell_linked_spell">
           <Key>
             <PropertyRef Name="spell_trigger" />
@@ -2560,8 +2429,6 @@
           <Property Name="pet" Type="umediumint" Nullable="false" />
           <Property Name="aura" Type="umediumint" Nullable="false" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6005: 目标实体框架版本目前不支持数据类型“ufloat”；已排除表“def.original_world.spell_proc”中的列“cooldown”。-->
         <EntityType Name="spell_proc">
           <Key>
             <PropertyRef Name="spellId" />
@@ -2579,6 +2446,7 @@
           <Property Name="attributesMask" Type="uint" Nullable="false" />
           <Property Name="ratePerMinute" Type="float" Nullable="false" />
           <Property Name="chance" Type="float" Nullable="false" />
+          <Property Name="cooldown" Type="float" Nullable="false" />
           <Property Name="charges" Type="uint" Nullable="false" />
         </EntityType>
         <EntityType Name="spell_proc_event">
@@ -2615,7 +2483,7 @@
           <Property Name="req_spell" Type="mediumint" Nullable="false" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“def.original_world.spell_script_names”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“def.v4_world.spell_script_names”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="spell_script_names">
           <Key>
             <PropertyRef Name="spell_id" />
@@ -2625,7 +2493,7 @@
           <Property Name="ScriptName" Type="char" MaxLength="64" Nullable="false" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“def.original_world.spell_scripts”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“def.v4_world.spell_scripts”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="spell_scripts">
           <Key>
             <PropertyRef Name="id" />
@@ -2684,13 +2552,6 @@
           <Property Name="spellid1" Type="uint" Nullable="false" />
           <Property Name="spellid2" Type="uint" Nullable="false" />
           <Property Name="spellid3" Type="uint" Nullable="false" />
-        </EntityType>
-        <EntityType Name="supremacy_level_xp">
-          <Key>
-            <PropertyRef Name="level" />
-          </Key>
-          <Property Name="level" Type="int" Nullable="false" />
-          <Property Name="xp" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="transports">
           <Key>
@@ -2751,24 +2612,6 @@
           <Property Name="db_version" Type="varchar" MaxLength="120" />
           <Property Name="cache_id" Type="int" />
         </EntityType>
-        <EntityType Name="war_school">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="class" Type="int" Nullable="false" />
-          <Property Name="trainer_list" Type="int" Nullable="false" />
-          <Property Name="title_id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="war_school_spell">
-          <Key>
-            <PropertyRef Name="school" />
-            <PropertyRef Name="spell" />
-          </Key>
-          <Property Name="school" Type="int" Nullable="false" />
-          <Property Name="spell" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="warden_checks">
           <Key>
             <PropertyRef Name="id" />
@@ -2828,162 +2671,156 @@
           <Property Name="point_comment" Type="text" />
         </EntityType>
         <EntityContainer Name="LegacyWorldModelStoreContainer">
-          <EntitySet Name="access_requirement" EntityType="Self.access_requirement" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="achievement_criteria_data" EntityType="Self.achievement_criteria_data" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="achievement_dbc" EntityType="Self.achievement_dbc" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="achievement_reward" EntityType="Self.achievement_reward" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="areatrigger_involvedrelation" EntityType="Self.areatrigger_involvedrelation" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="areatrigger_scripts" EntityType="Self.areatrigger_scripts" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="areatrigger_tavern" EntityType="Self.areatrigger_tavern" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="areatrigger_teleport" EntityType="Self.areatrigger_teleport" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="battleground_template" EntityType="Self.battleground_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="battlemaster_entry" EntityType="Self.battlemaster_entry" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="broadcast_text" EntityType="Self.broadcast_text" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="capital_cities" EntityType="Self.capital_cities" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="command" EntityType="Self.command" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="conditions" EntityType="Self.conditions" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="creature" EntityType="Self.creature" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="creature_addon" EntityType="Self.creature_addon" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="creature_classlevelstats" EntityType="Self.creature_classlevelstats" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="creature_equip_template" EntityType="Self.creature_equip_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="creature_formations" EntityType="Self.creature_formations" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="creature_loot_template" EntityType="Self.creature_loot_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="creature_model_info" EntityType="Self.creature_model_info" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="creature_onkill_reputation" EntityType="Self.creature_onkill_reputation" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="creature_questender" EntityType="Self.creature_questender" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="creature_queststarter" EntityType="Self.creature_queststarter" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="creature_template" EntityType="Self.creature_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="creature_template_addon" EntityType="Self.creature_template_addon" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="creature_text" EntityType="Self.creature_text" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="disables" EntityType="Self.disables" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="disenchant_loot_template" EntityType="Self.disenchant_loot_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="exploration_basexp" EntityType="Self.exploration_basexp" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="fishing_loot_template" EntityType="Self.fishing_loot_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_event" EntityType="Self.game_event" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_event_battleground_holiday" EntityType="Self.game_event_battleground_holiday" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_event_condition" EntityType="Self.game_event_condition" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_event_creature" EntityType="Self.game_event_creature" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_event_creature_quest" EntityType="Self.game_event_creature_quest" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_event_gameobject" EntityType="Self.game_event_gameobject" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_event_gameobject_quest" EntityType="Self.game_event_gameobject_quest" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_event_model_equip" EntityType="Self.game_event_model_equip" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_event_npc_vendor" EntityType="Self.game_event_npc_vendor" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_event_npcflag" EntityType="Self.game_event_npcflag" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_event_pool" EntityType="Self.game_event_pool" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_event_prerequisite" EntityType="Self.game_event_prerequisite" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_event_quest_condition" EntityType="Self.game_event_quest_condition" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_event_seasonal_questrelation" EntityType="Self.game_event_seasonal_questrelation" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_graveyard_zone" EntityType="Self.game_graveyard_zone" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_tele" EntityType="Self.game_tele" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="game_weather" EntityType="Self.game_weather" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="gameobject" EntityType="Self.gameobject" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="gameobject_loot_template" EntityType="Self.gameobject_loot_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="gameobject_questender" EntityType="Self.gameobject_questender" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="gameobject_queststarter" EntityType="Self.gameobject_queststarter" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="gameobject_template" EntityType="Self.gameobject_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="gossip_menu" EntityType="Self.gossip_menu" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="gossip_menu_option" EntityType="Self.gossip_menu_option" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="instance_encounters" EntityType="Self.instance_encounters" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="instance_template" EntityType="Self.instance_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="item_enchantment_template" EntityType="Self.item_enchantment_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="item_loot_template" EntityType="Self.item_loot_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="item_set_names" EntityType="Self.item_set_names" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="item_template" EntityType="Self.item_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="lfg_dungeon_rewards" EntityType="Self.lfg_dungeon_rewards" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="lfg_entrances" EntityType="Self.lfg_entrances" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="linked_respawn" EntityType="Self.linked_respawn" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="locales_achievement_reward" EntityType="Self.locales_achievement_reward" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="locales_broadcast_text" EntityType="Self.locales_broadcast_text" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="locales_creature" EntityType="Self.locales_creature" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="locales_creature_text" EntityType="Self.locales_creature_text" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="locales_gameobject" EntityType="Self.locales_gameobject" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="locales_gossip_menu_option" EntityType="Self.locales_gossip_menu_option" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="locales_item" EntityType="Self.locales_item" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="locales_item_set_names" EntityType="Self.locales_item_set_names" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="locales_npc_text" EntityType="Self.locales_npc_text" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="locales_page_text" EntityType="Self.locales_page_text" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="locales_points_of_interest" EntityType="Self.locales_points_of_interest" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="locales_quest" EntityType="Self.locales_quest" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="loot_pool" EntityType="Self.loot_pool" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="mail_level_reward" EntityType="Self.mail_level_reward" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="mail_loot_template" EntityType="Self.mail_loot_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="milling_loot_template" EntityType="Self.milling_loot_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="npc_spellclick_spells" EntityType="Self.npc_spellclick_spells" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="npc_text" EntityType="Self.npc_text" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="npc_trainer" EntityType="Self.npc_trainer" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="npc_vendor" EntityType="Self.npc_vendor" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="outdoorpvp_template" EntityType="Self.outdoorpvp_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="page_text" EntityType="Self.page_text" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="pet_levelstats" EntityType="Self.pet_levelstats" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="pet_name_generation" EntityType="Self.pet_name_generation" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="pickpocketing_loot_template" EntityType="Self.pickpocketing_loot_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="player_classlevelstats" EntityType="Self.player_classlevelstats" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="player_factionchange_achievement" EntityType="Self.player_factionchange_achievement" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="player_factionchange_items" EntityType="Self.player_factionchange_items" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="player_factionchange_quests" EntityType="Self.player_factionchange_quests" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="player_factionchange_reputations" EntityType="Self.player_factionchange_reputations" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="player_factionchange_spells" EntityType="Self.player_factionchange_spells" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="player_factionchange_titles" EntityType="Self.player_factionchange_titles" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="player_level_spell" EntityType="Self.player_level_spell" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="player_levelstats" EntityType="Self.player_levelstats" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="player_xp_for_level" EntityType="Self.player_xp_for_level" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="playercreateinfo" EntityType="Self.playercreateinfo" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="playercreateinfo_action" EntityType="Self.playercreateinfo_action" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="playercreateinfo_item" EntityType="Self.playercreateinfo_item" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="playercreateinfo_skills" EntityType="Self.playercreateinfo_skills" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="playercreateinfo_spell_custom" EntityType="Self.playercreateinfo_spell_custom" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="points_of_interest" EntityType="Self.points_of_interest" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="pool_creature" EntityType="Self.pool_creature" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="pool_gameobject" EntityType="Self.pool_gameobject" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="pool_pool" EntityType="Self.pool_pool" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="pool_quest" EntityType="Self.pool_quest" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="pool_template" EntityType="Self.pool_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="prospecting_loot_template" EntityType="Self.prospecting_loot_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="quest_poi" EntityType="Self.quest_poi" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="quest_poi_points" EntityType="Self.quest_poi_points" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="quest_template" EntityType="Self.quest_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="random_enchantment" EntityType="Self.random_enchantment" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="reference_loot_template" EntityType="Self.reference_loot_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="reputation_reward_rate" EntityType="Self.reputation_reward_rate" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="reputation_spillover_template" EntityType="Self.reputation_spillover_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="resource_points" EntityType="Self.resource_points" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="script_waypoint" EntityType="Self.script_waypoint" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="server_messages" EntityType="Self.server_messages" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="skill_discovery_template" EntityType="Self.skill_discovery_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="skill_extra_item_template" EntityType="Self.skill_extra_item_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="skill_fishing_base_level" EntityType="Self.skill_fishing_base_level" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="skinning_loot_template" EntityType="Self.skinning_loot_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="smart_scripts" EntityType="Self.smart_scripts" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spell_area" EntityType="Self.spell_area" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spell_bonus_data" EntityType="Self.spell_bonus_data" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spell_custom_attr" EntityType="Self.spell_custom_attr" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spell_dbc" EntityType="Self.spell_dbc" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spell_enchant_proc_data" EntityType="Self.spell_enchant_proc_data" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spell_group" EntityType="Self.spell_group" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spell_group_stack_rules" EntityType="Self.spell_group_stack_rules" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spell_learn_spell" EntityType="Self.spell_learn_spell" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spell_loot_template" EntityType="Self.spell_loot_template" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spell_pet_auras" EntityType="Self.spell_pet_auras" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spell_proc" EntityType="Self.spell_proc" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spell_proc_event" EntityType="Self.spell_proc_event" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spell_ranks" EntityType="Self.spell_ranks" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spell_required" EntityType="Self.spell_required" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spell_target_position" EntityType="Self.spell_target_position" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spell_threat" EntityType="Self.spell_threat" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="spelldifficulty_dbc" EntityType="Self.spelldifficulty_dbc" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="supremacy_level_xp" EntityType="Self.supremacy_level_xp" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="transports" EntityType="Self.transports" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="trinity_string" EntityType="Self.trinity_string" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="vehicle_accessory" EntityType="Self.vehicle_accessory" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="vehicle_template_accessory" EntityType="Self.vehicle_template_accessory" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="version" EntityType="Self.version" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="war_school" EntityType="Self.war_school" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="war_school_spell" EntityType="Self.war_school_spell" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="warden_checks" EntityType="Self.warden_checks" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="waypoint_data" EntityType="Self.waypoint_data" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="waypoint_scripts" EntityType="Self.waypoint_scripts" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="waypoints" EntityType="Self.waypoints" Schema="original_world" store:Type="Tables" />
-          <EntitySet Name="creature_summon_groups" EntityType="Self.creature_summon_groups" store:Type="Tables" store:Schema="original_world">
+          <EntitySet Name="access_requirement" EntityType="Self.access_requirement" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="achievement_criteria_data" EntityType="Self.achievement_criteria_data" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="achievement_dbc" EntityType="Self.achievement_dbc" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="achievement_reward" EntityType="Self.achievement_reward" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="areatrigger_involvedrelation" EntityType="Self.areatrigger_involvedrelation" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="areatrigger_scripts" EntityType="Self.areatrigger_scripts" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="areatrigger_tavern" EntityType="Self.areatrigger_tavern" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="areatrigger_teleport" EntityType="Self.areatrigger_teleport" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="battleground_template" EntityType="Self.battleground_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="battlemaster_entry" EntityType="Self.battlemaster_entry" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="broadcast_text" EntityType="Self.broadcast_text" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="capital_city_upgrade_cost" EntityType="Self.capital_city_upgrade_cost" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="capital_city_upgrade_spellset" EntityType="Self.capital_city_upgrade_spellset" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="command" EntityType="Self.command" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="conditions" EntityType="Self.conditions" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="creature" EntityType="Self.creature" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="creature_addon" EntityType="Self.creature_addon" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="creature_classlevelstats" EntityType="Self.creature_classlevelstats" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="creature_equip_template" EntityType="Self.creature_equip_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="creature_formations" EntityType="Self.creature_formations" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="creature_loot_template" EntityType="Self.creature_loot_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="creature_model_info" EntityType="Self.creature_model_info" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="creature_onkill_reputation" EntityType="Self.creature_onkill_reputation" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="creature_questender" EntityType="Self.creature_questender" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="creature_queststarter" EntityType="Self.creature_queststarter" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="creature_template" EntityType="Self.creature_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="creature_template_addon" EntityType="Self.creature_template_addon" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="creature_text" EntityType="Self.creature_text" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="disables" EntityType="Self.disables" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="disenchant_loot_template" EntityType="Self.disenchant_loot_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="exploration_basexp" EntityType="Self.exploration_basexp" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="fishing_loot_template" EntityType="Self.fishing_loot_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_event" EntityType="Self.game_event" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_event_battleground_holiday" EntityType="Self.game_event_battleground_holiday" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_event_condition" EntityType="Self.game_event_condition" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_event_creature" EntityType="Self.game_event_creature" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_event_creature_quest" EntityType="Self.game_event_creature_quest" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_event_gameobject" EntityType="Self.game_event_gameobject" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_event_gameobject_quest" EntityType="Self.game_event_gameobject_quest" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_event_model_equip" EntityType="Self.game_event_model_equip" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_event_npc_vendor" EntityType="Self.game_event_npc_vendor" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_event_npcflag" EntityType="Self.game_event_npcflag" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_event_pool" EntityType="Self.game_event_pool" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_event_prerequisite" EntityType="Self.game_event_prerequisite" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_event_quest_condition" EntityType="Self.game_event_quest_condition" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_event_seasonal_questrelation" EntityType="Self.game_event_seasonal_questrelation" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_graveyard_zone" EntityType="Self.game_graveyard_zone" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_tele" EntityType="Self.game_tele" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="game_weather" EntityType="Self.game_weather" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="gameobject" EntityType="Self.gameobject" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="gameobject_loot_template" EntityType="Self.gameobject_loot_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="gameobject_questender" EntityType="Self.gameobject_questender" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="gameobject_queststarter" EntityType="Self.gameobject_queststarter" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="gameobject_template" EntityType="Self.gameobject_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="gossip_menu" EntityType="Self.gossip_menu" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="gossip_menu_option" EntityType="Self.gossip_menu_option" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="instance_encounters" EntityType="Self.instance_encounters" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="instance_template" EntityType="Self.instance_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="item_enchantment_template" EntityType="Self.item_enchantment_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="item_loot_template" EntityType="Self.item_loot_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="item_set_names" EntityType="Self.item_set_names" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="item_template" EntityType="Self.item_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="lfg_dungeon_rewards" EntityType="Self.lfg_dungeon_rewards" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="lfg_entrances" EntityType="Self.lfg_entrances" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="linked_respawn" EntityType="Self.linked_respawn" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="locales_achievement_reward" EntityType="Self.locales_achievement_reward" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="locales_broadcast_text" EntityType="Self.locales_broadcast_text" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="locales_creature" EntityType="Self.locales_creature" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="locales_creature_text" EntityType="Self.locales_creature_text" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="locales_gameobject" EntityType="Self.locales_gameobject" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="locales_gossip_menu_option" EntityType="Self.locales_gossip_menu_option" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="locales_item" EntityType="Self.locales_item" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="locales_item_set_names" EntityType="Self.locales_item_set_names" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="locales_npc_text" EntityType="Self.locales_npc_text" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="locales_page_text" EntityType="Self.locales_page_text" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="locales_points_of_interest" EntityType="Self.locales_points_of_interest" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="locales_quest" EntityType="Self.locales_quest" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="mail_level_reward" EntityType="Self.mail_level_reward" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="mail_loot_template" EntityType="Self.mail_loot_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="milling_loot_template" EntityType="Self.milling_loot_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="npc_spellclick_spells" EntityType="Self.npc_spellclick_spells" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="npc_text" EntityType="Self.npc_text" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="npc_trainer" EntityType="Self.npc_trainer" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="npc_vendor" EntityType="Self.npc_vendor" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="outdoorpvp_template" EntityType="Self.outdoorpvp_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="page_text" EntityType="Self.page_text" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="pet_levelstats" EntityType="Self.pet_levelstats" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="pet_name_generation" EntityType="Self.pet_name_generation" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="pickpocketing_loot_template" EntityType="Self.pickpocketing_loot_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="player_classlevelstats" EntityType="Self.player_classlevelstats" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="player_factionchange_achievement" EntityType="Self.player_factionchange_achievement" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="player_factionchange_items" EntityType="Self.player_factionchange_items" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="player_factionchange_quests" EntityType="Self.player_factionchange_quests" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="player_factionchange_reputations" EntityType="Self.player_factionchange_reputations" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="player_factionchange_spells" EntityType="Self.player_factionchange_spells" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="player_factionchange_titles" EntityType="Self.player_factionchange_titles" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="player_levelstats" EntityType="Self.player_levelstats" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="player_supremacy_level_xp" EntityType="Self.player_supremacy_level_xp" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="player_xp_for_level" EntityType="Self.player_xp_for_level" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="playercreateinfo" EntityType="Self.playercreateinfo" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="playercreateinfo_action" EntityType="Self.playercreateinfo_action" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="playercreateinfo_item" EntityType="Self.playercreateinfo_item" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="playercreateinfo_skills" EntityType="Self.playercreateinfo_skills" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="playercreateinfo_spell_custom" EntityType="Self.playercreateinfo_spell_custom" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="points_of_interest" EntityType="Self.points_of_interest" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="pool_creature" EntityType="Self.pool_creature" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="pool_gameobject" EntityType="Self.pool_gameobject" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="pool_pool" EntityType="Self.pool_pool" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="pool_quest" EntityType="Self.pool_quest" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="pool_template" EntityType="Self.pool_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="prospecting_loot_template" EntityType="Self.prospecting_loot_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="quest_poi" EntityType="Self.quest_poi" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="quest_poi_points" EntityType="Self.quest_poi_points" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="quest_template" EntityType="Self.quest_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="reference_loot_template" EntityType="Self.reference_loot_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="reputation_reward_rate" EntityType="Self.reputation_reward_rate" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="reputation_spillover_template" EntityType="Self.reputation_spillover_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="script_waypoint" EntityType="Self.script_waypoint" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="skill_discovery_template" EntityType="Self.skill_discovery_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="skill_extra_item_template" EntityType="Self.skill_extra_item_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="skill_fishing_base_level" EntityType="Self.skill_fishing_base_level" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="skinning_loot_template" EntityType="Self.skinning_loot_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="smart_scripts" EntityType="Self.smart_scripts" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spell_area" EntityType="Self.spell_area" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spell_bonus_data" EntityType="Self.spell_bonus_data" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spell_custom_attr" EntityType="Self.spell_custom_attr" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spell_dbc" EntityType="Self.spell_dbc" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spell_enchant_proc_data" EntityType="Self.spell_enchant_proc_data" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spell_group" EntityType="Self.spell_group" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spell_group_stack_rules" EntityType="Self.spell_group_stack_rules" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spell_learn_spell" EntityType="Self.spell_learn_spell" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spell_loot_template" EntityType="Self.spell_loot_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spell_pet_auras" EntityType="Self.spell_pet_auras" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spell_proc" EntityType="Self.spell_proc" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spell_proc_event" EntityType="Self.spell_proc_event" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spell_ranks" EntityType="Self.spell_ranks" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spell_required" EntityType="Self.spell_required" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spell_target_position" EntityType="Self.spell_target_position" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spell_threat" EntityType="Self.spell_threat" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="spelldifficulty_dbc" EntityType="Self.spelldifficulty_dbc" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="transports" EntityType="Self.transports" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="trinity_string" EntityType="Self.trinity_string" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="vehicle_accessory" EntityType="Self.vehicle_accessory" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="vehicle_template_accessory" EntityType="Self.vehicle_template_accessory" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="version" EntityType="Self.version" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="warden_checks" EntityType="Self.warden_checks" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="waypoint_data" EntityType="Self.waypoint_data" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="waypoint_scripts" EntityType="Self.waypoint_scripts" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="waypoints" EntityType="Self.waypoints" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="creature_summon_groups" EntityType="Self.creature_summon_groups" store:Type="Tables" store:Schema="v4_world">
             <DefiningQuery>SELECT
 `creature_summon_groups`.`summonerId`, 
 `creature_summon_groups`.`summonerType`, 
@@ -2997,7 +2834,7 @@
 `creature_summon_groups`.`summonTime`
 FROM `creature_summon_groups` AS `creature_summon_groups`</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="event_scripts" EntityType="Self.event_scripts" store:Type="Tables" store:Schema="original_world">
+          <EntitySet Name="event_scripts" EntityType="Self.event_scripts" store:Type="Tables" store:Schema="v4_world">
             <DefiningQuery>SELECT
 `event_scripts`.`id`, 
 `event_scripts`.`delay`, 
@@ -3011,13 +2848,13 @@ FROM `creature_summon_groups` AS `creature_summon_groups`</DefiningQuery>
 `event_scripts`.`o`
 FROM `event_scripts` AS `event_scripts`</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="game_event_arena_seasons" EntityType="Self.game_event_arena_seasons" store:Type="Tables" store:Schema="original_world">
+          <EntitySet Name="game_event_arena_seasons" EntityType="Self.game_event_arena_seasons" store:Type="Tables" store:Schema="v4_world">
             <DefiningQuery>SELECT
 `game_event_arena_seasons`.`eventEntry`, 
 `game_event_arena_seasons`.`season`
 FROM `game_event_arena_seasons` AS `game_event_arena_seasons`</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="spell_linked_spell" EntityType="Self.spell_linked_spell" store:Type="Tables" store:Schema="original_world">
+          <EntitySet Name="spell_linked_spell" EntityType="Self.spell_linked_spell" store:Type="Tables" store:Schema="v4_world">
             <DefiningQuery>SELECT
 `spell_linked_spell`.`spell_trigger`, 
 `spell_linked_spell`.`spell_effect`, 
@@ -3025,13 +2862,13 @@ FROM `game_event_arena_seasons` AS `game_event_arena_seasons`</DefiningQuery>
 `spell_linked_spell`.`comment`
 FROM `spell_linked_spell` AS `spell_linked_spell`</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="spell_script_names" EntityType="Self.spell_script_names" store:Type="Tables" store:Schema="original_world">
+          <EntitySet Name="spell_script_names" EntityType="Self.spell_script_names" store:Type="Tables" store:Schema="v4_world">
             <DefiningQuery>SELECT
 `spell_script_names`.`spell_id`, 
 `spell_script_names`.`ScriptName`
 FROM `spell_script_names` AS `spell_script_names`</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="spell_scripts" EntityType="Self.spell_scripts" store:Type="Tables" store:Schema="original_world">
+          <EntitySet Name="spell_scripts" EntityType="Self.spell_scripts" store:Type="Tables" store:Schema="v4_world">
             <DefiningQuery>SELECT
 `spell_scripts`.`id`, 
 `spell_scripts`.`effIndex`, 
@@ -3169,7 +3006,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Language" Type="Int32" Nullable="false" />
           <Property Name="MaleText" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="FemaleText" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
@@ -3184,15 +3021,22 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="Unk2" Type="Int32" Nullable="false" />
           <Property Name="VerifiedBuild" Type="Int16" />
         </EntityType>
-        <EntityType Name="capital_cities">
+        <EntityType Name="capital_city_upgrade_cost">
           <Key>
-            <PropertyRef Name="zone" />
+            <PropertyRef Name="Level" />
           </Key>
-          <Property Name="zone" Type="Int64" Nullable="false" />
-          <Property Name="faction" Type="Int64" Nullable="false" />
-          <Property Name="startlevel" Type="Int32" Nullable="false" />
-          <Property Name="scriptname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Resource" Type="Int32" Nullable="false" />
+          <Property Name="MagicPower" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="capital_city_upgrade_spellset">
+          <Key>
+            <PropertyRef Name="City" />
+            <PropertyRef Name="SpellSet" />
+          </Key>
+          <Property Name="City" Type="Int32" Nullable="false" />
+          <Property Name="SpellSet" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="command">
           <Key>
@@ -3308,6 +3152,8 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           </Key>
           <Property Name="leaderGUID" Type="Int64" Nullable="false" />
           <Property Name="memberGUID" Type="Int64" Nullable="false" />
+          <Property Name="dist" Type="Single" Nullable="false" />
+          <Property Name="angle" Type="Single" Nullable="false" />
           <Property Name="groupAI" Type="Int64" Nullable="false" />
           <Property Name="point_1" Type="Int32" Nullable="false" />
           <Property Name="point_2" Type="Int32" Nullable="false" />
@@ -3387,7 +3233,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="subname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IconName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="gossip_menu_id" Type="Int32" Nullable="false" />
-          <Property Name="warSchool" Type="Int32" Nullable="false" />
           <Property Name="minlevel" Type="Byte" Nullable="false" />
           <Property Name="maxlevel" Type="Byte" Nullable="false" />
           <Property Name="exp" Type="Int16" Nullable="false" />
@@ -3454,6 +3299,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="RegenHealth" Type="Byte" Nullable="false" />
           <Property Name="mechanic_immune_mask" Type="Int64" Nullable="false" />
           <Property Name="flags_extra" Type="Int64" Nullable="false" />
+          <Property Name="WarSchool" Type="Int32" Nullable="false" />
           <Property Name="ScriptName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="VerifiedBuild" Type="Int16" />
         </EntityType>
@@ -3478,13 +3324,10 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="entry" Type="Int32" Nullable="false" />
           <Property Name="groupid" Type="Byte" Nullable="false" />
           <Property Name="id" Type="Byte" Nullable="false" />
-          <Property Name="text" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="type" Type="Byte" Nullable="false" />
           <Property Name="language" Type="Byte" Nullable="false" />
           <Property Name="probability" Type="Single" Nullable="false" />
-          <Property Name="emote" Type="Int32" Nullable="false" />
           <Property Name="duration" Type="Int32" Nullable="false" />
-          <Property Name="sound" Type="Int32" Nullable="false" />
           <Property Name="BroadcastTextId" Type="Int32" Nullable="false" />
           <Property Name="TextRange" Type="Byte" Nullable="false" />
           <Property Name="comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -3629,6 +3472,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="maxcount" Type="Int32" Nullable="false" />
           <Property Name="incrtime" Type="Int32" Nullable="false" />
           <Property Name="ExtendedCost" Type="Int32" Nullable="false" />
+          <Property Name="ReqCityRank" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="game_event_npcflag">
           <Key>
@@ -3822,6 +3666,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           </Key>
           <Property Name="entry" Type="Int32" Nullable="false" />
           <Property Name="text_id" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="gossip_menu_option">
           <Key>
@@ -3831,7 +3676,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="menu_id" Type="Int32" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="option_icon" Type="Int32" Nullable="false" />
-          <Property Name="option_text" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
           <Property Name="OptionBroadcastTextID" Type="Int32" Nullable="false" />
           <Property Name="option_id" Type="Byte" Nullable="false" />
           <Property Name="npc_option_npcflag" Type="Int64" Nullable="false" />
@@ -3839,9 +3683,8 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="action_poi_id" Type="Int32" Nullable="false" />
           <Property Name="box_coded" Type="Byte" Nullable="false" />
           <Property Name="box_money" Type="Int64" Nullable="false" />
-          <Property Name="box_text" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
           <Property Name="BoxBroadcastTextID" Type="Int32" Nullable="false" />
-          <Property Name="SingleTimeCheck" Type="Byte" Nullable="false" />
+          <Property Name="SingleTimeCheck" Type="SByte" Nullable="false" />
         </EntityType>
         <EntityType Name="instance_encounters">
           <Key>
@@ -3925,7 +3768,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="RequiredReputationFaction" Type="Int32" Nullable="false" />
           <Property Name="RequiredReputationRank" Type="Int32" Nullable="false" />
           <Property Name="maxcount" Type="Int32" Nullable="false" />
-          <Property Name="stackable" Type="Int32" />
+          <Property Name="stackable" Type="Int32" Nullable="false" />
           <Property Name="ContainerSlots" Type="Byte" Nullable="false" />
           <Property Name="StatsCount" Type="Byte" Nullable="false" />
           <Property Name="stat_type1" Type="Byte" Nullable="false" />
@@ -4499,15 +4342,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="ObjectiveText4_loc8" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
           <Property Name="VerifiedBuild" Type="Int16" />
         </EntityType>
-        <EntityType Name="loot_pool">
-          <Key>
-            <PropertyRef Name="pool" />
-            <PropertyRef Name="item" />
-          </Key>
-          <Property Name="pool" Type="Int32" Nullable="false" />
-          <Property Name="item" Type="Int32" Nullable="false" />
-          <Property Name="chance" Type="Single" Nullable="false" />
-        </EntityType>
         <EntityType Name="mail_level_reward">
           <Key>
             <PropertyRef Name="level" />
@@ -4565,94 +4399,22 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="text0_0" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="text0_1" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="BroadcastTextID0" Type="Int32" Nullable="false" />
-          <Property Name="lang0" Type="Byte" Nullable="false" />
           <Property Name="prob0" Type="Single" Nullable="false" />
-          <Property Name="em0_0" Type="Int32" Nullable="false" />
-          <Property Name="em0_1" Type="Int32" Nullable="false" />
-          <Property Name="em0_2" Type="Int32" Nullable="false" />
-          <Property Name="em0_3" Type="Int32" Nullable="false" />
-          <Property Name="em0_4" Type="Int32" Nullable="false" />
-          <Property Name="em0_5" Type="Int32" Nullable="false" />
-          <Property Name="text1_0" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="text1_1" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="BroadcastTextID1" Type="Int32" Nullable="false" />
-          <Property Name="lang1" Type="Byte" Nullable="false" />
           <Property Name="prob1" Type="Single" Nullable="false" />
-          <Property Name="em1_0" Type="Int32" Nullable="false" />
-          <Property Name="em1_1" Type="Int32" Nullable="false" />
-          <Property Name="em1_2" Type="Int32" Nullable="false" />
-          <Property Name="em1_3" Type="Int32" Nullable="false" />
-          <Property Name="em1_4" Type="Int32" Nullable="false" />
-          <Property Name="em1_5" Type="Int32" Nullable="false" />
-          <Property Name="text2_0" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="text2_1" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="BroadcastTextID2" Type="Int32" Nullable="false" />
-          <Property Name="lang2" Type="Byte" Nullable="false" />
           <Property Name="prob2" Type="Single" Nullable="false" />
-          <Property Name="em2_0" Type="Int32" Nullable="false" />
-          <Property Name="em2_1" Type="Int32" Nullable="false" />
-          <Property Name="em2_2" Type="Int32" Nullable="false" />
-          <Property Name="em2_3" Type="Int32" Nullable="false" />
-          <Property Name="em2_4" Type="Int32" Nullable="false" />
-          <Property Name="em2_5" Type="Int32" Nullable="false" />
-          <Property Name="text3_0" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="text3_1" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="BroadcastTextID3" Type="Int32" Nullable="false" />
-          <Property Name="lang3" Type="Byte" Nullable="false" />
           <Property Name="prob3" Type="Single" Nullable="false" />
-          <Property Name="em3_0" Type="Int32" Nullable="false" />
-          <Property Name="em3_1" Type="Int32" Nullable="false" />
-          <Property Name="em3_2" Type="Int32" Nullable="false" />
-          <Property Name="em3_3" Type="Int32" Nullable="false" />
-          <Property Name="em3_4" Type="Int32" Nullable="false" />
-          <Property Name="em3_5" Type="Int32" Nullable="false" />
-          <Property Name="text4_0" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="text4_1" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="BroadcastTextID4" Type="Int32" Nullable="false" />
-          <Property Name="lang4" Type="Byte" Nullable="false" />
           <Property Name="prob4" Type="Single" Nullable="false" />
-          <Property Name="em4_0" Type="Int32" Nullable="false" />
-          <Property Name="em4_1" Type="Int32" Nullable="false" />
-          <Property Name="em4_2" Type="Int32" Nullable="false" />
-          <Property Name="em4_3" Type="Int32" Nullable="false" />
-          <Property Name="em4_4" Type="Int32" Nullable="false" />
-          <Property Name="em4_5" Type="Int32" Nullable="false" />
-          <Property Name="text5_0" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="text5_1" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="BroadcastTextID5" Type="Int32" Nullable="false" />
-          <Property Name="lang5" Type="Byte" Nullable="false" />
           <Property Name="prob5" Type="Single" Nullable="false" />
-          <Property Name="em5_0" Type="Int32" Nullable="false" />
-          <Property Name="em5_1" Type="Int32" Nullable="false" />
-          <Property Name="em5_2" Type="Int32" Nullable="false" />
-          <Property Name="em5_3" Type="Int32" Nullable="false" />
-          <Property Name="em5_4" Type="Int32" Nullable="false" />
-          <Property Name="em5_5" Type="Int32" Nullable="false" />
-          <Property Name="text6_0" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="text6_1" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="BroadcastTextID6" Type="Int32" Nullable="false" />
-          <Property Name="lang6" Type="Byte" Nullable="false" />
           <Property Name="prob6" Type="Single" Nullable="false" />
-          <Property Name="em6_0" Type="Int32" Nullable="false" />
-          <Property Name="em6_1" Type="Int32" Nullable="false" />
-          <Property Name="em6_2" Type="Int32" Nullable="false" />
-          <Property Name="em6_3" Type="Int32" Nullable="false" />
-          <Property Name="em6_4" Type="Int32" Nullable="false" />
-          <Property Name="em6_5" Type="Int32" Nullable="false" />
-          <Property Name="text7_0" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="text7_1" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="BroadcastTextID7" Type="Int32" Nullable="false" />
-          <Property Name="lang7" Type="Byte" Nullable="false" />
           <Property Name="prob7" Type="Single" Nullable="false" />
-          <Property Name="em7_0" Type="Int32" Nullable="false" />
-          <Property Name="em7_1" Type="Int32" Nullable="false" />
-          <Property Name="em7_2" Type="Int32" Nullable="false" />
-          <Property Name="em7_3" Type="Int32" Nullable="false" />
-          <Property Name="em7_4" Type="Int32" Nullable="false" />
-          <Property Name="em7_5" Type="Int32" Nullable="false" />
           <Property Name="VerifiedBuild" Type="Int16" />
         </EntityType>
         <EntityType Name="npc_trainer">
@@ -4680,6 +4442,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="maxcount" Type="Byte" Nullable="false" />
           <Property Name="incrtime" Type="Int64" Nullable="false" />
           <Property Name="ExtendedCost" Type="Int32" Nullable="false" />
+          <Property Name="ReqCityRank" Type="Int32" Nullable="false" />
           <Property Name="VerifiedBuild" Type="Int16" />
         </EntityType>
         <EntityType Name="outdoorpvp_template">
@@ -4802,17 +4565,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="alliance_id" Type="Int32" Nullable="false" />
           <Property Name="horde_id" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="player_level_spell">
-          <Key>
-            <PropertyRef Name="Class" />
-            <PropertyRef Name="Level" />
-          </Key>
-          <Property Name="Class" Type="Int32" Nullable="false" />
-          <Property Name="Level" Type="Int32" Nullable="false" />
-          <Property Name="Spell1" Type="Int32" Nullable="false" />
-          <Property Name="Spell2" Type="Int32" Nullable="false" />
-          <Property Name="Spell3" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="player_levelstats">
           <Key>
             <PropertyRef Name="race" />
@@ -4827,6 +4579,13 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="sta" Type="Byte" Nullable="false" />
           <Property Name="inte" Type="Byte" Nullable="false" />
           <Property Name="spi" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="player_supremacy_level_xp">
+          <Key>
+            <PropertyRef Name="level" />
+          </Key>
+          <Property Name="level" Type="Int32" Nullable="false" />
+          <Property Name="xp" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="player_xp_for_level">
           <Key>
@@ -4914,6 +4673,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           </Key>
           <Property Name="guid" Type="Int64" Nullable="false" />
           <Property Name="pool_entry" Type="Int32" Nullable="false" />
+          <Property Name="chance" Type="Single" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="pool_gameobject">
@@ -4922,6 +4682,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           </Key>
           <Property Name="guid" Type="Int64" Nullable="false" />
           <Property Name="pool_entry" Type="Int32" Nullable="false" />
+          <Property Name="chance" Type="Single" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="pool_pool">
@@ -5139,20 +4900,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="OfferRewardEmoteDelay4" Type="Int64" Nullable="false" />
           <Property Name="VerifiedBuild" Type="Int16" />
         </EntityType>
-        <EntityType Name="random_enchantment">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Set" Type="Int32" Nullable="false" />
-          <Property Name="Level" Type="Int32" Nullable="false" />
-          <Property Name="Chance" Type="Int32" Nullable="false" />
-          <Property Name="ClassMask" Type="Int32" Nullable="false" />
-          <Property Name="SubClassMask" Type="Int32" Nullable="false" />
-          <Property Name="InventoryTypeMask" Type="Int32" Nullable="false" />
-          <Property Name="QualityMask" Type="Int32" Nullable="false" />
-          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
         <EntityType Name="reference_loot_template">
           <Key>
             <PropertyRef Name="Entry" />
@@ -5200,32 +4947,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="rate_4" Type="Single" Nullable="false" />
           <Property Name="rank_4" Type="Byte" Nullable="false" />
         </EntityType>
-        <EntityType Name="resource_points">
-          <Key>
-            <PropertyRef Name="area" />
-          </Key>
-          <Property Name="area" Type="Int64" Nullable="false" />
-          <Property Name="max_guard" Type="Int64" Nullable="false" />
-          <Property Name="max_worker" Type="Int64" Nullable="false" />
-          <Property Name="allianceCity1" Type="Int64" Nullable="false" />
-          <Property Name="allianceResourcePct1" Type="Int64" Nullable="false" />
-          <Property Name="allianceCity2" Type="Int64" Nullable="false" />
-          <Property Name="allianceResourcePct2" Type="Int64" Nullable="false" />
-          <Property Name="allianceCity3" Type="Int64" Nullable="false" />
-          <Property Name="allianceResourcePct3" Type="Int64" Nullable="false" />
-          <Property Name="allianceCity4" Type="Int64" Nullable="false" />
-          <Property Name="allianceResourcePct4" Type="Int64" Nullable="false" />
-          <Property Name="hordeCity1" Type="Int64" Nullable="false" />
-          <Property Name="hordeResourcePct1" Type="Int64" Nullable="false" />
-          <Property Name="hordeCity2" Type="Int64" Nullable="false" />
-          <Property Name="hordeResourcePct2" Type="Int64" Nullable="false" />
-          <Property Name="hordeCity3" Type="Int64" Nullable="false" />
-          <Property Name="hordeResourcePct3" Type="Int64" Nullable="false" />
-          <Property Name="hordeCity4" Type="Int64" Nullable="false" />
-          <Property Name="hordeResourcePct4" Type="Int64" Nullable="false" />
-          <Property Name="scriptname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="script_waypoint">
           <Key>
             <PropertyRef Name="entry" />
@@ -5238,13 +4959,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="location_z" Type="Single" Nullable="false" />
           <Property Name="waittime" Type="Int64" Nullable="false" />
           <Property Name="point_comment" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="server_messages">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="skill_discovery_template">
           <Key>
@@ -5469,6 +5183,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           </Key>
           <Property Name="entry" Type="Int64" Nullable="false" />
           <Property Name="customChance" Type="Int64" Nullable="false" />
+          <Property Name="PPMChance" Type="Single" Nullable="false" />
           <Property Name="procEx" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="spell_group">
@@ -5539,6 +5254,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="attributesMask" Type="Int64" Nullable="false" />
           <Property Name="ratePerMinute" Type="Single" Nullable="false" />
           <Property Name="chance" Type="Single" Nullable="false" />
+          <Property Name="cooldown" Type="Single" Nullable="false" />
           <Property Name="charges" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="spell_proc_event">
@@ -5607,13 +5323,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="spellid2" Type="Int64" Nullable="false" />
           <Property Name="spellid3" Type="Int64" Nullable="false" />
         </EntityType>
-        <EntityType Name="supremacy_level_xp">
-          <Key>
-            <PropertyRef Name="level" />
-          </Key>
-          <Property Name="level" Type="Int32" Nullable="false" />
-          <Property Name="xp" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="transports">
           <Key>
             <PropertyRef Name="guid" />
@@ -5672,24 +5381,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="core_revision" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
           <Property Name="db_version" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
           <Property Name="cache_id" Type="Int32" />
-        </EntityType>
-        <EntityType Name="war_school">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="class" Type="Int32" Nullable="false" />
-          <Property Name="trainer_list" Type="Int32" Nullable="false" />
-          <Property Name="title_id" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="war_school_spell">
-          <Key>
-            <PropertyRef Name="school" />
-            <PropertyRef Name="spell" />
-          </Key>
-          <Property Name="school" Type="Int32" Nullable="false" />
-          <Property Name="spell" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="warden_checks">
           <Key>
@@ -5863,7 +5554,8 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <EntitySet Name="battleground_template" EntityType="Self.battleground_template" />
           <EntitySet Name="battlemaster_entry" EntityType="Self.battlemaster_entry" />
           <EntitySet Name="broadcast_text" EntityType="Self.broadcast_text" />
-          <EntitySet Name="capital_cities" EntityType="Self.capital_cities" />
+          <EntitySet Name="capital_city_upgrade_cost" EntityType="Self.capital_city_upgrade_cost" />
+          <EntitySet Name="capital_city_upgrade_spellset" EntityType="Self.capital_city_upgrade_spellset" />
           <EntitySet Name="command" EntityType="Self.command" />
           <EntitySet Name="conditions" EntityType="Self.conditions" />
           <EntitySet Name="creature" EntityType="Self.creature" />
@@ -5928,7 +5620,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <EntitySet Name="locales_page_text" EntityType="Self.locales_page_text" />
           <EntitySet Name="locales_points_of_interest" EntityType="Self.locales_points_of_interest" />
           <EntitySet Name="locales_quest" EntityType="Self.locales_quest" />
-          <EntitySet Name="loot_pool" EntityType="Self.loot_pool" />
           <EntitySet Name="mail_level_reward" EntityType="Self.mail_level_reward" />
           <EntitySet Name="mail_loot_template" EntityType="Self.mail_loot_template" />
           <EntitySet Name="milling_loot_template" EntityType="Self.milling_loot_template" />
@@ -5948,8 +5639,8 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <EntitySet Name="player_factionchange_reputations" EntityType="Self.player_factionchange_reputations" />
           <EntitySet Name="player_factionchange_spells" EntityType="Self.player_factionchange_spells" />
           <EntitySet Name="player_factionchange_titles" EntityType="Self.player_factionchange_titles" />
-          <EntitySet Name="player_level_spell" EntityType="Self.player_level_spell" />
           <EntitySet Name="player_levelstats" EntityType="Self.player_levelstats" />
+          <EntitySet Name="player_supremacy_level_xp" EntityType="Self.player_supremacy_level_xp" />
           <EntitySet Name="player_xp_for_level" EntityType="Self.player_xp_for_level" />
           <EntitySet Name="playercreateinfo" EntityType="Self.playercreateinfo" />
           <EntitySet Name="playercreateinfo_action" EntityType="Self.playercreateinfo_action" />
@@ -5966,13 +5657,10 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <EntitySet Name="quest_poi" EntityType="Self.quest_poi" />
           <EntitySet Name="quest_poi_points" EntityType="Self.quest_poi_points" />
           <EntitySet Name="quest_template" EntityType="Self.quest_template" />
-          <EntitySet Name="random_enchantment" EntityType="Self.random_enchantment" />
           <EntitySet Name="reference_loot_template" EntityType="Self.reference_loot_template" />
           <EntitySet Name="reputation_reward_rate" EntityType="Self.reputation_reward_rate" />
           <EntitySet Name="reputation_spillover_template" EntityType="Self.reputation_spillover_template" />
-          <EntitySet Name="resource_points" EntityType="Self.resource_points" />
           <EntitySet Name="script_waypoint" EntityType="Self.script_waypoint" />
-          <EntitySet Name="server_messages" EntityType="Self.server_messages" />
           <EntitySet Name="skill_discovery_template" EntityType="Self.skill_discovery_template" />
           <EntitySet Name="skill_extra_item_template" EntityType="Self.skill_extra_item_template" />
           <EntitySet Name="skill_fishing_base_level" EntityType="Self.skill_fishing_base_level" />
@@ -5995,14 +5683,11 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <EntitySet Name="spell_target_position" EntityType="Self.spell_target_position" />
           <EntitySet Name="spell_threat" EntityType="Self.spell_threat" />
           <EntitySet Name="spelldifficulty_dbc" EntityType="Self.spelldifficulty_dbc" />
-          <EntitySet Name="supremacy_level_xp" EntityType="Self.supremacy_level_xp" />
           <EntitySet Name="transports" EntityType="Self.transports" />
           <EntitySet Name="trinity_string" EntityType="Self.trinity_string" />
           <EntitySet Name="vehicle_accessory" EntityType="Self.vehicle_accessory" />
           <EntitySet Name="vehicle_template_accessory" EntityType="Self.vehicle_template_accessory" />
           <EntitySet Name="version" EntityType="Self.version" />
-          <EntitySet Name="war_school" EntityType="Self.war_school" />
-          <EntitySet Name="war_school_spell" EntityType="Self.war_school_spell" />
           <EntitySet Name="warden_checks" EntityType="Self.warden_checks" />
           <EntitySet Name="waypoint_data" EntityType="Self.waypoint_data" />
           <EntitySet Name="waypoint_scripts" EntityType="Self.waypoint_scripts" />
@@ -6161,14 +5846,21 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="capital_cities">
-            <EntityTypeMapping TypeName="LegacyWorldModel.capital_cities">
-              <MappingFragment StoreEntitySet="capital_cities">
-                <ScalarProperty Name="zone" ColumnName="zone" />
-                <ScalarProperty Name="faction" ColumnName="faction" />
-                <ScalarProperty Name="startlevel" ColumnName="startlevel" />
-                <ScalarProperty Name="scriptname" ColumnName="scriptname" />
-                <ScalarProperty Name="comment" ColumnName="comment" />
+          <EntitySetMapping Name="capital_city_upgrade_cost">
+            <EntityTypeMapping TypeName="LegacyWorldModel.capital_city_upgrade_cost">
+              <MappingFragment StoreEntitySet="capital_city_upgrade_cost">
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Resource" ColumnName="Resource" />
+                <ScalarProperty Name="MagicPower" ColumnName="MagicPower" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="capital_city_upgrade_spellset">
+            <EntityTypeMapping TypeName="LegacyWorldModel.capital_city_upgrade_spellset">
+              <MappingFragment StoreEntitySet="capital_city_upgrade_spellset">
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="SpellSet" ColumnName="SpellSet" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -6280,6 +5972,8 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
               <MappingFragment StoreEntitySet="creature_formations">
                 <ScalarProperty Name="leaderGUID" ColumnName="leaderGUID" />
                 <ScalarProperty Name="memberGUID" ColumnName="memberGUID" />
+                <ScalarProperty Name="dist" ColumnName="dist" />
+                <ScalarProperty Name="angle" ColumnName="angle" />
                 <ScalarProperty Name="groupAI" ColumnName="groupAI" />
                 <ScalarProperty Name="point_1" ColumnName="point_1" />
                 <ScalarProperty Name="point_2" ColumnName="point_2" />
@@ -6362,7 +6056,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
                 <ScalarProperty Name="subname" ColumnName="subname" />
                 <ScalarProperty Name="IconName" ColumnName="IconName" />
                 <ScalarProperty Name="gossip_menu_id" ColumnName="gossip_menu_id" />
-                <ScalarProperty Name="warSchool" ColumnName="warSchool" />
                 <ScalarProperty Name="minlevel" ColumnName="minlevel" />
                 <ScalarProperty Name="maxlevel" ColumnName="maxlevel" />
                 <ScalarProperty Name="exp" ColumnName="exp" />
@@ -6429,6 +6122,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
                 <ScalarProperty Name="RegenHealth" ColumnName="RegenHealth" />
                 <ScalarProperty Name="mechanic_immune_mask" ColumnName="mechanic_immune_mask" />
                 <ScalarProperty Name="flags_extra" ColumnName="flags_extra" />
+                <ScalarProperty Name="WarSchool" ColumnName="WarSchool" />
                 <ScalarProperty Name="ScriptName" ColumnName="ScriptName" />
                 <ScalarProperty Name="VerifiedBuild" ColumnName="VerifiedBuild" />
               </MappingFragment>
@@ -6453,13 +6147,10 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
                 <ScalarProperty Name="entry" ColumnName="entry" />
                 <ScalarProperty Name="groupid" ColumnName="groupid" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="text" ColumnName="text" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="language" ColumnName="language" />
                 <ScalarProperty Name="probability" ColumnName="probability" />
-                <ScalarProperty Name="emote" ColumnName="emote" />
                 <ScalarProperty Name="duration" ColumnName="duration" />
-                <ScalarProperty Name="sound" ColumnName="sound" />
                 <ScalarProperty Name="BroadcastTextId" ColumnName="BroadcastTextId" />
                 <ScalarProperty Name="TextRange" ColumnName="TextRange" />
                 <ScalarProperty Name="comment" ColumnName="comment" />
@@ -6607,6 +6298,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
                 <ScalarProperty Name="maxcount" ColumnName="maxcount" />
                 <ScalarProperty Name="incrtime" ColumnName="incrtime" />
                 <ScalarProperty Name="ExtendedCost" ColumnName="ExtendedCost" />
+                <ScalarProperty Name="ReqCityRank" ColumnName="ReqCityRank" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -6806,6 +6498,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
               <MappingFragment StoreEntitySet="gossip_menu">
                 <ScalarProperty Name="entry" ColumnName="entry" />
                 <ScalarProperty Name="text_id" ColumnName="text_id" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -6815,7 +6508,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
                 <ScalarProperty Name="menu_id" ColumnName="menu_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="option_icon" ColumnName="option_icon" />
-                <ScalarProperty Name="option_text" ColumnName="option_text" />
                 <ScalarProperty Name="OptionBroadcastTextID" ColumnName="OptionBroadcastTextID" />
                 <ScalarProperty Name="option_id" ColumnName="option_id" />
                 <ScalarProperty Name="npc_option_npcflag" ColumnName="npc_option_npcflag" />
@@ -6823,7 +6515,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
                 <ScalarProperty Name="action_poi_id" ColumnName="action_poi_id" />
                 <ScalarProperty Name="box_coded" ColumnName="box_coded" />
                 <ScalarProperty Name="box_money" ColumnName="box_money" />
-                <ScalarProperty Name="box_text" ColumnName="box_text" />
                 <ScalarProperty Name="BoxBroadcastTextID" ColumnName="BoxBroadcastTextID" />
                 <ScalarProperty Name="SingleTimeCheck" ColumnName="SingleTimeCheck" />
               </MappingFragment>
@@ -7499,15 +7190,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="loot_pool">
-            <EntityTypeMapping TypeName="LegacyWorldModel.loot_pool">
-              <MappingFragment StoreEntitySet="loot_pool">
-                <ScalarProperty Name="pool" ColumnName="pool" />
-                <ScalarProperty Name="item" ColumnName="item" />
-                <ScalarProperty Name="chance" ColumnName="chance" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="mail_level_reward">
             <EntityTypeMapping TypeName="LegacyWorldModel.mail_level_reward">
               <MappingFragment StoreEntitySet="mail_level_reward">
@@ -7564,94 +7246,22 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
             <EntityTypeMapping TypeName="LegacyWorldModel.npc_text">
               <MappingFragment StoreEntitySet="npc_text">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="text0_0" ColumnName="text0_0" />
-                <ScalarProperty Name="text0_1" ColumnName="text0_1" />
                 <ScalarProperty Name="BroadcastTextID0" ColumnName="BroadcastTextID0" />
-                <ScalarProperty Name="lang0" ColumnName="lang0" />
                 <ScalarProperty Name="prob0" ColumnName="prob0" />
-                <ScalarProperty Name="em0_0" ColumnName="em0_0" />
-                <ScalarProperty Name="em0_1" ColumnName="em0_1" />
-                <ScalarProperty Name="em0_2" ColumnName="em0_2" />
-                <ScalarProperty Name="em0_3" ColumnName="em0_3" />
-                <ScalarProperty Name="em0_4" ColumnName="em0_4" />
-                <ScalarProperty Name="em0_5" ColumnName="em0_5" />
-                <ScalarProperty Name="text1_0" ColumnName="text1_0" />
-                <ScalarProperty Name="text1_1" ColumnName="text1_1" />
                 <ScalarProperty Name="BroadcastTextID1" ColumnName="BroadcastTextID1" />
-                <ScalarProperty Name="lang1" ColumnName="lang1" />
                 <ScalarProperty Name="prob1" ColumnName="prob1" />
-                <ScalarProperty Name="em1_0" ColumnName="em1_0" />
-                <ScalarProperty Name="em1_1" ColumnName="em1_1" />
-                <ScalarProperty Name="em1_2" ColumnName="em1_2" />
-                <ScalarProperty Name="em1_3" ColumnName="em1_3" />
-                <ScalarProperty Name="em1_4" ColumnName="em1_4" />
-                <ScalarProperty Name="em1_5" ColumnName="em1_5" />
-                <ScalarProperty Name="text2_0" ColumnName="text2_0" />
-                <ScalarProperty Name="text2_1" ColumnName="text2_1" />
                 <ScalarProperty Name="BroadcastTextID2" ColumnName="BroadcastTextID2" />
-                <ScalarProperty Name="lang2" ColumnName="lang2" />
                 <ScalarProperty Name="prob2" ColumnName="prob2" />
-                <ScalarProperty Name="em2_0" ColumnName="em2_0" />
-                <ScalarProperty Name="em2_1" ColumnName="em2_1" />
-                <ScalarProperty Name="em2_2" ColumnName="em2_2" />
-                <ScalarProperty Name="em2_3" ColumnName="em2_3" />
-                <ScalarProperty Name="em2_4" ColumnName="em2_4" />
-                <ScalarProperty Name="em2_5" ColumnName="em2_5" />
-                <ScalarProperty Name="text3_0" ColumnName="text3_0" />
-                <ScalarProperty Name="text3_1" ColumnName="text3_1" />
                 <ScalarProperty Name="BroadcastTextID3" ColumnName="BroadcastTextID3" />
-                <ScalarProperty Name="lang3" ColumnName="lang3" />
                 <ScalarProperty Name="prob3" ColumnName="prob3" />
-                <ScalarProperty Name="em3_0" ColumnName="em3_0" />
-                <ScalarProperty Name="em3_1" ColumnName="em3_1" />
-                <ScalarProperty Name="em3_2" ColumnName="em3_2" />
-                <ScalarProperty Name="em3_3" ColumnName="em3_3" />
-                <ScalarProperty Name="em3_4" ColumnName="em3_4" />
-                <ScalarProperty Name="em3_5" ColumnName="em3_5" />
-                <ScalarProperty Name="text4_0" ColumnName="text4_0" />
-                <ScalarProperty Name="text4_1" ColumnName="text4_1" />
                 <ScalarProperty Name="BroadcastTextID4" ColumnName="BroadcastTextID4" />
-                <ScalarProperty Name="lang4" ColumnName="lang4" />
                 <ScalarProperty Name="prob4" ColumnName="prob4" />
-                <ScalarProperty Name="em4_0" ColumnName="em4_0" />
-                <ScalarProperty Name="em4_1" ColumnName="em4_1" />
-                <ScalarProperty Name="em4_2" ColumnName="em4_2" />
-                <ScalarProperty Name="em4_3" ColumnName="em4_3" />
-                <ScalarProperty Name="em4_4" ColumnName="em4_4" />
-                <ScalarProperty Name="em4_5" ColumnName="em4_5" />
-                <ScalarProperty Name="text5_0" ColumnName="text5_0" />
-                <ScalarProperty Name="text5_1" ColumnName="text5_1" />
                 <ScalarProperty Name="BroadcastTextID5" ColumnName="BroadcastTextID5" />
-                <ScalarProperty Name="lang5" ColumnName="lang5" />
                 <ScalarProperty Name="prob5" ColumnName="prob5" />
-                <ScalarProperty Name="em5_0" ColumnName="em5_0" />
-                <ScalarProperty Name="em5_1" ColumnName="em5_1" />
-                <ScalarProperty Name="em5_2" ColumnName="em5_2" />
-                <ScalarProperty Name="em5_3" ColumnName="em5_3" />
-                <ScalarProperty Name="em5_4" ColumnName="em5_4" />
-                <ScalarProperty Name="em5_5" ColumnName="em5_5" />
-                <ScalarProperty Name="text6_0" ColumnName="text6_0" />
-                <ScalarProperty Name="text6_1" ColumnName="text6_1" />
                 <ScalarProperty Name="BroadcastTextID6" ColumnName="BroadcastTextID6" />
-                <ScalarProperty Name="lang6" ColumnName="lang6" />
                 <ScalarProperty Name="prob6" ColumnName="prob6" />
-                <ScalarProperty Name="em6_0" ColumnName="em6_0" />
-                <ScalarProperty Name="em6_1" ColumnName="em6_1" />
-                <ScalarProperty Name="em6_2" ColumnName="em6_2" />
-                <ScalarProperty Name="em6_3" ColumnName="em6_3" />
-                <ScalarProperty Name="em6_4" ColumnName="em6_4" />
-                <ScalarProperty Name="em6_5" ColumnName="em6_5" />
-                <ScalarProperty Name="text7_0" ColumnName="text7_0" />
-                <ScalarProperty Name="text7_1" ColumnName="text7_1" />
                 <ScalarProperty Name="BroadcastTextID7" ColumnName="BroadcastTextID7" />
-                <ScalarProperty Name="lang7" ColumnName="lang7" />
                 <ScalarProperty Name="prob7" ColumnName="prob7" />
-                <ScalarProperty Name="em7_0" ColumnName="em7_0" />
-                <ScalarProperty Name="em7_1" ColumnName="em7_1" />
-                <ScalarProperty Name="em7_2" ColumnName="em7_2" />
-                <ScalarProperty Name="em7_3" ColumnName="em7_3" />
-                <ScalarProperty Name="em7_4" ColumnName="em7_4" />
-                <ScalarProperty Name="em7_5" ColumnName="em7_5" />
                 <ScalarProperty Name="VerifiedBuild" ColumnName="VerifiedBuild" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -7678,6 +7288,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
                 <ScalarProperty Name="maxcount" ColumnName="maxcount" />
                 <ScalarProperty Name="incrtime" ColumnName="incrtime" />
                 <ScalarProperty Name="ExtendedCost" ColumnName="ExtendedCost" />
+                <ScalarProperty Name="ReqCityRank" ColumnName="ReqCityRank" />
                 <ScalarProperty Name="VerifiedBuild" ColumnName="VerifiedBuild" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -7805,17 +7416,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="player_level_spell">
-            <EntityTypeMapping TypeName="LegacyWorldModel.player_level_spell">
-              <MappingFragment StoreEntitySet="player_level_spell">
-                <ScalarProperty Name="Class" ColumnName="Class" />
-                <ScalarProperty Name="Level" ColumnName="Level" />
-                <ScalarProperty Name="Spell1" ColumnName="Spell1" />
-                <ScalarProperty Name="Spell2" ColumnName="Spell2" />
-                <ScalarProperty Name="Spell3" ColumnName="Spell3" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="player_levelstats">
             <EntityTypeMapping TypeName="LegacyWorldModel.player_levelstats">
               <MappingFragment StoreEntitySet="player_levelstats">
@@ -7827,6 +7427,14 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
                 <ScalarProperty Name="sta" ColumnName="sta" />
                 <ScalarProperty Name="inte" ColumnName="inte" />
                 <ScalarProperty Name="spi" ColumnName="spi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="player_supremacy_level_xp">
+            <EntityTypeMapping TypeName="LegacyWorldModel.player_supremacy_level_xp">
+              <MappingFragment StoreEntitySet="player_supremacy_level_xp">
+                <ScalarProperty Name="level" ColumnName="level" />
+                <ScalarProperty Name="xp" ColumnName="xp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -7913,6 +7521,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
               <MappingFragment StoreEntitySet="pool_creature">
                 <ScalarProperty Name="guid" ColumnName="guid" />
                 <ScalarProperty Name="pool_entry" ColumnName="pool_entry" />
+                <ScalarProperty Name="chance" ColumnName="chance" />
                 <ScalarProperty Name="description" ColumnName="description" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -7922,6 +7531,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
               <MappingFragment StoreEntitySet="pool_gameobject">
                 <ScalarProperty Name="guid" ColumnName="guid" />
                 <ScalarProperty Name="pool_entry" ColumnName="pool_entry" />
+                <ScalarProperty Name="chance" ColumnName="chance" />
                 <ScalarProperty Name="description" ColumnName="description" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -8144,21 +7754,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="random_enchantment">
-            <EntityTypeMapping TypeName="LegacyWorldModel.random_enchantment">
-              <MappingFragment StoreEntitySet="random_enchantment">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Set" ColumnName="Set" />
-                <ScalarProperty Name="Level" ColumnName="Level" />
-                <ScalarProperty Name="Chance" ColumnName="Chance" />
-                <ScalarProperty Name="ClassMask" ColumnName="ClassMask" />
-                <ScalarProperty Name="SubClassMask" ColumnName="SubClassMask" />
-                <ScalarProperty Name="InventoryTypeMask" ColumnName="InventoryTypeMask" />
-                <ScalarProperty Name="QualityMask" ColumnName="QualityMask" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="reference_loot_template">
             <EntityTypeMapping TypeName="LegacyWorldModel.reference_loot_template">
               <MappingFragment StoreEntitySet="reference_loot_template">
@@ -8208,33 +7803,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="resource_points">
-            <EntityTypeMapping TypeName="LegacyWorldModel.resource_points">
-              <MappingFragment StoreEntitySet="resource_points">
-                <ScalarProperty Name="area" ColumnName="area" />
-                <ScalarProperty Name="max_guard" ColumnName="max_guard" />
-                <ScalarProperty Name="max_worker" ColumnName="max_worker" />
-                <ScalarProperty Name="allianceCity1" ColumnName="allianceCity1" />
-                <ScalarProperty Name="allianceResourcePct1" ColumnName="allianceResourcePct1" />
-                <ScalarProperty Name="allianceCity2" ColumnName="allianceCity2" />
-                <ScalarProperty Name="allianceResourcePct2" ColumnName="allianceResourcePct2" />
-                <ScalarProperty Name="allianceCity3" ColumnName="allianceCity3" />
-                <ScalarProperty Name="allianceResourcePct3" ColumnName="allianceResourcePct3" />
-                <ScalarProperty Name="allianceCity4" ColumnName="allianceCity4" />
-                <ScalarProperty Name="allianceResourcePct4" ColumnName="allianceResourcePct4" />
-                <ScalarProperty Name="hordeCity1" ColumnName="hordeCity1" />
-                <ScalarProperty Name="hordeResourcePct1" ColumnName="hordeResourcePct1" />
-                <ScalarProperty Name="hordeCity2" ColumnName="hordeCity2" />
-                <ScalarProperty Name="hordeResourcePct2" ColumnName="hordeResourcePct2" />
-                <ScalarProperty Name="hordeCity3" ColumnName="hordeCity3" />
-                <ScalarProperty Name="hordeResourcePct3" ColumnName="hordeResourcePct3" />
-                <ScalarProperty Name="hordeCity4" ColumnName="hordeCity4" />
-                <ScalarProperty Name="hordeResourcePct4" ColumnName="hordeResourcePct4" />
-                <ScalarProperty Name="scriptname" ColumnName="scriptname" />
-                <ScalarProperty Name="comment" ColumnName="comment" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="script_waypoint">
             <EntityTypeMapping TypeName="LegacyWorldModel.script_waypoint">
               <MappingFragment StoreEntitySet="script_waypoint">
@@ -8245,14 +7813,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
                 <ScalarProperty Name="location_z" ColumnName="location_z" />
                 <ScalarProperty Name="waittime" ColumnName="waittime" />
                 <ScalarProperty Name="point_comment" ColumnName="point_comment" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="server_messages">
-            <EntityTypeMapping TypeName="LegacyWorldModel.server_messages">
-              <MappingFragment StoreEntitySet="server_messages">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="content" ColumnName="content" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -8477,6 +8037,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
               <MappingFragment StoreEntitySet="spell_enchant_proc_data">
                 <ScalarProperty Name="entry" ColumnName="entry" />
                 <ScalarProperty Name="customChance" ColumnName="customChance" />
+                <ScalarProperty Name="PPMChance" ColumnName="PPMChance" />
                 <ScalarProperty Name="procEx" ColumnName="procEx" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -8548,6 +8109,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
                 <ScalarProperty Name="attributesMask" ColumnName="attributesMask" />
                 <ScalarProperty Name="ratePerMinute" ColumnName="ratePerMinute" />
                 <ScalarProperty Name="chance" ColumnName="chance" />
+                <ScalarProperty Name="cooldown" ColumnName="cooldown" />
                 <ScalarProperty Name="charges" ColumnName="charges" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -8621,14 +8183,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="supremacy_level_xp">
-            <EntityTypeMapping TypeName="LegacyWorldModel.supremacy_level_xp">
-              <MappingFragment StoreEntitySet="supremacy_level_xp">
-                <ScalarProperty Name="level" ColumnName="level" />
-                <ScalarProperty Name="xp" ColumnName="xp" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="transports">
             <EntityTypeMapping TypeName="LegacyWorldModel.transports">
               <MappingFragment StoreEntitySet="transports">
@@ -8688,25 +8242,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
                 <ScalarProperty Name="core_revision" ColumnName="core_revision" />
                 <ScalarProperty Name="db_version" ColumnName="db_version" />
                 <ScalarProperty Name="cache_id" ColumnName="cache_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="war_school">
-            <EntityTypeMapping TypeName="LegacyWorldModel.war_school">
-              <MappingFragment StoreEntitySet="war_school">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="class" ColumnName="class" />
-                <ScalarProperty Name="trainer_list" ColumnName="trainer_list" />
-                <ScalarProperty Name="title_id" ColumnName="title_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="war_school_spell">
-            <EntityTypeMapping TypeName="LegacyWorldModel.war_school_spell">
-              <MappingFragment StoreEntitySet="war_school_spell">
-                <ScalarProperty Name="school" ColumnName="school" />
-                <ScalarProperty Name="spell" ColumnName="spell" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

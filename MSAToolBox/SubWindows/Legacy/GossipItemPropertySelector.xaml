@@ -1,4 +1,4 @@
-﻿<Controls:MetroWindow x:Class="MSAToolBox.SubWindows.Legacy.CreatureNpcFlagsSelector"
+﻿<Controls:MetroWindow x:Class="MSAToolBox.SubWindows.Legacy.GossipItemPropertySelector"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" Height="331" Width="600" Background="{x:Null}" ResizeMode="NoResize"
@@ -48,7 +48,7 @@
         </GroupBox>
         <CheckBox x:Name="showCodeBox" Content="SHOW CODE BOX" HorizontalAlignment="Left" Margin="10,242,0,0" VerticalAlignment="Top" Click="showCodeBox_Click"/>
         <TextBox x:Name="requiredMoney" HorizontalAlignment="Left" Height="23" Margin="10,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Controls:TextboxHelper.Watermark="REQUIRED MONEY" LostFocus="requiredMoney_LostFocus"/>
-        <TextBox x:Name="boxText" Height="23" Margin="135,265,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Controls:TextboxHelper.Watermark="BOX TEXT" LostFocus="boxText_LostFocus"/>
+        <TextBox x:Name="boxText" Height="23" Margin="135,265,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Controls:TextboxHelper.Watermark="BOX TEXT" LostFocus="boxText_LostFocus" IsEnabled="False"/>
         <CheckBox x:Name="singleTimeCheck" Content="SINGLE TIME CHECK" HorizontalAlignment="Right" Margin="0,242,10,0" VerticalAlignment="Top" Click="singleTimeCheck_Click"/>
 
     </Grid>

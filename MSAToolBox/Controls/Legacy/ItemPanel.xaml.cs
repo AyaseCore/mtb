@@ -94,7 +94,7 @@ namespace MSAToolBox.Controls.Legacy
         private void LoadDefines()
         {
             IsLoading = true;
-            ItemList = LegacyMorpher.Data.GetItemList();
+            ItemList = LegacyWorld.GetItemList();
             itemList.ItemsSource = ItemList;
             itemList.Items.SortDescriptions.Clear();
             itemList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Entry", System.ComponentModel.ListSortDirection.Ascending));
@@ -150,7 +150,7 @@ namespace MSAToolBox.Controls.Legacy
         {
             if (item != null && ItemData != null)
             {
-                LegacyMorpher.Data.SaveItemTemplate(ItemData, false);
+                LegacyWorld.SaveItemTemplate(ItemData, false);
             }
 
             if (item == null)
@@ -168,7 +168,7 @@ namespace MSAToolBox.Controls.Legacy
 
         public void TryLoadSomething(int id)
         {
-            ItemTemplate item = LegacyMorpher.Data.GetItemTemplate(id);
+            ItemTemplate item = LegacyWorld.GetItemTemplate(id);
             Load(item);
             iconPanel.Load(item);
         }
@@ -178,7 +178,7 @@ namespace MSAToolBox.Controls.Legacy
             if (ItemData == null)
                 return;
 
-            ItemTemplate item = LegacyMorpher.Data.SaveItemTemplate(ItemData, false);
+            ItemTemplate item = LegacyWorld.SaveItemTemplate(ItemData, false);
             if (item != null)
             {
                 //Modified = false;
@@ -191,7 +191,7 @@ namespace MSAToolBox.Controls.Legacy
         {
             if (ItemData != null)
             {
-                ItemTemplate item = LegacyMorpher.Data.SaveItemTemplate(ItemData, false);
+                ItemTemplate item = LegacyWorld.SaveItemTemplate(ItemData, false);
                 if (item != null)
                 {
                     ItemData = item;
@@ -278,22 +278,24 @@ namespace MSAToolBox.Controls.Legacy
 
         private void itemCreate_Click(object sender, RoutedEventArgs e)
         {
-            new Thread(ModAllItem).Start();
-            //ItemTemplate item = LegacyMorpher.Data.CreateItemTemplate();
-            //ReloadItemList(LegacyMorpher.Data);
-            //Load(item);
+            //new Thread(CleanRecipes).Start();
+            //new Thread(CleanItemSpells).Start();
+            //new Thread(ModAllItem).Start();
+            ItemTemplate item = LegacyWorld.CreateItemTemplate();
+            ReloadItemList();
+            Load(item);
         }
 
         private void itemCopy_Click(object sender, RoutedEventArgs e)
         {
-            ItemTemplate item = LegacyMorpher.Data.CopyItemTemplate((int)itemList.SelectedValue);
+            ItemTemplate item = LegacyWorld.CopyItemTemplate((int)itemList.SelectedValue);
             Load(item);
-            ReloadItemList(LegacyMorpher.Data);
+            ReloadItemList();
         }
 
-        private void ReloadItemList(LegacyWorld world)
+        private void ReloadItemList()
         {
-            ItemList = world.GetItemList();
+            ItemList = LegacyWorld.GetItemList();
             itemList.ItemsSource = ItemList;
             itemList.Items.SortDescriptions.Clear();
             itemList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Entry", System.ComponentModel.ListSortDirection.Ascending));
@@ -301,9 +303,9 @@ namespace MSAToolBox.Controls.Legacy
 
         private void itemDelete_Click(object sender, RoutedEventArgs e)
         {
-            LegacyMorpher.Data.DeleteItemTemplate((int)itemList.SelectedValue);
+            LegacyWorld.DeleteItemTemplate((int)itemList.SelectedValue);
             Load(null);
-            ReloadItemList(LegacyMorpher.Data);
+            ReloadItemList();
         }
 
         private void exportItemDBC_Click(object sender, RoutedEventArgs e)
@@ -320,7 +322,7 @@ namespace MSAToolBox.Controls.Legacy
                 Storyboard anim = FindResource("ShowProgressBar") as Storyboard;
                 anim.Begin();
             }));
-            List<ItemDBC> dbc = LegacyMorpher.Data.GenerateItemDBC();
+            List<ItemDBC> dbc = LegacyWorld.GenerateItemDBC();
             this.Dispatcher.Invoke(new Action(() =>
             {
                 itemTabProgressLabel.Content = "正在处理第0个（共" + dbc.Count + "个)";
@@ -895,7 +897,7 @@ namespace MSAToolBox.Controls.Legacy
 
         private void reloadItemList_Click(object sender, RoutedEventArgs e)
         {
-            ReloadItemList(LegacyMorpher.Data);
+            ReloadItemList();
         }
 
         private void calculateAll_Click(object sender, RoutedEventArgs e)
@@ -923,7 +925,7 @@ namespace MSAToolBox.Controls.Legacy
                     if (item.Class != 4)
                     continue;
 
-                ItemData = LegacyMorpher.Data.GetItemTemplate(item.Entry);
+                ItemData = LegacyWorld.GetItemTemplate(item.Entry);
                 ItemData.ItemLevel = (int)(ItemData.ItemLevel * 0.7f);
                 if (ItemData.ItemLevel < 1)
                     ItemData.ItemLevel = 1;
@@ -961,7 +963,7 @@ namespace MSAToolBox.Controls.Legacy
                     reqlevel = 0;
 
                 ItemData.RequiredLevel = (byte)reqlevel;
-                LegacyMorpher.Data.SaveItemTemplate(ItemData, false);
+                LegacyWorld.SaveItemTemplate(ItemData, false);
 
                 this.Dispatcher.Invoke(new Action(() =>
                 {
@@ -1030,7 +1032,7 @@ namespace MSAToolBox.Controls.Legacy
                 if (item.Class != 4)
                     continue;
 
-                ItemData = LegacyMorpher.Data.GetItemTemplate(item.Entry);
+                ItemData = LegacyWorld.GetItemTemplate(item.Entry);
 
                 int resistance = ItemData.FireResistance;
                 double resistance1 = 0;
@@ -1101,7 +1103,7 @@ namespace MSAToolBox.Controls.Legacy
                 ItemData.ShadowResistance = (byte)res4;
                 ItemData.ArcaneResistance = (byte)res5;
 
-                LegacyMorpher.Data.SaveItemTemplate(ItemData, false);
+                LegacyWorld.SaveItemTemplate(ItemData, false);
 
                 this.Dispatcher.Invoke(new Action(() =>
                 {
@@ -1422,16 +1424,13 @@ namespace MSAToolBox.Controls.Legacy
             foreach (var itemInfo in itemlist)
             {
                 index++;
-                ItemTemplate item = LegacyMorpher.Data.GetItemTemplate(itemInfo.Entry);
+                ItemTemplate item = LegacyWorld.GetItemTemplate(itemInfo.Entry);
                 CalculateValues(item);
-                LegacyMorpher.Data.SaveItemTemplate(item, false);
-                if (index % 5 == 0)
+                LegacyWorld.SaveItemTemplate(item, false);
+                this.Dispatcher.Invoke(new Action(() =>
                 {
-                    this.Dispatcher.Invoke(new Action(() =>
-                    {
-                        itemTabProgressLabel.Content = "Proccessing " + index + " of " + count;
-                    }));
-                }
+                    itemTabProgressLabel.Content = "Proccessing " + index + " of " + count;
+                }));
             }
         }
 
@@ -1493,6 +1492,79 @@ namespace MSAToolBox.Controls.Legacy
         {
             ItemInfo info = itemList.SelectedItem as ItemInfo;
             RecipePanel.self.AddReagent(info.Name, info.Entry, -1);
+        }
+
+        private void CleanItemSpells()
+        {
+            var items = (from d in ItemList where d.Class == 2 || d.Class == 4 select d).ToList();
+            int count = items.Count;
+            int index = 0;
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                Storyboard anim = FindResource("ShowProgressBar") as Storyboard;
+                anim.Begin();
+                itemTabProgress.Maximum = count;
+            }));
+            foreach (var item in items)
+            {
+                index++;
+                ItemTemplate itemTemplate = LegacyWorld.GetItemTemplate(item.Entry);
+                for (int i = 0; i != 5; ++i)
+                {
+                    if (itemTemplate.Spell[i] == 0)
+                        continue;
+
+                    SpellTemplate spell = (from d in SpellPanel.spells where d.ID == itemTemplate.Spell[i] select d).SingleOrDefault();
+                    if (spell == null || (spell.Attributes[0] & 0x40) == 0) continue;
+
+                    switch (spell.EffectApplyAura[0])
+                    {
+                        case 189:
+                        case 99:
+                        case 124:
+                        case 13:
+                        case 135:
+                            itemTemplate.Spell[i] = 0;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                LegacyWorld.SaveItemTemplate(itemTemplate);
+                this.Dispatcher.Invoke(new Action(() =>
+                {
+                    itemTabProgress.Value = index;
+                    itemTabProgressLabel.Content = "Proccessing " + index + " of " + count;
+                }));
+            }
+        }
+
+        private void CleanRecipes()
+        {
+            var items = (from d in ItemList where d.Class == 9 select d).ToList();
+            int count = items.Count;
+            int index = 0;
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                Storyboard anim = FindResource("ShowProgressBar") as Storyboard;
+                anim.Begin();
+                itemTabProgress.Maximum = count;
+            }));
+            foreach (var item in items)
+            {
+                index++;
+                ItemTemplate itemTemplate = LegacyWorld.GetItemTemplate(item.Entry);
+                if (itemTemplate == null || itemTemplate.Spell[1] == 0 || itemTemplate.RequiredSkillRank == 0) continue;
+                var skill = (from d in SkillLinePanel.SkillLineAbilities where d.Spell == itemTemplate.Spell[1] select d).FirstOrDefault();
+                if (skill == null) continue;
+                itemTemplate.RequiredSkill = skill.Skill;
+                LegacyWorld.SaveItemTemplate(itemTemplate);
+                this.Dispatcher.Invoke(new Action(() =>
+                {
+                    itemTabProgress.Value = index;
+                    itemTabProgressLabel.Content = "Proccessing " + index + " of " + count;
+                }));
+            }
         }
     }
 }

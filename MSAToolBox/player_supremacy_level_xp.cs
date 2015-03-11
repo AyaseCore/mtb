@@ -12,9 +12,9 @@ namespace MSAToolBox
     using System;
     using System.Collections.Generic;
     
-    public partial class server_messages
+    public partial class player_supremacy_level_xp
     {
-        public int id { get; set; }
-        public string content { get; set; }
+        public int level { get; set; }
+        public int xp { get; set; }
     }
 }

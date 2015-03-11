@@ -27,6 +27,7 @@ namespace MSAToolBox
         public long attributesMask { get; set; }
         public float ratePerMinute { get; set; }
         public float chance { get; set; }
+        public float cooldown { get; set; }
         public long charges { get; set; }
     }
 }

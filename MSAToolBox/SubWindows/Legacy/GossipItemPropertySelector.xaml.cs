@@ -19,34 +19,18 @@ namespace MSAToolBox.SubWindows.Legacy
     /// <summary>
     /// CreatureNPCFlags.xaml 的交互逻辑
     /// </summary>
-    public partial class CreatureNpcFlagsSelector : MetroWindow
+    public partial class GossipItemPropertySelector : MetroWindow
     {
-        private GossipMenuOption _option;
+        private GossipMenuItem _item;
 
-        public CreatureNpcFlagsSelector(GossipMenu menu, int optionID)
+        public GossipItemPropertySelector(GossipMenuItem item)
         {
             InitializeComponent();
-
-            if (menu != null)
-            {
-                if (menu.Options[optionID] != null)
-                {
-                    _option = menu.Options[optionID];
-                    CheckFlags(_option.NpcFlags);
-                    showCodeBox.IsChecked = _option.ShowCodeBox;
-                    singleTimeCheck.IsChecked = _option.SingleTimeCheck;
-                    requiredMoney.Text = _option.BoxMoney.ToString();
-                    boxText.Text = _option.BoxText;
-                    this.Title = "Menu: " + menu.ID + " - Option: " + optionID;
-                }
-                else
-                    gossipMenuOptionContainer.IsEnabled = false;
-            }
-            else
-                gossipMenuOptionContainer.IsEnabled = false;
+            _item = item;
+            CheckFlags(item.NpcFlags);
         }
 
-        private void CheckFlags(int flags)
+        private void CheckFlags(long flags)
         {
             if ((flags & 1 << 0) != 0)
                 npcFlag1.IsChecked = true;
@@ -106,10 +90,7 @@ namespace MSAToolBox.SubWindows.Legacy
 
         private void UpdateFlags()
         {
-            if (_option == null)
-                return;
-
-            int flag = 0;
+            long flag = 0;
             if (npcFlag1.IsChecked == true)
                 flag += 1 << 0;
             if (npcFlag2.IsChecked == true)
@@ -167,7 +148,7 @@ namespace MSAToolBox.SubWindows.Legacy
 
             gossipMenuOptionNpcFlagGroup.Header = "NPC FLAGS - " + flag;
 
-            _option.NpcFlags = flag;
+            _item.NpcFlags = flag;
         }
 
         private void npcFlag1_Click(object sender, RoutedEventArgs e)
@@ -307,42 +288,42 @@ namespace MSAToolBox.SubWindows.Legacy
 
         private void showCodeBox_Click(object sender, RoutedEventArgs e)
         {
-            if (_option == null)
+            if (_item == null)
                 return;
 
-            _option.ShowCodeBox = showCodeBox.IsChecked == true ? true : false;
+            _item.BoxCoded = showCodeBox.IsChecked == true ? true : false;
         }
 
         private void requiredMoney_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (_option == null)
+            if (_item == null)
                 return;
 
             try
             {
-                _option.BoxMoney = Convert.ToInt32(requiredMoney.Text);
+                _item.BoxMoney = Convert.ToInt32(requiredMoney.Text);
             }
             catch (System.Exception /*ex*/)
             {
-                _option.BoxMoney = 0;
+                _item.BoxMoney = 0;
                 requiredMoney.Text = "0";
             }
         }
 
         private void boxText_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (_option == null)
+            if (_item == null)
                 return;
 
-            _option.BoxText = boxText.Text;
+            //_item.BoxText = boxText.Text;
         }
 
         private void singleTimeCheck_Click(object sender, RoutedEventArgs e)
         {
-            if (_option == null)
+            if (_item == null)
                 return;
 
-            _option.SingleTimeCheck = singleTimeCheck.IsChecked == true ? true : false;
+            _item.SingleTimeCheck = singleTimeCheck.IsChecked == true ? true : false;
         }
     }
 }

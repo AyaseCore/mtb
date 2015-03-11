@@ -39,7 +39,7 @@ namespace MSAToolBox
         public int RequiredReputationFaction { get; set; }
         public int RequiredReputationRank { get; set; }
         public int maxcount { get; set; }
-        public Nullable<int> stackable { get; set; }
+        public int stackable { get; set; }
         public byte ContainerSlots { get; set; }
         public byte StatsCount { get; set; }
         public byte stat_type1 { get; set; }

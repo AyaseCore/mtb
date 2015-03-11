@@ -34,12 +34,11 @@ namespace MSAToolBox.Controls.Legacy
         public void Load()
         {
             GetCreatureList();
-            creatureGossipPanel.Load();
         }
 
         private void GetCreatureList()
         {
-            CreatureList = LegacyMorpher.Data.GetCreatureList().ToList();
+            CreatureList = LegacyWorld.GetCreatureList().ToList();
             creatureList.ItemsSource = CreatureList;
             creatureList.Items.SortDescriptions.Clear();
             creatureList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Entry", System.ComponentModel.ListSortDirection.Descending));
@@ -60,9 +59,9 @@ namespace MSAToolBox.Controls.Legacy
                 return;
 
             if (CreatureData != null)
-                LegacyMorpher.Data.SaveCreatureTemplate(CreatureData);
-            Load(LegacyMorpher.Data.GetCreatureTemplate(entry));
-            CreatureSpawnList = LegacyMorpher.Data.GetSpawnInfo(entry);
+                LegacyWorld.SaveCreatureTemplate(CreatureData);
+            Load(LegacyWorld.GetCreatureTemplate(entry));
+            CreatureSpawnList = LegacyWorld.GetSpawnInfo(entry);
             creatureSpawn.Load(CreatureSpawnList);
 
             creatureTrainerPanel.Load(entry);
@@ -81,7 +80,7 @@ namespace MSAToolBox.Controls.Legacy
             if (CreatureData != null)
             {
                 CreatureData.Entry[0] = 0;
-                CreatureTemplate creature = LegacyMorpher.Data.SaveCreatureTemplate(CreatureData);
+                CreatureTemplate creature = LegacyWorld.SaveCreatureTemplate(CreatureData);
                 Load(creature);
                 GetCreatureList();
             }
@@ -89,7 +88,7 @@ namespace MSAToolBox.Controls.Legacy
 
         private void creatureDelete_Click(object sender, RoutedEventArgs e)
         {
-            LegacyMorpher.Data.DeleteCreatureTemplate(CreatureData.Entry[0]);
+            LegacyWorld.DeleteCreatureTemplate(CreatureData.Entry[0]);
             Load(null);
             GetCreatureList();
         }
@@ -115,7 +114,7 @@ namespace MSAToolBox.Controls.Legacy
         {
             foreach (var c in CreatureList)
             {
-                CreatureTemplate creature = LegacyMorpher.Data.GetCreatureTemplate(c.Entry);
+                CreatureTemplate creature = LegacyWorld.GetCreatureTemplate(c.Entry);
                 float level = (creature.MinLevel+creature.MaxLevel)/2;
                 creature.HealthModifier *= level / 20;
             }
