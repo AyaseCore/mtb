@@ -34,7 +34,7 @@ using SpellIcon = System.Windows.Controls.Image;
         public void Load()
         {
             SpellIconStore = new Dictionary<int, SpellIcon>();
-            foreach (var icon in LegacyMorpher.DefineStore.SpellIcon)
+            foreach (var icon in DataDefine.SpellIcon)
             {
                 string path = MainWindow.ASSET_PATH + icon.Value + ".png";
                 if (File.Exists(path))

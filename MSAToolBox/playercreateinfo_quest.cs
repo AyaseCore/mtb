@@ -12,9 +12,11 @@ namespace MSAToolBox
     using System;
     using System.Collections.Generic;
     
-    public partial class define_item_quality
+    public partial class playercreateinfo_quest
     {
-        public int id { get; set; }
-        public string define { get; set; }
+        public int RaceMask { get; set; }
+        public int ClassMask { get; set; }
+        public int Quest { get; set; }
+        public string Comment { get; set; }
     }
 }

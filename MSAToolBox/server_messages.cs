@@ -12,9 +12,9 @@ namespace MSAToolBox
     using System;
     using System.Collections.Generic;
     
-    public partial class define_item_inventory_type
+    public partial class server_messages
     {
         public int id { get; set; }
-        public string define { get; set; }
+        public string content { get; set; }
     }
 }

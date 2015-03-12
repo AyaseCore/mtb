@@ -285,12 +285,19 @@ namespace MSAToolBox.Utility
     {
         public int Menu { get; set; }
         public int NpcText { get; set; }
+        public string Comment { get; set; }
     }
 
     public class NpcText
     {
+        public NpcText()
+        {
+            Text = new int[8];
+            Chance = new float[8];
+        }
         public int Entry { get; set; }
-        public int Text { get; set; }
+        public int[] Text { get; set; }
+        public float[] Chance { get; set; }
     }
 
     public class GossipMenuItem

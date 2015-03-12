@@ -43,7 +43,7 @@ namespace MSAToolBox.Controls.Legacy
 
         public void Load()
         {
-            itemGroupSound.ItemsSource = LegacyMorpher.DefineStore.ItemGroupSound;
+            itemGroupSound.ItemsSource = DataDefine.ItemGroupSound;
         }
 
         public void LoadAllIcons()

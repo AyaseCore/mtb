@@ -12,9 +12,12 @@ namespace MSAToolBox
     using System;
     using System.Collections.Generic;
     
-    public partial class define_item_ammo_type
+    public partial class war_school
     {
         public int id { get; set; }
-        public string define { get; set; }
+        public string name { get; set; }
+        public int @class { get; set; }
+        public int trainer_list { get; set; }
+        public int title_id { get; set; }
     }
 }

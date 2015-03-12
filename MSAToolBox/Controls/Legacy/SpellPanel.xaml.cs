@@ -683,38 +683,38 @@ namespace MSAToolBox.Controls.Legacy
 
         public void AssignDefines()
         {
-            damageClass.ItemsSource = LegacyMorpher.DefineStore.SpellDamageClass;
-            dispel.ItemsSource = LegacyMorpher.DefineStore.SpellDispel;
-            mechanic.ItemsSource = LegacyMorpher.DefineStore.SpellMechanic;
-            range.ItemsSource = LegacyMorpher.DefineStore.SpellRange;
-            duration.ItemsSource = LegacyMorpher.DefineStore.SpellDuration;
-            casttime.ItemsSource = LegacyMorpher.DefineStore.SpellCastTime;
-            powertype.ItemsSource = LegacyMorpher.DefineStore.SpellPowerType;
-            spellfamily.ItemsSource = LegacyMorpher.DefineStore.SpellFamily;
-            casteraurastate.ItemsSource = LegacyMorpher.DefineStore.SpellAuraState;
-            targetaurastate.ItemsSource = LegacyMorpher.DefineStore.SpellAuraState;
-            xcasteraurastate.ItemsSource = LegacyMorpher.DefineStore.SpellAuraState;
-            xtargetaurastate.ItemsSource = LegacyMorpher.DefineStore.SpellAuraState;
-            totemcategory1.ItemsSource = LegacyMorpher.DefineStore.TotemCategory;
-            totemcategory2.ItemsSource = LegacyMorpher.DefineStore.TotemCategory;
-            ef1.ItemsSource = LegacyMorpher.DefineStore.SpellEffect;
-            ef2.ItemsSource = LegacyMorpher.DefineStore.SpellEffect;
-            ef3.ItemsSource = LegacyMorpher.DefineStore.SpellEffect;
-            ef1m.ItemsSource = LegacyMorpher.DefineStore.SpellMechanic;
-            ef2m.ItemsSource = LegacyMorpher.DefineStore.SpellMechanic;
-            ef3m.ItemsSource = LegacyMorpher.DefineStore.SpellMechanic;
-            ef1ta.ItemsSource = LegacyMorpher.DefineStore.SpellEffectTarget;
-            ef2ta.ItemsSource = LegacyMorpher.DefineStore.SpellEffectTarget;
-            ef3ta.ItemsSource = LegacyMorpher.DefineStore.SpellEffectTarget;
-            ef1tb.ItemsSource = LegacyMorpher.DefineStore.SpellEffectTarget;
-            ef2tb.ItemsSource = LegacyMorpher.DefineStore.SpellEffectTarget;
-            ef3tb.ItemsSource = LegacyMorpher.DefineStore.SpellEffectTarget;
-            ef1r.ItemsSource = LegacyMorpher.DefineStore.SpellEffectRadius;
-            ef2r.ItemsSource = LegacyMorpher.DefineStore.SpellEffectRadius;
-            ef3r.ItemsSource = LegacyMorpher.DefineStore.SpellEffectRadius;
-            ef1au.ItemsSource = LegacyMorpher.DefineStore.SpellAura;
-            ef2au.ItemsSource = LegacyMorpher.DefineStore.SpellAura;
-            ef3au.ItemsSource = LegacyMorpher.DefineStore.SpellAura;
+            damageClass.ItemsSource = DataDefine.SpellDamageClass;
+            dispel.ItemsSource = DataDefine.SpellDispel;
+            mechanic.ItemsSource = DataDefine.SpellMechanic;
+            range.ItemsSource = DataDefine.SpellRange;
+            duration.ItemsSource = DataDefine.SpellDuration;
+            casttime.ItemsSource = DataDefine.SpellCastTime;
+            powertype.ItemsSource = DataDefine.SpellPowerType;
+            spellfamily.ItemsSource = DataDefine.SpellFamily;
+            casteraurastate.ItemsSource = DataDefine.SpellAuraState;
+            targetaurastate.ItemsSource = DataDefine.SpellAuraState;
+            xcasteraurastate.ItemsSource = DataDefine.SpellAuraState;
+            xtargetaurastate.ItemsSource = DataDefine.SpellAuraState;
+            totemcategory1.ItemsSource = DataDefine.TotemCategory;
+            totemcategory2.ItemsSource = DataDefine.TotemCategory;
+            ef1.ItemsSource = DataDefine.SpellEffect;
+            ef2.ItemsSource = DataDefine.SpellEffect;
+            ef3.ItemsSource = DataDefine.SpellEffect;
+            ef1m.ItemsSource = DataDefine.SpellMechanic;
+            ef2m.ItemsSource = DataDefine.SpellMechanic;
+            ef3m.ItemsSource = DataDefine.SpellMechanic;
+            ef1ta.ItemsSource = DataDefine.SpellEffectTarget;
+            ef2ta.ItemsSource = DataDefine.SpellEffectTarget;
+            ef3ta.ItemsSource = DataDefine.SpellEffectTarget;
+            ef1tb.ItemsSource = DataDefine.SpellEffectTarget;
+            ef2tb.ItemsSource = DataDefine.SpellEffectTarget;
+            ef3tb.ItemsSource = DataDefine.SpellEffectTarget;
+            ef1r.ItemsSource = DataDefine.SpellEffectRadius;
+            ef2r.ItemsSource = DataDefine.SpellEffectRadius;
+            ef3r.ItemsSource = DataDefine.SpellEffectRadius;
+            ef1au.ItemsSource = DataDefine.SpellAura;
+            ef2au.ItemsSource = DataDefine.SpellAura;
+            ef3au.ItemsSource = DataDefine.SpellAura;
         }
 
         private void exportDBC_Click(object sender, RoutedEventArgs e)

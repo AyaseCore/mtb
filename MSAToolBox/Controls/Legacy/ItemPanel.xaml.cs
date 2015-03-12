@@ -98,46 +98,46 @@ namespace MSAToolBox.Controls.Legacy
             itemList.ItemsSource = ItemList;
             itemList.Items.SortDescriptions.Clear();
             itemList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Entry", System.ComponentModel.ListSortDirection.Ascending));
-            itemQuality.ItemsSource = LegacyMorpher.DefineStore.ItemQuality;
-            itemInventoryType.ItemsSource = LegacyMorpher.DefineStore.ItemInventoryType;
-            itemSheath.ItemsSource = LegacyMorpher.DefineStore.ItemSheath;
-            itemBonding.ItemsSource = LegacyMorpher.DefineStore.ItemBonding;
-            itemAmmoType.ItemsSource = LegacyMorpher.DefineStore.ItemAmmoType;
-            itemStatType1.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-            itemStatType2.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-            itemStatType3.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-            itemStatType4.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-            itemStatType5.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-            itemStatType6.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-            itemStatType7.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-            itemStatType8.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-            itemStatType9.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-            itemStatType10.ItemsSource = LegacyMorpher.DefineStore.ItemStatType;
-            itemDmgType1.ItemsSource = LegacyMorpher.DefineStore.ItemDamageSchool;
-            itemDmgType2.ItemsSource = LegacyMorpher.DefineStore.ItemDamageSchool;
-            itemSocket1.ItemsSource = LegacyMorpher.DefineStore.ItemSocketColor;
-            itemSocket2.ItemsSource = LegacyMorpher.DefineStore.ItemSocketColor;
-            itemSocket3.ItemsSource = LegacyMorpher.DefineStore.ItemSocketColor;
-            itemSpellTrigger1.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
-            itemSpellTrigger2.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
-            itemSpellTrigger3.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
-            itemSpellTrigger4.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
-            itemSpellTrigger5.ItemsSource = LegacyMorpher.DefineStore.ItemSpellTrigger;
-            itemReqFactionRank.ItemsSource = LegacyMorpher.DefineStore.ReputationRank;
-            itemReqSkill.ItemsSource = LegacyMorpher.DefineStore.SkillLine;
-            itemTotemCategory.ItemsSource = LegacyMorpher.DefineStore.TotemCategory;
-            itemReqHoliday.ItemsSource = LegacyMorpher.DefineStore.HolidayNames;
-            itemPageMaterial.ItemsSource = LegacyMorpher.DefineStore.PageTextMaterial;
-            itemPageTextLanguage.ItemsSource = LegacyMorpher.DefineStore.Language;
-            itemClass.ItemsSource = LegacyMorpher.DefineStore.ItemClass;
-            itemSubClass.ItemsSource = LegacyMorpher.DefineStore.ItemSubclass[0];
-            itemFilterClass.ItemsSource = LegacyMorpher.DefineStore.ItemClass;
-            itemFilterSubclass.ItemsSource = LegacyMorpher.DefineStore.ItemSubclass[0];
+            itemQuality.ItemsSource = DataDefine.ItemQuality;
+            itemInventoryType.ItemsSource = DataDefine.ItemInventoryType;
+            itemSheath.ItemsSource = DataDefine.ItemSheath;
+            itemBonding.ItemsSource = DataDefine.ItemBonding;
+            itemAmmoType.ItemsSource = DataDefine.ItemAmmoType;
+            itemStatType1.ItemsSource = DataDefine.ItemStatType;
+            itemStatType2.ItemsSource = DataDefine.ItemStatType;
+            itemStatType3.ItemsSource = DataDefine.ItemStatType;
+            itemStatType4.ItemsSource = DataDefine.ItemStatType;
+            itemStatType5.ItemsSource = DataDefine.ItemStatType;
+            itemStatType6.ItemsSource = DataDefine.ItemStatType;
+            itemStatType7.ItemsSource = DataDefine.ItemStatType;
+            itemStatType8.ItemsSource = DataDefine.ItemStatType;
+            itemStatType9.ItemsSource = DataDefine.ItemStatType;
+            itemStatType10.ItemsSource = DataDefine.ItemStatType;
+            itemDmgType1.ItemsSource = DataDefine.ItemDamageSchool;
+            itemDmgType2.ItemsSource = DataDefine.ItemDamageSchool;
+            itemSocket1.ItemsSource = DataDefine.ItemSocketColor;
+            itemSocket2.ItemsSource = DataDefine.ItemSocketColor;
+            itemSocket3.ItemsSource = DataDefine.ItemSocketColor;
+            itemSpellTrigger1.ItemsSource = DataDefine.ItemSpellTrigger;
+            itemSpellTrigger2.ItemsSource = DataDefine.ItemSpellTrigger;
+            itemSpellTrigger3.ItemsSource = DataDefine.ItemSpellTrigger;
+            itemSpellTrigger4.ItemsSource = DataDefine.ItemSpellTrigger;
+            itemSpellTrigger5.ItemsSource = DataDefine.ItemSpellTrigger;
+            itemReqFactionRank.ItemsSource = DataDefine.ReputationRank;
+            itemReqSkill.ItemsSource = DataDefine.SkillLine;
+            itemTotemCategory.ItemsSource = DataDefine.TotemCategory;
+            itemReqHoliday.ItemsSource = DataDefine.HolidayNames;
+            itemPageMaterial.ItemsSource = DataDefine.PageTextMaterial;
+            itemPageTextLanguage.ItemsSource = DataDefine.Language;
+            itemClass.ItemsSource = DataDefine.ItemClass;
+            itemSubClass.ItemsSource = DataDefine.ItemSubclass[0];
+            itemFilterClass.ItemsSource = DataDefine.ItemClass;
+            itemFilterSubclass.ItemsSource = DataDefine.ItemSubclass[0];
             itemFilterClass.SelectedIndex = 0;
             itemFilterSubclass.SelectedIndex = 0;
-            itemMaterial.ItemsSource = LegacyMorpher.DefineStore.ItemMaterial;
-            itemFoodType.ItemsSource = LegacyMorpher.DefineStore.ItemPetFood;
-            itemSetCombo.ItemsSource = LegacyMorpher.DefineStore.ItemSet;
+            itemMaterial.ItemsSource = DataDefine.ItemMaterial;
+            itemFoodType.ItemsSource = DataDefine.ItemPetFood;
+            itemSetCombo.ItemsSource = DataDefine.ItemSet;
             IsLoading = false;
         }
 
@@ -161,7 +161,7 @@ namespace MSAToolBox.Controls.Legacy
             }
 
             ItemData = item;
-            itemSubClass.ItemsSource = LegacyMorpher.DefineStore.ItemSubclass[ItemData.Class];
+            itemSubClass.ItemsSource = DataDefine.ItemSubclass[ItemData.Class];
             itemTab.DataContext = ItemData;
             itemTab.IsEnabled = true;
         }
@@ -207,7 +207,7 @@ namespace MSAToolBox.Controls.Legacy
             KeyValuePair<int, string> keyPair = (KeyValuePair<int, string>)e.AddedItems[0];
             if (keyPair.Key != -1)
             {
-                itemSubClass.ItemsSource = LegacyMorpher.DefineStore.ItemSubclass[keyPair.Key];
+                itemSubClass.ItemsSource = DataDefine.ItemSubclass[keyPair.Key];
                 itemSubClass.SelectedIndex = 0;
             }
         }
@@ -233,7 +233,7 @@ namespace MSAToolBox.Controls.Legacy
             if (keyPair.Key != -1)
             {
                 itemFilterSubclass.SelectedIndex = 0;
-                itemFilterSubclass.ItemsSource = LegacyMorpher.DefineStore.ItemSubclass[keyPair.Key];
+                itemFilterSubclass.ItemsSource = DataDefine.ItemSubclass[keyPair.Key];
             }
             UpdateItemListFilter();
         }

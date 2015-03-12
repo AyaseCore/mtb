@@ -36,8 +36,8 @@ namespace MSAToolBox.Controls.Legacy
             rt1.SelectedValuePath = "Key";
             rt2.DisplayMemberPath = "Value";
             rt2.SelectedValuePath = "Key";
-            rt1.ItemsSource = LegacyMorpher.DefineStore.TotemCategory;
-            rt2.ItemsSource = LegacyMorpher.DefineStore.TotemCategory;
+            rt1.ItemsSource = DataDefine.TotemCategory;
+            rt2.ItemsSource = DataDefine.TotemCategory;
         }
 
         private void InitDefine()

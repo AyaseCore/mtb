@@ -12,9 +12,9 @@ namespace MSAToolBox
     using System;
     using System.Collections.Generic;
     
-    public partial class define_item_spell_trigger
+    public partial class player_supremacy_spell_tiers
     {
-        public int id { get; set; }
-        public string define { get; set; }
+        public int Category { get; set; }
+        public string Name { get; set; }
     }
 }

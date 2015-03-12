@@ -23,7 +23,9 @@
             <TabItem Header="Recipe">
                 <Legacy:RecipePanel x:Name="recipePanel" />
             </TabItem>
-            <Legacy:RecipePanel Height="100" Width="100"/>
+            <TabItem Header="Gossip">
+                <Legacy:GossipPanel x:Name="gossipPanel" />
+            </TabItem>
         </TabControl>
     </Grid>
 </UserControl>

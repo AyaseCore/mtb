@@ -12,9 +12,13 @@ namespace MSAToolBox
     using System;
     using System.Collections.Generic;
     
-    public partial class define_spell_effect
+    public partial class capital_cities
     {
-        public int id { get; set; }
-        public string define { get; set; }
+        public int ID { get; set; }
+        public long Zone { get; set; }
+        public long Faction { get; set; }
+        public int StartLevel { get; set; }
+        public string ScriptName { get; set; }
+        public string Comment { get; set; }
     }
 }

@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <NuGetPackageImportStamp>05c9220a</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>a76478e6</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -105,7 +105,13 @@
     <Compile Include="broadcast_text.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
+    <Compile Include="capital_cities.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
     <Compile Include="capital_city_upgrade_cost.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="capital_city_upgrade_spells.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
     <Compile Include="capital_city_upgrade_spellset.cs">
@@ -212,120 +218,6 @@
     </Compile>
     <Compile Include="creature_text.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbc_achievement.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbc_achievement_criteria.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbc_achivement_category.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbc_item.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbc_itemset.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbc_skilllineability.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbc_spell.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbc_spell_item_enchantment.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbc_spell_obs.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbc_spell_original.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbc_spell_visual.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbc_talent.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_gossip_icon.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_item_ammo_type.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_item_bonding.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_item_damage_type.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_item_group_sound.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_item_inventory_type.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_item_material.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_item_quality.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_item_sheath.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_item_socket_color.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_item_spell_trigger.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_item_stat_type.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_menu_option_type.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_reputation_rank.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_smart_script_action.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_smart_script_event.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_smart_script_target.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_spell_aura.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_spell_aura_state.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_spell_damage_class.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_spell_effect.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_spell_family.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_spell_implicit_target.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_spell_item_enchantment_type.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_spell_power_type.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="define_talent_tab.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
     </Compile>
     <Compile Include="disables.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
@@ -435,21 +327,6 @@
     <Compile Include="item_template.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
-    <Compile Include="LegacyData.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LegacyData.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LegacyData.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LegacyData.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LegacyData.edmx</DependentUpon>
-    </Compile>
     <Compile Include="LegacyWorld.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -555,6 +432,9 @@
     <Compile Include="playercreateinfo_item.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
+    <Compile Include="playercreateinfo_quest.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
     <Compile Include="playercreateinfo_skills.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
@@ -586,6 +466,12 @@
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
     <Compile Include="player_supremacy_level_xp.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="player_supremacy_spells.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="player_supremacy_spell_tiers.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
     <Compile Include="player_xp_for_level.cs">
@@ -630,7 +516,13 @@
     <Compile Include="reputation_spillover_template.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
+    <Compile Include="resource_points.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
     <Compile Include="script_waypoint.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="server_messages.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
     <Compile Include="skill_discovery_template.cs">
@@ -708,9 +600,6 @@
     <Compile Include="spell_threat.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
-    <Compile Include="spell_v4.cs">
-      <DependentUpon>LegacyData.tt</DependentUpon>
-    </Compile>
     <Compile Include="SubWindows\Legacy\CreatureNpcFlagSelector.xaml.cs">
       <DependentUpon>CreatureNpcFlagSelector.xaml</DependentUpon>
     </Compile>
@@ -739,6 +628,7 @@
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
     <Compile Include="Utility\Converter.cs" />
+    <Compile Include="Utility\DataDefine.cs" />
     <Compile Include="Utility\DataStore.cs" />
     <Compile Include="Utility\DBC.cs" />
     <Compile Include="Utility\Entity.cs" />
@@ -752,6 +642,9 @@
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
     <Compile Include="warden_checks.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="war_school.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
     <Compile Include="waypoints.cs">
@@ -894,23 +787,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="LegacyData.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LegacyData.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="LegacyData.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LegacyData.edmx</DependentUpon>
-      <LastGenOutput>LegacyData.Context.cs</LastGenOutput>
-    </None>
-    <None Include="LegacyData.edmx.diagram">
-      <DependentUpon>LegacyData.edmx</DependentUpon>
-    </None>
-    <None Include="LegacyData.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LegacyData.edmx</DependentUpon>
-      <LastGenOutput>LegacyData.cs</LastGenOutput>
-    </None>
     <EntityDeploy Include="LegacyWorld.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>LegacyWorld.Designer.cs</LastGenOutput>
@@ -947,16 +823,11 @@
     <Resource Include="mario.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="FodyWeavers.xml" />
+    <Resource Include="FodyWeavers.xml">
+      <SubType>Designer</SubType>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Fody.1.28.0\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.0\build\Fody.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。启用“NuGet 程序包还原”可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Fody.1.28.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.28.0\build\Fody.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

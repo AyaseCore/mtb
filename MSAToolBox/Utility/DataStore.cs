@@ -10,7 +10,7 @@ namespace MSAToolBox.Utility
     public class DB
     {
         private static LegacyWorldEntities _LEGACY;
-        private static LegacyDataEntities _DATA;
+        //private static LegacyDataEntities _DATA;
 
         public static LegacyWorldEntities LEGACY
         {
@@ -26,391 +26,28 @@ namespace MSAToolBox.Utility
             }
         }
 
-        public static LegacyDataEntities DATA
-        {
-            get
-            {
-                if (_DATA == null)
-                    _DATA = new LegacyDataEntities();
-                return _DATA;
-            }
-            set
-            {
-                _DATA = value;
-            }
-        }
+        //public static LegacyDataEntities DATA
+        //{
+        //    get
+        //    {
+        //        if (_DATA == null)
+        //            _DATA = new LegacyDataEntities();
+        //        return _DATA;
+        //    }
+        //    set
+        //    {
+        //        _DATA = value;
+        //    }
+        //}
 
         public static void Refresh()
         {
             _LEGACY = new LegacyWorldEntities();
-            _DATA = new LegacyDataEntities();
+            //_DATA = new LegacyDataEntities();
         }
     }
 
     // preload defines
-    public class DataDefine
-    {
-        private static string DBC_ROOT_PATH = MainWindow.SERVER_PATH + "dbc/";
-        private static int DBC_COLUMN_SIZE = 4;
-
-        private static Dictionary<int, string> LoadDBDefine(string type)
-        {
-            Dictionary<int, string> dict = new Dictionary<int, string>();
-            switch (type)
-            {
-                case "ItemQuality":
-                    var qualityDefines = from d in DB.DATA.define_item_quality select d;
-                    foreach (var define in qualityDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "ItemAmmoType":
-                    var ammoTypeDefines = from d in DB.DATA.define_item_ammo_type select d;
-                    foreach (var define in ammoTypeDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "ItemBonding":
-                    var bondingDefines = from d in DB.DATA.define_item_bonding select d;
-                    foreach (var define in bondingDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "ItemDamageSchool":
-                    var damageSchoolDefines = from d in DB.DATA.define_item_damage_type select d;
-                    foreach (var define in damageSchoolDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "ItemInventoryType":
-                    var inventoryTypeDefines = from d in DB.DATA.define_item_inventory_type select d;
-                    foreach (var define in inventoryTypeDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "ItemMaterial":
-                    var materialDefines = from d in DB.DATA.define_item_material select d;
-                    foreach (var define in materialDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "ItemSheath":
-                    var sheathDefines = from d in DB.DATA.define_item_sheath select d;
-                    foreach (var define in sheathDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "ItemSocketColor":
-                    var socketColorDefines = from d in DB.DATA.define_item_socket_color select d;
-                    foreach (var define in socketColorDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "ItemSpellTrigger":
-                    var spellTriggerDefines = from d in DB.DATA.define_item_spell_trigger select d;
-                    foreach (var define in spellTriggerDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "ItemStatType":
-                    var statTypeDefines = from d in DB.DATA.define_item_stat_type select d;
-                    foreach (var define in statTypeDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "ReputationRank":
-                    var reputationRankDefines = from d in DB.DATA.define_reputation_rank select d;
-                    foreach (var define in reputationRankDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "GossipIcon":
-                    var gossipIconDefines = from d in DB.DATA.define_gossip_icon select d;
-                    foreach (var define in gossipIconDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "SpellEffect":
-                    var spellEffectDefines = from d in DB.DATA.define_spell_effect select d;
-                    foreach (var define in spellEffectDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "SpellAura":
-                    var spellAuraDefines = from d in DB.DATA.define_spell_aura select d;
-                    foreach (var define in spellAuraDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "SpellEffectTarget":
-                    var spellEffectTargetDefines = from d in DB.DATA.define_spell_implicit_target select d;
-                    foreach (var define in spellEffectTargetDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "SpellAuraState":
-                    var spellAuraStateDefines = from d in DB.DATA.define_spell_aura_state select d;
-                    foreach (var define in spellAuraStateDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "SpellFamily":
-                    var spellFamilyDefines = from d in DB.DATA.define_spell_family select d;
-                    foreach (var define in spellFamilyDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "SpellDamageClass":
-                    var spellDamageClassDefines = from d in DB.DATA.define_spell_damage_class select d;
-                    foreach (var define in spellDamageClassDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "SpellPowerType":
-                    var spellPowerTypeDefines = from d in DB.DATA.define_spell_power_type select d;
-                    foreach (var define in spellPowerTypeDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                case "ItemGroupSound":
-                    var groupSoundDefines = from d in DB.DATA.define_item_group_sound select d;
-                    foreach (var define in groupSoundDefines)
-                        dict.Add(define.id, define.id + " - " + define.define);
-                    break;
-                default:
-                    break;
-            }
-            return dict;
-        }
-
-        private static Dictionary<int, string> LoadDBCDefine(string type)
-        {
-            Dictionary<int, string> dict = new Dictionary<int, string>();
-            FileStream stream;
-            BinaryReader r;
-            int records = 0;
-            switch (type)
-            {
-                case "SpellRadius":
-                    // 4 columns - 16 bytes per row
-                    // 1 for id
-                    // 2 for radius
-                    // 3 for radius for level
-                    // 4 for max radius
-                    stream = File.OpenRead(DBC_ROOT_PATH + "SpellRadius.dbc");
-                    r = new BinaryReader(stream);
-                    stream.Position = 4;
-                    records = r.ReadInt32();
-                    stream.Position = 20;
-                    // no dbc record starts at id 0 so define one.
-                    dict.Add(0, "0 Yard");
-                    for (int i = 0; i != records; ++i)
-                    {
-                        int id = r.ReadInt32();
-                        float radius = r.ReadSingle();
-                        float radiusPerLevel = r.ReadSingle();
-                        float radiusMax = r.ReadSingle();
-                        string s = String.Format("{3} - {0}Y / +{1} per Level / Max: {2}", radius, radiusPerLevel, radiusMax, id);
-                        dict.Add(id, s);
-                    }
-                    r.Close();
-                    stream.Close();
-                    break;
-                case "SpellDuration":
-                    // 4 columns - 16 bytes per row
-                    // 1 for id
-                    // 2 for base duration
-                    // 3 for duration per level
-                    // 4 for max duration
-                    stream = File.OpenRead(DBC_ROOT_PATH + "SpellDuration.dbc");
-                    r = new BinaryReader(stream);
-                    stream.Position = 4;
-                    records = r.ReadInt32();
-                    stream.Position = 20;
-                    // no dbc record starts at id 0 so define one.
-                    dict.Add(0, "0ms");
-                    for (int i = 0; i != records; ++i)
-                    {
-                        int id = r.ReadInt32();
-                        float duration = r.ReadInt32();
-                        float durationPerLevel = r.ReadInt32();
-                        float durationMax = r.ReadInt32();
-                        string s = String.Format("{3} - {0:F1}ms(base) / {1:F1}ms(per level) / {2:F1}ms(max)", duration, durationPerLevel, durationMax, id);
-                        dict.Add(id, s);
-                    }
-                    r.Close();
-                    stream.Close();
-                    break;
-                case "SpellRange":
-                    // 40 columns - 160 bytes per row
-                    // 1 for id
-                    // 2 for min enemy range
-                    // 3 for min ally range
-                    // 4 for max enemy range
-                    // 5 for max ally range
-                    stream = File.OpenRead(DBC_ROOT_PATH + "SpellRange.dbc");
-                    r = new BinaryReader(stream);
-                    stream.Position = 4;
-                    records = r.ReadInt32();
-                    stream.Position = 20;
-                    // no dbc record starts at id 0 so define one.
-                    dict.Add(0, "0 - default self only");
-                    for (int i = 0; i != records; ++i)
-                    {
-                        int id = r.ReadInt32();
-                        float minEnemyRange = r.ReadSingle();
-                        float minAllyRange = r.ReadSingle();
-                        float maxEnemyRange = r.ReadSingle();
-                        float maxAllyRange = r.ReadSingle();
-                        string s = String.Format("{4} - Hostile:{0}~{1} / Friend:{2}~{3}", minAllyRange, maxEnemyRange, minAllyRange, maxAllyRange, id);
-                        dict.Add(id, s);
-                        stream.Position += 140;
-                    }
-                    r.Close();
-                    stream.Close();
-                    break;
-                case "SpellCastTime":
-                    // 4 columns - 16 bytes per row
-                    // 1 for id
-                    // 2 for casttime per level
-                    // 3 for min casttime
-                    stream = File.OpenRead(DBC_ROOT_PATH + "SpellCastTimes.dbc");
-                    r = new BinaryReader(stream);
-                    stream.Position = 4;
-                    records = r.ReadInt32();
-                    stream.Position = 20;
-                    // no dbc record starts at id 0 so define one.
-                    dict.Add(0, "0ms");
-                    for (int i = 0; i != records; ++i)
-                    {
-                        int id = r.ReadInt32();
-                        float casttime = r.ReadInt32();
-                        float casttimePerLevel = r.ReadInt32();
-                        float mincasttime = r.ReadInt32();
-                        string s = String.Format("{3} - {0:F1}ms(base) / {1:F1}ms(per level) / {2:F1}ms(min)", casttime, casttimePerLevel, mincasttime, id);
-                        dict.Add(id, s);
-                    }
-                    r.Close();
-                    stream.Close();
-                    break;
-                default:
-                    break;
-            }
-            return dict;
-        }
-
-        private static Dictionary<int, string> LoadDBCDefine(string file, int idCol, int nameCol, bool addZeroIndex = false, bool withID = true)
-        {
-            Dictionary<int, string> dict = new Dictionary<int, string>();
-
-            if (addZeroIndex)
-                dict.Add(0, "0 - NA/DEFAULT");
-
-            using (FileStream stream = File.OpenRead(DBC_ROOT_PATH + file))
-            {
-                BinaryReader r = new BinaryReader(stream);
-                stream.Position = 4;
-                int records = r.ReadInt32();
-                stream.Position = 12;
-                int rowSize = r.ReadInt32();
-                for (int i = 0; i != records; ++i)
-                {
-                    stream.Position = 20 + rowSize * i + DBC_COLUMN_SIZE * (idCol - 1);
-                    int id = r.ReadInt32();
-                    stream.Position = 20 + rowSize * i + DBC_COLUMN_SIZE * (nameCol - 1);
-                    int nameOfs = r.ReadInt32();
-                    stream.Position = 20 + rowSize * records + nameOfs;
-                    string s = "";
-                    List<byte> blist = new List<byte>();
-                    while (true)
-                    {
-                        byte b = r.ReadByte();
-                        if (b == 0)
-                            break;
-                        blist.Add(b);
-                    }
-                    if (blist.Count != 0)
-                    {
-                        byte[] stringBytes = new byte[blist.Count];
-                        for (int j = 0; j != blist.Count; ++j)
-                            stringBytes[j] = blist[j];
-                        s = Encoding.UTF8.GetString(stringBytes);
-                    }
-                    if (withID)
-                        dict.Add(id, id + " - " + s);
-                    else
-                        dict.Add(id, s);
-                }
-                r.Close();
-                return dict;
-            }
-        }
-
-        private static Dictionary<int, string>[] LoadDBCDefine(string file, int categoryCol, int idCol, int nameCol, int categoryCount)
-        {
-            Dictionary<int, string>[] dicts = new Dictionary<int, string>[categoryCount];
-
-            using (FileStream stream = File.OpenRead(DBC_ROOT_PATH + file))
-            {
-                BinaryReader r = new BinaryReader(stream);
-                stream.Position = 4;
-                int records = r.ReadInt32();
-                stream.Position = 12;
-                int rowSize = r.ReadInt32();
-                for (int i = 0; i != records; ++i)
-                {
-                    stream.Position = 20 + rowSize * i + DBC_COLUMN_SIZE * (categoryCol - 1);
-                    int category = r.ReadInt32();
-                    stream.Position = 20 + rowSize * i + DBC_COLUMN_SIZE * (idCol - 1);
-                    int id = r.ReadInt32();
-                    stream.Position = 20 + rowSize * i + DBC_COLUMN_SIZE * (nameCol - 1);
-                    int nameOfs = r.ReadInt32();
-                    stream.Position = 20 + rowSize * records + nameOfs;
-                    string s = "";
-                    List<byte> blist = new List<byte>();
-                    while (true)
-                    {
-                        byte b = r.ReadByte();
-                        if (b == 0)
-                            break;
-                        blist.Add(b);
-                    }
-                    if (blist.Count != 0)
-                    {
-                        byte[] stringBytes = new byte[blist.Count];
-                        for (int j = 0; j != blist.Count; ++j)
-                            stringBytes[j] = blist[j];
-                        s = Encoding.UTF8.GetString(stringBytes);
-                    }
-                    if (dicts[category] == null)
-                        dicts[category] = new Dictionary<int, string>();
-                    dicts[category].Add(id, id + " - " + s);
-                }
-                r.Close();
-            }
-            return dicts;
-        }
-
-        public static Dictionary<int, string> ItemQuality = LoadDBDefine("ItemQuality");
-        public static Dictionary<int, string> ItemAmmoType = LoadDBDefine("ItemAmmoType");
-        public static Dictionary<int, string> ItemBonding = LoadDBDefine("ItemBonding");
-        public static Dictionary<int, string> ItemDamageSchool = LoadDBDefine("ItemDamageSchool");
-        public static Dictionary<int, string> ItemInventoryType = LoadDBDefine("ItemInventoryType");
-        public static Dictionary<int, string> ItemSheath = LoadDBDefine("ItemSheath");
-        public static Dictionary<int, string> ItemSocketColor = LoadDBDefine("ItemSocketColor");
-        public static Dictionary<int, string> ItemSpellTrigger = LoadDBDefine("ItemSpellTrigger");
-        public static Dictionary<int, string> ItemStatType = LoadDBDefine("ItemStatType");
-        public static Dictionary<int, string> ItemMaterial = LoadDBDefine("ItemMaterial");
-        public static Dictionary<int, string> ReputationRank = LoadDBDefine("ReputationRank");
-        public static Dictionary<int, string> GossipIcon = LoadDBDefine("GossipIcon");
-        public static Dictionary<int, string> SpellMechanic = LoadDBCDefine("SpellMechanic.dbc", 1, 6, true);
-        public static Dictionary<int, string> SpellDispel = LoadDBCDefine("SpellDispelType.dbc", 1, 6);
-        public static Dictionary<int, string> TotemCategory = LoadDBCDefine("TotemCategory.dbc", 1, 6, true);
-        public static Dictionary<int, string> SpellIcon = LoadDBCDefine("SpellIcon.dbc", 1, 2, false, false);
-        public static Dictionary<int, string> SkillLine = LoadDBCDefine("SkillLine.dbc", 1, 8, true);
-        public static Dictionary<int, string> ItemClass = LoadDBCDefine("ItemClass.dbc", 1, 8);
-        public static Dictionary<int, string> ItemBagFamily = LoadDBCDefine("ItemBagFamily.dbc", 1, 6);
-        public static Dictionary<int, string> ItemPetFood = LoadDBCDefine("ItemPetFood.dbc", 1, 6, true);
-        public static Dictionary<int, string> HolidayNames = LoadDBCDefine("HolidayNames.dbc", 1, 6, true);
-        public static Dictionary<int, string> PageTextMaterial = LoadDBCDefine("PageTextMaterial.dbc", 1, 2, true);
-        public static Dictionary<int, string> Language = LoadDBCDefine("Languages.dbc", 1, 6, true);
-        public static Dictionary<int, string>[] ItemSubclass = LoadDBCDefine("ItemSubClass.dbc", 1, 2, 15, ItemClass.Count);
-        public static Dictionary<int, string> ItemSet = LoadDBCDefine("ItemSet.dbc", 1, 6, true);
-        public static Dictionary<int, string> Emotes = LoadDBCDefine("Emotes.dbc", 1, 2);
-        public static Dictionary<int, string> SpellDuration = LoadDBCDefine("SpellDuration");
-        public static Dictionary<int, string> SpellCastTime = LoadDBCDefine("SpellCastTime");
-        public static Dictionary<int, string> SpellRange = LoadDBCDefine("SpellRange");
-        public static Dictionary<int, string> SpellEffect = LoadDBDefine("SpellEffect");
-        public static Dictionary<int, string> SpellAura = LoadDBDefine("SpellAura");
-        public static Dictionary<int, string> SpellEffectTarget = LoadDBDefine("SpellEffectTarget");
-        public static Dictionary<int, string> SpellAuraState = LoadDBDefine("SpellAuraState");
-        public static Dictionary<int, string> SpellEffectRadius = LoadDBCDefine("SpellRadius");
-        public static Dictionary<int, string> SpellFamily = LoadDBDefine("SpellFamily");
-        public static Dictionary<int, string> SpellDamageClass = LoadDBDefine("SpellDamageClass");
-        public static Dictionary<int, string> SpellPowerType = LoadDBDefine("SpellPowerType");
-        public static Dictionary<int, string> ItemGroupSound = LoadDBDefine("ItemGroupSound");
-    }
 
     public class DBCache
     {
@@ -522,47 +159,6 @@ namespace MSAToolBox.Utility
         }
     }
 
-    public class DataDefineStore
-    {
-        public Dictionary<int, string> ItemQuality { get; set; }
-        public Dictionary<int, string> ItemAmmoType { get; set; }
-        public Dictionary<int, string> ItemBonding { get; set; }
-        public Dictionary<int, string> ItemDamageSchool { get; set; }
-        public Dictionary<int, string> ItemInventoryType { get; set; }
-        public Dictionary<int, string> ItemSheath { get; set; }
-        public Dictionary<int, string> ItemSocketColor { get; set; }
-        public Dictionary<int, string> ItemSpellTrigger { get; set; }
-        public Dictionary<int, string> ItemStatType { get; set; }
-        public Dictionary<int, string> ReputationRank { get; set; }
-        public Dictionary<int, string> SpellMechanic { get; set; }
-        public Dictionary<int, string> SpellDispel { get; set; }
-        public Dictionary<int, string> TotemCategory { get; set; }
-        public Dictionary<int, string> SpellIcon { get; set; }
-        public Dictionary<int, string> SkillLine { get; set; }
-        public Dictionary<int, string> ItemClass { get; set; }
-        public Dictionary<int, string> ItemBagFamily { get; set; }
-        public Dictionary<int, string> ItemPetFood { get; set; }
-        public Dictionary<int, string> HolidayNames { get; set; }
-        public Dictionary<int, string> PageTextMaterial { get; set; }
-        public Dictionary<int, string> Language { get; set; }
-        public Dictionary<int, string> ItemMaterial { get; set; }
-        public Dictionary<int, string>[] ItemSubclass { get; set; }
-        public Dictionary<int, string> ItemSet { get; set; }
-        public Dictionary<int, string> GossipIcon { get; set; }
-        public Dictionary<int, string> SpellDuration { get; set; }
-        public Dictionary<int, string> SpellCastTime { get; set; }
-        public Dictionary<int, string> SpellRange { get; set; }
-        public Dictionary<int, string> SpellEffect { get; set; }
-        public Dictionary<int, string> SpellAura { get; set; }
-        public Dictionary<int, string> SpellEffectTarget { get; set; }
-        public Dictionary<int, string> SpellAuraState { get; set; }
-        public Dictionary<int, string> SpellEffectRadius { get; set; }
-        public Dictionary<int, string> SpellFamily { get; set; }
-        public Dictionary<int, string> SpellDamageClass { get; set; }
-        public Dictionary<int, string> SpellPowerType { get; set; }
-        public Dictionary<int, string> ItemGroupSound { get; set; }
-    }
-
     // get or set world game data.
     public static class LegacyWorld
     {
@@ -579,49 +175,6 @@ namespace MSAToolBox.Utility
         }
         #endregion
         #region ITEM
-        public static DataDefineStore GetDataDefines()
-        {
-            DataDefineStore store = new DataDefineStore();
-            store.ItemAmmoType = DataDefine.ItemAmmoType;
-            store.ItemBonding = DataDefine.ItemBonding;
-            store.ItemDamageSchool = DataDefine.ItemDamageSchool;
-            store.ItemInventoryType = DataDefine.ItemInventoryType;
-            store.ItemQuality = DataDefine.ItemQuality;
-            store.ItemSheath = DataDefine.ItemSheath;
-            store.ItemSocketColor = DataDefine.ItemSocketColor;
-            store.ItemSpellTrigger = DataDefine.ItemSpellTrigger;
-            store.ItemStatType = DataDefine.ItemStatType;
-            store.ReputationRank = DataDefine.ReputationRank;
-            store.SkillLine = DataDefine.SkillLine;
-            store.SpellDispel = DataDefine.SpellDispel;
-            store.SpellIcon = DataDefine.SpellIcon;
-            store.SpellMechanic = DataDefine.SpellMechanic;
-            store.TotemCategory = DataDefine.TotemCategory;
-            store.Language = DataDefine.Language;
-            store.ItemClass = DataDefine.ItemClass;
-            store.ItemBagFamily = DataDefine.ItemBagFamily;
-            store.ItemPetFood = DataDefine.ItemPetFood;
-            store.HolidayNames = DataDefine.HolidayNames;
-            store.PageTextMaterial = DataDefine.PageTextMaterial;
-            store.ItemMaterial = DataDefine.ItemMaterial;
-            store.ItemSubclass = DataDefine.ItemSubclass;
-            store.ItemSet = DataDefine.ItemSet;
-            store.GossipIcon = DataDefine.GossipIcon;
-            store.SpellDuration = DataDefine.SpellDuration;
-            store.SpellCastTime = DataDefine.SpellCastTime;
-            store.SpellRange = DataDefine.SpellRange;
-            store.SpellEffect = DataDefine.SpellEffect;
-            store.SpellAura = DataDefine.SpellAura;
-            store.SpellEffectTarget = DataDefine.SpellEffectTarget;
-            store.SpellAuraState = DataDefine.SpellAuraState;
-            store.SpellEffectRadius = DataDefine.SpellEffectRadius;
-            store.SpellFamily = DataDefine.SpellFamily;
-            store.SpellDamageClass = DataDefine.SpellDamageClass;
-            store.SpellPowerType = DataDefine.SpellPowerType;
-            store.ItemGroupSound = DataDefine.ItemGroupSound;
-            return store;
-        }
-
         public static ItemTemplate GetItemTemplate(int entry)
         {
             var itemDB = (from d in DB.LEGACY.item_template where d.entry == entry select d).SingleOrDefault();
@@ -1047,20 +600,12 @@ namespace MSAToolBox.Utility
         #region CREATURE GOSSIP
         public static Dictionary<int, string> GetGossipMenuOptionTypes()
         {
-            Dictionary<int, string> dict = new Dictionary<int, string>();
-            var types = from d in DB.DATA.define_menu_option_type select d;
-            foreach (var type in types)
-                dict.Add(type.ID, type.Name);
-            return dict;
+            return DataDefine.GossipOption;
         }
 
         public static Dictionary<int, string> GetGossipIconDefines()
         {
-            Dictionary<int, string> dict = new Dictionary<int, string>();
-            var gossipIconDefines = from d in DB.DATA.define_gossip_icon select d;
-            foreach (var define in gossipIconDefines)
-                dict.Add(define.id, define.id + " - " + define.define);
-            return dict;
+            return DataDefine.GossipOption;
         }
 
         public static Dictionary<int, string> GetCreatureNames()
@@ -1923,6 +1468,7 @@ namespace MSAToolBox.Utility
                     it.BoxMoney = item.box_money;
                     it.BoxTextID = item.BoxBroadcastTextID;
                     it.SingleTimeCheck = item.SingleTimeCheck != 0;
+                    menuItems.Add(it);
                 }
             }
             return menuItems;
@@ -1959,6 +1505,49 @@ namespace MSAToolBox.Utility
                 });
             }
             DB.LEGACY.SaveChanges();
+        }
+
+        public static List<GossipMenu> GetAllGossipMenu()
+        {
+            List<GossipMenu> list = new List<GossipMenu>();
+            var gossips = from d in DB.LEGACY.gossip_menu orderby d.entry select d;
+            foreach (var gossip in gossips)
+            {
+                GossipMenu menu = new GossipMenu();
+                menu.Menu = gossip.entry;
+                menu.NpcText = gossip.text_id;
+                menu.Comment = gossip.Comment;
+                list.Add(menu);
+            }
+            return list;
+        }
+
+        public static NpcText GetGossipNpcText(int id)
+        {
+            var text = (from d in DB.LEGACY.npc_text where d.ID == id select d).SingleOrDefault();
+            if (text == null)
+                return null;
+
+            NpcText t = new NpcText();
+            t.Entry = text.ID;
+            t.Text[0] = text.BroadcastTextID0;
+            t.Text[1] = text.BroadcastTextID1;
+            t.Text[2] = text.BroadcastTextID2;
+            t.Text[3] = text.BroadcastTextID3;
+            t.Text[4] = text.BroadcastTextID4;
+            t.Text[5] = text.BroadcastTextID5;
+            t.Text[6] = text.BroadcastTextID6;
+            t.Text[7] = text.BroadcastTextID7;
+            t.Chance[0] = text.prob0;
+            t.Chance[1] = text.prob1;
+            t.Chance[2] = text.prob2;
+            t.Chance[3] = text.prob3;
+            t.Chance[4] = text.prob4;
+            t.Chance[5] = text.prob5;
+            t.Chance[6] = text.prob6;
+            t.Chance[7] = text.prob7;
+
+            return t;
         }
     }
 }

@@ -12,9 +12,12 @@ namespace MSAToolBox
     using System;
     using System.Collections.Generic;
     
-    public partial class define_gossip_icon
+    public partial class player_supremacy_spells
     {
-        public int id { get; set; }
-        public string define { get; set; }
+        public int Tier { get; set; }
+        public int TierID { get; set; }
+        public int Spell { get; set; }
+        public Nullable<int> Description { get; set; }
+        public string Comment { get; set; }
     }
 }

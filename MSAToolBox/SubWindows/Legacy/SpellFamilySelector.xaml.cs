@@ -65,7 +65,7 @@ namespace MSAToolBox.SubWindows.Legacy
                     break;
             }
 
-            ffClass.ItemsSource = LegacyMorpher.DefineStore.SpellFamily;
+            ffClass.ItemsSource = DataDefine.SpellFamily;
             ffClass.SelectedValuePath = "Key";
             ffClass.DisplayMemberPath = "Value";
             ffClass.SelectedValue = spell.Family;

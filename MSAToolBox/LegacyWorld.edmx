@@ -137,6 +137,17 @@
           <Property Name="Unk2" Type="umediumint" Nullable="false" />
           <Property Name="VerifiedBuild" Type="smallint" />
         </EntityType>
+        <EntityType Name="capital_cities">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Zone" Type="uint" Nullable="false" />
+          <Property Name="Faction" Type="uint" Nullable="false" />
+          <Property Name="StartLevel" Type="int" Nullable="false" />
+          <Property Name="ScriptName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="capital_city_upgrade_cost">
           <Key>
             <PropertyRef Name="Level" />
@@ -144,6 +155,26 @@
           <Property Name="Level" Type="int" Nullable="false" />
           <Property Name="Resource" Type="int" Nullable="false" />
           <Property Name="MagicPower" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="capital_city_upgrade_spells">
+          <Key>
+            <PropertyRef Name="SpellSet" />
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="SpellSet" Type="int" Nullable="false" />
+          <Property Name="Rank" Type="int" Nullable="false" />
+          <Property Name="Spell" Type="int" Nullable="false" />
+          <Property Name="Description" Type="int" Nullable="false" />
+          <Property Name="ReqCityRank" Type="int" Nullable="false" />
+          <Property Name="ReqItem1" Type="int" Nullable="false" />
+          <Property Name="ReqItem2" Type="int" Nullable="false" />
+          <Property Name="ReqItem3" Type="int" Nullable="false" />
+          <Property Name="ReqItem4" Type="int" Nullable="false" />
+          <Property Name="ReqItemCount1" Type="int" Nullable="false" />
+          <Property Name="ReqItemCount2" Type="int" Nullable="false" />
+          <Property Name="ReqItemCount3" Type="int" Nullable="false" />
+          <Property Name="ReqItemCount4" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="capital_city_upgrade_spellset">
           <Key>
@@ -851,18 +882,18 @@
             <PropertyRef Name="menu_id" />
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="menu_id" Type="usmallint" Nullable="false" />
+          <Property Name="menu_id" Type="umediumint" Nullable="false" />
           <Property Name="id" Type="usmallint" Nullable="false" />
           <Property Name="option_icon" Type="umediumint" Nullable="false" />
           <Property Name="OptionBroadcastTextID" Type="mediumint" Nullable="false" />
           <Property Name="option_id" Type="utinyint" Nullable="false" />
           <Property Name="npc_option_npcflag" Type="uint" Nullable="false" />
-          <Property Name="action_menu_id" Type="uint" Nullable="false" />
+          <Property Name="action_menu_id" Type="umediumint" Nullable="false" />
           <Property Name="action_poi_id" Type="umediumint" Nullable="false" />
           <Property Name="box_coded" Type="utinyint" Nullable="false" />
-          <Property Name="box_money" Type="uint" Nullable="false" />
+          <Property Name="box_money" Type="int" Nullable="false" />
           <Property Name="BoxBroadcastTextID" Type="mediumint" Nullable="false" />
-          <Property Name="SingleTimeCheck" Type="tinyint" Nullable="false" />
+          <Property Name="SingleTimeCheck" Type="utinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="instance_encounters">
           <Key>
@@ -1765,6 +1796,24 @@
           <Property Name="level" Type="int" Nullable="false" />
           <Property Name="xp" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="player_supremacy_spell_tiers">
+          <Key>
+            <PropertyRef Name="Category" />
+          </Key>
+          <Property Name="Category" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="player_supremacy_spells">
+          <Key>
+            <PropertyRef Name="Tier" />
+            <PropertyRef Name="TierID" />
+          </Key>
+          <Property Name="Tier" Type="int" Nullable="false" />
+          <Property Name="TierID" Type="int" Nullable="false" />
+          <Property Name="Spell" Type="int" Nullable="false" />
+          <Property Name="Description" Type="int" />
+          <Property Name="Comment" Type="varchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="player_xp_for_level">
           <Key>
             <PropertyRef Name="lvl" />
@@ -1808,6 +1857,17 @@
           <Property Name="class" Type="utinyint" Nullable="false" />
           <Property Name="itemid" Type="umediumint" Nullable="false" />
           <Property Name="amount" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="playercreateinfo_quest">
+          <Key>
+            <PropertyRef Name="RaceMask" />
+            <PropertyRef Name="ClassMask" />
+            <PropertyRef Name="Quest" />
+          </Key>
+          <Property Name="RaceMask" Type="int" Nullable="false" />
+          <Property Name="ClassMask" Type="int" Nullable="false" />
+          <Property Name="Quest" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="playercreateinfo_skills">
           <Key>
@@ -2125,6 +2185,32 @@
           <Property Name="rate_4" Type="float" Nullable="false" />
           <Property Name="rank_4" Type="utinyint" Nullable="false" />
         </EntityType>
+        <EntityType Name="resource_points">
+          <Key>
+            <PropertyRef Name="area" />
+          </Key>
+          <Property Name="area" Type="uint" Nullable="false" />
+          <Property Name="max_guard" Type="uint" Nullable="false" />
+          <Property Name="max_worker" Type="uint" Nullable="false" />
+          <Property Name="allianceCity1" Type="uint" Nullable="false" />
+          <Property Name="allianceResourcePct1" Type="uint" Nullable="false" />
+          <Property Name="allianceCity2" Type="uint" Nullable="false" />
+          <Property Name="allianceResourcePct2" Type="uint" Nullable="false" />
+          <Property Name="allianceCity3" Type="uint" Nullable="false" />
+          <Property Name="allianceResourcePct3" Type="uint" Nullable="false" />
+          <Property Name="allianceCity4" Type="uint" Nullable="false" />
+          <Property Name="allianceResourcePct4" Type="uint" Nullable="false" />
+          <Property Name="hordeCity1" Type="uint" Nullable="false" />
+          <Property Name="hordeResourcePct1" Type="uint" Nullable="false" />
+          <Property Name="hordeCity2" Type="uint" Nullable="false" />
+          <Property Name="hordeResourcePct2" Type="uint" Nullable="false" />
+          <Property Name="hordeCity3" Type="uint" Nullable="false" />
+          <Property Name="hordeResourcePct3" Type="uint" Nullable="false" />
+          <Property Name="hordeCity4" Type="uint" Nullable="false" />
+          <Property Name="hordeResourcePct4" Type="uint" Nullable="false" />
+          <Property Name="scriptname" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="comment" Type="varchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="script_waypoint">
           <Key>
             <PropertyRef Name="entry" />
@@ -2137,6 +2223,13 @@
           <Property Name="location_z" Type="float" Nullable="false" />
           <Property Name="waittime" Type="uint" Nullable="false" />
           <Property Name="point_comment" Type="text" />
+        </EntityType>
+        <EntityType Name="server_messages">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="content" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="skill_discovery_template">
           <Key>
@@ -2612,6 +2705,16 @@
           <Property Name="db_version" Type="varchar" MaxLength="120" />
           <Property Name="cache_id" Type="int" />
         </EntityType>
+        <EntityType Name="war_school">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="class" Type="int" Nullable="false" />
+          <Property Name="trainer_list" Type="int" Nullable="false" />
+          <Property Name="title_id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="warden_checks">
           <Key>
             <PropertyRef Name="id" />
@@ -2682,7 +2785,9 @@
           <EntitySet Name="battleground_template" EntityType="Self.battleground_template" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="battlemaster_entry" EntityType="Self.battlemaster_entry" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="broadcast_text" EntityType="Self.broadcast_text" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="capital_cities" EntityType="Self.capital_cities" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="capital_city_upgrade_cost" EntityType="Self.capital_city_upgrade_cost" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="capital_city_upgrade_spells" EntityType="Self.capital_city_upgrade_spells" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="capital_city_upgrade_spellset" EntityType="Self.capital_city_upgrade_spellset" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="command" EntityType="Self.command" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="conditions" EntityType="Self.conditions" Schema="v4_world" store:Type="Tables" />
@@ -2769,10 +2874,13 @@
           <EntitySet Name="player_factionchange_titles" EntityType="Self.player_factionchange_titles" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="player_levelstats" EntityType="Self.player_levelstats" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="player_supremacy_level_xp" EntityType="Self.player_supremacy_level_xp" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="player_supremacy_spell_tiers" EntityType="Self.player_supremacy_spell_tiers" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="player_supremacy_spells" EntityType="Self.player_supremacy_spells" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="player_xp_for_level" EntityType="Self.player_xp_for_level" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="playercreateinfo" EntityType="Self.playercreateinfo" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="playercreateinfo_action" EntityType="Self.playercreateinfo_action" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="playercreateinfo_item" EntityType="Self.playercreateinfo_item" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="playercreateinfo_quest" EntityType="Self.playercreateinfo_quest" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="playercreateinfo_skills" EntityType="Self.playercreateinfo_skills" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="playercreateinfo_spell_custom" EntityType="Self.playercreateinfo_spell_custom" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="points_of_interest" EntityType="Self.points_of_interest" Schema="v4_world" store:Type="Tables" />
@@ -2788,7 +2896,9 @@
           <EntitySet Name="reference_loot_template" EntityType="Self.reference_loot_template" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="reputation_reward_rate" EntityType="Self.reputation_reward_rate" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="reputation_spillover_template" EntityType="Self.reputation_spillover_template" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="resource_points" EntityType="Self.resource_points" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="script_waypoint" EntityType="Self.script_waypoint" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="server_messages" EntityType="Self.server_messages" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="skill_discovery_template" EntityType="Self.skill_discovery_template" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="skill_extra_item_template" EntityType="Self.skill_extra_item_template" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="skill_fishing_base_level" EntityType="Self.skill_fishing_base_level" Schema="v4_world" store:Type="Tables" />
@@ -2816,6 +2926,7 @@
           <EntitySet Name="vehicle_accessory" EntityType="Self.vehicle_accessory" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="vehicle_template_accessory" EntityType="Self.vehicle_template_accessory" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="version" EntityType="Self.version" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="war_school" EntityType="Self.war_school" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="warden_checks" EntityType="Self.warden_checks" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="waypoint_data" EntityType="Self.waypoint_data" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="waypoint_scripts" EntityType="Self.waypoint_scripts" Schema="v4_world" store:Type="Tables" />
@@ -3021,6 +3132,17 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="Unk2" Type="Int32" Nullable="false" />
           <Property Name="VerifiedBuild" Type="Int16" />
         </EntityType>
+        <EntityType Name="capital_cities">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Zone" Type="Int64" Nullable="false" />
+          <Property Name="Faction" Type="Int64" Nullable="false" />
+          <Property Name="StartLevel" Type="Int32" Nullable="false" />
+          <Property Name="ScriptName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="capital_city_upgrade_cost">
           <Key>
             <PropertyRef Name="Level" />
@@ -3028,6 +3150,26 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="Level" Type="Int32" Nullable="false" />
           <Property Name="Resource" Type="Int32" Nullable="false" />
           <Property Name="MagicPower" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="capital_city_upgrade_spells">
+          <Key>
+            <PropertyRef Name="SpellSet" />
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="SpellSet" Type="Int32" Nullable="false" />
+          <Property Name="Rank" Type="Int32" Nullable="false" />
+          <Property Name="Spell" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="Int32" Nullable="false" />
+          <Property Name="ReqCityRank" Type="Int32" Nullable="false" />
+          <Property Name="ReqItem1" Type="Int32" Nullable="false" />
+          <Property Name="ReqItem2" Type="Int32" Nullable="false" />
+          <Property Name="ReqItem3" Type="Int32" Nullable="false" />
+          <Property Name="ReqItem4" Type="Int32" Nullable="false" />
+          <Property Name="ReqItemCount1" Type="Int32" Nullable="false" />
+          <Property Name="ReqItemCount2" Type="Int32" Nullable="false" />
+          <Property Name="ReqItemCount3" Type="Int32" Nullable="false" />
+          <Property Name="ReqItemCount4" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="capital_city_upgrade_spellset">
           <Key>
@@ -3679,12 +3821,12 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="OptionBroadcastTextID" Type="Int32" Nullable="false" />
           <Property Name="option_id" Type="Byte" Nullable="false" />
           <Property Name="npc_option_npcflag" Type="Int64" Nullable="false" />
-          <Property Name="action_menu_id" Type="Int64" Nullable="false" />
+          <Property Name="action_menu_id" Type="Int32" Nullable="false" />
           <Property Name="action_poi_id" Type="Int32" Nullable="false" />
           <Property Name="box_coded" Type="Byte" Nullable="false" />
-          <Property Name="box_money" Type="Int64" Nullable="false" />
+          <Property Name="box_money" Type="Int32" Nullable="false" />
           <Property Name="BoxBroadcastTextID" Type="Int32" Nullable="false" />
-          <Property Name="SingleTimeCheck" Type="SByte" Nullable="false" />
+          <Property Name="SingleTimeCheck" Type="Byte" Nullable="false" />
         </EntityType>
         <EntityType Name="instance_encounters">
           <Key>
@@ -4587,6 +4729,24 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="level" Type="Int32" Nullable="false" />
           <Property Name="xp" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="player_supremacy_spell_tiers">
+          <Key>
+            <PropertyRef Name="Category" />
+          </Key>
+          <Property Name="Category" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="player_supremacy_spells">
+          <Key>
+            <PropertyRef Name="Tier" />
+            <PropertyRef Name="TierID" />
+          </Key>
+          <Property Name="Tier" Type="Int32" Nullable="false" />
+          <Property Name="TierID" Type="Int32" Nullable="false" />
+          <Property Name="Spell" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="player_xp_for_level">
           <Key>
             <PropertyRef Name="lvl" />
@@ -4630,6 +4790,17 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="class" Type="Byte" Nullable="false" />
           <Property Name="itemid" Type="Int32" Nullable="false" />
           <Property Name="amount" Type="SByte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="playercreateinfo_quest">
+          <Key>
+            <PropertyRef Name="RaceMask" />
+            <PropertyRef Name="ClassMask" />
+            <PropertyRef Name="Quest" />
+          </Key>
+          <Property Name="RaceMask" Type="Int32" Nullable="false" />
+          <Property Name="ClassMask" Type="Int32" Nullable="false" />
+          <Property Name="Quest" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="playercreateinfo_skills">
           <Key>
@@ -4947,6 +5118,32 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="rate_4" Type="Single" Nullable="false" />
           <Property Name="rank_4" Type="Byte" Nullable="false" />
         </EntityType>
+        <EntityType Name="resource_points">
+          <Key>
+            <PropertyRef Name="area" />
+          </Key>
+          <Property Name="area" Type="Int64" Nullable="false" />
+          <Property Name="max_guard" Type="Int64" Nullable="false" />
+          <Property Name="max_worker" Type="Int64" Nullable="false" />
+          <Property Name="allianceCity1" Type="Int64" Nullable="false" />
+          <Property Name="allianceResourcePct1" Type="Int64" Nullable="false" />
+          <Property Name="allianceCity2" Type="Int64" Nullable="false" />
+          <Property Name="allianceResourcePct2" Type="Int64" Nullable="false" />
+          <Property Name="allianceCity3" Type="Int64" Nullable="false" />
+          <Property Name="allianceResourcePct3" Type="Int64" Nullable="false" />
+          <Property Name="allianceCity4" Type="Int64" Nullable="false" />
+          <Property Name="allianceResourcePct4" Type="Int64" Nullable="false" />
+          <Property Name="hordeCity1" Type="Int64" Nullable="false" />
+          <Property Name="hordeResourcePct1" Type="Int64" Nullable="false" />
+          <Property Name="hordeCity2" Type="Int64" Nullable="false" />
+          <Property Name="hordeResourcePct2" Type="Int64" Nullable="false" />
+          <Property Name="hordeCity3" Type="Int64" Nullable="false" />
+          <Property Name="hordeResourcePct3" Type="Int64" Nullable="false" />
+          <Property Name="hordeCity4" Type="Int64" Nullable="false" />
+          <Property Name="hordeResourcePct4" Type="Int64" Nullable="false" />
+          <Property Name="scriptname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="script_waypoint">
           <Key>
             <PropertyRef Name="entry" />
@@ -4959,6 +5156,13 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="location_z" Type="Single" Nullable="false" />
           <Property Name="waittime" Type="Int64" Nullable="false" />
           <Property Name="point_comment" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="server_messages">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="skill_discovery_template">
           <Key>
@@ -5382,6 +5586,16 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="db_version" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
           <Property Name="cache_id" Type="Int32" />
         </EntityType>
+        <EntityType Name="war_school">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="class" Type="Int32" Nullable="false" />
+          <Property Name="trainer_list" Type="Int32" Nullable="false" />
+          <Property Name="title_id" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="warden_checks">
           <Key>
             <PropertyRef Name="id" />
@@ -5554,7 +5768,9 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <EntitySet Name="battleground_template" EntityType="Self.battleground_template" />
           <EntitySet Name="battlemaster_entry" EntityType="Self.battlemaster_entry" />
           <EntitySet Name="broadcast_text" EntityType="Self.broadcast_text" />
+          <EntitySet Name="capital_cities" EntityType="Self.capital_cities" />
           <EntitySet Name="capital_city_upgrade_cost" EntityType="Self.capital_city_upgrade_cost" />
+          <EntitySet Name="capital_city_upgrade_spells" EntityType="Self.capital_city_upgrade_spells" />
           <EntitySet Name="capital_city_upgrade_spellset" EntityType="Self.capital_city_upgrade_spellset" />
           <EntitySet Name="command" EntityType="Self.command" />
           <EntitySet Name="conditions" EntityType="Self.conditions" />
@@ -5641,10 +5857,13 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <EntitySet Name="player_factionchange_titles" EntityType="Self.player_factionchange_titles" />
           <EntitySet Name="player_levelstats" EntityType="Self.player_levelstats" />
           <EntitySet Name="player_supremacy_level_xp" EntityType="Self.player_supremacy_level_xp" />
+          <EntitySet Name="player_supremacy_spell_tiers" EntityType="Self.player_supremacy_spell_tiers" />
+          <EntitySet Name="player_supremacy_spells" EntityType="Self.player_supremacy_spells" />
           <EntitySet Name="player_xp_for_level" EntityType="Self.player_xp_for_level" />
           <EntitySet Name="playercreateinfo" EntityType="Self.playercreateinfo" />
           <EntitySet Name="playercreateinfo_action" EntityType="Self.playercreateinfo_action" />
           <EntitySet Name="playercreateinfo_item" EntityType="Self.playercreateinfo_item" />
+          <EntitySet Name="playercreateinfo_quest" EntityType="Self.playercreateinfo_quest" />
           <EntitySet Name="playercreateinfo_skills" EntityType="Self.playercreateinfo_skills" />
           <EntitySet Name="playercreateinfo_spell_custom" EntityType="Self.playercreateinfo_spell_custom" />
           <EntitySet Name="points_of_interest" EntityType="Self.points_of_interest" />
@@ -5660,7 +5879,9 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <EntitySet Name="reference_loot_template" EntityType="Self.reference_loot_template" />
           <EntitySet Name="reputation_reward_rate" EntityType="Self.reputation_reward_rate" />
           <EntitySet Name="reputation_spillover_template" EntityType="Self.reputation_spillover_template" />
+          <EntitySet Name="resource_points" EntityType="Self.resource_points" />
           <EntitySet Name="script_waypoint" EntityType="Self.script_waypoint" />
+          <EntitySet Name="server_messages" EntityType="Self.server_messages" />
           <EntitySet Name="skill_discovery_template" EntityType="Self.skill_discovery_template" />
           <EntitySet Name="skill_extra_item_template" EntityType="Self.skill_extra_item_template" />
           <EntitySet Name="skill_fishing_base_level" EntityType="Self.skill_fishing_base_level" />
@@ -5688,6 +5909,7 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <EntitySet Name="vehicle_accessory" EntityType="Self.vehicle_accessory" />
           <EntitySet Name="vehicle_template_accessory" EntityType="Self.vehicle_template_accessory" />
           <EntitySet Name="version" EntityType="Self.version" />
+          <EntitySet Name="war_school" EntityType="Self.war_school" />
           <EntitySet Name="warden_checks" EntityType="Self.warden_checks" />
           <EntitySet Name="waypoint_data" EntityType="Self.waypoint_data" />
           <EntitySet Name="waypoint_scripts" EntityType="Self.waypoint_scripts" />
@@ -5846,12 +6068,44 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="capital_cities">
+            <EntityTypeMapping TypeName="LegacyWorldModel.capital_cities">
+              <MappingFragment StoreEntitySet="capital_cities">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Zone" ColumnName="Zone" />
+                <ScalarProperty Name="Faction" ColumnName="Faction" />
+                <ScalarProperty Name="StartLevel" ColumnName="StartLevel" />
+                <ScalarProperty Name="ScriptName" ColumnName="ScriptName" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="capital_city_upgrade_cost">
             <EntityTypeMapping TypeName="LegacyWorldModel.capital_city_upgrade_cost">
               <MappingFragment StoreEntitySet="capital_city_upgrade_cost">
                 <ScalarProperty Name="Level" ColumnName="Level" />
                 <ScalarProperty Name="Resource" ColumnName="Resource" />
                 <ScalarProperty Name="MagicPower" ColumnName="MagicPower" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="capital_city_upgrade_spells">
+            <EntityTypeMapping TypeName="LegacyWorldModel.capital_city_upgrade_spells">
+              <MappingFragment StoreEntitySet="capital_city_upgrade_spells">
+                <ScalarProperty Name="SpellSet" ColumnName="SpellSet" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Spell" ColumnName="Spell" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ReqCityRank" ColumnName="ReqCityRank" />
+                <ScalarProperty Name="ReqItem1" ColumnName="ReqItem1" />
+                <ScalarProperty Name="ReqItem2" ColumnName="ReqItem2" />
+                <ScalarProperty Name="ReqItem3" ColumnName="ReqItem3" />
+                <ScalarProperty Name="ReqItem4" ColumnName="ReqItem4" />
+                <ScalarProperty Name="ReqItemCount1" ColumnName="ReqItemCount1" />
+                <ScalarProperty Name="ReqItemCount2" ColumnName="ReqItemCount2" />
+                <ScalarProperty Name="ReqItemCount3" ColumnName="ReqItemCount3" />
+                <ScalarProperty Name="ReqItemCount4" ColumnName="ReqItemCount4" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -7438,6 +7692,25 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="player_supremacy_spell_tiers">
+            <EntityTypeMapping TypeName="LegacyWorldModel.player_supremacy_spell_tiers">
+              <MappingFragment StoreEntitySet="player_supremacy_spell_tiers">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="player_supremacy_spells">
+            <EntityTypeMapping TypeName="LegacyWorldModel.player_supremacy_spells">
+              <MappingFragment StoreEntitySet="player_supremacy_spells">
+                <ScalarProperty Name="Tier" ColumnName="Tier" />
+                <ScalarProperty Name="TierID" ColumnName="TierID" />
+                <ScalarProperty Name="Spell" ColumnName="Spell" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="player_xp_for_level">
             <EntityTypeMapping TypeName="LegacyWorldModel.player_xp_for_level">
               <MappingFragment StoreEntitySet="player_xp_for_level">
@@ -7478,6 +7751,16 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
                 <ScalarProperty Name="class" ColumnName="class" />
                 <ScalarProperty Name="itemid" ColumnName="itemid" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="playercreateinfo_quest">
+            <EntityTypeMapping TypeName="LegacyWorldModel.playercreateinfo_quest">
+              <MappingFragment StoreEntitySet="playercreateinfo_quest">
+                <ScalarProperty Name="RaceMask" ColumnName="RaceMask" />
+                <ScalarProperty Name="ClassMask" ColumnName="ClassMask" />
+                <ScalarProperty Name="Quest" ColumnName="Quest" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -7803,6 +8086,33 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="resource_points">
+            <EntityTypeMapping TypeName="LegacyWorldModel.resource_points">
+              <MappingFragment StoreEntitySet="resource_points">
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="max_guard" ColumnName="max_guard" />
+                <ScalarProperty Name="max_worker" ColumnName="max_worker" />
+                <ScalarProperty Name="allianceCity1" ColumnName="allianceCity1" />
+                <ScalarProperty Name="allianceResourcePct1" ColumnName="allianceResourcePct1" />
+                <ScalarProperty Name="allianceCity2" ColumnName="allianceCity2" />
+                <ScalarProperty Name="allianceResourcePct2" ColumnName="allianceResourcePct2" />
+                <ScalarProperty Name="allianceCity3" ColumnName="allianceCity3" />
+                <ScalarProperty Name="allianceResourcePct3" ColumnName="allianceResourcePct3" />
+                <ScalarProperty Name="allianceCity4" ColumnName="allianceCity4" />
+                <ScalarProperty Name="allianceResourcePct4" ColumnName="allianceResourcePct4" />
+                <ScalarProperty Name="hordeCity1" ColumnName="hordeCity1" />
+                <ScalarProperty Name="hordeResourcePct1" ColumnName="hordeResourcePct1" />
+                <ScalarProperty Name="hordeCity2" ColumnName="hordeCity2" />
+                <ScalarProperty Name="hordeResourcePct2" ColumnName="hordeResourcePct2" />
+                <ScalarProperty Name="hordeCity3" ColumnName="hordeCity3" />
+                <ScalarProperty Name="hordeResourcePct3" ColumnName="hordeResourcePct3" />
+                <ScalarProperty Name="hordeCity4" ColumnName="hordeCity4" />
+                <ScalarProperty Name="hordeResourcePct4" ColumnName="hordeResourcePct4" />
+                <ScalarProperty Name="scriptname" ColumnName="scriptname" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="script_waypoint">
             <EntityTypeMapping TypeName="LegacyWorldModel.script_waypoint">
               <MappingFragment StoreEntitySet="script_waypoint">
@@ -7813,6 +8123,14 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
                 <ScalarProperty Name="location_z" ColumnName="location_z" />
                 <ScalarProperty Name="waittime" ColumnName="waittime" />
                 <ScalarProperty Name="point_comment" ColumnName="point_comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="server_messages">
+            <EntityTypeMapping TypeName="LegacyWorldModel.server_messages">
+              <MappingFragment StoreEntitySet="server_messages">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="content" ColumnName="content" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -8242,6 +8560,17 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
                 <ScalarProperty Name="core_revision" ColumnName="core_revision" />
                 <ScalarProperty Name="db_version" ColumnName="db_version" />
                 <ScalarProperty Name="cache_id" ColumnName="cache_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="war_school">
+            <EntityTypeMapping TypeName="LegacyWorldModel.war_school">
+              <MappingFragment StoreEntitySet="war_school">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="class" ColumnName="class" />
+                <ScalarProperty Name="trainer_list" ColumnName="trainer_list" />
+                <ScalarProperty Name="title_id" ColumnName="title_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
