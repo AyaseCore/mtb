@@ -600,6 +600,9 @@
     <Compile Include="spell_threat.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
+    <Compile Include="SubWindows\Legacy\BroadcastTextEditor.xaml.cs">
+      <DependentUpon>BroadcastTextEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\Legacy\CreatureNpcFlagSelector.xaml.cs">
       <DependentUpon>CreatureNpcFlagSelector.xaml</DependentUpon>
     </Compile>
@@ -608,6 +611,9 @@
     </Compile>
     <Compile Include="SubWindows\Legacy\ItemFlagsSelector.xaml.cs">
       <DependentUpon>ItemFlagsSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindows\Legacy\NpcFlagSelector.xaml.cs">
+      <DependentUpon>NpcFlagSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubWindows\Legacy\SpellAuraInterruptSelector.xaml.cs">
       <DependentUpon>SpellAuraInterruptSelector.xaml</DependentUpon>
@@ -632,6 +638,7 @@
     <Compile Include="Utility\DataStore.cs" />
     <Compile Include="Utility\DBC.cs" />
     <Compile Include="Utility\Entity.cs" />
+    <Compile Include="Utility\Utility.cs" />
     <Compile Include="vehicle_accessory.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
@@ -740,6 +747,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SubWindows\Legacy\BroadcastTextEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SubWindows\Legacy\CreatureNpcFlagSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -749,6 +760,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SubWindows\Legacy\ItemFlagsSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindows\Legacy\NpcFlagSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

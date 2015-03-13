@@ -605,7 +605,7 @@ namespace MSAToolBox.Utility
 
         public static Dictionary<int, string> GetGossipIconDefines()
         {
-            return DataDefine.GossipOption;
+            return DataDefine.GossipIcon;
         }
 
         public static Dictionary<int, string> GetCreatureNames()
@@ -1377,7 +1377,7 @@ namespace MSAToolBox.Utility
             return text;
         }
 
-        public static void SaveBroadCastText(BroadCastText text, bool createNew = true)
+        public static BroadCastText SaveBroadCastText(BroadCastText text, bool createNew = false)
         {
             int maxID = (from d in DB.LEGACY.broadcast_text select d.ID).Max() + 1;
 
@@ -1408,6 +1408,8 @@ namespace MSAToolBox.Utility
             });
 
             DB.LEGACY.SaveChanges();
+
+            return text;
         }
 
         public static List<GossipMenu> GetGossipMenu(int entry)
@@ -1423,26 +1425,20 @@ namespace MSAToolBox.Utility
             return menu;
         }
 
-        public static void SaveGossipMenu(List<GossipMenu> menu, int menuID)
+        public static void SaveGossipMenu(GossipMenu menu)
         {
-            if (menu == null || menu.Count == 0)
+            if (menu == null)
                 return;
 
-            var oldMenus = from d in DB.LEGACY.gossip_menu where d.entry == menuID select d;
-            if (oldMenus.Count() > 0)
+            var oldMenu = (from d in DB.LEGACY.gossip_menu where d.entry == menu.Menu && d.text_id == menu.NpcText select d).SingleOrDefault();
+            if (oldMenu != null)
+                DB.LEGACY.gossip_menu.Remove(oldMenu);
+            DB.LEGACY.gossip_menu.Add(new gossip_menu()
             {
-                foreach (var oldMenu in oldMenus)
-                    DB.LEGACY.gossip_menu.Remove(oldMenu);
-            }
-
-            foreach (var m in menu)
-            {
-                DB.LEGACY.gossip_menu.Add(new gossip_menu()
-                {
-                    entry = menuID,
-                    text_id = m.NpcText
-                });
-            }
+                entry = menu.Menu,
+                text_id = menu.NpcText,
+                Comment = menu.Comment
+            });
 
             DB.LEGACY.SaveChanges();
         }
@@ -1474,36 +1470,30 @@ namespace MSAToolBox.Utility
             return menuItems;
         }
 
-        public static void SaveGossipMenuItems(List<GossipMenuItem> menuItems, int menuID)
+        public static void SaveGossipMenuItem(GossipMenuItem menuItem)
         {
-            if (menuItems == null || menuItems.Count == 0)
+            if (menuItem == null)
                 return;
 
-            var oldMenuItems = from d in DB.LEGACY.gossip_menu_option where d.menu_id == menuID select d;
-            if (oldMenuItems.Count() > 0)
-            {
-                foreach (var oldMenuItem in oldMenuItems)
-                    DB.LEGACY.gossip_menu_option.Remove(oldMenuItem);
-            }
+            var oldMenuItem = (from d in DB.LEGACY.gossip_menu_option where d.menu_id == menuItem.Menu && d.id == menuItem.ID select d).SingleOrDefault();
+            if (oldMenuItem != null)
+                DB.LEGACY.gossip_menu_option.Remove(oldMenuItem);
 
-            foreach (var m in menuItems)
+            DB.LEGACY.gossip_menu_option.Add(new gossip_menu_option()
             {
-                DB.LEGACY.gossip_menu_option.Add(new gossip_menu_option()
-                {
-                    menu_id = menuID,
-                    id = m.ID,
-                    option_icon = m.Icon,
-                    OptionBroadcastTextID = m.GossipTextID,
-                    option_id = m.OptionID,
-                    npc_option_npcflag = m.NpcFlags,
-                    action_menu_id = m.ToMenu,
-                    action_poi_id = m.POI,
-                    box_coded = (byte)(m.BoxCoded ? 1 : 0),
-                    box_money = m.BoxMoney,
-                    BoxBroadcastTextID = m.BoxTextID,
-                    SingleTimeCheck = (byte)(m.SingleTimeCheck ? 1 : 0)
-                });
-            }
+                menu_id = menuItem.Menu,
+                id = menuItem.ID,
+                option_icon = menuItem.Icon,
+                OptionBroadcastTextID = menuItem.GossipTextID,
+                option_id = menuItem.OptionID,
+                npc_option_npcflag = menuItem.NpcFlags,
+                action_menu_id = menuItem.ToMenu,
+                action_poi_id = menuItem.POI,
+                box_coded = (byte)(menuItem.BoxCoded ? 1 : 0),
+                box_money = menuItem.BoxMoney,
+                BoxBroadcastTextID = menuItem.BoxTextID,
+                SingleTimeCheck = (byte)(menuItem.SingleTimeCheck ? 1 : 0)
+            });
             DB.LEGACY.SaveChanges();
         }
 
@@ -1548,6 +1538,149 @@ namespace MSAToolBox.Utility
             t.Chance[7] = text.prob7;
 
             return t;
+        }
+
+        public static void SaveNpcText(NpcText text)
+        {
+            if (text == null)
+                return;
+
+            var oldText = (from d in DB.LEGACY.npc_text where d.ID == text.Entry select d).SingleOrDefault();
+            if (oldText != null)
+                DB.LEGACY.npc_text.Remove(oldText);
+
+            DB.LEGACY.npc_text.Add(new npc_text()
+            {
+                ID = text.Entry,
+                BroadcastTextID0 = text.Text[0],
+                BroadcastTextID1 = text.Text[1],
+                BroadcastTextID2 = text.Text[2],
+                BroadcastTextID3 = text.Text[3],
+                BroadcastTextID4 = text.Text[4],
+                BroadcastTextID5 = text.Text[5],
+                BroadcastTextID6 = text.Text[6],
+                BroadcastTextID7 = text.Text[7],
+                prob0 = text.Chance[0],
+                prob1 = text.Chance[1],
+                prob2 = text.Chance[2],
+                prob3 = text.Chance[3],
+                prob4 = text.Chance[4],
+                prob5 = text.Chance[5],
+                prob6 = text.Chance[6],
+                prob7 = text.Chance[7]
+            });
+
+            DB.LEGACY.SaveChanges();
+        }
+
+        public static GossipMenu CreateNewGossipMenu()
+        {
+            int menuId = (from d in DB.LEGACY.gossip_menu select d.entry).Max() + 1;
+            int textId = (from d in DB.LEGACY.npc_text select d.ID).Max() + 1;
+
+            BroadCastText bct = CreateNewBroadcastText("bct for menu " + menuId);
+
+            DB.LEGACY.gossip_menu.Add(new gossip_menu()
+            {
+                entry = menuId,
+                text_id = textId,
+                Comment = "New Menu " + menuId
+            });
+
+            DB.LEGACY.npc_text.Add(new npc_text()
+            {
+                ID = textId,
+                BroadcastTextID0 = bct.ID,
+                BroadcastTextID1 = 0,
+                BroadcastTextID2 = 0,
+                BroadcastTextID3 = 0,
+                BroadcastTextID4 = 0,
+                BroadcastTextID5 = 0,
+                BroadcastTextID6 = 0,
+                BroadcastTextID7 = 0,
+                prob0 = 1,
+                prob1 = 0,
+                prob2 = 0,
+                prob3 = 0,
+                prob4 = 0,
+                prob5 = 0,
+                prob6 = 0,
+                prob7 = 0,
+                VerifiedBuild = 10000
+            });
+
+            DB.LEGACY.SaveChanges();
+
+            GossipMenu menu = new GossipMenu();
+            menu.Menu = menuId;
+            menu.NpcText = textId;
+            menu.Comment = "New Menu " + menuId;
+            return menu;
+        }
+
+        public static void CreateNewGossipMenuItem(int menu)
+        {
+            int id = 0;
+            var menuItems = from d in DB.LEGACY.gossip_menu_option where d.menu_id == menu select d.id;
+            if (menuItems.Count() != 0)
+                id = menuItems.Max() + 1;
+
+            BroadCastText text = CreateNewBroadcastText("new gossip item");
+
+            DB.LEGACY.gossip_menu_option.Add(new gossip_menu_option()
+            {
+                menu_id = menu,
+                id = id,
+                option_icon = 0,
+                OptionBroadcastTextID = text.ID,
+                option_id = 0,
+                npc_option_npcflag = 0,
+                action_menu_id = 0,
+                action_poi_id = 0,
+                box_coded = 0,
+                box_money = 0,
+                BoxBroadcastTextID = 0,
+                SingleTimeCheck = 0
+            });
+
+            DB.LEGACY.SaveChanges();
+        }
+
+        public static BroadCastText CreateNewBroadcastText(string text = "new bct")
+        {
+            BroadCastText t = new BroadCastText();
+            t.ID = 0;
+            t.Language = 0;
+            t.MaleText = text;
+            t.FemaleText = text;
+            t.Emote0 = 0;
+            t.Emote1 = 0;
+            t.Emote2 = 0;
+            t.EmoteDelay0 = 0;
+            t.EmoteDelay1 = 0;
+            t.EmoteDelay2 = 0;
+            t.SoundID = 0;
+            return SaveBroadCastText(t, true);
+        }
+
+        public static void DeleteGossipMenuItem(int menu, int id)
+        {
+            var item = (from d in DB.LEGACY.gossip_menu_option where d.menu_id == menu && d.id == id select d).SingleOrDefault();
+            if (item != null)
+            {
+                DB.LEGACY.gossip_menu_option.Remove(item);
+                DB.LEGACY.SaveChanges();
+            }
+        }
+
+        public static void DeleteGossipMenuItem(GossipMenuItem item)
+        {
+            var it = (from d in DB.LEGACY.gossip_menu_option where d.menu_id == item.Menu && d.id == item.ID select d).SingleOrDefault();
+            if (it != null)
+            {
+                DB.LEGACY.gossip_menu_option.Remove(it);
+                DB.LEGACY.SaveChanges();
+            }
         }
     }
 }

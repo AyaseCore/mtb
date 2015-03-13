@@ -35,7 +35,6 @@ namespace MSAToolBox
         public DbSet<areatrigger_teleport> areatrigger_teleport { get; set; }
         public DbSet<battleground_template> battleground_template { get; set; }
         public DbSet<battlemaster_entry> battlemaster_entry { get; set; }
-        public DbSet<broadcast_text> broadcast_text { get; set; }
         public DbSet<capital_cities> capital_cities { get; set; }
         public DbSet<capital_city_upgrade_cost> capital_city_upgrade_cost { get; set; }
         public DbSet<capital_city_upgrade_spells> capital_city_upgrade_spells { get; set; }
@@ -188,5 +187,6 @@ namespace MSAToolBox
         public DbSet<spell_linked_spell> spell_linked_spell { get; set; }
         public DbSet<spell_script_names> spell_script_names { get; set; }
         public DbSet<spell_scripts> spell_scripts { get; set; }
+        public DbSet<broadcast_text> broadcast_text { get; set; }
     }
 }

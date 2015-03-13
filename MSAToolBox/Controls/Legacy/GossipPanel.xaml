@@ -16,7 +16,7 @@
             <ColumnDefinition Width="297*"/>
         </Grid.ColumnDefinitions>
         <TextBox x:Name="gossipMenuFilter" Height="23" Margin="10,10,71,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <ListBox x:Name="gossipMenuList" Margin="10,46,0,135" SelectionChanged="gossipMenuList_SelectionChanged">
+        <ListBox x:Name="gossipMenuList" Margin="10,46,0,240" SelectionChanged="gossipMenuList_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
@@ -38,36 +38,243 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="gossipTextMale0" Margin="10,10,5,45" TextWrapping="Wrap" />
-                    <TextBox x:Name="gossipTextFemale0" Margin="5,10,10,45" TextWrapping="Wrap" Grid.Column="1"/>
-                    <Label Content="Chance" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="67,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" x:Name="gossipTextChance0"/>
+                    <TextBox x:Name="gossipText0Male" Margin="10,10,5,152" TextWrapping="Wrap" LostFocus="gossipText0Male_LostFocus" AcceptsReturn="True" />
+                    <TextBox x:Name="gossipText0Female" Margin="5,10,10,152" TextWrapping="Wrap" Grid.Column="1" LostFocus="gossipText0Female_LostFocus" AcceptsReturn="True"/>
+                    <Label Content="Chance" HorizontalAlignment="Left" Margin="12,0,0,10" VerticalAlignment="Bottom"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="69,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="90" x:Name="gossipText0Chance" LostFocus="gossipText0Chance_LostFocus"/>
+                    <Button x:Name="gossipText0New" Content="NEW" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="gossipText0New_Click"/>
+                    <TextBox x:Name="gossipText0Bct" HorizontalAlignment="Left" Height="23" Margin="5,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="90" IsEnabled="False" Grid.Column="1"/>
+                    <Label Content="Emote0" HorizontalAlignment="Left" Margin="10,0,0,115" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText0BctEmote0" Margin="69,0,129,115" VerticalAlignment="Bottom" SelectionChanged="gossipText0BctEmote0_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Right" Margin="0,0,82,115" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText0BctEmoteDelay0" HorizontalAlignment="Right" Height="23" Margin="0,0,5,115" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText0BctEmoteDelay0_LostFocus"/>
+                    <Label Content="Emote1" HorizontalAlignment="Left" Margin="10,0,0,84" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText0BctEmote1" Margin="69,0,129,84" VerticalAlignment="Bottom" SelectionChanged="gossipText0BctEmote1_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Right" Margin="0,0,82,84" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText0BctEmoteDelay1" HorizontalAlignment="Right" Height="23" Margin="0,0,5,84" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText0BctEmoteDelay1_LostFocus"/>
+                    <Label Content="Emote2" HorizontalAlignment="Left" Margin="10,0,0,54" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText0BctEmote2" Margin="69,0,129,53" VerticalAlignment="Bottom" SelectionChanged="gossipText0BctEmote2_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Right" Margin="0,0,82,53" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText0BctEmoteDelay2" HorizontalAlignment="Right" Height="23" Margin="236,0,5,53" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText0BctEmoteDelay2_LostFocus"/>
+                    <Label Content="Language" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,115" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText0BctLanguage" Grid.Column="1" Margin="76,0,10,115" VerticalAlignment="Bottom" SelectionChanged="gossipText0BctLanguage_SelectionChanged"/>
+                    <Label Content="SoundID" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,85" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText0BctSoundID" Grid.Column="1" Height="23" Margin="76,0,10,84" TextWrapping="Wrap" VerticalAlignment="Bottom" IsEnabled="False"/>
                 </Grid>
             </TabItem>
             <TabItem Header="1">
-
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="gossipText1Male" Margin="10,10,5,152" TextWrapping="Wrap" LostFocus="gossipText1Male_LostFocus" />
+                    <TextBox x:Name="gossipText1Female" Margin="5,10,10,152" TextWrapping="Wrap" Grid.Column="1" LostFocus="gossipText1Female_LostFocus"/>
+                    <Label Content="Chance" HorizontalAlignment="Left" Margin="12,0,0,10" VerticalAlignment="Bottom"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="69,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="90" x:Name="gossipText1Chance" LostFocus="gossipText1Chance_LostFocus"/>
+                    <Button x:Name="gossipText1New" Content="NEW" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="gossipText1New_Click"/>
+                    <TextBox x:Name="gossipText1Bct" HorizontalAlignment="Left" Height="23" Margin="5,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="90" IsEnabled="False" Grid.Column="1"/>
+                    <Label Content="Emote0" HorizontalAlignment="Left" Margin="10,0,0,115" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText1BctEmote0" HorizontalAlignment="Left" Margin="69,0,0,115" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText1BctEmote0_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,115" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText1BctEmoteDelay0" HorizontalAlignment="Left" Height="23" Margin="236,0,0,115" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText1BctEmoteDelay0_LostFocus"/>
+                    <Label Content="Emote1" HorizontalAlignment="Left" Margin="10,0,0,84" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText1BctEmote1" HorizontalAlignment="Left" Margin="69,0,0,84" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText1BctEmote1_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,84" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText1BctEmoteDelay1" HorizontalAlignment="Left" Height="23" Margin="236,0,0,84" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText1BctEmoteDelay1_LostFocus"/>
+                    <Label Content="Emote2" HorizontalAlignment="Left" Margin="10,0,0,54" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText1BctEmote2" HorizontalAlignment="Left" Margin="69,0,0,53" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText1BctEmote2_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,53" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText1BctEmoteDelay2" HorizontalAlignment="Left" Height="23" Margin="236,0,0,53" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText1BctEmoteDelay2_LostFocus"/>
+                    <Label Content="Language" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,115" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText1BctLanguage" Grid.Column="1" HorizontalAlignment="Left" Margin="76,0,0,115" VerticalAlignment="Bottom" Width="233" SelectionChanged="gossipText1BctLanguage_SelectionChanged"/>
+                    <Label Content="SoundID" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,85" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText1BctSoundID" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="76,0,0,85" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="233" IsEnabled="False"/>
+                </Grid>
             </TabItem>
             <TabItem Header="2">
-
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="gossipText2Male" Margin="10,10,5,152" TextWrapping="Wrap" LostFocus="gossipText2Male_LostFocus" />
+                    <TextBox x:Name="gossipText2Female" Margin="5,10,10,152" TextWrapping="Wrap" Grid.Column="1" LostFocus="gossipText2Female_LostFocus"/>
+                    <Label Content="Chance" HorizontalAlignment="Left" Margin="12,0,0,10" VerticalAlignment="Bottom"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="69,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="90" x:Name="gossipText2Chance" LostFocus="gossipText2Chance_LostFocus"/>
+                    <Button x:Name="gossipText2New" Content="NEW" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="gossipText2New_Click"/>
+                    <TextBox x:Name="gossipText2Bct" HorizontalAlignment="Left" Height="23" Margin="5,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="90" IsEnabled="False" Grid.Column="1"/>
+                    <Label Content="Emote0" HorizontalAlignment="Left" Margin="10,0,0,115" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText2BctEmote0" HorizontalAlignment="Left" Margin="69,0,0,115" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText2BctEmote0_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,115" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText2BctEmoteDelay0" HorizontalAlignment="Left" Height="23" Margin="236,0,0,115" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText2BctEmoteDelay0_LostFocus"/>
+                    <Label Content="Emote1" HorizontalAlignment="Left" Margin="10,0,0,84" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText2BctEmote1" HorizontalAlignment="Left" Margin="69,0,0,84" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText2BctEmote1_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,84" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText2BctEmoteDelay1" HorizontalAlignment="Left" Height="23" Margin="236,0,0,84" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText2BctEmoteDelay1_LostFocus"/>
+                    <Label Content="Emote2" HorizontalAlignment="Left" Margin="10,0,0,54" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText2BctEmote2" HorizontalAlignment="Left" Margin="69,0,0,53" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText2BctEmote2_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,53" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText2BctEmoteDelay2" HorizontalAlignment="Left" Height="23" Margin="236,0,0,53" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText2BctEmoteDelay2_LostFocus"/>
+                    <Label Content="Language" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,115" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText2BctLanguage" Grid.Column="1" HorizontalAlignment="Left" Margin="76,0,0,115" VerticalAlignment="Bottom" Width="233" SelectionChanged="gossipText2BctLanguage_SelectionChanged"/>
+                    <Label Content="SoundID" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,85" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText2BctSoundID" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="76,0,0,85" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="233" IsEnabled="False"/>
+                </Grid>
             </TabItem>
             <TabItem Header="3">
-
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="gossipText3Male" Margin="10,10,5,152" TextWrapping="Wrap" LostFocus="gossipText3Male_LostFocus" />
+                    <TextBox x:Name="gossipText3Female" Margin="5,10,10,152" TextWrapping="Wrap" Grid.Column="1" LostFocus="gossipText3Female_LostFocus"/>
+                    <Label Content="Chance" HorizontalAlignment="Left" Margin="12,0,0,10" VerticalAlignment="Bottom"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="69,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="90" x:Name="gossipText3Chance" LostFocus="gossipText3Chance_LostFocus"/>
+                    <Button x:Name="gossipText3New" Content="NEW" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="gossipText3New_Click"/>
+                    <TextBox x:Name="gossipText3Bct" HorizontalAlignment="Left" Height="23" Margin="5,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="90" IsEnabled="False" Grid.Column="1"/>
+                    <Label Content="Emote0" HorizontalAlignment="Left" Margin="10,0,0,115" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText3BctEmote0" HorizontalAlignment="Left" Margin="69,0,0,115" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText3BctEmote0_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,115" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText3BctEmoteDelay0" HorizontalAlignment="Left" Height="23" Margin="236,0,0,115" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText3BctEmoteDelay0_LostFocus"/>
+                    <Label Content="Emote1" HorizontalAlignment="Left" Margin="10,0,0,84" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText3BctEmote1" HorizontalAlignment="Left" Margin="69,0,0,84" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText3BctEmote1_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,84" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText3BctEmoteDelay1" HorizontalAlignment="Left" Height="23" Margin="236,0,0,84" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText3BctEmoteDelay1_LostFocus"/>
+                    <Label Content="Emote2" HorizontalAlignment="Left" Margin="10,0,0,54" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText3BctEmote2" HorizontalAlignment="Left" Margin="69,0,0,53" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText3BctEmote2_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,53" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText3BctEmoteDelay2" HorizontalAlignment="Left" Height="23" Margin="236,0,0,53" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText3BctEmoteDelay2_LostFocus"/>
+                    <Label Content="Language" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,115" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText3BctLanguage" Grid.Column="1" HorizontalAlignment="Left" Margin="76,0,0,115" VerticalAlignment="Bottom" Width="233" SelectionChanged="gossipText3BctLanguage_SelectionChanged"/>
+                    <Label Content="SoundID" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,85" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText3BctSoundID" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="76,0,0,85" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="233" IsEnabled="False"/>
+                </Grid>
             </TabItem>
             <TabItem Header="4">
-
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="gossipText4Male" Margin="10,10,5,152" TextWrapping="Wrap" LostFocus="gossipText4Male_LostFocus" />
+                    <TextBox x:Name="gossipText4Female" Margin="5,10,10,152" TextWrapping="Wrap" Grid.Column="1" LostFocus="gossipText4Female_LostFocus"/>
+                    <Label Content="Chance" HorizontalAlignment="Left" Margin="12,0,0,10" VerticalAlignment="Bottom"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="69,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="90" x:Name="gossipText4Chance" LostFocus="gossipText4Chance_LostFocus"/>
+                    <Button x:Name="gossipText4New" Content="NEW" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="gossipText4New_Click"/>
+                    <TextBox x:Name="gossipText4Bct" HorizontalAlignment="Left" Height="23" Margin="5,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="90" IsEnabled="False" Grid.Column="1"/>
+                    <Label Content="Emote0" HorizontalAlignment="Left" Margin="10,0,0,115" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText4BctEmote0" HorizontalAlignment="Left" Margin="69,0,0,115" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText4BctEmote0_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,115" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText4BctEmoteDelay0" HorizontalAlignment="Left" Height="23" Margin="236,0,0,115" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText4BctEmoteDelay0_LostFocus"/>
+                    <Label Content="Emote1" HorizontalAlignment="Left" Margin="10,0,0,84" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText4BctEmote1" HorizontalAlignment="Left" Margin="69,0,0,84" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText4BctEmote1_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,84" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText4BctEmoteDelay1" HorizontalAlignment="Left" Height="23" Margin="236,0,0,84" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText4BctEmoteDelay1_LostFocus"/>
+                    <Label Content="Emote2" HorizontalAlignment="Left" Margin="10,0,0,54" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText4BctEmote2" HorizontalAlignment="Left" Margin="69,0,0,53" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText4BctEmote2_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,53" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText4BctEmoteDelay2" HorizontalAlignment="Left" Height="23" Margin="236,0,0,53" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText4BctEmoteDelay2_LostFocus"/>
+                    <Label Content="Language" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,115" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText4BctLanguage" Grid.Column="1" HorizontalAlignment="Left" Margin="76,0,0,115" VerticalAlignment="Bottom" Width="233" SelectionChanged="gossipText4BctLanguage_SelectionChanged"/>
+                    <Label Content="SoundID" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,85" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText4BctSoundID" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="76,0,0,85" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="233" IsEnabled="False"/>
+                </Grid>
             </TabItem>
             <TabItem Header="5">
-
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="gossipText5Male" Margin="10,10,5,152" TextWrapping="Wrap" LostFocus="gossipText5Male_LostFocus" />
+                    <TextBox x:Name="gossipText5Female" Margin="5,10,10,152" TextWrapping="Wrap" Grid.Column="1" LostFocus="gossipText5Female_LostFocus"/>
+                    <Label Content="Chance" HorizontalAlignment="Left" Margin="12,0,0,10" VerticalAlignment="Bottom"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="69,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="90" x:Name="gossipText5Chance" LostFocus="gossipText5Chance_LostFocus"/>
+                    <Button x:Name="gossipText5New" Content="NEW" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="gossipText5New_Click"/>
+                    <TextBox x:Name="gossipText5Bct" HorizontalAlignment="Left" Height="23" Margin="5,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="90" IsEnabled="False" Grid.Column="1"/>
+                    <Label Content="Emote0" HorizontalAlignment="Left" Margin="10,0,0,115" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText5BctEmote0" HorizontalAlignment="Left" Margin="69,0,0,115" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText5BctEmote0_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,115" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText5BctEmoteDelay0" HorizontalAlignment="Left" Height="23" Margin="236,0,0,115" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText5BctEmoteDelay0_LostFocus"/>
+                    <Label Content="Emote1" HorizontalAlignment="Left" Margin="10,0,0,84" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText5BctEmote1" HorizontalAlignment="Left" Margin="69,0,0,84" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText5BctEmote1_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,84" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText5BctEmoteDelay1" HorizontalAlignment="Left" Height="23" Margin="236,0,0,84" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText5BctEmoteDelay1_LostFocus"/>
+                    <Label Content="Emote2" HorizontalAlignment="Left" Margin="10,0,0,54" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText5BctEmote2" HorizontalAlignment="Left" Margin="69,0,0,53" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText5BctEmote2_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,53" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText5BctEmoteDelay2" HorizontalAlignment="Left" Height="23" Margin="236,0,0,53" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText5BctEmoteDelay2_LostFocus"/>
+                    <Label Content="Language" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,115" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText5BctLanguage" Grid.Column="1" HorizontalAlignment="Left" Margin="76,0,0,115" VerticalAlignment="Bottom" Width="233" SelectionChanged="gossipText5BctLanguage_SelectionChanged"/>
+                    <Label Content="SoundID" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,85" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText5BctSoundID" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="76,0,0,85" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="233" IsEnabled="False"/>
+                </Grid>
             </TabItem>
             <TabItem Header="6">
-
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="gossipText6Male" Margin="10,10,5,152" TextWrapping="Wrap" LostFocus="gossipText6Male_LostFocus" />
+                    <TextBox x:Name="gossipText6Female" Margin="5,10,10,152" TextWrapping="Wrap" Grid.Column="1" LostFocus="gossipText6Female_LostFocus"/>
+                    <Label Content="Chance" HorizontalAlignment="Left" Margin="12,0,0,10" VerticalAlignment="Bottom"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="69,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="90" x:Name="gossipText6Chance" LostFocus="gossipText6Chance_LostFocus"/>
+                    <Button x:Name="gossipText6New" Content="NEW" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="gossipText6New_Click"/>
+                    <TextBox x:Name="gossipText6Bct" HorizontalAlignment="Left" Height="23" Margin="5,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="90" IsEnabled="False" Grid.Column="1"/>
+                    <Label Content="Emote0" HorizontalAlignment="Left" Margin="10,0,0,115" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText6BctEmote0" HorizontalAlignment="Left" Margin="69,0,0,115" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText6BctEmote0_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,115" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText6BctEmoteDelay0" HorizontalAlignment="Left" Height="23" Margin="236,0,0,115" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText6BctEmoteDelay0_LostFocus"/>
+                    <Label Content="Emote1" HorizontalAlignment="Left" Margin="10,0,0,84" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText6BctEmote1" HorizontalAlignment="Left" Margin="69,0,0,84" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText6BctEmote1_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,84" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText6BctEmoteDelay1" HorizontalAlignment="Left" Height="23" Margin="236,0,0,84" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText6BctEmoteDelay1_LostFocus"/>
+                    <Label Content="Emote2" HorizontalAlignment="Left" Margin="10,0,0,54" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText6BctEmote2" HorizontalAlignment="Left" Margin="69,0,0,53" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText6BctEmote2_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,53" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText6BctEmoteDelay2" HorizontalAlignment="Left" Height="23" Margin="236,0,0,53" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText6BctEmoteDelay2_LostFocus"/>
+                    <Label Content="Language" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,115" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText6BctLanguage" Grid.Column="1" HorizontalAlignment="Left" Margin="76,0,0,115" VerticalAlignment="Bottom" Width="233" SelectionChanged="gossipText6BctLanguage_SelectionChanged"/>
+                    <Label Content="SoundID" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,85" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText6BctSoundID" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="76,0,0,85" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="233" IsEnabled="False"/>
+                </Grid>
             </TabItem>
             <TabItem Header="7">
-
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="gossipText7Male" Margin="10,10,5,152" TextWrapping="Wrap" LostFocus="gossipText7Male_LostFocus" />
+                    <TextBox x:Name="gossipText7Female" Margin="5,10,10,152" TextWrapping="Wrap" Grid.Column="1" LostFocus="gossipText7Female_LostFocus"/>
+                    <Label Content="Chance" HorizontalAlignment="Left" Margin="12,0,0,10" VerticalAlignment="Bottom"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="69,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="90" x:Name="gossipText7Chance" LostFocus="gossipText7Chance_LostFocus"/>
+                    <Button x:Name="gossipText7New" Content="NEW" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="gossipText7New_Click"/>
+                    <TextBox x:Name="gossipText7Bct" HorizontalAlignment="Left" Height="23" Margin="5,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="90" IsEnabled="False" Grid.Column="1"/>
+                    <Label Content="Emote0" HorizontalAlignment="Left" Margin="10,0,0,115" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText7BctEmote0" HorizontalAlignment="Left" Margin="69,0,0,115" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText7BctEmote0_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,115" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText7BctEmoteDelay0" HorizontalAlignment="Left" Height="23" Margin="236,0,0,115" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText7BctEmoteDelay0_LostFocus"/>
+                    <Label Content="Emote1" HorizontalAlignment="Left" Margin="10,0,0,84" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText7BctEmote1" HorizontalAlignment="Left" Margin="69,0,0,84" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText7BctEmote1_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,84" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText7BctEmoteDelay1" HorizontalAlignment="Left" Height="23" Margin="236,0,0,84" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText7BctEmoteDelay1_LostFocus"/>
+                    <Label Content="Emote2" HorizontalAlignment="Left" Margin="10,0,0,54" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText7BctEmote2" HorizontalAlignment="Left" Margin="69,0,0,53" VerticalAlignment="Bottom" Width="120" SelectionChanged="gossipText7BctEmote2_SelectionChanged"/>
+                    <Label Content="Delay" HorizontalAlignment="Left" Margin="194,0,0,53" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText7BctEmoteDelay2" HorizontalAlignment="Left" Height="23" Margin="236,0,0,53" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="77" LostFocus="gossipText7BctEmoteDelay2_LostFocus"/>
+                    <Label Content="Language" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,115" VerticalAlignment="Bottom"/>
+                    <ComboBox x:Name="gossipText7BctLanguage" Grid.Column="1" HorizontalAlignment="Left" Margin="76,0,0,115" VerticalAlignment="Bottom" Width="233" SelectionChanged="gossipText7BctLanguage_SelectionChanged"/>
+                    <Label Content="SoundID" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,85" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="gossipText7BctSoundID" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="76,0,0,85" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="233" IsEnabled="False"/>
+                </Grid>
             </TabItem>
         </TabControl>
         <Label Content="Condition" HorizontalAlignment="Left" Margin="10,0,0,70" VerticalAlignment="Bottom"/>
-        <ListBox x:Name="gossipMenuItems" Grid.Column="2" Height="350" Margin="0,10,10,240">
+        <ListBox x:Name="gossipMenuItems" Grid.Column="2" Margin="0,10,10,413" SelectionChanged="gossipMenuItems_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
@@ -79,7 +286,43 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <TextBox x:Name="currentGossip" HorizontalAlignment="Right" Height="23" Margin="0,10,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="66" IsEnabled="False"/>
-        <Button x:Name="gossipNew" Content="NEW" Margin="10,0,0,100" VerticalAlignment="Bottom"/>
-        <Button Content="ADD" Grid.Column="2" Margin="0,0,10,204" VerticalAlignment="Bottom"/>
+        <Button x:Name="gossipNew" Content="NEW" Margin="10,0,0,205" VerticalAlignment="Bottom" Click="gossipNew_Click"/>
+        <Button x:Name="gossipMenuItemNew" Content="ADD" Grid.Column="2" Margin="0,0,10,383" VerticalAlignment="Bottom" Click="gossipMenuItemNew_Click"/>
+        <Label Content="MenuID" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,352" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="menuItemID" Grid.Column="2" Height="23" Margin="80,0,10,321" TextWrapping="Wrap" VerticalAlignment="Bottom" LostFocus="menuItemID_LostFocus"/>
+        <Label Content="ID" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,321" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="menuItemText" Grid.Column="2" Height="23" Margin="80,0,67,259" TextWrapping="Wrap" VerticalAlignment="Bottom" LostFocus="menuItemText_LostFocus" IsEnabled="False" TextChanged="menuItemText_TextChanged"/>
+        <TextBox x:Name="menuItemNpcFlag" Grid.Column="2" Height="23" Margin="80,0,67,197" TextWrapping="Wrap" VerticalAlignment="Bottom" LostFocus="menuItemNpcFlag_LostFocus" IsEnabled="False" TextChanged="menuItemNpcFlag_TextChanged"/>
+        <TextBox x:Name="menuItemAction" Grid.Column="2" Height="23" Margin="80,0,67,166" TextWrapping="Wrap" VerticalAlignment="Bottom" LostFocus="menuItemAction_LostFocus"/>
+        <TextBox x:Name="menuItemPOI" Grid.Column="2" Height="23" Margin="80,0,10,135" TextWrapping="Wrap" VerticalAlignment="Bottom" LostFocus="menuItemPOI_LostFocus"/>
+        <TextBox x:Name="menuItemMoney" Grid.Column="2" Height="23" Margin="80,0,10,73" TextWrapping="Wrap" VerticalAlignment="Bottom" LostFocus="menuItemMoney_LostFocus"/>
+        <TextBox x:Name="menuItemBoxText" Grid.Column="2" Height="23" Margin="80,0,67,42" TextWrapping="Wrap" VerticalAlignment="Bottom" LostFocus="menuItemBoxText_LostFocus" IsEnabled="False" TextChanged="menuItemBoxText_TextChanged"/>
+        <TextBox x:Name="menuItemMenu" Grid.Column="2" Height="23" Margin="80,0,10,352" TextWrapping="Wrap" VerticalAlignment="Bottom" LostFocus="menuItemMenu_LostFocus"/>
+        <Label Content="Icon" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,290" VerticalAlignment="Bottom"/>
+        <Label Content="Text" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,259" VerticalAlignment="Bottom"/>
+        <Label Content="OptionType" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,229" VerticalAlignment="Bottom"/>
+        <Label Content="NpcFlag" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,198" VerticalAlignment="Bottom"/>
+        <Label Content="ActionMenu" Grid.Column="2" HorizontalAlignment="Left" Margin="1,0,0,167" VerticalAlignment="Bottom"/>
+        <Label Content="POI" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,136" VerticalAlignment="Bottom"/>
+        <Label Content="Coded" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,104" VerticalAlignment="Bottom"/>
+        <Label Content="Money" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,73" VerticalAlignment="Bottom"/>
+        <Label Content="BoxText" Grid.Column="2" HorizontalAlignment="Left" Margin="1,0,0,43" VerticalAlignment="Bottom"/>
+        <Label Content="SingleCheck" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,12" VerticalAlignment="Bottom"/>
+        <Button x:Name="menuItemTextBtn" Content="CHANGE" Grid.Column="2" Margin="235,0,10,259" VerticalAlignment="Bottom" Height="26" HorizontalAlignment="Right" Width="51" Click="menuItemTextBtn_Click"/>
+        <Button x:Name="menuItemBoxTextBtn" Content="CHANGE" Grid.Column="2" Margin="235,0,10,42" VerticalAlignment="Bottom" Height="26" HorizontalAlignment="Right" Width="51" Click="menuItemBoxTextBtn_Click"/>
+        <CheckBox x:Name="menuItemSingleTimeCheck" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="80,0,0,16" VerticalAlignment="Bottom" Click="menuItemSingleTimeCheck_Click"/>
+        <CheckBox x:Name="menuItemCoded" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="80,0,0,108" VerticalAlignment="Bottom" Click="menuItemCoded_Click"/>
+        <ComboBox x:Name="menuItemIcon" Grid.Column="2" Margin="80,0,10,290" VerticalAlignment="Bottom" SelectionChanged="menuItemIcon_SelectionChanged"/>
+        <Button x:Name="menuItemActionBtn" Content="LOAD" Grid.Column="2" Margin="0,0,10,166" VerticalAlignment="Bottom" Height="26" HorizontalAlignment="Right" Width="51" Click="menuItemActionBtn_Click"/>
+        <Button x:Name="menuItemNpcFlagBtn" Content="CHANGE" Grid.Column="2" Margin="0,0,10,197" VerticalAlignment="Bottom" Height="26" HorizontalAlignment="Right" Width="51" Click="menuItemNpcFlagBtn_Click"/>
+        <ComboBox x:Name="menuItemOptionType" Grid.Column="2" Margin="80,0,10,228" VerticalAlignment="Bottom" SelectionChanged="menuItemOptionType_SelectionChanged"/>
+        <Label Content="Menu" HorizontalAlignment="Left" Margin="10,0,0,171" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="gossipMenu" Height="23" Margin="77,0,0,170" TextWrapping="Wrap" VerticalAlignment="Bottom" LostFocus="gossipMenu_LostFocus"/>
+        <Label Content="Text" HorizontalAlignment="Left" Margin="10,0,0,141" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="gossipText" Height="23" Margin="77,0,0,139" TextWrapping="Wrap" VerticalAlignment="Bottom" LostFocus="gossipText_LostFocus"/>
+        <TextBox x:Name="gossipMenuComment" Height="23" Margin="77,0,0,108" TextWrapping="Wrap" VerticalAlignment="Bottom" LostFocus="gossipMenuComment_LostFocus"/>
+        <Label Content="Comment" HorizontalAlignment="Left" Margin="10,0,0,109" VerticalAlignment="Bottom"/>
+        <Button x:Name="menuItemSave" Content="Save" Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="menuItemSave_Click"/>
+        <Button x:Name="menuItemDelete" Content="Delete" Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,90,10" VerticalAlignment="Bottom" Width="75" Click="menuItemDelete_Click"/>
     </Grid>
 </UserControl>
