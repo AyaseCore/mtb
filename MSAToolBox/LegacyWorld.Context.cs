@@ -37,8 +37,6 @@ namespace MSAToolBox
         public DbSet<battlemaster_entry> battlemaster_entry { get; set; }
         public DbSet<capital_cities> capital_cities { get; set; }
         public DbSet<capital_city_upgrade_cost> capital_city_upgrade_cost { get; set; }
-        public DbSet<capital_city_upgrade_spells> capital_city_upgrade_spells { get; set; }
-        public DbSet<capital_city_upgrade_spellset> capital_city_upgrade_spellset { get; set; }
         public DbSet<command> command { get; set; }
         public DbSet<conditions> conditions { get; set; }
         public DbSet<creature> creature { get; set; }
@@ -188,5 +186,11 @@ namespace MSAToolBox
         public DbSet<spell_script_names> spell_script_names { get; set; }
         public DbSet<spell_scripts> spell_scripts { get; set; }
         public DbSet<broadcast_text> broadcast_text { get; set; }
+        public DbSet<capital_city_rankup_research_set> capital_city_rankup_research_set { get; set; }
+        public DbSet<capital_city_research_data> capital_city_research_data { get; set; }
+        public DbSet<capital_city_research_quest> capital_city_research_quest { get; set; }
+        public DbSet<capital_city_research_set> capital_city_research_set { get; set; }
+        public DbSet<capital_city_research_trainer_data> capital_city_research_trainer_data { get; set; }
+        public DbSet<capital_city_research_vendor_data> capital_city_research_vendor_data { get; set; }
     }
 }

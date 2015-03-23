@@ -551,6 +551,9 @@ namespace MSAToolBox.Controls.Legacy
 
         public void ModGossipMenuItem()
         {
+            if (_SelectedMenuItem == null)
+                return;
+
             _SelectedMenuItem.Menu = Convert.ToInt32(menuItemMenu.Text);
             _SelectedMenuItem.ID = Convert.ToInt32(menuItemID.Text);
             _SelectedMenuItem.Icon = Convert.ToInt32(menuItemIcon.SelectedValue);

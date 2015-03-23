@@ -148,22 +148,22 @@
           <Property Name="ScriptName" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Comment" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name="capital_city_upgrade_cost">
+        <EntityType Name="capital_city_rankup_research_set">
           <Key>
-            <PropertyRef Name="Level" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="ResearchSet" />
           </Key>
-          <Property Name="Level" Type="int" Nullable="false" />
-          <Property Name="Resource" Type="int" Nullable="false" />
-          <Property Name="MagicPower" Type="int" Nullable="false" />
+          <Property Name="City" Type="int" Nullable="false" />
+          <Property Name="ResearchSet" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name="capital_city_upgrade_spells">
+        <EntityType Name="capital_city_research_data">
           <Key>
-            <PropertyRef Name="SpellSet" />
+            <PropertyRef Name="ResearchSet" />
             <PropertyRef Name="Rank" />
           </Key>
-          <Property Name="SpellSet" Type="int" Nullable="false" />
+          <Property Name="ResearchSet" Type="int" Nullable="false" />
           <Property Name="Rank" Type="int" Nullable="false" />
-          <Property Name="Spell" Type="int" Nullable="false" />
           <Property Name="Description" Type="int" Nullable="false" />
           <Property Name="ReqCityRank" Type="int" Nullable="false" />
           <Property Name="ReqItem1" Type="int" Nullable="false" />
@@ -174,16 +174,58 @@
           <Property Name="ReqItemCount2" Type="int" Nullable="false" />
           <Property Name="ReqItemCount3" Type="int" Nullable="false" />
           <Property Name="ReqItemCount4" Type="int" Nullable="false" />
+          <Property Name="QuestSet" Type="int" Nullable="false" />
+          <Property Name="Spell" Type="int" Nullable="false" />
+          <Property Name="Item" Type="int" Nullable="false" />
+          <Property Name="Progress" Type="int" Nullable="false" />
           <Property Name="Comment" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name="capital_city_upgrade_spellset">
+        <EntityType Name="capital_city_research_quest">
           <Key>
-            <PropertyRef Name="City" />
-            <PropertyRef Name="SpellSet" />
+            <PropertyRef Name="QuestSet" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="City" Type="int" Nullable="false" />
-          <Property Name="SpellSet" Type="int" Nullable="false" />
-          <Property Name="Comment" Type="varchar" MaxLength="255" />
+          <Property Name="QuestSet" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Quest" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="capital_city_research_set">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="capital_city_research_trainer_data">
+          <Key>
+            <PropertyRef Name="Spell" />
+          </Key>
+          <Property Name="Spell" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="int" Nullable="false" />
+          <Property Name="ReqSkill" Type="int" Nullable="false" />
+          <Property Name="ReqSkillValue" Type="int" Nullable="false" />
+          <Property Name="ReqLevel" Type="int" Nullable="false" />
+          <Property Name="ReqCityRank" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="capital_city_research_vendor_data">
+          <Key>
+            <PropertyRef Name="Item" />
+          </Key>
+          <Property Name="Item" Type="int" Nullable="false" />
+          <Property Name="MaxCount" Type="int" Nullable="false" />
+          <Property Name="IncrTime" Type="int" Nullable="false" />
+          <Property Name="ItemExtendedCost" Type="int" Nullable="false" />
+          <Property Name="ReqCityRank" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="capital_city_upgrade_cost">
+          <Key>
+            <PropertyRef Name="Level" />
+          </Key>
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="StartResource" Type="int" Nullable="false" />
+          <Property Name="StartMagicPower" Type="int" Nullable="false" />
+          <Property Name="Resource" Type="int" Nullable="false" />
+          <Property Name="MagicPower" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="command">
           <Key>
@@ -473,6 +515,12 @@
           <Property Name="mechanic_immune_mask" Type="uint" Nullable="false" />
           <Property Name="flags_extra" Type="uint" Nullable="false" />
           <Property Name="WarSchool" Type="int" Nullable="false" />
+          <Property Name="ResearchSet1" Type="int" Nullable="false" />
+          <Property Name="ResearchSet2" Type="int" Nullable="false" />
+          <Property Name="ResearchSet3" Type="int" Nullable="false" />
+          <Property Name="ResearchSet4" Type="int" Nullable="false" />
+          <Property Name="ResearchSet5" Type="int" Nullable="false" />
+          <Property Name="ResearchSet6" Type="int" Nullable="false" />
           <Property Name="ScriptName" Type="char" MaxLength="64" Nullable="false" />
           <Property Name="VerifiedBuild" Type="smallint" />
         </EntityType>
@@ -2786,9 +2834,13 @@
           <EntitySet Name="battlemaster_entry" EntityType="Self.battlemaster_entry" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="broadcast_text" EntityType="Self.broadcast_text" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="capital_cities" EntityType="Self.capital_cities" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="capital_city_rankup_research_set" EntityType="Self.capital_city_rankup_research_set" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="capital_city_research_data" EntityType="Self.capital_city_research_data" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="capital_city_research_quest" EntityType="Self.capital_city_research_quest" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="capital_city_research_set" EntityType="Self.capital_city_research_set" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="capital_city_research_trainer_data" EntityType="Self.capital_city_research_trainer_data" Schema="v4_world" store:Type="Tables" />
+          <EntitySet Name="capital_city_research_vendor_data" EntityType="Self.capital_city_research_vendor_data" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="capital_city_upgrade_cost" EntityType="Self.capital_city_upgrade_cost" Schema="v4_world" store:Type="Tables" />
-          <EntitySet Name="capital_city_upgrade_spells" EntityType="Self.capital_city_upgrade_spells" Schema="v4_world" store:Type="Tables" />
-          <EntitySet Name="capital_city_upgrade_spellset" EntityType="Self.capital_city_upgrade_spellset" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="command" EntityType="Self.command" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="conditions" EntityType="Self.conditions" Schema="v4_world" store:Type="Tables" />
           <EntitySet Name="creature" EntityType="Self.creature" Schema="v4_world" store:Type="Tables" />
@@ -3130,35 +3182,8 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="Level" Type="Int32" Nullable="false" />
           <Property Name="Resource" Type="Int32" Nullable="false" />
           <Property Name="MagicPower" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="capital_city_upgrade_spells">
-          <Key>
-            <PropertyRef Name="SpellSet" />
-            <PropertyRef Name="Rank" />
-          </Key>
-          <Property Name="SpellSet" Type="Int32" Nullable="false" />
-          <Property Name="Rank" Type="Int32" Nullable="false" />
-          <Property Name="Spell" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="Int32" Nullable="false" />
-          <Property Name="ReqCityRank" Type="Int32" Nullable="false" />
-          <Property Name="ReqItem1" Type="Int32" Nullable="false" />
-          <Property Name="ReqItem2" Type="Int32" Nullable="false" />
-          <Property Name="ReqItem3" Type="Int32" Nullable="false" />
-          <Property Name="ReqItem4" Type="Int32" Nullable="false" />
-          <Property Name="ReqItemCount1" Type="Int32" Nullable="false" />
-          <Property Name="ReqItemCount2" Type="Int32" Nullable="false" />
-          <Property Name="ReqItemCount3" Type="Int32" Nullable="false" />
-          <Property Name="ReqItemCount4" Type="Int32" Nullable="false" />
-          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="capital_city_upgrade_spellset">
-          <Key>
-            <PropertyRef Name="City" />
-            <PropertyRef Name="SpellSet" />
-          </Key>
-          <Property Name="City" Type="Int32" Nullable="false" />
-          <Property Name="SpellSet" Type="Int32" Nullable="false" />
-          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="StartResource" Type="Int32" Nullable="false" />
+          <Property Name="StartMagicPower" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="command">
           <Key>
@@ -3424,6 +3449,12 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="WarSchool" Type="Int32" Nullable="false" />
           <Property Name="ScriptName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="VerifiedBuild" Type="Int16" />
+          <Property Name="ResearchSet1" Type="Int32" Nullable="false" />
+          <Property Name="ResearchSet2" Type="Int32" Nullable="false" />
+          <Property Name="ResearchSet3" Type="Int32" Nullable="false" />
+          <Property Name="ResearchSet4" Type="Int32" Nullable="false" />
+          <Property Name="ResearchSet5" Type="Int32" Nullable="false" />
+          <Property Name="ResearchSet6" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="creature_template_addon">
           <Key>
@@ -5749,8 +5780,6 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <EntitySet Name="battlemaster_entry" EntityType="Self.battlemaster_entry" />
           <EntitySet Name="capital_cities" EntityType="Self.capital_cities" />
           <EntitySet Name="capital_city_upgrade_cost" EntityType="Self.capital_city_upgrade_cost" />
-          <EntitySet Name="capital_city_upgrade_spells" EntityType="Self.capital_city_upgrade_spells" />
-          <EntitySet Name="capital_city_upgrade_spellset" EntityType="Self.capital_city_upgrade_spellset" />
           <EntitySet Name="command" EntityType="Self.command" />
           <EntitySet Name="conditions" EntityType="Self.conditions" />
           <EntitySet Name="creature" EntityType="Self.creature" />
@@ -5900,6 +5929,12 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <EntitySet Name="spell_script_names" EntityType="Self.spell_script_names" />
           <EntitySet Name="spell_scripts" EntityType="Self.spell_scripts" />
           <EntitySet Name="broadcast_text" EntityType="LegacyWorldModel.broadcast_text" />
+          <EntitySet Name="capital_city_rankup_research_set" EntityType="LegacyWorldModel.capital_city_rankup_research_set" />
+          <EntitySet Name="capital_city_research_data" EntityType="LegacyWorldModel.capital_city_research_data" />
+          <EntitySet Name="capital_city_research_quest" EntityType="LegacyWorldModel.capital_city_research_quest" />
+          <EntitySet Name="capital_city_research_set" EntityType="LegacyWorldModel.capital_city_research_set" />
+          <EntitySet Name="capital_city_research_trainer_data" EntityType="LegacyWorldModel.capital_city_research_trainer_data" />
+          <EntitySet Name="capital_city_research_vendor_data" EntityType="LegacyWorldModel.capital_city_research_vendor_data" />
         </EntityContainer>
         <EntityType Name="broadcast_text">
           <Key>
@@ -5919,6 +5954,75 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <Property Name="Unk1" Type="Int32" Nullable="false" />
           <Property Name="Unk2" Type="Int32" Nullable="false" />
           <Property Name="VerifiedBuild" Type="Int16" />
+        </EntityType>
+        <EntityType Name="capital_city_rankup_research_set">
+          <Key>
+            <PropertyRef Name="City" />
+            <PropertyRef Name="ResearchSet" />
+          </Key>
+          <Property Name="City" Type="Int32" Nullable="false" />
+          <Property Name="ResearchSet" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="capital_city_research_data">
+          <Key>
+            <PropertyRef Name="ResearchSet" />
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="ResearchSet" Type="Int32" Nullable="false" />
+          <Property Name="Rank" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="Int32" Nullable="false" />
+          <Property Name="ReqCityRank" Type="Int32" Nullable="false" />
+          <Property Name="ReqItem1" Type="Int32" Nullable="false" />
+          <Property Name="ReqItem2" Type="Int32" Nullable="false" />
+          <Property Name="ReqItem3" Type="Int32" Nullable="false" />
+          <Property Name="ReqItem4" Type="Int32" Nullable="false" />
+          <Property Name="ReqItemCount1" Type="Int32" Nullable="false" />
+          <Property Name="ReqItemCount2" Type="Int32" Nullable="false" />
+          <Property Name="ReqItemCount3" Type="Int32" Nullable="false" />
+          <Property Name="ReqItemCount4" Type="Int32" Nullable="false" />
+          <Property Name="QuestSet" Type="Int32" Nullable="false" />
+          <Property Name="Spell" Type="Int32" Nullable="false" />
+          <Property Name="Item" Type="Int32" Nullable="false" />
+          <Property Name="Progress" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="capital_city_research_quest">
+          <Key>
+            <PropertyRef Name="QuestSet" />
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="QuestSet" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Quest" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="capital_city_research_set">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="capital_city_research_trainer_data">
+          <Key>
+            <PropertyRef Name="Spell" />
+          </Key>
+          <Property Name="Spell" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Int32" Nullable="false" />
+          <Property Name="ReqSkill" Type="Int32" Nullable="false" />
+          <Property Name="ReqSkillValue" Type="Int32" Nullable="false" />
+          <Property Name="ReqLevel" Type="Int32" Nullable="false" />
+          <Property Name="ReqCityRank" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="capital_city_research_vendor_data">
+          <Key>
+            <PropertyRef Name="Item" />
+          </Key>
+          <Property Name="Item" Type="Int32" Nullable="false" />
+          <Property Name="MaxCount" Type="Int32" Nullable="false" />
+          <Property Name="IncrTime" Type="Int32" Nullable="false" />
+          <Property Name="ItemExtendedCost" Type="Int32" Nullable="false" />
+          <Property Name="ReqCityRank" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -6062,38 +6166,11 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <EntitySetMapping Name="capital_city_upgrade_cost">
             <EntityTypeMapping TypeName="LegacyWorldModel.capital_city_upgrade_cost">
               <MappingFragment StoreEntitySet="capital_city_upgrade_cost">
+                <ScalarProperty Name="StartMagicPower" ColumnName="StartMagicPower" />
+                <ScalarProperty Name="StartResource" ColumnName="StartResource" />
                 <ScalarProperty Name="Level" ColumnName="Level" />
                 <ScalarProperty Name="Resource" ColumnName="Resource" />
                 <ScalarProperty Name="MagicPower" ColumnName="MagicPower" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="capital_city_upgrade_spells">
-            <EntityTypeMapping TypeName="LegacyWorldModel.capital_city_upgrade_spells">
-              <MappingFragment StoreEntitySet="capital_city_upgrade_spells">
-                <ScalarProperty Name="SpellSet" ColumnName="SpellSet" />
-                <ScalarProperty Name="Rank" ColumnName="Rank" />
-                <ScalarProperty Name="Spell" ColumnName="Spell" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ReqCityRank" ColumnName="ReqCityRank" />
-                <ScalarProperty Name="ReqItem1" ColumnName="ReqItem1" />
-                <ScalarProperty Name="ReqItem2" ColumnName="ReqItem2" />
-                <ScalarProperty Name="ReqItem3" ColumnName="ReqItem3" />
-                <ScalarProperty Name="ReqItem4" ColumnName="ReqItem4" />
-                <ScalarProperty Name="ReqItemCount1" ColumnName="ReqItemCount1" />
-                <ScalarProperty Name="ReqItemCount2" ColumnName="ReqItemCount2" />
-                <ScalarProperty Name="ReqItemCount3" ColumnName="ReqItemCount3" />
-                <ScalarProperty Name="ReqItemCount4" ColumnName="ReqItemCount4" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="capital_city_upgrade_spellset">
-            <EntityTypeMapping TypeName="LegacyWorldModel.capital_city_upgrade_spellset">
-              <MappingFragment StoreEntitySet="capital_city_upgrade_spellset">
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="SpellSet" ColumnName="SpellSet" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -6275,6 +6352,12 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
           <EntitySetMapping Name="creature_template">
             <EntityTypeMapping TypeName="LegacyWorldModel.creature_template">
               <MappingFragment StoreEntitySet="creature_template">
+                <ScalarProperty Name="ResearchSet6" ColumnName="ResearchSet6" />
+                <ScalarProperty Name="ResearchSet5" ColumnName="ResearchSet5" />
+                <ScalarProperty Name="ResearchSet4" ColumnName="ResearchSet4" />
+                <ScalarProperty Name="ResearchSet3" ColumnName="ResearchSet3" />
+                <ScalarProperty Name="ResearchSet2" ColumnName="ResearchSet2" />
+                <ScalarProperty Name="ResearchSet1" ColumnName="ResearchSet1" />
                 <ScalarProperty Name="entry" ColumnName="entry" />
                 <ScalarProperty Name="difficulty_entry_1" ColumnName="difficulty_entry_1" />
                 <ScalarProperty Name="difficulty_entry_2" ColumnName="difficulty_entry_2" />
@@ -8705,6 +8788,78 @@ FROM `spell_scripts` AS `spell_scripts`</DefiningQuery>
                 <ScalarProperty Name="MaleText" ColumnName="MaleText" />
                 <ScalarProperty Name="Language" ColumnName="Language" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="capital_city_rankup_research_set">
+            <EntityTypeMapping TypeName="LegacyWorldModel.capital_city_rankup_research_set">
+              <MappingFragment StoreEntitySet="capital_city_rankup_research_set">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ResearchSet" ColumnName="ResearchSet" />
+                <ScalarProperty Name="City" ColumnName="City" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="capital_city_research_data">
+            <EntityTypeMapping TypeName="LegacyWorldModel.capital_city_research_data">
+              <MappingFragment StoreEntitySet="capital_city_research_data">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Progress" ColumnName="Progress" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="Spell" ColumnName="Spell" />
+                <ScalarProperty Name="QuestSet" ColumnName="QuestSet" />
+                <ScalarProperty Name="ReqItemCount4" ColumnName="ReqItemCount4" />
+                <ScalarProperty Name="ReqItemCount3" ColumnName="ReqItemCount3" />
+                <ScalarProperty Name="ReqItemCount2" ColumnName="ReqItemCount2" />
+                <ScalarProperty Name="ReqItemCount1" ColumnName="ReqItemCount1" />
+                <ScalarProperty Name="ReqItem4" ColumnName="ReqItem4" />
+                <ScalarProperty Name="ReqItem3" ColumnName="ReqItem3" />
+                <ScalarProperty Name="ReqItem2" ColumnName="ReqItem2" />
+                <ScalarProperty Name="ReqItem1" ColumnName="ReqItem1" />
+                <ScalarProperty Name="ReqCityRank" ColumnName="ReqCityRank" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="ResearchSet" ColumnName="ResearchSet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="capital_city_research_quest">
+            <EntityTypeMapping TypeName="LegacyWorldModel.capital_city_research_quest">
+              <MappingFragment StoreEntitySet="capital_city_research_quest">
+                <ScalarProperty Name="Quest" ColumnName="Quest" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="QuestSet" ColumnName="QuestSet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="capital_city_research_set">
+            <EntityTypeMapping TypeName="LegacyWorldModel.capital_city_research_set">
+              <MappingFragment StoreEntitySet="capital_city_research_set">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="capital_city_research_trainer_data">
+            <EntityTypeMapping TypeName="LegacyWorldModel.capital_city_research_trainer_data">
+              <MappingFragment StoreEntitySet="capital_city_research_trainer_data">
+                <ScalarProperty Name="ReqCityRank" ColumnName="ReqCityRank" />
+                <ScalarProperty Name="ReqLevel" ColumnName="ReqLevel" />
+                <ScalarProperty Name="ReqSkillValue" ColumnName="ReqSkillValue" />
+                <ScalarProperty Name="ReqSkill" ColumnName="ReqSkill" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Spell" ColumnName="Spell" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="capital_city_research_vendor_data">
+            <EntityTypeMapping TypeName="LegacyWorldModel.capital_city_research_vendor_data">
+              <MappingFragment StoreEntitySet="capital_city_research_vendor_data">
+                <ScalarProperty Name="ReqCityRank" ColumnName="ReqCityRank" />
+                <ScalarProperty Name="ItemExtendedCost" ColumnName="ItemExtendedCost" />
+                <ScalarProperty Name="IncrTime" ColumnName="IncrTime" />
+                <ScalarProperty Name="MaxCount" ColumnName="MaxCount" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

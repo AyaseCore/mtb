@@ -12,10 +12,12 @@ namespace MSAToolBox
     using System;
     using System.Collections.Generic;
     
-    public partial class capital_city_upgrade_spellset
+    public partial class capital_city_research_vendor_data
     {
-        public int City { get; set; }
-        public int SpellSet { get; set; }
-        public string Comment { get; set; }
+        public int Item { get; set; }
+        public int MaxCount { get; set; }
+        public int IncrTime { get; set; }
+        public int ItemExtendedCost { get; set; }
+        public int ReqCityRank { get; set; }
     }
 }

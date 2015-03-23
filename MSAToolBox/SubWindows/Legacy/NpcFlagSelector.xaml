@@ -26,22 +26,22 @@
             <CheckBox x:Name="npcFlag11" Content="POISON VENDOR" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag11_Click"/>
             <CheckBox x:Name="npcFlag12" Content="REAGENTS VENDOR" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag12_Click"/>
             <CheckBox x:Name="npcFlag13" Content="REPAIR" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag13_Click"/>
-            <CheckBox x:Name="npcFlag14" Content="TRAINER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag14_Click"/>
-            <CheckBox x:Name="npcFlag15" Content="FLIGHTMASTER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag15_Click"/>
-            <CheckBox x:Name="npcFlag16" Content="SPIRITHEALER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag16_Click"/>
-            <CheckBox x:Name="npcFlag17" Content="SPIRITGUIDE" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag17_Click"/>
-            <CheckBox x:Name="npcFlag18" Content="INNKEEPER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag18_Click"/>
+            <CheckBox x:Name="npcFlag14" Content="FLIGHTMASTER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag14_Click"/>
+            <CheckBox x:Name="npcFlag15" Content="SPIRITHEALER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag15_Click"/>
+            <CheckBox x:Name="npcFlag16" Content="SPIRITGUIDE" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag16_Click"/>
+            <CheckBox x:Name="npcFlag17" Content="INNKEEPER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag17_Click"/>
+            <CheckBox x:Name="npcFlag18" Content="BANKER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag18_Click"/>
         </StackPanel>
         <StackPanel Grid.Column="2">
-            <CheckBox x:Name="npcFlag19" Content="BANKER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag19_Click"/>
-            <CheckBox x:Name="npcFlag20" Content="PETITIONER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag20_Click"/>
-            <CheckBox x:Name="npcFlag21" Content="TABARDDESIGNER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag21_Click"/>
-            <CheckBox x:Name="npcFlag22" Content="BATTLEMASTER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag22_Click"/>
-            <CheckBox x:Name="npcFlag23" Content="AUCTIONEER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag23_Click"/>
-            <CheckBox x:Name="npcFlag24" Content="STABLEMASTER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag24_Click"/>
-            <CheckBox x:Name="npcFlag25" Content="GUILD BANKER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag25_Click"/>
-            <CheckBox x:Name="npcFlag26" Content="SPELLCLICK" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag26_Click"/>
-            <CheckBox x:Name="npcFlag27" Content="PLAYER VEHICLE" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag27_Click"/>
+            <CheckBox x:Name="npcFlag19" Content="PETITIONER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag19_Click"/>
+            <CheckBox x:Name="npcFlag20" Content="TABARDDESINER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag20_Click"/>
+            <CheckBox x:Name="npcFlag21" Content="BATTLEMASTER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag21_Click"/>
+            <CheckBox x:Name="npcFlag22" Content="AUCTIONEER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag22_Click"/>
+            <CheckBox x:Name="npcFlag23" Content="STABLEMASTER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag23_Click"/>
+            <CheckBox x:Name="npcFlag24" Content="GUILDBANKER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag24_Click"/>
+            <CheckBox x:Name="npcFlag25" Content="SPELLCLICK" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag25_Click"/>
+            <CheckBox x:Name="npcFlag26" Content="PLAYERVEHICLE" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag26_Click"/>
+            <CheckBox x:Name="npcFlag27" Content="MAILBOX" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,3" Click="npcFlag27_Click"/>
         </StackPanel>
     </Grid>
 </Controls:MetroWindow>

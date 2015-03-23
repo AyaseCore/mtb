@@ -17,8 +17,6 @@
         <EntityTypeShape EntityType="LegacyWorldModel.battlemaster_entry" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LegacyWorldModel.capital_cities" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LegacyWorldModel.capital_city_upgrade_cost" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LegacyWorldModel.capital_city_upgrade_spells" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LegacyWorldModel.capital_city_upgrade_spellset" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LegacyWorldModel.command" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LegacyWorldModel.conditions" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LegacyWorldModel.creature" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
@@ -168,6 +166,12 @@
         <EntityTypeShape EntityType="LegacyWorldModel.spell_script_names" Width="1.5" PointX="38.75" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LegacyWorldModel.spell_scripts" Width="1.5" PointX="38.75" PointY="17.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LegacyWorldModel.broadcast_text" Width="1.5" PointX="13.375" PointY="39.75" />
+        <EntityTypeShape EntityType="LegacyWorldModel.capital_city_rankup_research_set" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="LegacyWorldModel.capital_city_research_data" Width="1.5" PointX="19.375" PointY="39.75" />
+        <EntityTypeShape EntityType="LegacyWorldModel.capital_city_research_quest" Width="1.5" PointX="39.375" PointY="21.75" />
+        <EntityTypeShape EntityType="LegacyWorldModel.capital_city_research_set" Width="1.5" PointX="39.375" PointY="24.75" />
+        <EntityTypeShape EntityType="LegacyWorldModel.capital_city_research_trainer_data" Width="1.5" PointX="39.375" PointY="27.75" />
+        <EntityTypeShape EntityType="LegacyWorldModel.capital_city_research_vendor_data" Width="1.5" PointX="39.375" PointY="30.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

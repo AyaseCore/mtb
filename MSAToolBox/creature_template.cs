@@ -97,5 +97,11 @@ namespace MSAToolBox
         public int WarSchool { get; set; }
         public string ScriptName { get; set; }
         public Nullable<short> VerifiedBuild { get; set; }
+        public int ResearchSet1 { get; set; }
+        public int ResearchSet2 { get; set; }
+        public int ResearchSet3 { get; set; }
+        public int ResearchSet4 { get; set; }
+        public int ResearchSet5 { get; set; }
+        public int ResearchSet6 { get; set; }
     }
 }

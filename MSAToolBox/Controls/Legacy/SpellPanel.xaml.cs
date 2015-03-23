@@ -1429,5 +1429,12 @@ namespace MSAToolBox.Controls.Legacy
                 new_spells.Add(n);
             WriteSpellDBC(new_spells, new List<string>() { "Spell_New.dbc" });
         }
+
+        private void addToSkill795Btn_Checked(object sender, RoutedEventArgs e)
+        {
+            var spell = spellList.SelectedValue as SpellTemplate;
+            int entry = (int)spell.ID;
+            AddToSkill(entry, 795);
+        }
     }
 }

@@ -818,6 +818,12 @@ namespace MSAToolBox.Utility
             creature.ScriptName = c.ScriptName;
             creature.VerifiedBuild = c.VerifiedBuild;
             creature.WarSchool = c.WarSchool;
+            creature.ResearchSet[0] = c.ResearchSet1;
+            creature.ResearchSet[1] = c.ResearchSet2;
+            creature.ResearchSet[2] = c.ResearchSet3;
+            creature.ResearchSet[3] = c.ResearchSet4;
+            creature.ResearchSet[4] = c.ResearchSet5;
+            creature.ResearchSet[5] = c.ResearchSet6;
             DB.Refresh();
             return creature;
         }
@@ -921,7 +927,13 @@ namespace MSAToolBox.Utility
                 flags_extra = creature.ExtraFlags,
                 ScriptName = creature.ScriptName,
                 VerifiedBuild = creature.VerifiedBuild,
-                WarSchool = creature.WarSchool
+                WarSchool = creature.WarSchool,
+                ResearchSet1 = creature.ResearchSet[0],
+                ResearchSet2 = creature.ResearchSet[1],
+                ResearchSet3 = creature.ResearchSet[2],
+                ResearchSet4 = creature.ResearchSet[3],
+                ResearchSet5 = creature.ResearchSet[4],
+                ResearchSet6 = creature.ResearchSet[5]
             });
 
             DB.LEGACY.SaveChanges();

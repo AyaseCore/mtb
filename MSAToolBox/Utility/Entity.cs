@@ -69,6 +69,7 @@ namespace MSAToolBox.Utility
             Spell = new int[8];
             QuestItem = new long[6];
             Model = new int[4];
+            ResearchSet = new int[6];
         }
 
         public int[] Entry { get; set; }
@@ -130,6 +131,7 @@ namespace MSAToolBox.Utility
         public string ScriptName { get; set; }
         public short? VerifiedBuild { get; set; }
         public int WarSchool { get; set; }
+        public int[] ResearchSet { get; set; }
     }
 
     public class Creature

@@ -943,7 +943,10 @@ namespace MSAToolBox.Utility
             {18, "Learn Dual Talent"},
             {19, "Outdoor PvP"},
             {20, "Learn War School Spell"},
-            {21, "Join War School"}
+            {21, "Join War School"},
+            {22, "View Research"},
+            {23, "View Research Detail"},
+            {24, "Start Research"}
         };
 
         public static Dictionary<int, string> SpellEffectRadius = LoadDBCDefine("SpellRadius");

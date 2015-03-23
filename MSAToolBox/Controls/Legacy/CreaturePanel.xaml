@@ -209,6 +209,13 @@
                         <Button Content="CHANGE" Grid.Column="1" HorizontalAlignment="Left" Margin="135,1809,0,0" VerticalAlignment="Top" Width="75"/>
                         <Label Content="WarSchool" HorizontalAlignment="Left" Margin="310,135,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                         <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="385,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding WarSchool}"/>
+                        <TextBox Grid.Column="1" HorizontalAlignment="Right" Height="23" Margin="0,569,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Text="{Binding ResearchSet[1]}"/>
+                        <TextBox Grid.Column="1" HorizontalAlignment="Right" Height="23" Margin="0,569,85,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Text="{Binding ResearchSet[0]}"/>
+                        <TextBox Grid.Column="1" HorizontalAlignment="Right" Height="23" Margin="0,600,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Text="{Binding ResearchSet[3]}"/>
+                        <TextBox Grid.Column="1" HorizontalAlignment="Right" Height="23" Margin="0,600,85,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Text="{Binding ResearchSet[2]}"/>
+                        <TextBox Grid.Column="1" HorizontalAlignment="Right" Height="23" Margin="0,630,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Text="{Binding ResearchSet[5]}"/>
+                        <TextBox Grid.Column="1" HorizontalAlignment="Right" Height="23" Margin="0,630,85,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Text="{Binding ResearchSet[4]}"/>
+                        <Label Content="ResearchSet" Grid.Column="1" HorizontalAlignment="Right" Margin="0,570,160,0" VerticalAlignment="Top"/>
                     </Grid>
                 </ScrollViewer>
             </TabItem>

@@ -12,12 +12,10 @@ namespace MSAToolBox
     using System;
     using System.Collections.Generic;
     
-    public partial class capital_city_upgrade_cost
+    public partial class capital_city_research_quest
     {
-        public int Level { get; set; }
-        public int Resource { get; set; }
-        public int MagicPower { get; set; }
-        public int StartResource { get; set; }
-        public int StartMagicPower { get; set; }
+        public int QuestSet { get; set; }
+        public int ID { get; set; }
+        public int Quest { get; set; }
     }
 }

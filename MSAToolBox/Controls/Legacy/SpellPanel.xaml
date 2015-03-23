@@ -55,6 +55,7 @@
                         <MenuItem  Header="INSCRIPTION(773)" x:Name="addToSkill773Btn" Click="addToSkill773Btn_Click"/>
                         <MenuItem  Header="MAGOLOGY(789)" x:Name="addToSkill789Btn" Click="addToSkill789Btn_Click"/>
                         <MenuItem  Header="ADVENTURE(790)" x:Name="addToSkill790Btn" Click="addToSkill790Btn_Click"/>
+                        <MenuItem  Header="BENEFIT(795)" x:Name="addToSkill795Btn" Click="addToSkill795Btn_Checked"/>
                     </MenuItem>
                 </ContextMenu>
             </ListBox.ContextMenu>

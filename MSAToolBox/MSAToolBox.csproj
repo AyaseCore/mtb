@@ -108,13 +108,25 @@
     <Compile Include="capital_cities.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
+    <Compile Include="capital_city_rankup_research_set.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="capital_city_research_data.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="capital_city_research_quest.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="capital_city_research_set.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="capital_city_research_trainer_data.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="capital_city_research_vendor_data.cs">
+      <DependentUpon>LegacyWorld.tt</DependentUpon>
+    </Compile>
     <Compile Include="capital_city_upgrade_cost.cs">
-      <DependentUpon>LegacyWorld.tt</DependentUpon>
-    </Compile>
-    <Compile Include="capital_city_upgrade_spells.cs">
-      <DependentUpon>LegacyWorld.tt</DependentUpon>
-    </Compile>
-    <Compile Include="capital_city_upgrade_spellset.cs">
       <DependentUpon>LegacyWorld.tt</DependentUpon>
     </Compile>
     <Compile Include="command.cs">
